@@ -3,7 +3,13 @@ package shop.mtcoding.blogv2.notice;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
+
+import shop.mtcoding.blogv2._core.error.ex.MyException;
+import shop.mtcoding.blogv2._core.util.Script;
+import shop.mtcoding.blogv2.user.User;
 
 @Controller
 public class NoticeController {
@@ -33,7 +39,13 @@ public class NoticeController {
     @PostMapping("/noticeSave")
     public String noticeSave(NoticeRequest.SaveDTO saveDTO) {
         noticeService.채용등록(saveDTO);
+        return "redirect:/companyNoticeList";
+    }
 
+    // 채용삭제하기
+    @PostMapping("/companyNoticeList/1/delete")
+    public String delete() {
+        noticeService.채용삭제();
         return "redirect:/companyNoticeList";
     }
 
