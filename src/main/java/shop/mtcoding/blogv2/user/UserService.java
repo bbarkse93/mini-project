@@ -20,7 +20,7 @@ public class UserService {
                 .registNumber(joinDTO.getRegistNumber())
                 .email(joinDTO.getEmail())
                 .picUrl(joinDTO.getPicUrl())
-                .distingush(joinDTO.isDistingush())
+                .distinguish(joinDTO.isDistinguish())
                 .build();
         userRepository.save(user);
 

@@ -48,14 +48,14 @@ public class User {
     private String picUrl;
 
     @Column(nullable = true)
-    private boolean distingush;
+    private boolean distinguish;
 
     @CreationTimestamp
     private Timestamp createdAt;
 
     @Builder
     public User(Integer id, String username, String password, String name, String telNumber, String registNumber,
-            String email, String picUrl, boolean distingush, Timestamp createdAt) {
+            String email, String picUrl, boolean distinguish, Timestamp createdAt) {
         this.id = id;
         this.username = username;
         this.password = password;
@@ -64,7 +64,7 @@ public class User {
         this.registNumber = registNumber;
         this.email = email;
         this.picUrl = picUrl;
-        this.distingush = distingush;
+        this.distinguish = distinguish;
         this.createdAt = createdAt;
     }
 
