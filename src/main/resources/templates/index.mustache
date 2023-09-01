@@ -1,0 +1,141 @@
+{{> layout/header}}
+
+<div class="frame">
+
+  <!--구분선-->
+  <hr style="border-color: #000000; margin: 0;">
+  <!--구분선-->
+
+  <!--슬라이드-->
+  <div class="slideshow-container" style="margin-top: 33px;">
+
+    <div class="mySlides fade">
+
+      <img src="/images/advertisement.png" style="width:100%">
+    </div>
+
+    <div class="mySlides fade">
+      <img src="https://img.khan.co.kr/news/2020/10/19/l_2020101901001866800154571.webp" style="width:100%">
+    </div>
+
+    <div class="mySlides fade">
+      <img src="https://www.newsnjob.com/news/photo/202307/mn_22551_20230711094628_1.jpg" style="width:100%">
+    </div>
+
+  </div>
+  <br>
+
+  <div style="text-align:center; margin-top: -40px;">
+    <span class="choice-dot"></span>
+    <span class="choice-dot"></span>
+    <span class="choice-dot"></span>
+  </div>
+  <!--슬라이드-->
+
+  <hr>
+
+
+  <!--파워 링크 글자-->
+  <div class="파워링크 mt-2">파워 링크</div>
+  <!--파워 링크 글자-->
+
+  <!--파워 링크 이미지-->
+  <div class="image-container">
+    <a href="http://www.naver.com" class="rounded-image">
+      <img src="/images/파워링크사진.png" />
+    </a>
+    <a href="http://www.naver.com" class="rounded-image">
+      <img src="/images/파워링크사진.png" />
+    </a>
+    <a href="http://www.naver.com" class="rounded-image">
+      <img src="/images/파워링크사진.png" />
+    </a>
+    <a href="http://www.naver.com" class="rounded-image">
+      <img src="/images/파워링크사진.png" />
+    </a>
+  </div>
+  <!--파워 링크 이미지-->
+
+  <hr>
+
+  <!--채용공고글자-->
+  <div class="채용공고 mt-2">채용 공고</div>
+  <!--채용공고글자-->
+
+  <!--채용 공고 이미지-->
+  <div class="image-container">
+    <a href="http://www.naver.com" class="rounded-image">
+      <img src="/images/파워링크사진.png" />
+    </a>
+    <a href="http://www.naver.com" class="rounded-image">
+      <img src="/images/파워링크사진.png" />
+    </a>
+    <a href="http://www.naver.com" class="rounded-image">
+      <img src="/images/파워링크사진.png" />
+    </a>
+    <a href="http://www.naver.com" class="rounded-image">
+      <img src="/images/파워링크사진.png" />
+    </a>
+  </div>
+  <!--채용 공고 이미지-->
+
+
+
+  <!--구분선-->
+  <hr>
+  <!--구분선-->
+
+  <!-- The Modal -->
+  <div class="modal" id="myModal">
+    <div class="modal-dialog">
+      <div class="modal-content">
+
+        <!-- Modal Header -->
+        <div class="modal-header">
+          <h4 class="modal-title">선택해주세요</h4>
+          <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+        </div>
+
+        <!-- Modal body -->
+        <div class="image-container text-center">
+          <a href="https://nid.naver.com/nidlogin.login?mode=form&url=https://www.naver.com/">
+            <img src="/images/개인회원.png" alt="개인회원 이미지">
+          </a>
+          <a href="https://nid.naver.com/nidlogin.login?mode=form&url=https://www.naver.com/">
+            <img src="/images/기업회원.png" alt="기업회원 이미지">
+          </a>
+
+        </div>
+
+        <!-- Modal footer -->
+        <div class="modal-footer">
+          <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Close</button>
+        </div>
+
+      </div>
+    </div>
+  </div>
+</div>
+
+<script>
+  var slideIndex = 0;
+  showSlides();
+
+  function showSlides() {
+    var i;
+    var slides = document.getElementsByClassName("mySlides");
+    var dots = document.getElementsByClassName("choice-dot");
+    for (i = 0; i < slides.length; i++) {
+      slides[i].style.display = "none";
+    }
+    slideIndex++;
+    if (slideIndex > slides.length) { slideIndex = 1 }
+    for (i = 0; i < dots.length; i++) {
+      dots[i].className = dots[i].className.replace("index-active", "");
+    }
+    slides[slideIndex - 1].style.display = "block";
+    dots[slideIndex - 1].className += "index-active";
+    setTimeout(showSlides, 3000); // n초마다 바뀜
+  }
+</script>
+{{> layout/footer}}
