@@ -1,133 +1,72 @@
-
-    <div class="frame">
-        <div class="container mt-3">
-            <div class="row">
-                <div class="col-md-3">
-                    <h1 class="text-center ">기업정보보기</h1>
-                    <div class="card">
-                        <div class="company-image">
-                            <img class="default" src="../images/company.jpg" alt="">
-                        </div>
-                        <div class="d-flex justify-content-center">
-                            <button type="button" class="btn btn-warning text-center"
-                                style="width: 100px;">사진수정</button>
-                        </div>
-                        <hr />
-                        <div>
-                            <a class="nav-link" href="#">채용공고관리</a>
-                            <a class="nav-link" href="#">지원서 관리</a>
-                            <hr />
-                            <a class="nav-link" href="#">기업정보 수정</a>
-                            <a class="nav-link" href="#">로그아웃</a>
-                        </div>
+{{> layout/header}}
+<div class="frame">
+    <div class="container mt-3">
+        <div class="row">
+            <div class="col-md-3">
+                <h1 class="text-center ">기업정보보기</h1>
+                <div class="card">
+                    <div class="company-image">
+                        <img class="default" src="../images/company.jpg" alt="">
                     </div>
-                </div>
-                <div class="col-md-9">
-                    <div class="d-flex flex-row-reverse justify-content-between pe-3 my-3">
-                        <button type="button" class="btn btn-primary" style="width: 116px; height: 40px;">등록</button>
-                        <div class="small-title">채용공고 관리</div>
+                    <div class="d-flex justify-content-center">
+                        <button type="button" class="btn btn-warning text-center" style="width: 100px;">사진수정</button>
                     </div>
                     <hr />
-                    <div class="list-group">
-                        <div class="mb-3">
-                            <a href="#" class="list-group-item list-group-item-action">
-                                <div class="d-flex justify-content-between">
-                                    <div>
-                                        <div class="mb-2 notice-title">
-                                            공고 제목
-                                        </div>
-                                        <div class="mb-2">
-                                            마감기한
-                                        </div>
-                                    </div>
-                                    <div>
-                                        <div class="mb-1">
-                                            <button type="button" class="btn btn-warning"
-                                                style="height: 30px;">수정</button>
-                                        </div>
-                                        <div>
-                                            <button type="button" class="btn btn-danger"
-                                                style="height: 30px;">삭제</button>
-                                        </div>
-                                    </div>
-                                </div>
-                            </a>
-                        </div>
-                        <div class="mb-3">
-                            <a href="#" class="list-group-item list-group-item-action">
-                                <div class="d-flex justify-content-between">
-                                    <div>
-                                        <div class="mb-2 notice-title">
-                                            공고 제목
-                                        </div>
-                                        <div class="mb-2">
-                                            마감기한
-                                        </div>
-                                    </div>
-                                    <div>
-                                        <div class="mb-1">
-                                            <button type="button" class="btn btn-warning "
-                                                style="height: 30px;">수정</button>
-                                        </div>
-                                        <div>
-                                            <button type="button" class="btn btn-danger"
-                                                style="height: 30px;">삭제</button>
-                                        </div>
-                                    </div>
-                                </div>
-                            </a>
-                        </div>
-                        <div class="mb-3">
-                            <a href="#" class="list-group-item list-group-item-action">
-                                <div class="d-flex justify-content-between">
-                                    <div>
-                                        <div class="mb-2 notice-title">
-                                            공고 제목
-                                        </div>
-                                        <div class="mb-2">
-                                            마감기한
-                                        </div>
-                                    </div>
-                                    <div>
-                                        <div class="mb-1">
-                                            <button type="button" class="btn btn-warning "
-                                                style="height: 30px;">수정</button>
-                                        </div>
-
-                                        <div>
-                                            <button type="button" class="btn btn-danger"
-                                                style="height: 30px;">삭제</button>
-                                        </div>
-                                    </div>
-                                </div>
-                            </a>
-                        </div>
-                        <div class="mb-3">
-                            <a href="#" class="list-group-item list-group-item-action">
-                                <div class="d-flex justify-content-between">
-                                    <div>
-                                        <div class="mb-2 notice-title">
-                                            공고 제목
-                                        </div>
-                                        <div class="mb-2">
-                                            마감기한
-                                        </div>
-                                    </div>
-                                    <div>
-                                        <div class="mb-1">
-                                            <button type="button" class="btn btn-warning "
-                                                style="height: 30px;">수정</button>
-                                        </div>
-                                        <div>
-                                            <button type="button" class="btn btn-danger"
-                                                style="height: 30px;">삭제</button>
-                                        </div>
-                                    </div>
-                                </div>
-                            </a>
-                        </div>
+                    <div>
+                        <a class="nav-link" href="/companyNoticeList">채용공고관리</a>
+                        <a class="nav-link" href="/companyApplyList">지원서
+                            관리</a>
+                        <hr />
+                        <a class="nav-link" href="#">기업정보 수정</a>
+                        <a class="nav-link" href="#">로그아웃</a>
                     </div>
                 </div>
             </div>
+            <div class="col-md-9">
+                <div class="d-flex flex-row-reverse justify-content-between pe-3 my-3">
+                    <a href="/noticeWrite">
+                        <!-- 수정 페이지로 이동하는 폼을 제출 -->
+                        <button type="button" class="btn btn-primary" style="width: 116px; height: 40px;">등록</button>
+                    </a>
+                    <div class="small-title">채용공고 관리</div>
+                </div>
+                <hr />
+                <div class="list-group">
+                    <div class="mb-3">
+                        <div class="d-flex justify-content-between">
+                            <form action="링크 주소" method="get" class="form-control">
+                                <a href="/noticeDetail" target="_blank" class="list-group-item list-group-item-action">
+                                    <div class="d-flex justify-content-between">
+                                        <div>
+                                            <div class="mb-2 notice-title">
+                                                공고 제목
+                                            </div>
+                                            <div class="mb-2">
+                                                마감기한
+                                            </div>
+                                        </div>
+                                        <div>
+                                        </div>
+                                    </div>
+                                </a>
+                            </form>
+                            <div>
+                                <a href="http://www.naver.com" class="mb-1">
+                                    <!-- 수정 페이지로 이동하는 폼을 제출 -->
+                                    <button type="submit" class="btn btn-warning" style="height: 30px;">수정</button>
+                                </a>
+                                <div>
+                                    <form action="" method="post">
+                                        <button type="submit" class="btn btn-danger" style="height: 30px;">삭제</button>
+                                    </form>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
         </div>
     </div>
+</div>
+{{> layout/footer}}

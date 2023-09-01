@@ -10,10 +10,11 @@ insert into user_tb(username, password, company_name, proprietary_number, email,
 insert into resume_tb(title,personal_email,phone_number,cover_letter,personal_picture,created_at) values('이력서1','ssar@nate.com','010-1234-5678','자기소개서','basic.png',NOW());
 insert into resume_tb(title,personal_email,phone_number,cover_letter,personal_picture,created_at) values('이력서2','cos@nate.com','010-1111-5678','자기소개서','basic.png',NOW());
 
-insert into notice_tb(title,company_name,company_email,company_info,company_pic,location,intake,pay,period,qualification,created_at) 
-values('웹서비스플랫폼개발자','NAVER','ssar@naver.com','네이버 소개','basic','서울','5','회사 내규에 따름',NOW(),'개발 경력 3년 이상', NOW());
-insert into notice_tb(title,company_name,company_email,company_info,company_pic,location,intake,pay,period,qualification,created_at)
-values('데이터 분석가','Google','cos@naver.com','Goolge 정보','basic','부산','3','면접 후 협의', NOW(),'개발 경력 5년 이상', NOW());
+
+-- insert into notice_tb(title,company_name,company_email,phone_number,company_info,company_pic_url,location,intake,pay,period,qualification,created_at) 
+--     values('웹서비스플랫폼개발자','NAVER','ssar@naver.com','010-1234-5678','네이버 소개','basic','서울','5','3000만원',NOW(),'개발 경력 3년 이상',NOW());
+-- insert into notice_tb(title,company_name,company_email,company_info,company_pic_url,location,intake,pay,period,qualification,created_at)
+--     values('데이터 분석가','Google','cos@naver.com','010-1111-2222','Goolge 소개','basic','부산','3','면접 후 협의',NOW(),'개발 경력 5년 이상', NOW());
 
 insert into skill_tb(skill_name) values('java');
 insert into skill_tb(skill_name) values('MySQL');

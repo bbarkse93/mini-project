@@ -1,6 +1,8 @@
 package shop.mtcoding.blogv2.notice;
 
 import java.sql.Timestamp;
+import java.util.ArrayList;
+import java.util.List;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -9,6 +11,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 import org.hibernate.annotations.CreationTimestamp;
@@ -19,6 +22,8 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 import shop.mtcoding.blogv2.edu.Edu;
 import shop.mtcoding.blogv2.user.User;
+import shop.mtcoding.blogv2.wishduty.WishDuty;
+import shop.mtcoding.blogv2.wishskill.WishSkill;
 
 @NoArgsConstructor
 @Setter
@@ -41,10 +46,13 @@ public class Notice {
     private String companyEmail;
 
     @Column
+    private String phoneNumber;
+
+    @Column
     private String companyInfo;
 
     @Column
-    private String companyPic;
+    private String companyPicUrl;
 
     @Column
     private String location;
@@ -59,33 +67,44 @@ public class Notice {
     private String qualification;
 
     @Column
-    private Timestamp period;
+    private String period;
+
+    @OneToMany(mappedBy = "notice", fetch = FetchType.LAZY)
+    private List<WishSkill> wishSkills = new ArrayList<>();
+
+    @OneToMany(mappedBy = "notice", fetch = FetchType.LAZY)
+    private List<WishDuty> wishDutys = new ArrayList<>();
 
     @ManyToOne(fetch = FetchType.LAZY)
     private User user;
 
     @ManyToOne(fetch = FetchType.LAZY)
-    private Edu eud;
+    private Edu edu;
 
     @CreationTimestamp
     private Timestamp createdAt;
 
     @Builder
-    public Notice(Integer id, String title, String companyName, String companyEmail, String companyInfo,
-            String companyPic, String location, String intake, String pay, String qualification, Timestamp period,
-            User user, Timestamp createdAt) {
+    public Notice(Integer id, String title, String companyName, String companyEmail, String phoneNumber,
+            String companyInfo, String companyPicUrl, String location, String intake, String pay, String qualification,
+            String period, List<WishSkill> wishSkills, List<WishDuty> wishDutys, User user, Edu edu,
+            Timestamp createdAt) {
         this.id = id;
         this.title = title;
         this.companyName = companyName;
         this.companyEmail = companyEmail;
+        this.phoneNumber = phoneNumber;
         this.companyInfo = companyInfo;
-        this.companyPic = companyPic;
+        this.companyPicUrl = companyPicUrl;
         this.location = location;
         this.intake = intake;
         this.pay = pay;
         this.qualification = qualification;
         this.period = period;
+        this.wishSkills = wishSkills;
+        this.wishDutys = wishDutys;
         this.user = user;
+        this.edu = edu;
         this.createdAt = createdAt;
     }
 
