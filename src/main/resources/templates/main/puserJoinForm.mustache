@@ -1,0 +1,47 @@
+{{> layout/header}}
+
+<div class="wrap">
+    <div class="login">
+        <h2>회원가입</h2>
+        <form action="/join" method="post" enctype="application/x-www-form-urlencoded">
+            <div class="login_id">
+                <h4>아이디</h4>
+                <input type="text" name="username" id="" placeholder="아이디를 입력하세요">
+            </div>
+            <div class="login_pw">
+                <h4>비밀번호</h4>
+                <input type="password" name="password" id="password" placeholder="비밀번호를 입력하세요">
+            </div>
+
+            <hr style="border-color: #000000; margin: 20px auto; width: 100%;">
+
+
+            <div class="join_name">
+                <h4>이름</h4>
+                <input type="text" name="personalName" id="name" placeholder="이름을 입력하세요">
+            </div>
+
+            <div class="join_date">
+                <h4>생년월일 (8자리)</h4>
+                <input type="text" name="personalBirth" id="birthdate" placeholder="생년월일을 입력하세요 (예: 19951224)">
+            </div>
+
+            <div class="join_phone">
+                <h4>전화번호</h4>
+                <input type="tel" name="phoneNumber" id="phone" placeholder="전화번호를 입력하세요">
+            </div>
+
+            <div class="join_email">
+                <h4>Email</h4>
+                <input type="email" name="email" id="email" placeholder="이메일을 입력하세요">
+            </div>
+            <div class="submit ">
+                <button type="submit" value="submit">
+            </div>
+        </form>
+    </div>
+</div>
+
+
+
+{{> layout/footer}}
