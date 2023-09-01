@@ -2,10 +2,14 @@ insert into board_tb(title, email, phone_number, created_at) values('문의 사�
 insert into board_tb(title, email, phone_number, created_at) values('서비스 문의','cos@nate.com','010-1111-2222',NOW());
 insert into board_tb(title, email, phone_number, created_at) values('서비스 문의','cos@nate.com','010-1111-2222',NOW());
 
-insert into user_tb(username, password, personal_name, personal_birth, email, personal_id, created_at) values('ssar','1234','쌀','1995-01-01','ssar@nate.com', 1234, NOW());
-insert into user_tb(username, password, personal_name, personal_birth, email, personal_id, created_at) values('cos', '1234', '코스', '1995-01-01', 'cos@nate.com', 1234, NOW());
-insert into user_tb(username, password, company_name, proprietary_number, email, company_id, created_at) values('company1', '1234', '회사1', '0000000000', 'cos@nate.com', 1234, NOW());
-insert into user_tb(username, password, company_name, proprietary_number, email, company_id, created_at) values('company2', '1234', '회사2', '0000000001', 'cos@nate.com', 1234, NOW());
+insert into user_tb(username, password, name, tel_number, email, regist_number, pic_url, distinguish, created_at)
+values('ssar', '1234', '쌀', '010-1234-5678','ssar@nate.com', '1995-01-01', 'basic.png', true, NOW());
+insert into user_tb(username, password, name, tel_number, email, regist_number, pic_url, distinguish, created_at)
+values('cos', '1234', '코스', '010-1234-5678', 'cos@nate.com', '1995-01-01', 'basic.png', true, NOW());
+insert into user_tb(username, password, name, tel_number, email, regist_number, pic_url, distinguish, created_at)
+values('company1', '1234', '회사1', '010-1234-5678', 'ssar@nate.com', '000000000', 'basic.png', false, NOW());
+insert into user_tb(username, password, name, tel_number, email, regist_number, pic_url, distinguish, created_at)
+values('company2', '1234', '회사2', '010-1234-5678', 'cos@nate.com', '000000000', 'basic.png', false, NOW());
 
 insert into resume_tb(title,personal_email,phone_number,cover_letter,personal_pic_url,created_at) values('이력서1','ssar@nate.com','010-1234-5678','자기소개서','basic.png',NOW());
 insert into resume_tb(title,personal_email,phone_number,cover_letter,personal_pic_url,created_at) values('이력서2','cos@nate.com','010-1111-5678','자기소개서','basic.png',NOW());
