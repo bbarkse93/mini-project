@@ -44,7 +44,7 @@ public class Resume {
     private String coverLetter;
 
     @Column
-    private String personalPicture;
+    private String personalPicUrl;
 
     @ManyToOne(fetch = FetchType.LAZY)
     private User user;
@@ -55,18 +55,21 @@ public class Resume {
     @CreationTimestamp
     private Timestamp createdAt;
 
+
     @Builder
     public Resume(Integer id, String title, String personalEmail, String phoneNumber, String coverLetter,
-            String personalPicture, User user, Edu edu, Timestamp createdAt) {
+            String personalPicUrl, User user, Edu edu, Timestamp createdAt) {
         this.id = id;
         this.title = title;
         this.personalEmail = personalEmail;
         this.phoneNumber = phoneNumber;
         this.coverLetter = coverLetter;
-        this.personalPicture = personalPicture;
+        this.personalPicUrl = personalPicUrl;
         this.user = user;
         this.edu = edu;
         this.createdAt = createdAt;
     }
+
+   
 
 }
