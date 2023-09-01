@@ -33,49 +33,39 @@ public class User {
     private String password;
 
     @Column(nullable = true, length = 20)
-    private String personalName;
+    private String name;
 
     @Column(nullable = true, length = 20)
-    private String companyName;
+    private String telNumber;
 
     @Column(nullable = true, length = 10)
-    private String personalBirth;
-
-    @Column(nullable = true)
-    private String proprietaryNumber;
-
-    @Column(nullable = true)
-    private String phoneNumber;
+    private String registNumber;
 
     @Column(nullable = true, length = 20)
     private String email;
 
     @Column(nullable = true)
-    private Integer personal_id;
+    private String picUrl;
 
     @Column(nullable = true)
-    private Integer company_id;
+    private boolean distingush;
 
     @CreationTimestamp
     private Timestamp createdAt;
 
     @Builder
-    public User(Integer id, String username, String password, String personalName, String companyName,
-            String personalBirth, String proprietaryNumber, String phoneNumber, String email, Integer personal_id,
-            Integer company_id, Timestamp createdAt) {
+    public User(Integer id, String username, String password, String name, String telNumber, String registNumber,
+            String email, String picUrl, boolean distingush, Timestamp createdAt) {
         this.id = id;
         this.username = username;
         this.password = password;
-        this.personalName = personalName;
-        this.companyName = companyName;
-        this.personalBirth = personalBirth;
-        this.proprietaryNumber = proprietaryNumber;
-        this.phoneNumber = phoneNumber;
+        this.name = name;
+        this.telNumber = telNumber;
+        this.registNumber = registNumber;
         this.email = email;
-        this.personal_id = personal_id;
-        this.company_id = company_id;
+        this.picUrl = picUrl;
+        this.distingush = distingush;
         this.createdAt = createdAt;
     }
 
-    
 }
