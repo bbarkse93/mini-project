@@ -1,15 +1,12 @@
 package shop.mtcoding.blogv2.user;
 
-
-
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 @Service
 public class UserService {
- 
+
     @Autowired
     private UserRepository userRepository;
 
@@ -18,19 +15,15 @@ public class UserService {
         User user = User.builder()
                 .username(joinDTO.getUsername())
                 .password(joinDTO.getPassword())
-                .personalName(joinDTO.getPersonalName())
-                .companyName(joinDTO.getCompanyName())
+                .name(joinDTO.getName())
+                .telNumber(joinDTO.getTelNumber())
+                .registNumber(joinDTO.getRegistNumber())
                 .email(joinDTO.getEmail())
-                .personalBirth(joinDTO.getPersonalBirth())
-                .proprietaryNumber(joinDTO.getProprietaryNumber())
-                .personalBirth(joinDTO.getPersonalBirth())
-                .phoneNumber(joinDTO.getPhoneNumber())
+                .picUrl(joinDTO.getPicUrl())
+                .distingush(joinDTO.isDistingush())
                 .build();
         userRepository.save(user);
 
     }
-
- 
-
 
 }
