@@ -7,8 +7,8 @@ insert into user_tb(username, password, personal_name, personal_birth, email, pe
 insert into user_tb(username, password, company_name, proprietary_number, email, company_id, created_at) values('company1', '1234', '회사1', '0000000000', 'cos@nate.com', 1234, NOW());
 insert into user_tb(username, password, company_name, proprietary_number, email, company_id, created_at) values('company2', '1234', '회사2', '0000000001', 'cos@nate.com', 1234, NOW());
 
-insert into resume_tb(title,personal_email,phone_number,cover_letter,personal_picture,created_at) values('이력서1','ssar@nate.com','010-1234-5678','자기소개서','basic.png',NOW());
-insert into resume_tb(title,personal_email,phone_number,cover_letter,personal_picture,created_at) values('이력서2','cos@nate.com','010-1111-5678','자기소개서','basic.png',NOW());
+insert into resume_tb(title,personal_email,phone_number,cover_letter,personal_pic_url,created_at) values('이력서1','ssar@nate.com','010-1234-5678','자기소개서','basic.png',NOW());
+insert into resume_tb(title,personal_email,phone_number,cover_letter,personal_pic_url,created_at) values('이력서2','cos@nate.com','010-1111-5678','자기소개서','basic.png',NOW());
 
  
 insert into notice_tb(company_email,company_info,company_name,created_at,intake,location,pay,period,phone_number,qualification,title)
