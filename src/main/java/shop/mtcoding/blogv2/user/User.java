@@ -44,6 +44,9 @@ public class User {
     @Column(nullable = true)
     private String proprietaryNumber;
 
+    @Column(nullable = true)
+    private String phoneNumber;
+
     @Column(nullable = true, length = 20)
     private String email;
 
@@ -58,8 +61,8 @@ public class User {
 
     @Builder
     public User(Integer id, String username, String password, String personalName, String companyName,
-            String personalBirth, String proprietaryNumber, String email, Integer personal_id, Integer company_id,
-            Timestamp createdAt) {
+            String personalBirth, String proprietaryNumber, String phoneNumber, String email, Integer personal_id,
+            Integer company_id, Timestamp createdAt) {
         this.id = id;
         this.username = username;
         this.password = password;
@@ -67,10 +70,12 @@ public class User {
         this.companyName = companyName;
         this.personalBirth = personalBirth;
         this.proprietaryNumber = proprietaryNumber;
+        this.phoneNumber = phoneNumber;
         this.email = email;
         this.personal_id = personal_id;
         this.company_id = company_id;
         this.createdAt = createdAt;
     }
 
+    
 }
