@@ -38,6 +38,9 @@ public class Board {
     @Column(nullable = true)
     private String phoneNumber;
 
+    @Column(nullable = true)
+    private String content;
+
     @ManyToOne(fetch = FetchType.LAZY)
     private User user;
 
@@ -45,11 +48,13 @@ public class Board {
     private Timestamp createdAt;
 
     @Builder
-    public Board(Integer id, String title, String email, String phoneNumber, User user, Timestamp createdAt) {
+    public Board(Integer id, String title, String email, String phoneNumber, String content, User user,
+            Timestamp createdAt) {
         this.id = id;
         this.title = title;
         this.email = email;
         this.phoneNumber = phoneNumber;
+        this.content = content;
         this.user = user;
         this.createdAt = createdAt;
     }
