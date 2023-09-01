@@ -23,12 +23,10 @@ public class UserController {
         return "redirect:/loginForm";
     }
 
-
     @GetMapping("/companyJoinForm")
     public String companyjoinForm(){    
         return "main/companyJoin";
     }
-
 
     @PostMapping("/companyjoin")
     public String 기업회원가입(UserRequest.JoinDTO joinDTO){
@@ -41,6 +39,6 @@ public class UserController {
         return "/main/loginForm";
     }
 
- 
 }
+
 

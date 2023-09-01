@@ -1,5 +1,6 @@
 package shop.mtcoding.blogv2.resume;
 
+
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -41,16 +42,6 @@ public class ResumeService {
 
     // 저장 등의 추가 로직을 수행할 수 있음
 }
-
-
-
-
-
-
-
-
-    
-
 
     public Resume findById(Integer id) {
         return resumeRepository.findById(1).get();

@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import shop.mtcoding.blogv2.board.Board;
 import shop.mtcoding.blogv2.board.BoardRequest;
 
+
 @Controller
 public class ResumeController {
 
@@ -24,7 +25,6 @@ public class ResumeController {
     
         return "redirect:/test"; // userResumeList 페이지로 리디렉션
     }
-
     
     @PostMapping("/resume/{id}/update")
     public String update(@PathVariable Integer id, ResumeRequest.UpdateDTO updateDTO) {
@@ -33,7 +33,6 @@ public class ResumeController {
 
         return "user/userResumeList";
     }
-
     
     @GetMapping("/resume/{id}/updateForm")
     public String updateForm(@PathVariable Integer id, HttpServletRequest request) {
@@ -47,6 +46,5 @@ public class ResumeController {
 
         return "resume/resumeUpdateForm";
     }
-         
 
 }
