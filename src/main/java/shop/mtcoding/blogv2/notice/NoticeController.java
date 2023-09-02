@@ -1,15 +1,13 @@
 package shop.mtcoding.blogv2.notice;
 
+import java.util.List;
+
+import javax.servlet.http.HttpServletRequest;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.ResponseBody;
-
-import shop.mtcoding.blogv2._core.error.ex.MyException;
-import shop.mtcoding.blogv2._core.util.Script;
-import shop.mtcoding.blogv2.user.User;
 
 @Controller
 public class NoticeController {
@@ -47,6 +45,15 @@ public class NoticeController {
     public String delete() {
         noticeService.채용삭제();
         return "redirect:/companyNoticeList";
+    }
+@GetMapping("/notices")
+    public String getAllNotices(HttpServletRequest request) {
+        
+        List<Notice> notices = noticeService.getAllNotices();
+
+        request.setAttribute("notices", notices);
+
+        return "notices"; // 머스태치 템플릿 파일의 경로
     }
 
 }

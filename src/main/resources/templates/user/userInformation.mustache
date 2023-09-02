@@ -120,35 +120,15 @@
         <div class="small_title mt-3">추천 공고</div>
         <hr />
         <div class="d-flex justify-content-around">
-            <a class="card recommand_recruit" href="recruitDetail.html">
-                <div class="card-body home d-flex justify-content-center">
-                    <img class="recruit_image_box" src="../images/company.jpg" alt="공고 사진">
-                </div>
-                <h4 class="text-center">공고 제목</h4>
-                <div class="text-center">회사명</div>
-            </a>
-            <a class="card recommand_recruit" href="recruitDetail.html">
-                <div class="card-body home d-flex justify-content-center">
-                    <img class="recruit_image_box" src="../images/company.jpg" alt="공고 사진">
-                </div>
-                <h4 class="text-center">공고 제목</h4>
-                <div class="text-center">회사명</div>
-            </a>
-            <a class="card recommand_recruit" href="recruitDetail.html">
-                <div class="card-body home d-flex justify-content-center">
-                    <img class="recruit_image_box" src="../images/company.jpg" alt="공고 사진">
-                </div>
-                <h4 class="text-center">공고 제목</h4>
-                <div class="text-center">회사명</div>
-            </a>
-            <a class="card recommand_recruit" href="recruitDetail.html">
-                <div class="card-body home d-flex justify-content-center">
-                    <img class="recruit_image_box" src="../images/company.jpg" alt="공고 사진">
-                </div>
-                <h4 class="text-center">공고 제목</h4>
-                <div class="text-center">회사명</div>
-            </a>
+         {{#notices}}
+    <a class="card recommand_recruit" href="recruitDetail.html">
+        <div class="card-body home d-flex justify-content-center">
+            <img class="recruit_image_box" src="../images/company.jpg" alt="공고 사진">
         </div>
+        <h4 class="text-center">{{title}}</h4>
+        <div class="text-center">{{company_name}}</div>
+    </a>
+    {{/notices}}
     </div>
 </div>
 
