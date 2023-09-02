@@ -13,7 +13,7 @@ import shop.mtcoding.blogv2.resume.ResumeRequest.UpdateDTO;
 
 @Service
 public class ResumeService {
-   
+
 
     @Autowired
     private ResumeRepository resumeRepository;
@@ -25,7 +25,7 @@ public class ResumeService {
 
 
     
- 
+
     @Transactional
     public void update(ResumeRequest.UpdateDTO updateDTO, Integer id) {
         // 1. 조회(영속화)
