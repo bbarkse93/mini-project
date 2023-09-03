@@ -51,3 +51,6 @@ insert into edu_tb(grade) values('대학교 졸업');
 insert into edu_tb(grade) values('석사');
 insert into edu_tb(grade) values('박사');
 insert into edu_tb(grade) values('기타');
+
+INSERT INTO apply_tb (notice_id, resume_id, status) VALUES  (1, 1, true);
+ 

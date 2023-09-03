@@ -39,6 +39,12 @@ public class UserController {
         return "/main/loginForm";
     }
 
+    // @GetMapping("/userApplyStatus")
+    // public String 지원현황 (){
+    // return "user/userApplyStatus";
+    // }
+
+
 }
 
 
