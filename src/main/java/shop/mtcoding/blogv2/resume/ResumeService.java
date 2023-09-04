@@ -1,6 +1,7 @@
 package shop.mtcoding.blogv2.resume;
 
 
+
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -12,7 +13,6 @@ import shop.mtcoding.blogv2._core.error.ex.MyException;
 @Service
 public class ResumeService {
 
-
     @Autowired
     private ResumeRepository resumeRepository;
 
@@ -21,8 +21,6 @@ public class ResumeService {
         resumeRepository.deleteById(1);
     }
 
-
-    
 
     @Transactional
     public void update(ResumeRequest.UpdateDTO updateDTO, Integer id) {
@@ -38,8 +36,8 @@ public class ResumeService {
         resume.setPersonalPicUrl(updateDTO.getPersonalPicUrl());
         resume.setCreatedAt(updateDTO.getCreatedAt());
 
-    // 저장 등의 추가 로직을 수행할 수 있음
-}
+        // 저장 등의 추가 로직을 수행할 수 있음
+    }
 
     public Resume findById(Integer id) {
         return resumeRepository.findById(id).get();
@@ -55,6 +53,3 @@ public class ResumeService {
         }
 
 }
-
-
-

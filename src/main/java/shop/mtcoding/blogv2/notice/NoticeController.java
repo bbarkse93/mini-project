@@ -42,8 +42,8 @@ public class NoticeController {
 
     // 채용삭제하기
     @PostMapping("/companyNoticeList/1/delete")
-    public String delete() {
-        noticeService.채용삭제();
+    public String delete(Integer id) {
+        noticeService.채용삭제(id);
         return "redirect:/companyNoticeList";
     }
 @GetMapping("/notices")
