@@ -1,99 +1,151 @@
 {{> layout/header}}
 
-<div class="recruit-main">
+<div class="addResume">
+    <h1>채용공고 등록</h1>
+    <form action="/noticeSave" method="POST" enctype="application/x-www-form-urlencoded">
+        <h4 class="mt-4">공고 제목</h4>
 
-    <body>
-        <div class="recruit-detail ">
-            <h1><strong>채용 공고 상세보기</strong></h1>
+        <input type="text" class="form-control input" id="recruitTitle" placeholder="Title" name="title" />
 
+        <!--이미지 파일 삽입
+    이미지파일과 이름, 이메일, 전화번호 나란히 정렬-->
 
-
-
-            <div class="d-flex align-row-start  d-flex justify-content-between">
-                <div>
-                    <div class="info-box m-3">
-                        <img src="../images/company.jpg" style="max-width: 300%; height: 100%;">
-                        <span>기업명</span>
-                    </div>
-                    <div class="info-box m-3">
-                        <div>기업 정보 입력</div>
-                    </div>
-                </div>
-                <div class="info-box2 m-3">
-                    <h1>모집인원</h1>
-                    <p>0명</p>
-                    <h1>모집기간</h1>
-                    <p>2023/09/01~2023/12/25</p>
-                    <h1>연봉</h1>
-                    <p>3500만원</p>
-                </div>
+        <div class=".container-fluid d-flex">
+            <div class="profile-image" style="margin-top: 20px; margin-right: 20px">
+                <img class="image2" src="/images/너굴맨.jpg" name="companyPicUrl" />
             </div>
-
-
-
-
-            <hr>
-
-            <div class="d-flex flex-wrap">
-                <div class="p-2 skill">개발 전체</div>
-                <div class="p-2 skill">소프트웨어 엔지니어</div>
-                <div class="p-2 skill">웹 개발자</div>
-                <div class="p-2 skill">서버 개발자</div>
-                <div class="p-2 skill">자바 개발자</div>
-                <div class="p-2 skill">파이썬 개발자</div>
-                <div class="p-2 skill">머신러닝 개발자</div>
-                <div class="p-2 skill">Node.js개발자</div>
-                <div class="p-2 skill">데이터 엔지니어</div>
-                <div class="p-2 skill">안드로이드 개발자</div>
-                <div class="p-2 skill">ios 개발자</div>
-                <div class="p-2 skill">시스템, 네트워크 관리자</div>
-                <div class="p-2 skill">개발 매니저</div>
-                <div class="p-2 skill">기술지원 </div>
-                <div class="p-2 skill">데이터 사이언티스트</div>
-                <div class="p-2 skill">보안 엔지니어</div>
-                <div class="p-2 skill">빅데이터 엔지니어</div>
-                <div class="p-2 skill">하드웨어 엔지니어</div>
-                <div class="p-2 skill">프로덕트 매니저</div>
-                <div class="p-2 skill">블록체인 플랫폼 엔지니어</div>
-                <div class="p-2 skill">크로스플랫폼 앱 개발자</div>
-                <div class="p-2 skill">DBA</div>
-                <div class="p-2 skill">PHP개발자 </div>
-                <div class="p-2 skill">웹 퍼블리셔</div>
-                <div class="p-2 skill">NET 개발자</div>
-                <div class="p-2 skill">영상,음성 엔지니어</div>
-                <div class="p-2 skill">ERP전문가 </div>
-                <div class="p-2 skill">그래픽스 엔지니어</div>
-                <div class="p-2 skill">CTO,Chief Technology Officier</div>
-                <div class="p-2 skill">VR엔지니어</div>
-                <div class="p-2 skill">BI엔지니어</div>
-                <div class="p-2 skill">루비온레일즈 개발자</div>
-                <div class="p-2 skill">C,C++ 개발자</div>
+            <div class="recruit-info">
+                <h4 class="mt-3">회사명</h4>
+                <input type="text" class="form-control input" id="coName" placeholder="회사명을 입력하세요" name="companyName" />
+                <h4 class="mt-3">이메일</h4>
+                <input type="text" class="form-control input" id="coEmail" placeholder="이메일을 입력하세요"
+                    name="companyEmail" />
+                <h4 class="mt-3">전화번호</h4>
+                <input type="text" class="form-control input" id="coCallNumber" placeholder="전화번호를 입력하세요"
+                    name="phoneNumber" />
             </div>
-
-            <br>
-
-
-            <div class="d-flex justify-content-between">
-                <div class="detail m-3">
-                    <p>주요업무</p>
-                </div>
-                <div class="detail m-3">
-                    <p>자격요건</p>
-                </div>
-
-            </div>
-
-            <br>
-
-
-            <div class="d-flex justify-content-center">
-                <button type="button" class="btn btn-primary btn-xl m-2">수정</button>
-                <button type="button" class="btn btn-primary btn-xl m-2">삭제</button>
-            </div>
-
-            <hr>
         </div>
 
+        <hr />
+        <h4 class="mt-4">기업정보</h4>
+        <input type="text" class="form-control input" id="coInfo" placeholder="정보를 입력하세요" name="companyInfo" />
+        <h4 class="mt-4">지역</h4>
+        <input type="text" class="form-control input" id="place" placeholder="이 자리는 체크박스 자리야!" name="location" />
+
+        <hr />
+        <h4 class="mt-4">채용직무</h4>
+        <p>선택한 직무: <span id="selectedDevOptions">None</span></p>
+        <div class="dropdown">
+            <button class="btn btn-primary dropdown-toggle" type="button" id="devDropdownButton"
+                data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                직무를 골라주세요
+            </button>
+            <ul class="dropdown-menu" aria-labelledby="devDropdownButton">
+                <li>
+                    <label><input type="checkbox" class="dropdown-checkbox" value="직무1" />
+                        직무1</label>
+                </li>
+                <li>
+                    <label><input type="checkbox" class="dropdown-checkbox" value="직무2" />
+                        직무2</label>
+                </li>
+                <li>
+                    <label><input type="checkbox" class="dropdown-checkbox" value="직무3" />
+                        직무3</label>
+                </li>
+                <li>
+                    <label><input type="checkbox" class="dropdown-checkbox" value="직무4" />
+                        직무4</label>
+                </li>
+            </ul>
+        </div>
+        <h4 class="mt-4">기술 스택</h4>
+        <p>필요한 기술: <span id="selectedTechOptions">None</span></p>
+        <div class="dropdown">
+            <button class="btn btn-primary dropdown-toggle" type="button" id="techDropdownButton"
+                data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                기술스택을 선택하세요
+            </button>
+            <ul class="dropdown-menu" aria-labelledby="techDropdownButton">
+                <li>
+                    <label><input type="checkbox" class="dropdown-checkbox" value="기술1" />
+                        기술1</label>
+                </li>
+                <li>
+                    <label><input type="checkbox" class="dropdown-checkbox" value="기술2" />
+                        기술2</label>
+                </li>
+                <li>
+                    <label><input type="checkbox" class="dropdown-checkbox" value="기술3" />
+                        기술3</label>
+                </li>
+                <li>
+                    <label><input type="checkbox" class="dropdown-checkbox" value="기술4" />
+                        기술4</label>
+                </li>
+            </ul>
+        </div>
+        <hr />
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-6 mt-4">
+                    <h4>모집인원</h4>
+                    <input type="text" class="form-control input" placeholder="모집 인원을 기입해주세요" name="intake" />
+                    <h4 class="mt-4">급여</h4>
+                    <input type="text" class="form-control input" placeholder="연봉,급여를 등록해주세요" name="pay" />
+                </div>
+                <div class="col-lg-6 mt-4">
+                    <h4>기간</h4>
+                    <input type="text" class="form-control input" placeholder="모집 기간을 등록해주세요" name="period" />
+                    <h4 class="mt-4">자격요건</h4>
+                    <input type="text" class="form-control input" id="place" placeholder="사지멀쩡한 자"
+                        name="qualification" />
+                </div>
+            </div>
+        </div>
+        <div class="d-flex justify-content-center mt-5">
+            <button type="submit" class="btn btn-primary" style="width: 50%">
+                등록하기
+            </button>
+    </form>
 </div>
+</div>
+
+<script>
+    function setupDropdown(dropdownId, outputId) {
+        var dropdown = document.querySelector(`#${dropdownId}`);
+        var dropdownItems =
+            dropdown.nextElementSibling.querySelectorAll(".dropdown-checkbox");
+
+        dropdown.addEventListener("click", function () {
+            dropdownItems.forEach(function (item) {
+                item.addEventListener("change", function () {
+                    updateSelectedOptions(outputId, dropdownItems);
+                });
+            });
+        });
+    }
+
+    function updateSelectedOptions(outputId, checkboxList) {
+        var selectedOptions = Array.from(checkboxList)
+            .filter(function (checkbox) {
+                return checkbox.checked;
+            })
+            .map(function (checkbox) {
+                return checkbox.value;
+            });
+
+        var output = document.getElementById(outputId);
+        if (selectedOptions.length > 0) {
+            output.textContent = selectedOptions.join(", ");
+        } else {
+            output.textContent = "None";
+        }
+    }
+
+    // Setup Dropdowns
+    setupDropdown("devDropdownButton", "selectedDevOptions");
+    setupDropdown("techDropdownButton", "selectedTechOptions");
+</script>
 
 {{> layout/footer}}

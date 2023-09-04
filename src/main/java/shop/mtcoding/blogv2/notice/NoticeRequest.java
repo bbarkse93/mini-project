@@ -25,7 +25,25 @@ public class NoticeRequest {
         private String period;
         private String qualification;
         private Timestamp createdAt;
+        private List<WishSkill> wishSkills;
+        private List<WishDuty> wishDutys;
+    }
 
+    @Getter
+    @Setter
+    public static class UpdateDTO {
+        private String title;
+        private String companyName;
+        private String companyEmail;
+        private String phoneNumber;
+        private String companyInfo;
+        private String companyPicUrl;
+        private String location;
+        private String intake;
+        private String pay;
+        private String period;
+        private String qualification;
+        private Timestamp createdAt;
         private List<WishSkill> wishSkills;
         private List<WishDuty> wishDutys;
     }

@@ -1,8 +1,14 @@
 package shop.mtcoding.blogv2.notice;
 
+import java.util.Optional;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+import org.springframework.web.bind.annotation.PathVariable;
+
+import shop.mtcoding.blogv2._core.error.ex.MyApiException;
+import shop.mtcoding.blogv2.notice.NoticeRequest.UpdateDTO;
 
 @Service
 public class NoticeService {
@@ -34,9 +40,41 @@ public class NoticeService {
 
     // 채용공고삭제
     @Transactional
-    public void 채용삭제() {
+    public void 채용삭제(Integer id) {
         noticeRepository.deleteById(1);
     }
+
+    @Transactional
+    public void 수정화면(Integer id) {
+        noticeRepository.findById(1);
+    }
+
+    // public Notice 상세보기(@PathVariable Integer id) {
+    // Optional<Notice> noticeOP = noticeRepository.findById(1);
+    // if (noticeOP.isPresent()) {
+    // return noticeOP.get();
+    // } else {
+    // throw new MyApiException(id + "는 찾을 수 없습니다");
+    // }
+    // }
+
+    // @Transactional
+    // public void 채용수정(Integer id, UpdateDTO updateDTO) {
+    // Optional<Notice> noticeOP = noticeRepository.findById(id);
+
+    // }
+
+    // @Transactional
+    // public void 게시글수정하기(Integer id, UpdateDTO updateDTO) {
+    // Optional<Board> boardOP = boardRepository.findById(id);
+    // if (boardOP.isPresent()) {
+    // Board board = boardOP.get();
+    // board.setTitle(updateDTO.getTitle());
+    // board.setContent(updateDTO.getContent());
+    // } else {
+    // throw new MyException(id + "는 찾을 수 없습니다");
+    // }
+    // } // flush (더티체킹)
 
     // 채용공고수정
 
