@@ -26,7 +26,7 @@ public class ResumeController {
 
         resumeService.deleteById(id); // 이렇게 하면 요청된 id에 해당하는 이력서를 삭제합니다.
 
-        return "redirect:/userResumeList"; // userResumeList 페이지로 리디렉션
+        return "redirect:/myResumeList"; // userResumeList 페이지로 리디렉션
     }
 
     @PostMapping("/resume/{id}/update")

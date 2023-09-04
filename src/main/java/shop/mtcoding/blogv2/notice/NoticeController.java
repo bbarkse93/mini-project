@@ -18,7 +18,9 @@ public class NoticeController {
 
     // 기업회원정보(디폴트화면)
     @GetMapping("/companyNoticeList")
-    public String companyNoticeList() {
+    public String companyNoticeList(HttpServletRequest request) {
+        List<Notice> noticeList = noticeService.findAll();
+        request.setAttribute("noticeList", noticeList);
         return "/company/companyNoticeList";
     }
 
@@ -42,8 +44,8 @@ public class NoticeController {
     }
 
     // 채용삭제하기
-    @PostMapping("/companyNoticeList/1/delete")
-    public String delete(Integer id) {
+    @PostMapping("/companyNoticeList/{id}/delete")
+    public String delete(@PathVariable Integer id) {
         noticeService.채용삭제(id);
         return "redirect:/companyNoticeList";
     }

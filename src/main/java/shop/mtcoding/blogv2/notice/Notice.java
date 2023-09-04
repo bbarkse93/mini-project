@@ -4,6 +4,7 @@ import java.sql.Timestamp;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
@@ -20,6 +21,7 @@ import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
+import shop.mtcoding.blogv2.apply.Apply;
 import shop.mtcoding.blogv2.edu.Edu;
 import shop.mtcoding.blogv2.user.User;
 import shop.mtcoding.blogv2.wishduty.WishDuty;
@@ -74,6 +76,9 @@ public class Notice {
 
     @OneToMany(mappedBy = "notice", fetch = FetchType.LAZY)
     private List<WishDuty> wishDutys = new ArrayList<>();
+
+    @OneToMany(mappedBy = "notice", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+    private List<Apply> applies = new ArrayList<>();
 
     @ManyToOne(fetch = FetchType.LAZY)
     private User user;
