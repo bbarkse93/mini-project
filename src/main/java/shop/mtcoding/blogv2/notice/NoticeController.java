@@ -46,14 +46,15 @@ public class NoticeController {
         noticeService.채용삭제(id);
         return "redirect:/companyNoticeList";
     }
-@GetMapping("/notices")
+
+    @GetMapping("/notices")
     public String getAllNotices(HttpServletRequest request) {
-        
+
         List<Notice> notices = noticeService.getAllNotices();
 
         request.setAttribute("notices", notices);
 
-        return "notices"; // 머스태치 템플릿 파일의 경로
+        return "user/userApplyStatus"; // 머스태치 템플릿 파일의 경로
     }
 
 }

@@ -1,6 +1,5 @@
 package shop.mtcoding.blogv2.notice;
 
-
 import java.util.Optional;
 import java.util.List;
 
@@ -76,9 +75,14 @@ public class NoticeService {
 
         // 채용공고수정
 
-    // 채용공고수정
+        // 채용공고수정
 
         // 채용공고상세보기
 
+    }
+
+    public List<Notice> getAllNotices() {
+        List<Notice> notices = noticeRepository.findAll();
+        return notices;
     }
 }
