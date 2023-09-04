@@ -10,11 +10,16 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 
+import shop.mtcoding.blogv2.notice.Notice;
+import shop.mtcoding.blogv2.notice.NoticeService;
+
 @Controller
 public class ResumeController {
 
     @Autowired
-    ResumeService resumeService;
+   private ResumeService resumeService;
+    @Autowired
+    private NoticeService noticeService;
 
     @PostMapping("/resume/{id}/delete")
     public String delete(@PathVariable Integer id) {
@@ -47,6 +52,9 @@ public class ResumeController {
 
     @GetMapping("/myResumeList")
     public String 나의이력서관리(HttpServletRequest request) {
+         List<Notice> notices = noticeService.getAllNotices();
+         
+        request.setAttribute("notices", notices);
         List<Resume> resumeList = resumeService.findAll();
         request.setAttribute("resumeList", resumeList);
         return "resume/myResumeList";

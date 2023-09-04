@@ -10,5 +10,6 @@ public interface BookmarkRepository extends JpaRepository <Bookmark,Integer>{
     
     
     List<Bookmark> findAllByUserId(Integer userId);
-    }
+    
+}
 

@@ -17,7 +17,7 @@
                        
                      <a class="nav-link link" href="/myResumeList">이력서 관리</a>
                         <a class="nav-link link" href="/userApplyStatus">지원현황</a>
-                        <a class="nav-link link" href="/bookmarkCompany">관심기업</a>
+                        <a class="nav-link link" href="/userScrapCompany">관심기업</a>
 
                         <hr />
                         <a class="nav-link link" href="#">개인정보 수정</a>
@@ -31,12 +31,12 @@
                 </div>
                 <hr />
                  <div class="list-group">
-        {{#bookmarks}} 
+        {{#scraps}} 
         <div class="mb-3">
             <a href="#" class="list-group-item list-group-item-action">
                 <div class="d-flex justify-content-between">
                     <h4 class="mb-2">
-                        {{resume.title}} 
+                        {{notice.title}} 
                     </h4>
                 
                     <div>
@@ -48,7 +48,21 @@
                 </div>
             </a>
         </div>
-        {{/bookmarks}} 
+        {{/scraps}} 
+       <div class="small_title mt-3">추천 공고</div>
+        <hr />
+        <div class="d-flex justify-content-around">
+            {{#notices}}
+            <a class="card recommand_recruit" href="recruitDetail.html">
+                <div class="card-body home d-flex justify-content-center">
+                    <img class="recruit_image_box" src="../images/company.jpg" alt="공고 사진">
+                </div>
+                <h4 class="text-center">{{title}}</h4>
+                <div class="text-center">{{companyName}}</div>
+            </a>
+            {{/notices}}
+        </div>
+        
                
                     
 
