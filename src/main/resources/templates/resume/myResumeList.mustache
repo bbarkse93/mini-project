@@ -14,7 +14,9 @@
                     </div>
                     <hr />
                     <div>
-
+                        <a class="nav-link link" href="myResumeList">이력서 관리</a>
+                        <a class="nav-link link" href="userApplyStatus.html">지원현황</a>
+                        <a class="nav-link link" href="userScrapCompany.html">관심기업</a>
                         <hr />
                         <a class="nav-link link" href="#">개인정보 수정</a>
                         <a class="nav-link link" href="#">로그아웃</a>
@@ -27,7 +29,8 @@
                     <div class="small_title">이력서 관리</div>
                 </div>
                 <hr />
-               {{#resumeList}} <!-- 이력서 목록 반복문 시작 -->
+                 <div class="list-group">
+        {{#resumeList}} <!-- 이력서 목록 반복문 시작 -->
         <div class="mb-3">
             <a href="#" class="list-group-item list-group-item-action">
                 <div class="d-flex justify-content-between">
@@ -46,18 +49,10 @@
             </a>
         </div>
         {{/resumeList}} <!-- 이력서 목록 반복문 종료 -->
-        <div class="small_title mt-3">추천 공고</div>
-        <hr />
-        <div class="d-flex justify-content-around">
-          {{#notices}}
-    <a class="card recommand_recruit" href="recruitDetail.html">
-        <div class="card-body home d-flex justify-content-center">
-            <img class="recruit_image_box" src="../images/company.jpg" alt="공고 사진">
-        </div>
-        <h4 class="text-center">{{title}}</h4>
-        <div class="text-center">{{company_name}}</div>
-    </a>
-    {{/notices}}
+    </div>
+               
+                    
+
 </div>
 
 {{> layout/footer}}

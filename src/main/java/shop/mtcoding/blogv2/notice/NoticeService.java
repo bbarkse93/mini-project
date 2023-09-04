@@ -1,5 +1,7 @@
 package shop.mtcoding.blogv2.notice;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -37,6 +39,13 @@ public class NoticeService {
     public void 채용삭제() {
         noticeRepository.deleteById(1);
     }
+
+    public List<Notice> getAllNotices() {
+        // NoticeRepository를 사용하여 공고 정보를 조회합니다.
+        return noticeRepository.findAll();
+      
+    }
+
 
     // 채용공고수정
 
