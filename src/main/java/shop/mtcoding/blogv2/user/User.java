@@ -53,6 +53,7 @@ public class User {
     @CreationTimestamp
     private Timestamp createdAt;
 
+
     @Builder
     public User(Integer id, String username, String password, String name, String telNumber, String registNumber,
             String email, String picUrl, boolean distinguish, Timestamp createdAt) {
@@ -67,5 +68,7 @@ public class User {
         this.distinguish = distinguish;
         this.createdAt = createdAt;
     }
+
+    
 
 }

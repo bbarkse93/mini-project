@@ -24,7 +24,7 @@ public class UserRequest {
     @Getter
     @Setter
     public static class LoginDTO {
-        private String usernmae;
+        private String username;
         private String password;
     }
 
