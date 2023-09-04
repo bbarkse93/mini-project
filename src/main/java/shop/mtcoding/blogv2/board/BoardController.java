@@ -26,4 +26,6 @@ public class BoardController {
         boardService.문의작성(saveDTO, 1);
         return "redirect:/customerService";
     }
+
+    
 }

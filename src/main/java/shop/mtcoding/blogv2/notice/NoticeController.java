@@ -1,5 +1,9 @@
 package shop.mtcoding.blogv2.notice;
 
+import java.util.List;
+
+import javax.servlet.http.HttpServletRequest;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -41,6 +45,15 @@ public class NoticeController {
     public String delete(Integer id) {
         noticeService.채용삭제(id);
         return "redirect:/companyNoticeList";
+    }
+@GetMapping("/notices")
+    public String getAllNotices(HttpServletRequest request) {
+        
+        List<Notice> notices = noticeService.getAllNotices();
+
+        request.setAttribute("notices", notices);
+
+        return "notices"; // 머스태치 템플릿 파일의 경로
     }
 
 }

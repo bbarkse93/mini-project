@@ -1,5 +1,9 @@
 package shop.mtcoding.blogv2.resume;
 
+
+
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -16,6 +20,7 @@ public class ResumeService {
     public void deleteById(Integer id) {
         resumeRepository.deleteById(1);
     }
+
 
     @Transactional
     public void update(ResumeRequest.UpdateDTO updateDTO, Integer id) {
@@ -35,6 +40,16 @@ public class ResumeService {
     }
 
     public Resume findById(Integer id) {
-        return resumeRepository.findById(1).get();
+        return resumeRepository.findById(id).get();
     }
+
+    
+
+
+
+
+        public List<Resume> findAll() {
+            return resumeRepository.findAll();
+        }
+
 }
