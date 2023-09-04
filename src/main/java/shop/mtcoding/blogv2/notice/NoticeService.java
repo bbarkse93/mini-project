@@ -1,7 +1,7 @@
 package shop.mtcoding.blogv2.notice;
 
-import java.util.Optional;
 import java.util.List;
+import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -45,11 +45,18 @@ public class NoticeService {
         noticeRepository.deleteById(1);
     }
 
+    // 채용공고수정 view
     @Transactional
-    public void 수정화면(@PathVariable Integer id) {
-        noticeRepository.findById(1);
+    public Notice 수정화면(@PathVariable Integer id) {
+        Optional<Notice> noticeOP = noticeRepository.findById(1);
+        // if (noticeOP.isPresent()) {
+        return noticeOP.get();
+        // } else {
+        // throw new MyApiException(id + "는 찾을 수 없습니다");
+        // }
     }
 
+    // 채용공고수정
     @Transactional
     public void 채용수정(Integer id, UpdateDTO updateDTO) {
         Optional<Notice> noticeOP = noticeRepository.findById(id);
@@ -73,16 +80,12 @@ public class NoticeService {
             throw new MyException(id + "는 찾을 수 없습니다");
         }
 
-        // 채용공고수정
-
-        // 채용공고수정
-
         // 채용공고상세보기
 
     }
 
     public List<Notice> getAllNotices() {
-        List<Notice> notices = noticeRepository.findAll();
-        return notices;
+        return null;
     }
+
 }

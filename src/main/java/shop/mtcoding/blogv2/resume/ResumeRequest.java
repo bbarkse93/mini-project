@@ -6,12 +6,10 @@ import lombok.Getter;
 import lombok.Setter;
 import lombok.ToString;
 
-
 @Getter
 @Setter
 @ToString
 public class ResumeRequest {
-
 
   @Getter
   @Setter
@@ -24,6 +22,16 @@ public class ResumeRequest {
     private Timestamp createdAt;
   }
 
-
+  @Getter
+  @Setter
+  public static class SaveDTO {
+    private String title;
+    private String personalName;
+    private String personalEmail;
+    private String personalPicUrl;
+    private String phoneNumber;
+    private String coverLetter;
+    private Timestamp createdAt;
+  }
 
 }

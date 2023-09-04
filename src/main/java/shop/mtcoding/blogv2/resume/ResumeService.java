@@ -1,7 +1,5 @@
 package shop.mtcoding.blogv2.resume;
 
-
-
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -20,7 +18,6 @@ public class ResumeService {
     public void deleteById(Integer id) {
         resumeRepository.deleteById(1);
     }
-
 
     @Transactional
     public void update(ResumeRequest.UpdateDTO updateDTO, Integer id) {
@@ -43,13 +40,22 @@ public class ResumeService {
         return resumeRepository.findById(id).get();
     }
 
-    
+    public List<Resume> findAll() {
+        return resumeRepository.findAll();
+    }
 
+    public void 이력서등록(ResumeRequest.SaveDTO saveDTO) {
+        Resume resume = Resume.builder()
+                .title(saveDTO.getTitle())
+                .personalName(saveDTO.getPersonalName())
+                .personalEmail(saveDTO.getPersonalEmail())
+                .personalPicUrl(saveDTO.getPersonalPicUrl())
+                .phoneNumber(saveDTO.getPhoneNumber())
+                .coverLetter(saveDTO.getCoverLetter())
+                .createdAt(saveDTO.getCreatedAt())
+                .build();
+        resumeRepository.save(resume);
 
-
-
-        public List<Resume> findAll() {
-            return resumeRepository.findAll();
-        }
+    }
 
 }

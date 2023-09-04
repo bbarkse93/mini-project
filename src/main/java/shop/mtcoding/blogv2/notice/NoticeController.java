@@ -7,6 +7,7 @@ import javax.servlet.http.HttpServletRequest;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 
 @Controller
@@ -44,6 +45,20 @@ public class NoticeController {
     @PostMapping("/companyNoticeList/1/delete")
     public String delete(Integer id) {
         noticeService.채용삭제(id);
+        return "redirect:/companyNoticeList";
+    }
+
+    // 채용수정하기 view
+    @GetMapping("noticeUpdate/{id}")
+    public String noticeUpdateForm(@PathVariable Integer id) {
+        noticeService.수정화면(id);
+        return "/notice/noticeUpdate";
+    }
+
+    // 채용수정하기
+    @PostMapping("noticeUpdate/{id}/update")
+    public String noticeUpdate(@PathVariable Integer id, NoticeRequest.UpdateDTO updateDTO) {
+        noticeService.채용수정(id, updateDTO);
         return "redirect:/companyNoticeList";
     }
 
