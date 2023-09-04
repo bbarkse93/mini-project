@@ -7,6 +7,8 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 
+import shop.mtcoding.blogv2.board.BoardRequest;
+
 @Controller
 public class NoticeController {
 
@@ -56,10 +58,16 @@ public class NoticeController {
     // return "/notice/noticeUpdateForm";
     // }
 
-    @GetMapping("notice/noticeUpdate/{id}")
-    public String 수정화면(@PathVariable Integer id) {
+    @GetMapping("noticeUpdate/{id}")
+    public String noticeUpdateForm(@PathVariable Integer id) {
         noticeService.수정화면(id);
         return "notice/noticeUpdate";
+    }
+
+    @PostMapping("noticeUpdate/{id}/update")
+    public String noticeUpdate(@PathVariable Integer id, NoticeRequest.UpdateDTO updateDTO) {
+        noticeService.채용수정(id, updateDTO);
+        return "redirect:/companyNoticeList";
     }
 
     // @PostMapping("/companyNoticeList/{id}/update")
