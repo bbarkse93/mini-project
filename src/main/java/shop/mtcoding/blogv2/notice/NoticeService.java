@@ -85,7 +85,8 @@ public class NoticeService {
     }
 
     public List<Notice> getAllNotices() {
-        return null;
+        List<Notice> noties = noticeRepository.findAll();
+        return noties;
     }
 
 }

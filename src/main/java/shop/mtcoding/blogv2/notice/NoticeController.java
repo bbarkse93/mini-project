@@ -48,12 +48,12 @@ public class NoticeController {
         return "redirect:/companyNoticeList";
     }
 
-    //추천공고
+    // 추천공고
     @GetMapping("/notices")
     public String getAllNotices(HttpServletRequest request) {
         List<Notice> notices = noticeService.getAllNotices();
         request.setAttribute("notices", notices);
-        return "user/userApplyStatus"; // 머스태치 템플릿 파일의 경로
+        return "notices"; // 머스태치 템플릿 파일의 경로
     }
 
     // 채용수정하기 view
@@ -69,7 +69,5 @@ public class NoticeController {
         noticeService.채용수정(id, updateDTO);
         return "redirect:/companyNoticeList";
     }
-
-    
 
 }
