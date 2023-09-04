@@ -72,4 +72,9 @@ public class NoticeController {
         return "redirect:/companyNoticeList";
     }
 
+    @GetMapping("/companyApplyList")
+    public String companyApplyList() {
+        return "company/companyApplyList";
+    }
+
 }

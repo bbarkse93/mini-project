@@ -1,115 +1,115 @@
-
-      <div class="frame">
-        <div class="container mt-3">
-            <div class="row">
-                <div class="col-md-3">
-                    <h1 class="text-center ">기업정보보기</h1>
-                    <div class="card">
-                        <div class="company_image">
-                            <img class="default" src="../images/company.jpg" alt="">
-                        </div>
-                        <div class="d-flex justify-content-center">
-                            <button type="button" class="btn btn-warning text-center"
-                                style="width: 100px;">사진수정</button>
-                        </div>
-                        <hr />
-                        <div>
-                            <a class="nav-link" href="#">채용공고관리</a>
-                            <a class="nav-link" href="#">지원서 관리</a>
-                            <hr />
-                            <a class="nav-link" href="#">기업정보 수정</a>
-                            <a class="nav-link" href="#">로그아웃</a>
-                        </div>
+{{> layout/header}}
+<div class="frame">
+    <div class="container mt-3">
+        <div class="row">
+            <div class="col-md-3">
+                <h1 class="text-center ">기업정보보기</h1>
+                <div class="card">
+                    <div class="company_image">
+                        <img class="default" src="../images/company.jpg" alt="">
                     </div>
-                </div>
-                <div class="col-md-9">
-                    <div class="d-flex justify-content-between pe-3 my-3">
-                        <div class="smallTitle">지원서 관리</div>
+                    <div class="d-flex justify-content-center">
+                        <button type="button" class="btn btn-warning text-center" style="width: 100px;">사진수정</button>
                     </div>
                     <hr />
-                    <div class="list-group">
-                        <div class="mb-3">
-                            <a href="#" class="list-group-item list-group-item-action">
-                                <div class="d-flex justify-content-between">
+                    <div>
+                        <a class="nav-link" href="#">채용공고관리</a>
+                        <a class="nav-link" href="#">지원서 관리</a>
+                        <hr />
+                        <a class="nav-link" href="#">기업정보 수정</a>
+                        <a class="nav-link" href="#">로그아웃</a>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-9">
+                <div class="d-flex justify-content-between pe-3 my-3">
+                    <div class="smallTitle">지원서 관리</div>
+                </div>
+                <hr />
+                <div class="list-group">
+                    <div class="mb-3">
+                        <a href="#" class="list-group-item list-group-item-action">
+                            <div class="d-flex justify-content-between">
+                                <div class="mb-2">
+                                    이력서 제목
+                                </div>
+                            </div>
+                        </a>
+                    </div>
+                    <div class="mb-3">
+                        <a href="#" class="list-group-item list-group-item-action">
+                            <div class="d-flex justify-content-between">
+                                <div>
                                     <div class="mb-2">
-                                        이력서 제목
+                                        공고 제목
+                                    </div>
+                                    <div class="mb-2">
+                                        마감기한
                                     </div>
                                 </div>
-                            </a>
-                        </div>
-                        <div class="mb-3">
-                            <a href="#" class="list-group-item list-group-item-action">
-                                <div class="d-flex justify-content-between">
-                                    <div>
-                                        <div class="mb-2">
-                                            공고 제목
-                                        </div>
-                                        <div class="mb-2">
-                                            마감기한
-                                        </div>
+                                <div class="image-container">
+                                    <img src="./images/빈별.png" alt="관심없음" id="heartImg1">
+                                </div>
+                            </div>
+                        </a>
+                    </div>
+                    <div class="mb-3">
+                        <a href="#" class="list-group-item list-group-item-action">
+                            <div class="d-flex justify-content-between">
+                                <div>
+                                    <div class="mb-2">
+                                        공고 제목
                                     </div>
-                                    <div class="image-container">
-                                        <img src="./images/빈별.png" alt="관심없음" id="heartImg1">
+                                    <div class="mb-2">
+                                        마감기한
                                     </div>
                                 </div>
-                            </a>
-                        </div>
-                        <div class="mb-3">
-                            <a href="#" class="list-group-item list-group-item-action">
-                                <div class="d-flex justify-content-between">
-                                    <div>
-                                        <div class="mb-2">
-                                            공고 제목
-                                        </div>
-                                        <div class="mb-2">
-                                            마감기한
-                                        </div>
+                                <div class="image-container">
+                                    <img src="./images/빈별.png" alt="관심없음" id="heartImg2">
+                                </div>
+                            </div>
+                        </a>
+                    </div>
+                    <div class="mb-3">
+                        <a href="#" class="list-group-item list-group-item-action">
+                            <div class="d-flex justify-content-between">
+                                <div>
+                                    <div class="mb-2">
+                                        공고 제목
                                     </div>
-                                    <div class="image-container">
-                                        <img src="./images/빈별.png" alt="관심없음" id="heartImg2">
+                                    <div class="mb-2">
+                                        마감기한
                                     </div>
                                 </div>
-                            </a>
-                        </div>
-                        <div class="mb-3">
-                            <a href="#" class="list-group-item list-group-item-action">
-                                <div class="d-flex justify-content-between">
-                                    <div>
-                                        <div class="mb-2">
-                                            공고 제목
-                                        </div>
-                                        <div class="mb-2">
-                                            마감기한
-                                        </div>
-                                    </div>
-                                    <div class="image-container">
-                                        <img src="./images/빈별.png" alt="관심없음" id="heartImg3">
-                                    </div>
+                                <div class="image-container">
+                                    <img src="./images/빈별.png" alt="관심없음" id="heartImg3">
                                 </div>
-                            </a>
-                        </div>
+                            </div>
+                        </a>
                     </div>
                 </div>
             </div>
         </div>
     </div>
-    <script>
-        const heartImg1 = document.querySelector('#heartImg1');
-        const heartImg2 = document.querySelector('#heartImg2');
-        const heartImg3 = document.querySelector('#heartImg3');
-        let isFavorite1 = false;
-        let isFavorite2 = false;
-        let isFavorite3 = false;
-        heartImg1.addEventListener('click', () => {
-            isFavorite1 = !isFavorite1;
-            heartImg1.src = isFavorite1 ? './images/노란별.png' : './images/빈별.png';
-        });
-        heartImg2.addEventListener('click', () => {
-            isFavorite2 = !isFavorite2;
-            heartImg2.src = isFavorite2 ? './images/노란별.png' : './images/빈별.png';
-        });
-        heartImg3.addEventListener('click', () => {
-            isFavorite3 = !isFavorite3;
-            heartImg3.src = isFavorite3 ? './images/노란별.png' : './images/빈별.png';
-        });
-    </script>
+</div>
+<script>
+    const heartImg1 = document.querySelector('#heartImg1');
+    const heartImg2 = document.querySelector('#heartImg2');
+    const heartImg3 = document.querySelector('#heartImg3');
+    let isFavorite1 = false;
+    let isFavorite2 = false;
+    let isFavorite3 = false;
+    heartImg1.addEventListener('click', () => {
+        isFavorite1 = !isFavorite1;
+        heartImg1.src = isFavorite1 ? './images/노란별.png' : './images/빈별.png';
+    });
+    heartImg2.addEventListener('click', () => {
+        isFavorite2 = !isFavorite2;
+        heartImg2.src = isFavorite2 ? './images/노란별.png' : './images/빈별.png';
+    });
+    heartImg3.addEventListener('click', () => {
+        isFavorite3 = !isFavorite3;
+        heartImg3.src = isFavorite3 ? './images/노란별.png' : './images/빈별.png';
+    });
+</script>
+{{> layout/footer}}
