@@ -7,14 +7,13 @@ import javax.servlet.http.HttpServletRequest;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestParam;
 
 import shop.mtcoding.blogv2.notice.Notice;
 import shop.mtcoding.blogv2.notice.NoticeService;
 
 @Controller
 public class ScrapController {
-    
+
     @Autowired
     private ScrapService scrapService;
 
@@ -22,7 +21,7 @@ public class ScrapController {
     private NoticeService noticeService;
 
     @GetMapping("/userScrapCompany")
-    public String userScrapCompany( Integer userId, HttpServletRequest request) {
+    public String userScrapCompany(Integer userId, HttpServletRequest request) {
         List<Scrap> scraps = scrapService.getScrapsByUserId(1);
         List<Notice> notices = noticeService.getAllNotices();
 
