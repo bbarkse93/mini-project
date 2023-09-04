@@ -437,17 +437,7 @@ h2 {
     /* Add box shadow */
 }
 
-.box2 {
-    border: 2px solid black;
-    padding: 10px;
-    height: 300px;
-    border-radius: 10px;
-    /* Make the box circular */
-    margin-top: 20px;
-    /* Add some space above the box */
-    box-shadow: 3px 3px 5px rgba(0, 0, 0, 0.4);
-    /* Add box shadow */
-}
+
 
 .form {
     text-align: center;
@@ -992,4 +982,11 @@ h2 {
 .image3 {
     height: 250px;
     width: 250px;
+}
+
+/*csForm*/
+.card-boxes {
+    display: flex;
+    justify-content: center;
+    gap: 250px;
 }
