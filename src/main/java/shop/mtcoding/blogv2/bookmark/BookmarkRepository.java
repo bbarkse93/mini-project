@@ -9,6 +9,6 @@ import org.springframework.data.jpa.repository.JpaRepository;
 public interface BookmarkRepository extends JpaRepository <Bookmark,Integer>{
     
     
-    List<Bookmark> findAllByUser_Id(Integer userId);
+    List<Bookmark> findAllByUserId(Integer userId);
     }
 
