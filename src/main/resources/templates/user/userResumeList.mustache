@@ -14,7 +14,9 @@
                     </div>
                     <hr />
                     <div>
-
+                        <a class="nav-link link" href="myResumeList">이력서 관리</a>
+                        <a class="nav-link link" href="userApplyStatus.html">지원현황</a>
+                        <a class="nav-link link" href="bookmarkCompany">관심기업</a>
                         <hr />
                         <a class="nav-link link" href="#">개인정보 수정</a>
                         <a class="nav-link link" href="#">로그아웃</a>
@@ -27,37 +29,37 @@
                     <div class="small_title">이력서 관리</div>
                 </div>
                 <hr />
-               {{#resumeList}} <!-- 이력서 목록 반복문 시작 -->
-        <div class="mb-3">
-            <a href="#" class="list-group-item list-group-item-action">
-                <div class="d-flex justify-content-between">
-                    <h4 class="mb-2">
-                        {{title}} <!-- 이력서 제목 표시 -->
-                    </h4>
-                    <div>
-                        <div class="mb-1">
-                            <a class="btn btn-warning me-1" href="/resume/{{id}}/updateForm">수정</a>
+                {{#resumeList}} <!-- 이력서 목록 반복문 시작 -->
+                <div class="mb-3">
+                    <a href="#" class="list-group-item list-group-item-action">
+                        <div class="d-flex justify-content-between">
+                            <h4 class="mb-2">
+                                {{title}} <!-- 이력서 제목 표시 -->
+                            </h4>
+                            <div>
+                                <div class="mb-1">
+                                    <a class="btn btn-warning me-1" href="/resume/{{id}}/updateForm">수정</a>
+                                </div>
+                                <form action="/resume/{{id}}/delete" method="post">
+                                    <button type="submit" class="btn btn-danger">삭제</button>
+                                </form>
+                            </div>
                         </div>
-                        <form action="/resume/{{id}}/delete" method="post">
-                            <button type="submit" class="btn btn-danger">삭제</button>
-                        </form>
-                    </div>
+                    </a>
                 </div>
-            </a>
-        </div>
-        {{/resumeList}} <!-- 이력서 목록 반복문 종료 -->
-        <div class="small_title mt-3">추천 공고</div>
-        <hr />
-        <div class="d-flex justify-content-around">
-          {{#notices}}
-    <a class="card recommand_recruit" href="recruitDetail.html">
-        <div class="card-body home d-flex justify-content-center">
-            <img class="recruit_image_box" src="../images/company.jpg" alt="공고 사진">
-        </div>
-        <h4 class="text-center">{{title}}</h4>
-        <div class="text-center">{{company_name}}</div>
-    </a>
-    {{/notices}}
-</div>
+                {{/resumeList}} <!-- 이력서 목록 반복문 종료 -->
+                <div class="small_title mt-3">추천 공고</div>
+                <hr />
+                <div class="d-flex justify-content-around">
+                    {{#notices}}
+                    <a class="card recommand_recruit" href="recruitDetail.html">
+                        <div class="card-body home d-flex justify-content-center">
+                            <img class="recruit_image_box" src="../images/company.jpg" alt="공고 사진">
+                        </div>
+                        <h4 class="text-center">{{title}}</h4>
+                        <div class="text-center">{{company_name}}</div>
+                    </a>
+                    {{/notices}}
+                </div>
 
-{{> layout/footer}}
+                {{> layout/footer}}
