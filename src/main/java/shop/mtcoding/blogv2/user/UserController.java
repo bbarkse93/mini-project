@@ -6,9 +6,7 @@ import javax.servlet.http.HttpSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
-
 import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.ResponseBody;
 
 
 @Controller
@@ -22,23 +20,23 @@ public class UserController {
 
   
 
-    @GetMapping("/puserjoinForm")
+    @GetMapping("/userJoinForm")
     public String joinForm() {
-        return "main/puserJoinForm";
+        return "main/userJoinForm";
     }
 
-    @PostMapping("/join")
+    @PostMapping("/userJoin")
     public String 개인회원가입(UserRequest.JoinDTO joinDTO){
         userService.회원가입(joinDTO);
         return "redirect:/loginForm";
     }
 
-    @GetMapping("/companyJoinForm")
+    @GetMapping("/compJoinForm")
     public String companyjoinForm(){    
-        return "main/companyJoin";
+        return "main/compJoinForm";
     }
 
-    @PostMapping("/companyjoin")
+    @PostMapping("/compJoin")
     public String 기업회원가입(UserRequest.JoinDTO joinDTO){
         userService.회원가입(joinDTO);
         return "redirect:/loginForm";
