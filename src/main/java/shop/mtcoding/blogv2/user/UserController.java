@@ -54,6 +54,8 @@ public class UserController {
         session.setAttribute("sessionUser", sessionUser);
         return "user/userApplyStatus";
     }
+
+ 
  
 }
 
