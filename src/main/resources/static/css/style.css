@@ -71,6 +71,11 @@ img {
     margin-inline: 200px;
 }
 
+.frame_bg {
+    margin-top: 50px;
+    margin-inline: 200px;
+}
+
 /* ==================updateForm====================== */
 .circle_avatar {
     width: 200px;
@@ -539,12 +544,6 @@ h2 {
 
 
 /* =============================개인고객 회원정보보기============================= */
-
-
-.frame {
-    margin-top: 50px;
-    margin-inline: 200px;
-}
 
 .user_image_box {
     height: 100px;

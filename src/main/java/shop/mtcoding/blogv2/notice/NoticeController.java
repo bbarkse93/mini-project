@@ -39,6 +39,8 @@ public class NoticeController {
     // 채용등록하기
     @PostMapping("/noticeSave")
     public String noticeSave(NoticeRequest.SaveDTO saveDTO) {
+        System.out.println("테스트 : " + saveDTO.getWishSkills());
+        System.out.println("테스트 : " + saveDTO.getWishDutys());
         noticeService.채용등록(saveDTO);
         return "redirect:/companyNoticeList";
     }
@@ -60,8 +62,9 @@ public class NoticeController {
 
     // 채용수정하기 view
     @GetMapping("noticeUpdate/{id}")
-    public String noticeUpdateForm(@PathVariable Integer id) {
-        noticeService.수정화면(id);
+    public String noticeUpdateForm(@PathVariable Integer id, HttpServletRequest request) {
+        Notice notice = noticeService.수정화면(id);
+        request.setAttribute("notice", notice);
         return "/notice/noticeUpdate";
     }
 

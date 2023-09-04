@@ -1,6 +1,7 @@
 package shop.mtcoding.blogv2.notice;
 
 import java.sql.Timestamp;
+import java.util.ArrayList;
 import java.util.List;
 
 import lombok.Getter;
@@ -25,8 +26,8 @@ public class NoticeRequest {
         private String period;
         private String qualification;
         private Timestamp createdAt;
-        private List<WishSkill> wishSkills;
-        private List<WishDuty> wishDutys;
+        private ArrayList<String> wishSkills;
+        private ArrayList<String> wishDutys;
     }
 
     @Getter

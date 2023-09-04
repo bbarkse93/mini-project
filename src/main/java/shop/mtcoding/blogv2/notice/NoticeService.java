@@ -1,5 +1,6 @@
 package shop.mtcoding.blogv2.notice;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
@@ -9,7 +10,11 @@ import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.bind.annotation.PathVariable;
 
 import shop.mtcoding.blogv2._core.error.ex.MyException;
+import shop.mtcoding.blogv2.duty.Duty;
 import shop.mtcoding.blogv2.notice.NoticeRequest.UpdateDTO;
+import shop.mtcoding.blogv2.skill.Skill;
+import shop.mtcoding.blogv2.wishduty.WishDuty;
+import shop.mtcoding.blogv2.wishskill.WishSkill;
 
 @Service
 public class NoticeService {
@@ -24,22 +29,46 @@ public class NoticeService {
     // 채용공고등록
     @Transactional
     public void 채용등록(NoticeRequest.SaveDTO saveDTO) {
+
+        List<String> wishSkills = saveDTO.getWishSkills();
+        List<String> wishDutys = saveDTO.getWishDutys();
+
+        List<WishSkill> wishSkillList = new ArrayList<>();
+        List<WishDuty> wishDutyList = new ArrayList<>(); // 미리 선언
+
         Notice notice = Notice.builder()
                 .title(saveDTO.getTitle())
                 .companyName(saveDTO.getCompanyName())
                 .companyEmail(saveDTO.getCompanyEmail())
                 .phoneNumber(saveDTO.getPhoneNumber())
-                .companyPicUrl(saveDTO.getCompanyPicUrl())
                 .companyInfo(saveDTO.getCompanyInfo())
                 .location(saveDTO.getLocation())
-                .wishDutys(saveDTO.getWishDutys())
-                .wishSkills(saveDTO.getWishSkills())
+                .wishDutys(wishDutyList)
+                .wishSkills(wishSkillList)
                 .intake(saveDTO.getIntake())
-                .pay(saveDTO.getPay())
                 .period(saveDTO.getPeriod())
+                .pay(saveDTO.getPay())
                 .qualification(saveDTO.getQualification())
-                .createdAt(saveDTO.getCreatedAt())
                 .build();
+
+        for (String wishSkill : wishSkills) {
+            WishSkill wishSkil2 = WishSkill.builder()
+                    .notice(notice)
+                    .skill(Skill.builder().skillName(wishSkill).build())
+                    .build();
+
+            wishSkillList.add(wishSkil2);
+        }
+
+        for (String wishDuty : wishDutys) {
+            WishDuty wishDuty2 = WishDuty.builder()
+                    .notice(notice)
+                    .duty(Duty.builder().dutyName(wishDuty).build())
+                    .build();
+
+            wishDutyList.add(wishDuty2);
+        }
+
         noticeRepository.save(notice);
     }
 

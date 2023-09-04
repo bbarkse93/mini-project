@@ -89,6 +89,10 @@ public class Notice {
     @CreationTimestamp
     private Timestamp createdAt;
 
+    public NoticeBuilder wishDutys(ArrayList<String> wishDutys2) {
+        return null;
+    }
+
     @Builder
     public Notice(Integer id, String title, String companyName, String companyEmail, String phoneNumber,
             String companyInfo, String companyPicUrl, String location, String intake, String pay, String qualification,
