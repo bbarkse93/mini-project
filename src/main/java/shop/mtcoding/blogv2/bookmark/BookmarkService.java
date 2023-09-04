@@ -14,7 +14,8 @@ public class BookmarkService {
     BookmarkRepository bookmarkRepository;
 
     public List<Bookmark> getAllBookmarksByUser(Integer userId) {
-        return bookmarkRepository.findAllByUser_Id(userId); // 유저 ID를 기반으로 북마크를 조회합니다.
+        List<Bookmark> bookmarks = bookmarkRepository.findAllByUserId(1); // 유저 ID를 기반으로 북마크를 조회합니다.
+        return bookmarks;
     }
 
 

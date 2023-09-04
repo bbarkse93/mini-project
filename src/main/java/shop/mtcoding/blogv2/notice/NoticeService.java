@@ -1,10 +1,15 @@
 package shop.mtcoding.blogv2.notice;
 
+import java.util.Optional;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+import org.springframework.web.bind.annotation.PathVariable;
+
+import shop.mtcoding.blogv2._core.error.ex.MyException;
+import shop.mtcoding.blogv2.notice.NoticeRequest.UpdateDTO;
 
 @Service
 public class NoticeService {
@@ -36,19 +41,48 @@ public class NoticeService {
 
     // 채용공고삭제
     @Transactional
-    public void 채용삭제() {
+    public void 채용삭제(Integer id) {
         noticeRepository.deleteById(1);
     }
 
-    public List<Notice> getAllNotices() {
-        // NoticeRepository를 사용하여 공고 정보를 조회합니다.
-        return noticeRepository.findAll();
-      
+    @Transactional
+    public void 수정화면(@PathVariable Integer id) {
+        noticeRepository.findById(1);
     }
 
+    @Transactional
+    public void 채용수정(Integer id, UpdateDTO updateDTO) {
+        Optional<Notice> noticeOP = noticeRepository.findById(id);
+        if (noticeOP.isPresent()) {
+            Notice notice = noticeOP.get();
+            notice.setTitle(updateDTO.getTitle());
+            notice.setCompanyName(updateDTO.getCompanyName());
+            notice.setCompanyEmail(updateDTO.getCompanyEmail());
+            notice.setPhoneNumber(updateDTO.getPhoneNumber());
+            notice.setCompanyPicUrl(updateDTO.getCompanyPicUrl());
+            notice.setCompanyInfo(updateDTO.getCompanyInfo());
+            notice.setLocation(updateDTO.getLocation());
+            notice.setWishDutys(updateDTO.getWishDutys());
+            notice.setWishSkills(updateDTO.getWishSkills());
+            notice.setIntake(updateDTO.getIntake());
+            notice.setPay(updateDTO.getPay());
+            notice.setPeriod(updateDTO.getPeriod());
+            notice.setQualification(updateDTO.getQualification());
+            notice.setCreatedAt(updateDTO.getCreatedAt());
+        } else {
+            throw new MyException(id + "는 찾을 수 없습니다");
+        }
 
-    // 채용공고수정
+        // 채용공고수정
 
-    // 채용공고상세보기
+        // 채용공고수정
 
+        // 채용공고상세보기
+
+    }
+
+    public List<Notice> getAllNotices() {
+        List<Notice> notices = noticeRepository.findAll();
+        return notices;
+    }
 }
