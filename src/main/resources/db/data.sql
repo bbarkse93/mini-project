@@ -52,5 +52,3 @@ insert into edu_tb(grade) values('석사');
 insert into edu_tb(grade) values('박사');
 insert into edu_tb(grade) values('기타');
 
-INSERT INTO bookmark_tb (user_id, resume_id) VALUES (1, 1);
-INSERT INTO bookmark_tb (user_id, resume_id) VALUES (2, 2);
