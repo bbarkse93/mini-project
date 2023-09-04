@@ -39,10 +39,6 @@ public class UserController {
         return "/main/loginForm";
     }
 
-    @GetMapping("/test")
-    public String test(){
-        return"user/userApplyStatus";
-    }
 
 }
 

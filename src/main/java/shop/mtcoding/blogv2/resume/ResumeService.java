@@ -1,19 +1,17 @@
 package shop.mtcoding.blogv2.resume;
 
 
-import java.util.Optional;
+import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import shop.mtcoding.blogv2._core.error.ex.MyException;
-import shop.mtcoding.blogv2.board.Board;
-import shop.mtcoding.blogv2.resume.ResumeRequest.UpdateDTO;
 
 @Service
 public class ResumeService {
-   
+
 
     @Autowired
     private ResumeRepository resumeRepository;
@@ -25,7 +23,7 @@ public class ResumeService {
 
 
     
- 
+
     @Transactional
     public void update(ResumeRequest.UpdateDTO updateDTO, Integer id) {
         // 1. 조회(영속화)
@@ -44,8 +42,18 @@ public class ResumeService {
 }
 
     public Resume findById(Integer id) {
-        return resumeRepository.findById(1).get();
+        return resumeRepository.findById(id).get();
     }
+
+    
+
+
+
+
+        public List<Resume> findAll() {
+            return resumeRepository.findAll();
+        }
+
 }
 
 
