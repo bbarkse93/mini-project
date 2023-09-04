@@ -1,7 +1,10 @@
 package shop.mtcoding.blogv2.resume;
 
 import java.sql.Timestamp;
+import java.util.ArrayList;
+import java.util.List;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
@@ -9,6 +12,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 import org.hibernate.annotations.CreationTimestamp;
@@ -17,6 +21,8 @@ import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
+import shop.mtcoding.blogv2.apply.Apply;
+import shop.mtcoding.blogv2.bookmark.Bookmark;
 import shop.mtcoding.blogv2.edu.Edu;
 import shop.mtcoding.blogv2.user.User;
 
@@ -54,6 +60,12 @@ public class Resume {
 
     @ManyToOne(fetch = FetchType.LAZY)
     private Edu edu;
+
+    @OneToMany(mappedBy = "resume", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+    private List<Apply> applies = new ArrayList<>();
+
+    @OneToMany(mappedBy = "resume", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+    private List<Bookmark> bookmarks = new ArrayList<>();
 
     @CreationTimestamp
     private Timestamp createdAt;

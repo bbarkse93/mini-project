@@ -32,6 +32,7 @@
                 </div>
                 <hr />
                 <div class="list-group">
+                    {{#noticeList}}
                     <div class="mb-3">
                         <div class="d-flex justify-content-between">
                             <form action="링크 주소" method="get" class="form-control">
@@ -39,7 +40,7 @@
                                     <div class="d-flex justify-content-between">
                                         <div>
                                             <div class="mb-2 notice-title">
-                                                공고 제목
+                                                {{title}}
                                             </div>
                                             <div class="mb-2">
                                                 마감기한
@@ -52,17 +53,17 @@
                             </form>
 
                             <div>
-                                <a class="btn btn-warning me-1" href="/noticeUpdate/1">수정</a>
+                                <a class="btn btn-warning me-1" href="/noticeUpdate/{{id}}">수정</a>
                             </div>
                             <div>
-                                <form action="/companyNoticeList/1/delete" method="post">
+                                <form action="/companyNoticeList/{{id}}/delete" method="post">
                                     <button type="submit" class="btn btn-danger" style="height: 30px;">삭제</button>
                                 </form>
                             </div>
                         </div>
                     </div>
+                    {{/noticeList}}
                 </div>
-
             </div>
         </div>
     </div>

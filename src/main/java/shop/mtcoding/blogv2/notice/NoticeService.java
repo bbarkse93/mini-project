@@ -17,6 +17,10 @@ public class NoticeService {
     @Autowired
     public NoticeRepository noticeRepository;
 
+    public List<Notice> findAll() {
+        return noticeRepository.findAll();
+    }
+
     // 채용공고등록
     @Transactional
     public void 채용등록(NoticeRequest.SaveDTO saveDTO) {
@@ -42,13 +46,13 @@ public class NoticeService {
     // 채용공고삭제
     @Transactional
     public void 채용삭제(Integer id) {
-        noticeRepository.deleteById(1);
+        noticeRepository.deleteById(id);
     }
 
     // 채용공고수정 view
     @Transactional
     public Notice 수정화면(@PathVariable Integer id) {
-        Optional<Notice> noticeOP = noticeRepository.findById(1);
+        Optional<Notice> noticeOP = noticeRepository.findById(id);
         // if (noticeOP.isPresent()) {
         return noticeOP.get();
         // } else {
