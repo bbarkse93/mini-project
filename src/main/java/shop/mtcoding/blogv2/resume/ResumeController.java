@@ -25,7 +25,7 @@ public class ResumeController {
     public String delete(@PathVariable Integer id) {
 
         resumeService.deleteById(id); // 이렇게 하면 요청된 id에 해당하는 이력서를 삭제합니다.
-    
+
         return "redirect:/userResumeList"; // userResumeList 페이지로 리디렉션
     }
 
@@ -50,8 +50,6 @@ public class ResumeController {
         return "resume/resumeUpdateForm";
     }
 
-
- 
     @GetMapping("/myResumeList")
     public String 나의이력서관리(HttpServletRequest request) {
          List<Notice> notices = noticeService.getAllNotices();
@@ -62,5 +60,17 @@ public class ResumeController {
         return "resume/myResumeList";
     }
 
+    // 이력서 등록 view
+    @GetMapping("/resumeWrite")
+    public String resumeWrite() {
+        return "/resume/resumeWrite";
+    }
+
+    // 이력서등록하기
+    @PostMapping("/resumeSave")
+    public String resumeSave(ResumeRequest.SaveDTO saveDTO) {
+        resumeService.이력서등록(saveDTO);
+        return "redirect:/myResumeList";
+    }
 
 }

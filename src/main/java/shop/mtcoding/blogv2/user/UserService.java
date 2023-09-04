@@ -1,11 +1,14 @@
 package shop.mtcoding.blogv2.user;
 
+
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import shop.mtcoding.blogv2._core.error.ex.MyException;
 import shop.mtcoding.blogv2.user.UserRequest.LoginDTO;
+import shop.mtcoding.blogv2.user.UserRequest.UpdateDTO;
 
 @Service
 public class UserService {
@@ -41,6 +44,22 @@ public class UserService {
         }
         
         return user;
+    }
+
+    @Transactional
+    public User 회원수정(UpdateDTO updateDTO, Integer id) {
+
+        User user = userRepository.findById(id).get();
+
+        user.setPassword(updateDTO.getPassword());
+        user.setName(updateDTO.getName());
+        user.setTelNumber(updateDTO.getTelNumber());
+
+        return user;
+    }
+
+    public User 회원정보보기(Integer id) {
+        return userRepository.findById(id).get();
     }
 
 }

@@ -25,26 +25,33 @@
             </div>
             <div class="col-md-9">
                 <div class="d-flex flex-row-reverse justify-content-between pe-3 my-3">
-                    <button type="button" class="btn add_btn btn-primary">등록</button>
+                    <a href="/resumeWrite">
+                        <!-- 수정 페이지로 이동하는 폼을 제출 -->
+                        <button type="button" class="btn btn-primary" style="width: 116px; height: 40px;">등록</button>
+                    </a>
                     <div class="small_title">이력서 관리</div>
                 </div>
                 <hr />
-                 <div class="list-group">
-        {{#resumeList}} <!-- 이력서 목록 반복문 시작 -->
-        <div class="mb-3">
-            <a href="#" class="list-group-item list-group-item-action">
-                <div class="d-flex justify-content-between">
-                    <h4 class="mb-2">
-                        {{title}} <!-- 이력서 제목 표시 -->
-                    </h4>
-                    <div>
-                        <div class="mb-1">
-                            <a class="btn btn-warning me-1" href="/resume/{{id}}/updateForm">수정</a>
-                        </div>
-                        <form action="/resume/{{id}}/delete" method="post">
-                            <button type="submit" class="btn btn-danger">삭제</button>
-                        </form>
+                <div class="list-group">
+                    {{#resumeList}} <!-- 이력서 목록 반복문 시작 -->
+                    <div class="mb-3">
+                        <a href="#" class="list-group-item list-group-item-action">
+                            <div class="d-flex justify-content-between">
+                                <h4 class="mb-2">
+                                    {{title}} <!-- 이력서 제목 표시 -->
+                                </h4>
+                                <div>
+                                    <div class="mb-1">
+                                        <a class="btn btn-warning me-1" href="/resume/{{id}}/updateForm">수정</a>
+                                    </div>
+                                    <form action="/resume/{{id}}/delete" method="post">
+                                        <button type="submit" class="btn btn-danger">삭제</button>
+                                    </form>
+                                </div>
+                            </div>
+                        </a>
                     </div>
+                    {{/resumeList}} <!-- 이력서 목록 반복문 종료 -->
                 </div>
             </a>
         </div>
@@ -64,8 +71,10 @@
             {{/notices}}
         </div>
                
-                    
 
-</div>
 
-{{> layout/footer}}
+
+
+            </div>
+
+            {{> layout/footer}}

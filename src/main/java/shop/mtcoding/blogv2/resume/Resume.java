@@ -31,9 +31,11 @@ public class Resume {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
 
-    @Column( length = 100)
+    @Column(length = 100)
     private String title;
-    
+
+    @Column
+    private String personalName;
 
     @Column
     private String personalEmail;
@@ -56,12 +58,12 @@ public class Resume {
     @CreationTimestamp
     private Timestamp createdAt;
 
-
     @Builder
-    public Resume(Integer id, String title, String personalEmail, String phoneNumber, String coverLetter,
-            String personalPicUrl, User user, Edu edu, Timestamp createdAt) {
+    public Resume(Integer id, String title, String personalName, String personalEmail, String phoneNumber,
+            String coverLetter, String personalPicUrl, User user, Edu edu, Timestamp createdAt) {
         this.id = id;
         this.title = title;
+        this.personalName = personalName;
         this.personalEmail = personalEmail;
         this.phoneNumber = phoneNumber;
         this.coverLetter = coverLetter;
@@ -70,7 +72,5 @@ public class Resume {
         this.edu = edu;
         this.createdAt = createdAt;
     }
-
-   
 
 }
