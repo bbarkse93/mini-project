@@ -28,4 +28,13 @@ public class UserRequest {
         private String password;
     }
 
+    @Getter
+    @Setter
+    public static class UpdateDTO {
+        private String password;
+        private String name;
+        private String telNumber;
+
+    }
+
 }
