@@ -17,14 +17,14 @@ public class UserRequest {
         private String registNumber;
         private String email;
         private String picUrl;
-        private boolean distingush;
+        private boolean distingish;
         private Timestamp createdAt;
     }
 
     @Getter
     @Setter
     public static class LoginDTO {
-        private String usernmae;
+        private String username;
         private String password;
     }
 
