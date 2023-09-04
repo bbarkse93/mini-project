@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+
 @Controller
 public class UserController {
 
@@ -32,12 +33,10 @@ public class UserController {
         return "redirect:/loginForm";
     }
 
-
     @GetMapping("/companyJoinForm")
     public String companyjoinForm(){    
         return "main/companyJoin";
     }
-
 
     @PostMapping("/companyjoin")
     public String 기업회원가입(UserRequest.JoinDTO joinDTO){
@@ -59,3 +58,5 @@ public class UserController {
     }
  
 }
+
+

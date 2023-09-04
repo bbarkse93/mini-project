@@ -17,7 +17,7 @@ public class UserRequest {
         private String registNumber;
         private String email;
         private String picUrl;
-        private boolean distingish;
+        private boolean distinguish;
         private Timestamp createdAt;
     }
 
