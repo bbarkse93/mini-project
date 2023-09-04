@@ -1,6 +1,9 @@
 package shop.mtcoding.blogv2.user;
 
 
+import java.util.List;
+
+import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -8,12 +11,17 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 
+import shop.mtcoding.blogv2.notice.Notice;
+import shop.mtcoding.blogv2.notice.NoticeService;
+
 
 @Controller
 public class UserController {
 
     @Autowired
     private UserService userService;
+    @Autowired
+    private NoticeService noticeService;
 
     @Autowired
     HttpSession session;
@@ -53,6 +61,14 @@ public class UserController {
         User sessionUser = userService.로그인(loginDTO);
         session.setAttribute("sessionUser", sessionUser);
         return "user/userApplyStatus";
+    }
+
+    @GetMapping("/userInformation")
+    private String 회원정보보기(HttpServletRequest request){
+        List<Notice> notices = noticeService.getAllNotices();
+        request.setAttribute("notices", notices);
+     
+        return"user/userinformation";
     }
 
  

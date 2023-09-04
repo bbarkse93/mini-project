@@ -47,6 +47,8 @@ public class NoticeController {
         return "redirect:/companyNoticeList";
     }
 
+
+    //추천공고
     @GetMapping("/notices")
     public String getAllNotices(HttpServletRequest request) {
 

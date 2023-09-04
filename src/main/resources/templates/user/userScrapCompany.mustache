@@ -16,7 +16,7 @@
                     <div>
                         <a class="nav-link link" href="/myResumeList">이력서 관리</a>
                         <a class="nav-link link" href="/userApplyStatus">지원현황</a>
-                        <a class="nav-link link" href="/bookmarkCompany">관심기업</a>
+                        <a class="nav-link link" href="/userScrapCompany">관심기업</a>
 
                         <hr />
                         <a class="nav-link link" href="#">개인정보 수정</a>
@@ -30,15 +30,16 @@
                 </div>
                 <hr />
                 <div class="list-group">
+                    {{#scraps}}
                     <div class="mb-3">
                         <a href="#" class="list-group-item list-group-item-action">
                             <div class="d-flex justify-content-between">
                                 <div>
                                     <h4 class="mb-2">
-                                        공고 제목
+                                        {{notice.title}}
                                     </h4>
                                     <h6 class="mb-2">
-                                        회사명
+                                        {{notice.companyName}}
                                     </h6>
                                 </div>
                                 <div class="mb-1 d-flex align-items-center">
@@ -47,57 +48,7 @@
                             </div>
                         </a>
                     </div>
-                    <div class="mb-3">
-                        <a href="#" class="list-group-item list-group-item-action">
-                            <div class="d-flex justify-content-between">
-                                <div>
-                                    <h4 class="mb-2">
-                                        공고 제목
-                                    </h4>
-                                    <h6 class="mb-2">
-                                        회사명
-                                    </h6>
-                                </div>
-                                <div class="mb-1 d-flex align-items-center">
-                                    <button type="button" class="btn btn-info apply_button">지원하기</button>
-                                </div>
-                            </div>
-                        </a>
-                    </div>
-                    <div class="mb-3">
-                        <a href="#" class="list-group-item list-group-item-action">
-                            <div class="d-flex justify-content-between">
-                                <div>
-                                    <h4 class="mb-2">
-                                        공고 제목
-                                    </h4>
-                                    <h6 class="mb-2">
-                                        회사명
-                                    </h6>
-                                </div>
-                                <div class="mb-1 d-flex align-items-center">
-                                    <button type="button" class="btn btn-info apply_button">지원하기</button>
-                                </div>
-                            </div>
-                        </a>
-                    </div>
-                    <div class="mb-3">
-                        <a href="#" class="list-group-item list-group-item-action">
-                            <div class="d-flex justify-content-between">
-                                <div>
-                                    <h4 class="mb-2">
-                                        공고 제목
-                                    </h4>
-                                    <h6 class="mb-2">
-                                        회사명
-                                    </h6>
-                                </div>
-                                <div class="mb-1 d-flex align-items-center">
-                                    <button type="button" class="btn btn-info apply_button">지원하기</button>
-                                </div>
-                            </div>
-                        </a>
-                    </div>
+                    {{/scraps}}
                 </div>
             </div>
         </div>
@@ -110,7 +61,7 @@
                     <img class="recruit_image_box" src="../images/company.jpg" alt="공고 사진">
                 </div>
                 <h4 class="text-center">{{title}}</h4>
-                <div class="text-center">{{company_name}}</div>
+                <div class="text-center">{{companyName}}</div>
             </a>
             {{/notices}}
         </div>
