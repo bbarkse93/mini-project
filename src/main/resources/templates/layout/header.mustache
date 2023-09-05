@@ -20,15 +20,15 @@
             <div>
                 <ul class="navbar-nav text-center">
                     <li class="nav-item">
-                        <a class="nav-link active" href="#">
+                        <a class="nav-link active" href="/">
                             <img src="./images/logo.png" style="max-width: 100px;">
                         </a>
                     </li>
                     <li class="nav-item2">
-                        <a class="nav-link" href="#">채용공고</a>
+                        <a class="nav-link" href="/jobPosting">채용공고</a>
                     </li>
                     <li class="nav-item2">
-                        <a class="nav-link" href="#">이벤트</a>
+                        <a class="nav-link" href="/event">이벤트</a>
                     </li>
                     <li class="nav-item2">
                         <a class="nav-link" href="/csForm">고객센터</a>
@@ -43,18 +43,21 @@
                     </li>
                 </ul>
                 <div class="join_and_login">
+                    {{^sessionUser}}
                     <button type="button" class="btn btn-secondary" data-bs-toggle="modal" data-bs-target="#myModal">
                         회원가입
                     </button>
-                    <button type="button" class="btn btn-secondary">
+                    <a href="http://localhost:8080/loginForm" class="btn btn-secondary">
                         로그인
-                    </button>
-                    <button type="button" class="btn btn-secondary " data-bs-toggle="modal" data-bs-target="#myModal">
-                        나의정보
-                    </button>
-                    <button type="button" class="btn btn-secondary " data-bs-toggle="modal" data-bs-target="#myModal">
-                        로그아웃
-                    </button>
+                    </a>
+                    {{/sessionUser}}
+
+                    {{#sessionUser}}
+                    <a href="/myInfo" class="btn btn-secondary">나의 정보</a>
+                    
+                    <a href="/logout" class="btn btn-secondary">로그아웃</a>
+                  
+                    {{/sessionUser}}
                 </div>
             </div>
         </div>
