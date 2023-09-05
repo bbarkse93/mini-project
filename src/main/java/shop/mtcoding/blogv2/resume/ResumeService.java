@@ -58,4 +58,8 @@ public class ResumeService {
 
     }
 
+    public Resume getResumeById(Integer resumeId) {
+        return null;
+    }
+
 }

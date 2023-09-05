@@ -27,8 +27,10 @@ values('kakao@nate.com','카카오정보','카카오',NOW(),'1명','제주','800
 
 INSERT INTO apply_tb (notice_id, resume_id, status) VALUES  (1, 1, true);
 
-INSERT INTO bookmark_tb (user_id, resume_id) VALUES (1, 1);
-INSERT INTO bookmark_tb (user_id, resume_id) VALUES (2, 2);
+INSERT INTO bookmark_tb (notice_id,user_id, resume_id) VALUES (1,1, 1);
+INSERT INTO bookmark_tb (notice_id,user_id, resume_id) VALUES (2,1, 1);
+INSERT INTO bookmark_tb (notice_id,user_id, resume_id) VALUES (3,1, 1);
+
 
 INSERT INTO scrap_tb (notice_id,user_id) VALUES (1,1);
 

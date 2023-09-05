@@ -22,6 +22,7 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 import shop.mtcoding.blogv2.apply.Apply;
+import shop.mtcoding.blogv2.bookmark.Bookmark;
 import shop.mtcoding.blogv2.edu.Edu;
 import shop.mtcoding.blogv2.user.User;
 import shop.mtcoding.blogv2.wishduty.WishDuty;
@@ -80,6 +81,9 @@ public class Notice {
     @OneToMany(mappedBy = "notice", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
     private List<Apply> applies = new ArrayList<>();
 
+    @OneToMany(mappedBy = "notice", fetch = FetchType.LAZY)
+private List<Bookmark> bookmarks = new ArrayList<>();
+
     @ManyToOne(fetch = FetchType.LAZY)
     private User user;
 
@@ -90,10 +94,11 @@ public class Notice {
     private Timestamp createdAt;
 
     @Builder
+
     public Notice(Integer id, String title, String companyName, String companyEmail, String phoneNumber,
             String companyInfo, String companyPicUrl, String location, String intake, String pay, String qualification,
-            String period, List<WishSkill> wishSkills, List<WishDuty> wishDutys, User user, Edu edu,
-            Timestamp createdAt) {
+            String period, List<WishSkill> wishSkills, List<WishDuty> wishDutys, List<Apply> applies,
+            List<Bookmark> bookmarks, User user, Edu edu, Timestamp createdAt) {
         this.id = id;
         this.title = title;
         this.companyName = companyName;
@@ -108,9 +113,12 @@ public class Notice {
         this.period = period;
         this.wishSkills = wishSkills;
         this.wishDutys = wishDutys;
+        this.applies = applies;
+        this.bookmarks = bookmarks;
         this.user = user;
         this.edu = edu;
         this.createdAt = createdAt;
     }
 
+    
 }

@@ -1,4 +1,4 @@
-
+{{> layout/header}}
       <div class="frame">
         <div class="container mt-3">
             <div class="row">
@@ -28,88 +28,65 @@
                     </div>
                     <hr />
                     <div class="list-group">
-                        <div class="mb-3">
-                            <a href="#" class="list-group-item list-group-item-action">
-                                <div class="d-flex justify-content-between">
-                                    <div class="mb-2">
-                                        이력서 제목
-                                    </div>
-                                </div>
-                            </a>
-                        </div>
-                        <div class="mb-3">
-                            <a href="#" class="list-group-item list-group-item-action">
-                                <div class="d-flex justify-content-between">
-                                    <div>
-                                        <div class="mb-2">
-                                            공고 제목
-                                        </div>
-                                        <div class="mb-2">
-                                            마감기한
-                                        </div>
-                                    </div>
-                                    <div class="image-container">
-                                        <img src="./images/빈별.png" alt="관심없음" id="heartImg1">
-                                    </div>
-                                </div>
-                            </a>
-                        </div>
-                        <div class="mb-3">
-                            <a href="#" class="list-group-item list-group-item-action">
-                                <div class="d-flex justify-content-between">
-                                    <div>
-                                        <div class="mb-2">
-                                            공고 제목
-                                        </div>
-                                        <div class="mb-2">
-                                            마감기한
-                                        </div>
-                                    </div>
-                                    <div class="image-container">
-                                        <img src="./images/빈별.png" alt="관심없음" id="heartImg2">
-                                    </div>
-                                </div>
-                            </a>
-                        </div>
-                        <div class="mb-3">
-                            <a href="#" class="list-group-item list-group-item-action">
-                                <div class="d-flex justify-content-between">
-                                    <div>
-                                        <div class="mb-2">
-                                            공고 제목
-                                        </div>
-                                        <div class="mb-2">
-                                            마감기한
-                                        </div>
-                                    </div>
-                                    <div class="image-container">
-                                        <img src="./images/빈별.png" alt="관심없음" id="heartImg3">
-                                    </div>
-                                </div>
-                            </a>
+    {{#bookmarks}}
+    <div class="mb-3">
+        <a href="#" class="list-group-item list-group-item-action">
+            <div class="d-flex justify-content-between">
+                <div>
+                    <div class="mb-2">
+                        이력서 제목: {{resume.title}}
+                    </div>
+                    <div class="mb-2">
+                        공고 제목: {{notice.title}}
+                    </div>
+                    
+                </div>
+                <div class="image-container">
+                    <img src="{{#isFavorite}}../images/노란별.png{{/isFavorite}}{{^isFavorite}}./images/빈별.png{{/isFavorite}}" alt="관심없음" id="heartImg{{id}}">
+                </div>
+            </div>
+        </a>
+    </div>
+    {{/bookmarks}}
+
+    
+
+                        
                         </div>
                     </div>
                 </div>
             </div>
         </div>
     </div>
-    <script>
-        const heartImg1 = document.querySelector('#heartImg1');
-        const heartImg2 = document.querySelector('#heartImg2');
-        const heartImg3 = document.querySelector('#heartImg3');
-        let isFavorite1 = false;
-        let isFavorite2 = false;
-        let isFavorite3 = false;
-        heartImg1.addEventListener('click', () => {
-            isFavorite1 = !isFavorite1;
-            heartImg1.src = isFavorite1 ? './images/노란별.png' : './images/빈별.png';
-        });
-        heartImg2.addEventListener('click', () => {
-            isFavorite2 = !isFavorite2;
-            heartImg2.src = isFavorite2 ? './images/노란별.png' : './images/빈별.png';
-        });
-        heartImg3.addEventListener('click', () => {
-            isFavorite3 = !isFavorite3;
-            heartImg3.src = isFavorite3 ? './images/노란별.png' : './images/빈별.png';
-        });
-    </script>
+  <script>
+    const heartImg1 = document.querySelector('#heartImg1');
+    const heartImg2 = document.querySelector('#heartImg2');
+    const heartImg3 = document.querySelector('#heartImg3');
+    const listGroup = document.querySelector('.list-group');
+    let isFavorite1 = false;
+    let isFavorite2 = false;
+    let isFavorite3 = false;
+    heartImg1.addEventListener('click', () => {
+        isFavorite1 = !isFavorite1;
+        heartImg1.src = isFavorite1 ? '../images/노란별.png' : '../images/빈별.png';
+        if (isFavorite1) {
+            listGroup.prepend(heartImg1.closest('.list-group-item'));
+        }
+    });
+    heartImg2.addEventListener('click', () => {
+        isFavorite2 = !isFavorite2;
+        heartImg2.src = isFavorite2 ? '../images/노란별.png' : '../images/빈별.png';
+        if (isFavorite2) {
+            listGroup.prepend(heartImg2.closest('.list-group-item'));
+        }
+    });
+    heartImg3.addEventListener('click', () => {
+        isFavorite3 = !isFavorite3;
+        heartImg3.src = isFavorite3 ? '../images/노란별.png' : '../images/빈별.png';
+        if (isFavorite3) {
+            listGroup.prepend(heartImg3.closest('.list-group-item'));
+        }
+    });
+</script>
+
+{{> layout/footer}}
