@@ -6,7 +6,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import shop.mtcoding.blogv2._core.error.ex.MyApiException;
 import shop.mtcoding.blogv2._core.error.ex.MyException;
+import shop.mtcoding.blogv2._core.util.ApiUtil;
 import shop.mtcoding.blogv2.user.UserRequest.LoginDTO;
 import shop.mtcoding.blogv2.user.UserRequest.UpdateDTO;
 
@@ -60,6 +62,15 @@ public class UserService {
 
     public User 회원정보보기(Integer id) {
         return userRepository.findById(id).get();
+    }
+
+       public ApiUtil<String> checkusername(String username) {
+       User user = userRepository.findByUsername(username);
+       if (user != null) {
+        throw new MyApiException("유저네임을 사용할 수 없습니다");
+        
+       }
+       return new ApiUtil<String>(true, "유저네임을 사용할 수 있습니다");
     }
 
 }
