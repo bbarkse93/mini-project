@@ -44,7 +44,22 @@
                 </ul>
                 {{#sessionUser}}
                 <div class="join_and_login">
+
                     <a href="/user/updateForm" class="btn btn-secondary">나의정보</a>
+
+                    <button type="button" class="btn btn-secondary" data-bs-toggle="modal" data-bs-target="#myModal">
+                        회원가입
+                    </button>
+                    <button type="button" class="btn btn-secondary">
+                        로그인
+                    </button>
+                    <button type="button" class="btn btn-secondary " data-bs-toggle="modal" data-bs-target="#myModal">
+                        나의정보
+                    </button>
+                    <button type="button" class="btn btn-secondary " data-bs-toggle="modal" data-bs-target="#myModal">
+                        로그아웃
+                    </button>
+
                 </div>
             {{/sessionUser}}
             {{^sessionUser}}
