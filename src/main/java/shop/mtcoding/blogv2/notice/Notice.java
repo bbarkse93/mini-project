@@ -93,6 +93,10 @@ private List<Bookmark> bookmarks = new ArrayList<>();
     @CreationTimestamp
     private Timestamp createdAt;
 
+    public NoticeBuilder wishDutys(ArrayList<String> wishDutys2) {
+        return null;
+    }
+
     @Builder
 
     public Notice(Integer id, String title, String companyName, String companyEmail, String phoneNumber,

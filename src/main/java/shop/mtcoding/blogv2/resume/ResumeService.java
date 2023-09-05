@@ -55,7 +55,6 @@ public class ResumeService {
                 .createdAt(saveDTO.getCreatedAt())
                 .build();
         resumeRepository.save(resume);
-
     }
 
     public Resume getResumeById(Integer resumeId) {
