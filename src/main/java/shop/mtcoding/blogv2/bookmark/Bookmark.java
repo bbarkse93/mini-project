@@ -11,6 +11,7 @@ import lombok.NoArgsConstructor;
 import lombok.Builder;
 import lombok.Getter;
 import lombok.Setter;
+import shop.mtcoding.blogv2.notice.Notice;
 import shop.mtcoding.blogv2.resume.Resume;
 import shop.mtcoding.blogv2.user.User;
 
@@ -30,12 +31,22 @@ public class Bookmark {
 
     @ManyToOne
     private Resume resume;
+    
+    @ManyToOne
+    private Notice notice;
+
 
     @Builder
-    public Bookmark(Integer id, User user, Resume resume) {
+    public Bookmark(Integer id, User user, Resume resume, Notice notice) {
         this.id = id;
         this.user = user;
         this.resume = resume;
+        this.notice = notice;
     }
+
+
+
+    
+   
 
 }
