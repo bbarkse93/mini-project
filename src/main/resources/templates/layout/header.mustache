@@ -37,38 +37,26 @@
             <div class="d-flex justify-content-around">
                 <ul class="navbar-nav nav-item2">
                     <li class="nav-item">
-                        <img src="./images/search.png" alt="">
-                        <img src="./images/resume.png" alt="">
+                        <img src="/images/search.png" alt="">
+                        <img src="/images/resume.png" alt="">
                     </li>
                 </ul>
                 {{#sessionUser}}
-                <div class="join_and_login">
-
+                <div>
                     <a href="/user/updateForm" class="btn btn-secondary">나의정보</a>
-
-                    <button type="button" class="btn btn-secondary" data-bs-toggle="modal" data-bs-target="#myModal">
-                        회원가입
-                    </button>
-                    <button type="button" class="btn btn-secondary">
-                        로그인
-                    </button>
-                    <button type="button" class="btn btn-secondary " data-bs-toggle="modal" data-bs-target="#myModal">
-                        나의정보
-                    </button>
                     <button type="button" class="btn btn-secondary " data-bs-toggle="modal" data-bs-target="#myModal">
                         로그아웃
                     </button>
-
                 </div>
-            {{/sessionUser}}
-            {{^sessionUser}}
-            <div class="join_and_login">
-                <button type="button" class="btn btn-secondary" data-bs-toggle="modal" data-bs-target="#myModal">
-                    회원가입
-                </button>
-                <a href="http://localhost:8080/loginForm" class="btn btn-secondary">로그인</a>
-            </div>
-        {{/sessionUser}}
+                {{/sessionUser}}
+                {{^sessionUser}}
+                <div>
+                    <button type="button" class="btn btn-secondary" data-bs-toggle="modal" data-bs-target="#myModal">
+                        회원가입
+                    </button>
+                    <a href="http://localhost:8080/loginForm" class="btn btn-secondary">로그인</a>
+                </div>
+                {{/sessionUser}}
             </div>
         </div>
     </nav>
