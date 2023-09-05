@@ -839,6 +839,12 @@ h2 {
     outline: none;
 }
 
+.check_button {
+    width: 90px;
+    height: 30px;
+    margin-left: 10px;
+}
+
 /*loginUpdate*/
 
 

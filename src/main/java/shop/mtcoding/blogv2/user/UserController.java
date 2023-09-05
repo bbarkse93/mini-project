@@ -11,7 +11,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
 
+import shop.mtcoding.blogv2._core.util.ApiUtil;
 import shop.mtcoding.blogv2.notice.Notice;
 import shop.mtcoding.blogv2.notice.NoticeService;
 
@@ -130,6 +132,12 @@ public class UserController {
 
         return "redirect:/";
     }
+
+    @GetMapping("/api/check")
+    public @ResponseBody ApiUtil<String> check(String username){
+     
+        return userService.checkusername(username);
+        }
 
  
 }
