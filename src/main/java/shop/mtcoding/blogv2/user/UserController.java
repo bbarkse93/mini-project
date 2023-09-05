@@ -70,6 +70,13 @@ public class UserController {
         return "user/userApplyStatus";
     }
 
+    @GetMapping("/logout")
+    public String logout() {
+        session.invalidate(); // 세션 무효화 (내 서랍을 비우는 것)
+        return "redirect:/index";
+    }
+
+
 
     @GetMapping("/userInformation")
     private String 회원정보보기(HttpServletRequest request){
@@ -123,6 +130,8 @@ public class UserController {
 
         return "redirect:/";
     }
+
+
     
  
 }
