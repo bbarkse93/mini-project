@@ -10,11 +10,22 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 
+import shop.mtcoding.blogv2.duty.Duty;
+import shop.mtcoding.blogv2.duty.DutyService;
+import shop.mtcoding.blogv2.skill.Skill;
+import shop.mtcoding.blogv2.skill.SkillService;
+
 @Controller
 public class NoticeController {
 
     @Autowired
     private NoticeService noticeService;
+
+    @Autowired
+    private SkillService skillService;
+
+    @Autowired
+    private DutyService dutyService;
 
     // 기업회원정보(디폴트화면)
     @GetMapping("/companyNoticeList")
@@ -32,7 +43,11 @@ public class NoticeController {
 
     // 채용공고등록 view
     @GetMapping("/noticeWrite")
-    public String noticeWrite() {
+    public String noticeWrite(HttpServletRequest request) {
+        List<Skill> skills = skillService.findAll();
+        List<Duty> dutys = dutyService.findAll();
+        request.setAttribute("skills", skills);
+        request.setAttribute("dutys", dutys);
         return "/notice/noticeWrite";
     }
 
@@ -40,8 +55,10 @@ public class NoticeController {
     @PostMapping("/noticeSave")
     public String noticeSave(NoticeRequest.SaveDTO saveDTO) {
         System.out.println("테스트 : " + saveDTO.getWishSkills());
-        System.out.println("테스트 : " + saveDTO.getWishDutys());
+
         noticeService.채용등록(saveDTO);
+        System.out.println("테스트 : " + saveDTO.getWishSkills());
+
         return "redirect:/companyNoticeList";
     }
 

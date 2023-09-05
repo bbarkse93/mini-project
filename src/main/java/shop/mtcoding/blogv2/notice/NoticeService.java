@@ -11,30 +11,47 @@ import org.springframework.web.bind.annotation.PathVariable;
 
 import shop.mtcoding.blogv2._core.error.ex.MyException;
 import shop.mtcoding.blogv2.duty.Duty;
+import shop.mtcoding.blogv2.duty.DutyRepository;
 import shop.mtcoding.blogv2.notice.NoticeRequest.UpdateDTO;
 import shop.mtcoding.blogv2.skill.Skill;
+import shop.mtcoding.blogv2.skill.SkillRepository;
 import shop.mtcoding.blogv2.wishduty.WishDuty;
+import shop.mtcoding.blogv2.wishduty.WishDutyRepository;
 import shop.mtcoding.blogv2.wishskill.WishSkill;
+import shop.mtcoding.blogv2.wishskill.WishSkillRepository;
 
 @Service
 public class NoticeService {
 
     @Autowired
-    public NoticeRepository noticeRepository;
+    private NoticeRepository noticeRepository;
+
+    @Autowired
+    private SkillRepository skillRepository;
+
+    @Autowired
+    private WishSkillRepository wishSkillRepository;
+
+    @Autowired
+    private DutyRepository dutyRepository;
+
+    @Autowired
+    private WishDutyRepository wishDutyRepository;
 
     public List<Notice> findAll() {
         return noticeRepository.findAll();
     }
 
+    // // 채용공고등록 view
+    // public List<Notice> findAllJoinSkill() {
+    // return null;
+    // }
+
     // 채용공고등록
     @Transactional
     public void 채용등록(NoticeRequest.SaveDTO saveDTO) {
-
-        List<String> wishSkills = saveDTO.getWishSkills();
-        List<String> wishDutys = saveDTO.getWishDutys();
-
         List<WishSkill> wishSkillList = new ArrayList<>();
-        List<WishDuty> wishDutyList = new ArrayList<>(); // 미리 선언
+        List<WishDuty> wishDutyList = new ArrayList<>();
 
         Notice notice = Notice.builder()
                 .title(saveDTO.getTitle())
@@ -43,33 +60,46 @@ public class NoticeService {
                 .phoneNumber(saveDTO.getPhoneNumber())
                 .companyInfo(saveDTO.getCompanyInfo())
                 .location(saveDTO.getLocation())
-                .wishDutys(wishDutyList)
-                .wishSkills(wishSkillList)
                 .intake(saveDTO.getIntake())
                 .period(saveDTO.getPeriod())
                 .pay(saveDTO.getPay())
                 .qualification(saveDTO.getQualification())
                 .build();
 
-        for (String wishSkill : wishSkills) {
-            WishSkill wishSkil2 = WishSkill.builder()
-                    .notice(notice)
-                    .skill(Skill.builder().skillName(wishSkill).build())
-                    .build();
-
-            wishSkillList.add(wishSkil2);
-        }
-
-        for (String wishDuty : wishDutys) {
-            WishDuty wishDuty2 = WishDuty.builder()
-                    .notice(notice)
-                    .duty(Duty.builder().dutyName(wishDuty).build())
-                    .build();
-
-            wishDutyList.add(wishDuty2);
-        }
-
+        // Notice 엔터티를 저장합니다.
         noticeRepository.save(notice);
+
+        // 채용공고와 연관된 기술 스택을 가져와서 WishSkill 엔터티를 생성하고 저장합니다.
+        List<String> skillList = saveDTO.getWishSkills();
+        for (String skillName : skillList) {
+            Skill skill = skillRepository.findBySkillName(skillName);
+            if (skill != null) {
+                WishSkill wishSkill = WishSkill.builder()
+                        .notice(notice)
+                        .skill(skill)
+                        .build();
+                wishSkillList.add(wishSkill); // wishSkill을 리스트에 추가
+            }
+        }
+
+        // WishSkill 엔터티를 저장합니다.
+        wishSkillRepository.saveAll(wishSkillList);
+
+        // 채용공고와 연관된 직무를 가져와서 WishDuty 엔터티를 생성하고 저장합니다.
+        List<String> dutyList = saveDTO.getWishDutys();
+        for (String dutyName : dutyList) {
+            Duty duty = dutyRepository.findByDutyName(dutyName);
+            if (duty != null) {
+                WishDuty wishDuty = WishDuty.builder()
+                        .notice(notice)
+                        .duty(duty)
+                        .build();
+                wishDutyList.add(wishDuty); // wishDuty를 리스트에 추가
+            }
+        }
+
+        // WishDuty 엔터티를 저장합니다.
+        wishDutyRepository.saveAll(wishDutyList);
     }
 
     // 채용공고삭제
