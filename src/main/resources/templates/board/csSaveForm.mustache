@@ -14,23 +14,24 @@
             <input type="email" class="form-control" id="email" placeholder="Email" name="email">
         </div>
         <div class="mb-3">
-            <label for="content" class="form-label">내용</label>
-            <textarea class="form-control" id="content" placeholder="문의내용" name="content"></textarea>
-        </div>
-        <div class="mb-3">
             <label for="contact" class="form-label">연락처</label>
             <input type="tel" class="form-control" id="contact" placeholder="연락처" name="phoneNumber">
+        </div>
+        <div class="mb-3">
+            <label for="content" class="form-label">내용</label>
+            <textarea class="form-control" id="content" placeholder="문의내용" name="content"></textarea>
         </div>
         <div class="text-center">
             <button type="submit" class="btn btn-primary">문의 등록</button>
         </div>
     </form>
 
+    <script>
+        $(document).ready(function () {
+            $('#content').summernote({
+                height: 300
+            });
+        });
+    </script>
+
     {{> layout/footer}}
-
-
-
-
-
-
-</div>

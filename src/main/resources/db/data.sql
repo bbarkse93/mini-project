@@ -1,6 +1,6 @@
-insert into board_tb(title, email, phone_number, created_at) values('문의 사항','ssar@nate.com','010-1234-5678',NOW());
-insert into board_tb(title, email, phone_number, created_at) values('서비스 문의','cos@nate.com','010-1111-2222',NOW());
-insert into board_tb(title, email, phone_number, created_at) values('서비스 문의','cos@nate.com','010-1111-2222',NOW());
+insert into board_tb(title, email, phone_number, content, created_at) values('문의 사항','ssar@nate.com', '010-1234-5678', '문의합니다', NOW());
+insert into board_tb(title, email, phone_number, content, created_at) values('서비스 문의','cos@nate.com', '010-1111-2222', '문의합니다', NOW());
+insert into board_tb(title, email, phone_number, content, created_at) values('서비스 문의','cos@nate.com', '010-1111-2222', '문의합니다', NOW());
 
 
 insert into user_tb(username, password, name, tel_number, email, regist_number, pic_url, distinguish, created_at) 

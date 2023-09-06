@@ -13,4 +13,13 @@ public class BoardRequest {
         private String content;
         private String phoneNumber;
     }
+
+    @Getter
+    @Setter
+    public static class UpdateDTO {
+        private String title;
+        private String email;
+        private String content;
+        private String phoneNumber;
+    }
 }
