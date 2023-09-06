@@ -1,63 +1,63 @@
-<!DOCTYPE html>
-<html lang="en">
-
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Your Website</title>
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css">
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.bundle.min.js"></script>
-    <link rel="stylesheet" href="/css/style.css">
-</head>
-<style>
-</style>
+{{> layout/header}}
 <div class="wrap">
-    <div class="login">
-        <h2> 기업 회원가입</h2>
+    <div class="join">
+        <h2>기업 회원가입</h2>
         <form action="/compJoin" method="post" enctype="application/x-www-form-urlencoded">
-            <div class="login-id">
-                <label for="username">
-                    <h4>아이디</h4>
-                </label>
+            <div class="join-username">
+                <div class="join-username-text">
+                    <label for="username">
+                        <h4>아이디</h4>
+                    </label>
+                </div>
                 <input type="text" name="username" id="username" placeholder="아이디를 입력해주세요">
-                <button type="button" class="btn btn-warning" onclick="check()">중복체크</button>
+                <button type="button" class="btn btn-warning m-3" onclick="check()">중복체크</button>
             </div>
-            <div class="login-pw">
-                <label for="password">
-                    <h4>비밀번호</h4>
-                </label>
+            <div class="join-pw">
+                <div class="join-pw-text">
+                    <label for="password">
+                        <h4>비밀번호</h4>
+                    </label>
+                </div>
                 <input type="password" name="password" id="password" placeholder="비밀번호를 입력해주세요">
             </div>
             <hr style="border-color: #000000; margin: 20px auto; width: 100%;">
             <div class="join-name">
-                <label for="name">
-                    <h4>회사명</h4>
-                </label>
+                <div class="join-name-text">
+                    <label for="name">
+                        <h4>회사명</h4>
+                    </label>
+                </div>
                 <input type="text" name="name" id="name" placeholder="회사명을 입력해주세요">
             </div>
             <div class="join-date">
-                <label for="registNumber">
-                    <h4>사업자 등록번호</h4>
-                </label>
+                <div class="join-date-text">
+                    <label for="registNumber">
+                        <h4>사업자 등록번호</h4>
+                    </label>
+                </div>
                 <input type="text" name="registNumber" id="registNumber" placeholder="사업자등록번호를 입력해주세요">
             </div>
             <div class="join-phone">
-                <label for="telNumber">
-                    <h4>전화번호</h4>
-                </label>
+                <div class="join-phone-text">
+                    <label for="telNumber">
+                        <h4>전화번호</h4>
+                    </label>
+                </div>
                 <input type="tel" name="telNumber" id="telNumber" placeholder="전화번호를 입력해주세요">
             </div>
             <div class="join-email">
-                <label for="email">
-                    <h4>Email</h4>
-                </label>
+                <div class="join-email-text">
+                    <label for="email">
+                        <h4>Email</h4>
+                    </label>
+                </div>
                 <input type="email" name="email" id="email" placeholder="이메일을 입력해주세요">
             </div>
             <div>
                 <input type="hidden" name="distinguish" value="false">
             </div>
-            <div class="submit submit ">
-                <input type="submit" value="submit">
+            <div class="submit">
+                <input type="submit" value="회원가입">
             </div>
         </form>
     </div>
@@ -82,7 +82,6 @@
         let response = await fetch(`/api/check?username=${username}`);
         let responseBody = await response.json();
 
-
         if (responseBody.sucuess) {
             alert(responseBody.data)
             usernameSameCheck = true;
@@ -97,6 +96,6 @@
     }
 </script>
 
-</body>
+{{> layout/footer}}
 
-</html>
+
