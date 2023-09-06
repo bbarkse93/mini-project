@@ -34,7 +34,7 @@ public class ResumeController {
 
         resumeService.update(updateDTO, id);
 
-        return "user/userResumeList";
+        return "redirect:/myResumeList";
     }
 
     @GetMapping("/resume/{id}/updateForm")

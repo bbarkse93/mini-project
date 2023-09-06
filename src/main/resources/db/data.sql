@@ -13,8 +13,8 @@ insert into user_tb(username, password, name, tel_number, email, regist_number, 
 values('company2', '1234', '회사z', '010-1234-5678', 'cos@nate.com', '000000000', 'basic.png', false, NOW());
 
 
-insert into resume_tb(title,personal_email,phone_number,cover_letter,personal_pic_url,created_at) values('이력서1','ssar@nate.com','010-1234-5678','자기소개서','basic.png',NOW());
-insert into resume_tb(title,personal_email,phone_number,cover_letter,personal_pic_url,created_at) values('이력서2','cos@nate.com','010-1111-5678','자기소개서','basic.png',NOW());
+insert into resume_tb(title,personal_name,personal_email,phone_number,cover_letter,personal_pic_url,created_at) values('이력서1','쌀','ssar@nate.com','010-1234-5678','자기소개서','basic.png',NOW());
+insert into resume_tb(title,personal_name,personal_email,phone_number,cover_letter,personal_pic_url,created_at) values('이력서2','코스','cos@nate.com','010-1111-5678','자기소개서','basic.png',NOW());
  
 insert into notice_tb(company_email,company_info,company_name,created_at,intake,location,pay,period,phone_number,qualification,title)
 values('naver@nate.com','네이버정보','네이버',NOW(),'2명','서울','5000만원','21일간','010-1234-5678','사지멀쩡한 자','프론트급구');
