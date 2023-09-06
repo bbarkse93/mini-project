@@ -7,6 +7,7 @@ import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
@@ -26,6 +27,11 @@ public class UserController {
 
     @Autowired
     HttpSession session;
+
+    @GetMapping("/")
+    public String index() {
+        return "/index";
+    }
 
     @GetMapping("/userJoinForm")
     public String joinForm() {
@@ -69,8 +75,8 @@ public class UserController {
 
     @GetMapping("/logout")
     public String logout() {
-        session.invalidate(); // 세션 무효화 (내 서랍을 비우는 것)
-        return "redirect:/index";
+        session.invalidate(); 
+        return "redirect:/";
     }
 
     @GetMapping("/userInformation")
@@ -125,6 +131,17 @@ public class UserController {
         return "redirect:/";
     }
 
+    @GetMapping("/jobPosting")
+    public String jobPosting() {
+
+        return "main/jobPosting";
+    }
+
+    @GetMapping("/event")
+    public String Event() {
+        return "main/event";
+    }
+ 
     @GetMapping("/api/check")
     public @ResponseBody ApiUtil<String> check(String username) {
 
