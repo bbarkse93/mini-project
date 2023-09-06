@@ -1,3 +1,4 @@
+
 {{> layout/header}}
 <!--상단바-->
 <!--구분선-->
@@ -8,18 +9,15 @@
 
 
 <div class="job-posting images">
+    {{#notices}}
     <a href="http://www.naver.com" class="rounded_image">
-        <img src="/images/파워링크사진.png" />
+       <div></div>
+       <div>{{title}}</div>
+       <div>{{companyName}}</div>
+       <div>{{pay}}</div>
     </a>
-    <a href="http://www.naver.com" class="rounded-image">
-        <img src="/images/파워링크사진.png" />
-    </a>
-    <a href="http://www.naver.com" class="rounded-image">
-        <img src="/images/파워링크사진.png" />
-    </a>
-    <a href="http://www.naver.com" class="rounded-image">
-        <img src="/images/파워링크사진.png" />
-    </a>
+    {{/notices}}
+    
 </div>
 
 <div class="job-posting images" style="margin-top: 30px;">

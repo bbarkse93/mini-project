@@ -131,12 +131,6 @@ public class UserController {
         return "redirect:/";
     }
 
-    @GetMapping("/jobPosting")
-    public String jobPosting() {
-
-        return "main/jobPosting";
-    }
-
     @GetMapping("/event")
     public String Event() {
         return "main/event";

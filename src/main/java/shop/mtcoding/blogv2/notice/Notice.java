@@ -82,7 +82,7 @@ public class Notice {
     private List<Apply> applies = new ArrayList<>();
 
     @OneToMany(mappedBy = "notice", fetch = FetchType.LAZY)
-private List<Bookmark> bookmarks = new ArrayList<>();
+    private List<Bookmark> bookmarks = new ArrayList<>();
 
     @ManyToOne(fetch = FetchType.LAZY)
     private User user;

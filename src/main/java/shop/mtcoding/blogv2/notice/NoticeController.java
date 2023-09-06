@@ -14,6 +14,7 @@ import shop.mtcoding.blogv2.duty.Duty;
 import shop.mtcoding.blogv2.duty.DutyService;
 import shop.mtcoding.blogv2.skill.Skill;
 import shop.mtcoding.blogv2.skill.SkillService;
+import shop.mtcoding.blogv2.wishduty.WishDutyService;
 
 @Controller
 public class NoticeController {
@@ -26,6 +27,9 @@ public class NoticeController {
 
     @Autowired
     private DutyService dutyService;
+
+    @Autowired
+    private WishDutyService wishDutyService;
 
     // 기업회원정보(디폴트화면)
     @GetMapping("/companyNoticeList")
@@ -90,6 +94,13 @@ public class NoticeController {
     public String noticeUpdate(@PathVariable Integer id, NoticeRequest.UpdateDTO updateDTO) {
         noticeService.채용수정(id, updateDTO);
         return "redirect:/companyNoticeList";
+    }
+
+    @GetMapping("/jobPosting")
+    public String noticeList(HttpServletRequest request){
+        List<Notice> notices = noticeService.getAllNotices();
+        request.setAttribute("notices", notices);
+        return "/main/jobPosting";
     }
 
 }
