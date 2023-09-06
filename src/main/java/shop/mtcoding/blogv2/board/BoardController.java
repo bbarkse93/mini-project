@@ -1,12 +1,14 @@
 package shop.mtcoding.blogv2.board;
 
 import java.util.List;
+import java.util.Optional;
 
 import javax.servlet.http.HttpServletRequest;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 
 @Controller
@@ -19,6 +21,7 @@ public class BoardController {
     public String customerService(HttpServletRequest request) {
         List<Board> boards = boardService.문의조회();
         request.setAttribute("boards", boards);
+        System.out.println("Test" + boards.get(0).getContent());
         return "/board/csForm";
     }
 
@@ -33,4 +36,16 @@ public class BoardController {
         return "redirect:/csForm";
     }
 
+    @GetMapping("/board/csUpdateForm")
+    public String csUpdateForm(HttpServletRequest request) {
+        Optional<Board> board = boardService.수정화면(1);
+        request.setAttribute("board", board);
+        return "board/csUpdateForm";
+    }
+
+    @PostMapping("/board/{id}/update")
+    public String csUpdate(@PathVariable Integer id, BoardRequest.UpdateDTO updateDTO, HttpServletRequest request) {
+        boardService.문의수정(updateDTO, id);
+        return "redirect:/csForm";
+    }
 }

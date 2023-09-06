@@ -33,12 +33,33 @@
         <div class="form">
             Q&A
         </div>
-        {{#boards}}
-        <div class="form1 form-control">
-            <div>{{id}}. {{title}}</div>
+        <div class="">
+            {{#boards}}
+            <div class="cs-box">
+                <div class="form-control cs-click">{{id}}. {{title}}</div>
+                <div class="card-body cs-detail " style="display: none;">
+                    <div class="d-flex justify-content-between px-3 pt-3 m-3">
+                        <div>{{{content}}}</div>
+                        <div>{{createdAt}}</div>
+                    </div>
+                    <div class="d-flex justify-content-end mb-3">
+                        <a class="btn btn-warning me-1" href="/board/csUpdateForm">수정</a>
+                        <form action="#">
+                            <button type="submit" class="btn btn-danger">삭제</button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+            {{/boards}}
         </div>
-        {{/boards}}
     </div>
 </div>
 
+<script>
+    $(document).ready(function () {
+        $(".cs-click").click(function () {
+            $(this).siblings(".cs-detail").toggle();
+        });
+    });
+</script>
 {{> layout/footer}}

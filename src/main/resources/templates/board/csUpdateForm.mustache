@@ -1,0 +1,41 @@
+{{> layout/header}}
+<div class="frame">
+    <h1><strong>고객센터</strong></h1>
+
+    <hr>
+    <form action="/board/{{board.get.id}}/update" method="post">
+        <div class="mb-3 mt-3">
+            <label for="title" class="form-label"></label>
+            <input type="text" class="form-control" id="title" placeholder="Title" name="title"
+                value="{{board.get.title}}">
+        </div>
+        <div class="mb-3">
+            <label for="email" class="form-label"></label>
+            <input type="email" class="form-control" id="email" placeholder="Email" name="email"
+                value="{{board.get.email}}">
+        </div>
+        <div class="mb-3">
+            <label for="contact" class="form-label"></label>
+            <input type="tel" class="form-control" id="contact" placeholder="연락처" name="phoneNumber"
+                value="{{board.get.phoneNumber}}">
+        </div>
+        <div class="mb-3">
+            <label for="content" class="form-label"></label>
+            <textarea class="form-control" id="content" placeholder="문의내용"
+                name="content">{{board.get.content}}</textarea>
+        </div>
+        <div class="text-center">
+            <button type="submit" class="btn btn-primary">수정완료</button>
+        </div>
+    </form>
+
+
+    <script>
+        $(document).ready(function () {
+            $('#content').summernote({
+                height: 300
+            });
+        });
+    </script>
+
+    {{> layout/footer}}
