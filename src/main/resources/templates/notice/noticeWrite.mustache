@@ -4,11 +4,7 @@
   <h1>채용공고 등록</h1>
   <form action="/noticeSave" method="POST" enctype="application/x-www-form-urlencoded">
     <h4 class="mt-4">공고 제목</h4>
-
     <input type="text" class="form-control input" id="recruitTitle" placeholder="Title" name="title" />
-
-    <!--이미지 파일 삽입
-    이미지파일과 이름, 이메일, 전화번호 나란히 정렬-->
 
     <div class=".container-fluid d-flex">
       <div class="profile-image" style="margin-top: 20px; margin-right: 20px">
@@ -24,11 +20,19 @@
       </div>
     </div>
 
-    <hr />
+
     <h4 class="mt-4">기업정보</h4>
     <input type="text" class="form-control input" id="coInfo" placeholder="정보를 입력하세요" name="companyInfo" />
     <h4 class="mt-4">지역</h4>
-    <input type="text" class="form-control input" id="place" placeholder="이 자리는 체크박스 자리야!" name="location" />
+    <div class="d-flex justify-content-between">
+      {{#locations}}
+      <div class="form-check">
+        <label class="form-check-label" for="radio{{id}}">{{locationName}}</label>
+        <input type="radio" class="form-check-input" id="radio{{id}}" name="location" value="{{locationName}}" checked>
+      </div>
+      {{/locations}}
+    </div>
+
 
     <hr />
     <h4 class="mt-4">채용직무</h4>
@@ -58,12 +62,13 @@
         {{#skills}}
         <li>
           <label><input type="checkbox" class="dropdown-checkbox" value="{{skillName}}" name="wishSkills" />
+            {{skillName}}
           </label>
-          {{skillName}}
         </li>
         {{/skills}}
       </ul>
     </div>
+    <br>
     <hr />
     <div class="container">
       <div class="row">

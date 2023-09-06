@@ -34,14 +34,14 @@ INSERT INTO bookmark_tb (notice_id,user_id, resume_id) VALUES (3,1, 1);
 
 INSERT INTO scrap_tb (notice_id,user_id) VALUES (1,1);
 
-insert into skill_tb(skill_name) values('java');
+insert into skill_tb(skill_name) values('Java');
 insert into skill_tb(skill_name) values('MySQL');
-insert into skill_tb(skill_name) values('javascript');
-insert into skill_tb(skill_name) values('spring');
-insert into skill_tb(skill_name) values('html/css');
-insert into skill_tb(skill_name) values('react');
-insert into skill_tb(skill_name) values('flutter');
-insert into skill_tb(skill_name) values('unity');
+insert into skill_tb(skill_name) values('JavaScript');
+insert into skill_tb(skill_name) values('Spring');
+insert into skill_tb(skill_name) values('HTML/CSS');
+insert into skill_tb(skill_name) values('React');
+insert into skill_tb(skill_name) values('Flutter');
+insert into skill_tb(skill_name) values('Unity');
 
 insert into duty_tb(duty_name) values('서버 개발자');
 insert into duty_tb(duty_name) values('백엔드 개발자');
@@ -62,3 +62,9 @@ insert into edu_tb(grade) values('석사');
 insert into edu_tb(grade) values('박사');
 insert into edu_tb(grade) values('기타');
 
+insert into location_tb(location_name) values('서울');
+insert into location_tb(location_name) values('대전');
+insert into location_tb(location_name) values('대구');
+insert into location_tb(location_name) values('광주');
+insert into location_tb(location_name) values('부산');
+insert into location_tb(location_name) values('제주');

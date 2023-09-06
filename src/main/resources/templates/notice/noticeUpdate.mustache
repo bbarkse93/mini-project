@@ -7,7 +7,6 @@
         <input type="text" class="form-control input" id="recruitTitle" placeholder="Title" name="title"
             value="{{notice.title}}" />
 
-        <!-- 이미지 파일 삽입 이미지파일과 이름, 이메일, 전화번호 나란히 정렬 -->
         <div class="container-fluid d-flex">
             <div class="profile-image" style="margin-top: 20px; margin-right: 20px">
                 <img class="image2" src="/images/너굴맨.jpg" name="companyPicUrl" />
@@ -25,82 +24,71 @@
             </div>
         </div>
 
-        <hr />
         <h4 class="mt-4">기업정보</h4>
         <input type="text" class="form-control input" id="coInfo" placeholder="정보를 입력하세요" name="companyInfo"
             value="{{notice.companyInfo}}" />
         <h4 class="mt-4">지역</h4>
-        <input type="text" class="form-control input" id="place" placeholder="이 자리는 체크박스 자리야!" name="location"
-            value="{{notice.location}}" />
+        <div class="d-flex justify-content-between">
+            {{#locations}}
+            <div class="form-check">
+                <label class="form-check-label" for="radio{{id}}">{{locationName}}</label>
+                <input type="radio" class="form-check-input" id="radio{{id}}" name="location" value="{{locationName}}"
+                    checked>
+            </div>
+            {{/locations}}
+        </div>
 
         <hr />
+        <!-- 채용직무 -->
         <h4 class="mt-4">채용직무</h4>
+        <p class="mt-4">수정전 :
+            {{#notice.wishDutys}}
+            {{duty.dutyName}},
+            {{/notice.wishDutys}}
+        </p>
+        <p class="mt-4">수정후</p>
+        <span id="selectedDevOptions"></span>
         <div class="dropdown">
             <button class="btn btn-primary dropdown-toggle" type="button" id="devDropdownButton"
                 data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                 직무를 골라주세요
             </button>
             <ul class="dropdown-menu" aria-labelledby="devDropdownButton">
+                {{#dutys}}
                 <li>
-                    <label><input type="checkbox" class="dropdown-checkbox" name="wishDutys" value="직무1"
-                            {{#selectedDevOptions.includes "직무1" }}checked{{/selectedDevOptions.includes "직무1" }} />
-                        직무1</label>
+                    <label><input type="checkbox" class="dropdown-checkbox" value="{{dutyName}}" name="wishDutys" />
+                        {{dutyName}}</label>
                 </li>
-                <li>
-                    <label><input type="checkbox" class="dropdown-checkbox" name="wishDutys" value="직무2"
-                            {{#selectedDevOptions.includes "직무2" }}checked{{/selectedDevOptions.includes "직무2" }} />
-                        직무2</label>
-                </li>
-                <li>
-                    <label><input type="checkbox" class="dropdown-checkbox" name="wishDutys" value="직무3"
-                            {{#selectedDevOptions.includes "직무3" }}checked{{/selectedDevOptions.includes "직무3" }} />
-                        직무3</label>
-                </li>
-                <li>
-                    <label><input type="checkbox" class="dropdown-checkbox" name="wishDutys" value="직무4"
-                            {{#selectedDevOptions.includes "직무4" }}checked{{/selectedDevOptions.includes "직무4" }} />
-                        직무4</label>
-                </li>
+                {{/dutys}}
             </ul>
-        </div>
-        <div>
-            선택한 직무: <span id="selectedDevOptions">{{#selectedDevOptions}}{{.}}, {{/selectedDevOptions}}</span>
-        </div>
 
-        <hr />
+        </div>
+        <!-- 기술 스택 -->
         <h4 class="mt-4">기술 스택</h4>
+        <p class="mt-4">수정전 :
+            {{#notice.wishSkills}}
+            {{skill.skillName}},
+            {{/notice.wishSkills}}
+        </p>
+        <p class="mt-4">수정후</p>
+        <span id="selectedTechOptions"></span></p>
         <div class="dropdown">
             <button class="btn btn-primary dropdown-toggle" type="button" id="techDropdownButton"
                 data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                 기술스택을 선택하세요
             </button>
             <ul class="dropdown-menu" aria-labelledby="techDropdownButton">
+                {{#skills}}
                 <li>
-                    <label><input type="checkbox" class="dropdown-checkbox" name="wishSkills" value="기술1"
-                            {{#selectedTechOptions.includes "기술1" }}checked{{/selectedTechOptions.includes "기술1" }} />
-                        기술1</label>
+                    <label><input type="checkbox" class="dropdown-checkbox" value="{{skillName}}" name="wishSkills" />
+                        {{skillName}}</label>
                 </li>
-                <li>
-                    <label><input type="checkbox" class="dropdown-checkbox" name="wishSkills" value="기술2"
-                            {{#selectedTechOptions.includes "기술2" }}checked{{/selectedTechOptions.includes "기술2" }} />
-                        기술2</label>
-                </li>
-                <li>
-                    <label><input type="checkbox" class="dropdown-checkbox" name="wishSkills" value="기술3"
-                            {{#selectedTechOptions.includes "기술3" }}checked{{/selectedTechOptions.includes "기술3" }} />
-                        기술3</label>
-                </li>
-                <li>
-                    <label><input type="checkbox" class="dropdown-checkbox" name="wishSkills" value="기술4"
-                            {{#selectedTechOptions.includes "기술4" }}checked{{/selectedTechOptions.includes "기술4" }} />
-                        기술4</label>
-                </li>
+                {{/skills}}
             </ul>
         </div>
-        <div>
-            선택한 기술: <span id="selectedTechOptions">{{#selectedTechOptions}}{{.}}, {{/selectedTechOptions}}</span>
-        </div>
+        <br>
         <hr />
+
         <div class="container">
             <div class="row">
                 <div class="col-lg-6 mt-4">
@@ -130,21 +118,8 @@
 </div>
 
 <script>
-    function setupDropdown(dropdownId, outputId) {
-        var dropdown = document.querySelector(`#${dropdownId}`);
-        var dropdownItems =
-            dropdown.nextElementSibling.querySelectorAll(".dropdown-checkbox");
-
-        dropdown.addEventListener("click", function () {
-            dropdownItems.forEach(function (item) {
-                item.addEventListener("change", function () {
-                    updateSelectedOptions(outputId, dropdownItems);
-                });
-            });
-        });
-    }
-
-    function updateSelectedOptions(outputId, checkboxList) {
+    // 체크박스 변경 시 선택한 옵션 업데이트
+    function updateSelectedOptions(checkboxList, outputId) {
         var selectedOptions = Array.from(checkboxList)
             .filter(function (checkbox) {
                 return checkbox.checked;
@@ -162,43 +137,72 @@
     }
 
     // Setup Dropdowns
-    setupDropdown("devDropdownButton", "selectedDevOptions");
-    setupDropdown("techDropdownButton", "selectedTechOptions");
+    function setupDropdown(dropdownId, outputId) {
+        var dropdown = document.querySelector(`#${dropdownId}`);
+        var dropdownItems =
+            dropdown.nextElementSibling.querySelectorAll(".dropdown-checkbox");
 
-    // 페이지 로드 시 선택한 직무와 기술을 업데이트합니다.
-    document.addEventListener("DOMContentLoaded", function () {
-        var selectedDevOptions = document.getElementById("selectedDevOptions");
-        var selectedTechOptions = document.getElementById("selectedTechOptions");
-
-        // 선택한 직무와 기술 정보를 화면에 표시합니다.
-        function updateSelectedOptionsOnLoad() {
-            var selectedDevCheckboxes = document.querySelectorAll('input[name="wishDutys"]:checked');
-            var selectedTechCheckboxes = document.querySelectorAll('input[name="wishSkills"]:checked');
-
-            var selectedDevValues = Array.from(selectedDevCheckboxes).map(function (checkbox) {
-                return checkbox.value;
+        dropdown.addEventListener("click", function () {
+            dropdownItems.forEach(function (item) {
+                item.addEventListener("change", function () {
+                    updateSelectedOptions(outputId, dropdownItems);
+                });
             });
-
-            var selectedTechValues = Array.from(selectedTechCheckboxes).map(function (checkbox) {
-                return checkbox.value;
-            });
-
-            selectedDevOptions.textContent = selectedDevValues.join(", ");
-            selectedTechOptions.textContent = selectedTechValues.join(", ");
-        }
-
-        // 페이지 로드 시 초기 선택 항목을 업데이트합니다.
-        updateSelectedOptionsOnLoad();
-
-        // 각 드롭다운이 변경될 때 선택 항목을 업데이트합니다.
-        document.querySelectorAll('input[name="wishDutys"]').forEach(function (checkbox) {
-            checkbox.addEventListener("change", updateSelectedOptionsOnLoad);
         });
+    }
 
-        document.querySelectorAll('input[name="wishSkills"]').forEach(function (checkbox) {
-            checkbox.addEventListener("change", updateSelectedOptionsOnLoad);
+    // 채용직무 체크박스 처리
+    var dutyCheckboxes = document.querySelectorAll('input[name="wishDutys"]');
+    var dutyOutput = document.getElementById("selectedDevOptions");
+
+    dutyCheckboxes.forEach(function (checkbox) {
+        checkbox.addEventListener("change", function () {
+            updateSelectedOptions(dutyCheckboxes, "selectedDevOptions");
         });
     });
+
+    // 기술 스택 체크박스 처리
+    var skillCheckboxes = document.querySelectorAll('input[name="wishSkills"]');
+    var skillOutput = document.getElementById("selectedTechOptions");
+
+    skillCheckboxes.forEach(function (checkbox) {
+        checkbox.addEventListener("change", function () {
+            updateSelectedOptions(skillCheckboxes, "selectedTechOptions");
+        });
+    });
+
+    Mustache.registerHelper('isDutyChecked', function (list, item, options) {
+        if (list.indexOf(item) !== -1) {
+            return options.fn(this);
+        } else {
+            return options.inverse(this);
+        }
+    });
+
+    Mustache.registerHelper('isSkillChecked', function (list, item, options) {
+        if (list.indexOf(item) !== -1) {
+            return options.fn(this);
+        } else {
+            return options.inverse(this);
+        }
+    });
+    // 드롭다운이 변경될 때 호출되는 함수
+    function dropdownChanged() {
+        // 드롭다운에서 선택한 값을 가져옴
+        var selectedValue = document.getElementById("yourDropdownId").value;
+
+        // 로컬 스토리지에 선택한 값을 저장
+        localStorage.setItem("selectedValue", selectedValue);
+    }
+
+    // 페이지 로드 시, 저장된 값을 드롭다운에 설정
+    window.onload = function () {
+        var savedValue = localStorage.getItem("selectedValue");
+        if (savedValue) {
+            document.getElementById("yourDropdownId").value = savedValue;
+        }
+    };
+
 </script>
 
 {{> layout/footer}}
