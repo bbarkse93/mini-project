@@ -25,11 +25,11 @@ values('kakao@nate.com','카카오정보','카카오',NOW(),'1명','부산','600
 insert into notice_tb(company_email,company_info,company_name,created_at,intake,location,pay,period,phone_number,qualification,title)
 values('kakao@nate.com','카카오정보','카카오',NOW(),'1명','제주','8000만원','30일간','010-1111-2222','사내규정','풀스택개발자');
 
-INSERT INTO apply_tb (notice_id, resume_id, status) VALUES  (1, 1, true);
+INSERT INTO apply_tb (notice_id, resume_id, status, user_id) VALUES (1, 1, true, 1); 
+INSERT INTO apply_tb (notice_id, resume_id, status, user_id) VALUES (2, 1, true, 1); 
+INSERT INTO apply_tb (notice_id, resume_id, status, user_id) VALUES (3, 1, true, 1); 
 
-INSERT INTO bookmark_tb (notice_id,user_id, resume_id) VALUES (1,1, 1);
-INSERT INTO bookmark_tb (notice_id,user_id, resume_id) VALUES (2,1, 1);
-INSERT INTO bookmark_tb (notice_id,user_id, resume_id) VALUES (3,1, 1);
+
 
 
 INSERT INTO scrap_tb (notice_id,user_id) VALUES (1,1);

@@ -37,5 +37,14 @@ public class ApplyController {
         return "user/userApplyStatus"; // 머스태치 템플릿 파일의 경로
     }
   
-    
+
+    @GetMapping("/companyApplyList")
+    public String 기업지원서관리(HttpServletRequest request) {
+         List<Apply> individualApplies = applyService.getAppliesByStatus(true);
+        request.setAttribute("individual", individualApplies);
+        
+        return "company/companyApplyList"; // 머스태치 템플릿 파일의 경로
+    }
 }
+    
+

@@ -14,10 +14,11 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 import shop.mtcoding.blogv2.notice.Notice;
 import shop.mtcoding.blogv2.resume.Resume;
+import shop.mtcoding.blogv2.user.User;
 
 @NoArgsConstructor
-@Setter
 @Getter
+@Setter
 @Table(name = "apply_tb")
 @Entity
 public class Apply {
@@ -30,17 +31,20 @@ public class Apply {
     private Boolean status;
 
     @ManyToOne
-    private Resume resume;
-
-    @ManyToOne
     private Notice notice;
 
+    @ManyToOne
+    private User user;
+
+    @ManyToOne // 여기에 Resume 관련 필드 추가
+    private Resume resume;
+
     @Builder
-    public Apply(Integer id, Boolean status, Resume resume, Notice notice) {
+    public Apply(Integer id, Boolean status, Notice notice, User user, Resume resume) {
         this.id = id;
         this.status = status;
-        this.resume = resume;
         this.notice = notice;
+        this.user = user;
+        this.resume = resume; // 수정된 부분
     }
-
 }
