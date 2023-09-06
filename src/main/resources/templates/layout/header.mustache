@@ -46,13 +46,20 @@
                     <button type="button" class="btn btn-secondary" data-bs-toggle="modal" data-bs-target="#myModal">
                         회원가입
                     </button>
-                    <a href="http://localhost:8080/loginForm" class="btn btn-secondary">
+                    <a href="/loginForm" class="btn btn-secondary">
                         로그인
                     </a>
                     {{/sessionUser}}
-
+                    
                     {{#sessionUser}}
-                    <a href="" class="btn btn-secondary">나의 정보</a>
+                    {{#sessionUser.distinguish}} <!-- sessionUser 객체의 distinguish 속성을 확인하여 개인회원 여부를 판단 -->
+                    <a href="/userInformation" class="btn btn-secondary">나의 정보</a>
+                    {{/sessionUser.distinguish}}
+                    
+                    {{^sessionUser.distinguish}} <!-- sessionUser 객체의 distinguish 속성을 확인하여 기업회원 여부를 판단 -->
+                    <a href="/companyNoticeList" class="btn btn-secondary">나의 정보</a>
+                    {{/sessionUser.distinguish}}
+                    
                     <a href="/logout" class="btn btn-secondary">로그아웃</a>
                     {{/sessionUser}}
                 </div>
@@ -81,6 +88,8 @@
             // Hide the mypage button
             mypageBtn.style.display = 'none';
         }
+
+
     </script>
 </body>
 

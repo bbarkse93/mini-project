@@ -70,7 +70,7 @@ public class UserController {
 
         session.setAttribute("sessionUser", sessionUser);
 
-        return "user/userInformation";
+        return "/index";
     }
 
     @GetMapping("/logout")
@@ -145,7 +145,23 @@ public class UserController {
     @GetMapping("/api/check")
     public @ResponseBody ApiUtil<String> check(String username) {
 
-        return userService.checkusername(username);
+        return userService.checkusername(username); 
     }
+
+    @GetMapping("/userInformation2")
+    public String 개인정보구분() {
+        
+        String myInformation = userService.개인정보구분();
+        
+        return "redirect:" + myInformation;
+    }
+
+    @GetMapping("/companyApplyList")
+    public String companyApplyList() {
+
+        return "company/companyApplyList";
+    }
+
+
 
 }
