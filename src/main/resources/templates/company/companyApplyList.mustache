@@ -28,7 +28,7 @@
                     </div>
                     <hr />
                     <div class="list-group">
-    {{#bookmarks}}
+    {{#individual}}
     <div class="mb-3">
         <a href="#" class="list-group-item list-group-item-action">
             <div class="d-flex justify-content-between">
@@ -47,7 +47,7 @@
             </div>
         </a>
     </div>
-    {{/bookmarks}}
+    {{/individual}}
 
     
 
@@ -59,6 +59,7 @@
         </div>
     </div>
   <script>
+
     const heartImg1 = document.querySelector('#heartImg1');
     const heartImg2 = document.querySelector('#heartImg2');
     const heartImg3 = document.querySelector('#heartImg3');
@@ -87,6 +88,26 @@
             listGroup.prepend(heartImg3.closest('.list-group-item'));
         }
     });
+async function bookmarkChange(id){
+        let postingNum = document.querySelector(`#apply${id}`);
+        let currentValue = postingNum.getAttribute('data-value');
+        if( currentValue == 'true'){
+            console.log(id);
+            let response = await fetch(`/api/user/bookmark/${id}/delete`);
+            let body = await response.json();
+            console.log(body.data);
+            currentValue = false;
+            postingNum.innerHTML = noBookmark;
+        }
+        else{
+            console.log(id);
+            let response = await fetch(`/api/user/bookmark/${id}/save`);
+            let body = await response.json();
+            console.log(body.data);
+            currentValue = true;
+            postingNum.innerHTML = bookmarked;
+        }
+}
 </script>
 
 {{> layout/footer}}

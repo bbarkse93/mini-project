@@ -31,22 +31,25 @@ public class Bookmark {
 
     @ManyToOne
     private Resume resume;
-    
+
     @ManyToOne
     private Notice notice;
 
-
+    
     @Builder
     public Bookmark(Integer id, User user, Resume resume, Notice notice) {
         this.id = id;
         this.user = user;
         this.resume = resume;
         this.notice = notice;
+     
     }
 
 
 
     
-   
 
+
+    
 }
+
