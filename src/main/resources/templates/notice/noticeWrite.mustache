@@ -39,22 +39,12 @@
         직무를 골라주세요
       </button>
       <ul class="dropdown-menu" aria-labelledby="devDropdownButton">
+        {{#dutys}}
         <li>
-          <label><input type="checkbox" class="dropdown-checkbox" value="직무1" />
-            직무1</label>
+          <label><input type="checkbox" class="dropdown-checkbox" value="{{dutyName}}" name="wishDutys" />
+            {{dutyName}}</label>
         </li>
-        <li>
-          <label><input type="checkbox" class="dropdown-checkbox" value="직무2" />
-            직무2</label>
-        </li>
-        <li>
-          <label><input type="checkbox" class="dropdown-checkbox" value="직무3" />
-            직무3</label>
-        </li>
-        <li>
-          <label><input type="checkbox" class="dropdown-checkbox" value="직무4" />
-            직무4</label>
-        </li>
+        {{/dutys}}
       </ul>
     </div>
     <h4 class="mt-4">기술 스택</h4>
@@ -65,22 +55,13 @@
         기술스택을 선택하세요
       </button>
       <ul class="dropdown-menu" aria-labelledby="techDropdownButton">
+        {{#skills}}
         <li>
-          <label><input type="checkbox" class="dropdown-checkbox" value="기술1" />
-            기술1</label>
+          <label><input type="checkbox" class="dropdown-checkbox" value="{{skillName}}" name="wishSkills" />
+          </label>
+          {{skillName}}
         </li>
-        <li>
-          <label><input type="checkbox" class="dropdown-checkbox" value="기술2" />
-            기술2</label>
-        </li>
-        <li>
-          <label><input type="checkbox" class="dropdown-checkbox" value="기술3" />
-            기술3</label>
-        </li>
-        <li>
-          <label><input type="checkbox" class="dropdown-checkbox" value="기술4" />
-            기술4</label>
-        </li>
+        {{/skills}}
       </ul>
     </div>
     <hr />

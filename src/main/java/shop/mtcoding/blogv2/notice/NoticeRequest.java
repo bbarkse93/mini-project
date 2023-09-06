@@ -25,8 +25,8 @@ public class NoticeRequest {
         private String period;
         private String qualification;
         private Timestamp createdAt;
-        private List<WishSkill> wishSkills;
-        private List<WishDuty> wishDutys;
+        private List<String> wishSkills;
+        private List<String> wishDutys;
     }
 
     @Getter

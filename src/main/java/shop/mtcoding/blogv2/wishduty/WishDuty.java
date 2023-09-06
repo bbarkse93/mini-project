@@ -1,6 +1,7 @@
 package shop.mtcoding.blogv2.wishduty;
 
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -25,13 +26,13 @@ public class WishDuty {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
 
-    @ManyToOne
+    @ManyToOne(fetch = FetchType.LAZY)
     private Resume resume;
 
-    @ManyToOne
+    @ManyToOne(fetch = FetchType.LAZY)
     private Notice notice;
 
-    @ManyToOne
+    @ManyToOne(fetch = FetchType.LAZY)
     private Duty duty;
 
     @Builder

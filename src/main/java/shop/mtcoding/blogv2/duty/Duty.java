@@ -1,5 +1,7 @@
 package shop.mtcoding.blogv2.duty;
 
+import java.util.List;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -11,6 +13,7 @@ import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
+import shop.mtcoding.blogv2.wishduty.WishDuty;
 
 @NoArgsConstructor
 @Setter

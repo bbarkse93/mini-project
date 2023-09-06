@@ -1,25 +1,69 @@
-/*헤더*/
+/*공통*/
+:root,
+[data-bs-theme=light] {
+    --blue: #0d6efd;
+    --apply: #8ED5E2;
+    --indigo: #6610f2;
+    --purple: #6f42c1;
+    --pink: #d63384;
+    --red: #dc3545;
+    --orange: #fd7e14;
+    --yellow: #ffc107;
+    --green: #198754;
+    --teal: #20c997;
+    --cyan: #0dcaf0;
+}
+
 body {
     margin: 0;
     padding: 0;
 }
 
-/* Navigation Styles */
-.navbar {
-    background-color: transparent;
+@font-face {
+    font-family: 'Busan';
+    font-style: normal;
+    font-weight: 400;
+    src: url('//cdn.jsdelivr.net/korean-webfonts/1/orgs/govs/busan/Busan/Busan.woff2') format('woff2'),
+        url('//cdn.jsdelivr.net/korean-webfonts/1/orgs/govs/busan/Busan/Busan.woff') format('woff');
 }
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Busan';
+}
+
+a {
+    text-decoration: none;
+    color: black;
+}
+
+li {
+    list-style: none;
+}
+
+hr {
+    border-color: #000000;
+    margin: 0;
+}
+
+img {
+    vertical-align: middle;
+}
+
+h2 {
+    color: black;
+    font-size: 2em;
+    margin-top: 100px;
+}
+
+/* header */
 
 .navbar-nav {
     display: flex;
     justify-content: center;
     align-items: center;
-}
-
-.nav-link2 {
-    font-size: 20px;
-    font-weight: bold;
-    text-align: center;
-    margin-bottom: 10px;
 }
 
 .nav-item2 {
@@ -33,52 +77,16 @@ body {
     gap: 10px;
 }
 
-/* Divider Styles */
-hr {
-    border-color: #000000;
-    margin: 0;
-}
-
 /* Join and Login Button Styles */
-.join-and-login {
-    margin-top: 10px;
-}
 
 .navbar {
     margin-inline: 20%;
-}
-
-/*푸터*/
-.bg {
-    background-color: whitesmoke;
-}
-
-/* 공통 */
-* {
-    box-sizing: border-box;
-}
-
-body {
-    font-family: Verdana, sans-serif;
-}
-
-img {
-    vertical-align: middle;
 }
 
 .frame {
     margin-top: 50px;
     margin-inline: 200px;
 }
-
-/* ==================updateForm====================== */
-.circle_avatar {
-    width: 200px;
-    height: 200px;
-    border-radius: 100px;
-}
-
-
 
 /* =================정보네비게이션바================= */
 .default {
@@ -259,22 +267,6 @@ img {
     /* 변경된 패딩 설정 */
 }
 
-* {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-    font-family: "Noto Sans KR", sans-serif;
-}
-
-a {
-    text-decoration: none;
-    color: black;
-}
-
-li {
-    list-style: none;
-}
-
 .wrap {
     width: 100%;
     height: 100vh;
@@ -297,56 +289,9 @@ li {
     padding: 20px;
 }
 
-h2 {
-    color: black;
-    font-size: 2em;
-    margin-top: 100px;
-}
-
-.login_id {
-    margin-top: 20px;
-    width: 80%;
-}
-
-.login_id input {
-    width: 100%;
-    height: 50px;
-    border-radius: 30px;
-    margin-top: 10px;
-    padding: 0px 20px;
-    border: 1px solid lightgray;
-    outline: none;
-}
-
-.login_pw {
-    margin-top: 20px;
-    width: 80%;
-}
-
-.login_pw input {
-    width: 100%;
-    height: 50px;
-    border-radius: 30px;
-    margin-top: 10px;
-    padding: 0px 20px;
-    border: 1px solid lightgray;
-    outline: none;
-}
-
-.login_etc {
-    padding: 10px;
-    width: 80%;
-    font-size: 14px;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    font-weight: bold;
-}
-
 .submit {
     margin-top: 50px;
     width: 80%;
-
 }
 
 .submit input {
@@ -361,12 +306,12 @@ h2 {
     letter-spacing: 2px;
 }
 
-.join_name {
+.join-name {
     margin-top: 20px;
     width: 80%;
 }
 
-.join_name input {
+.join-name input {
     width: 100%;
     height: 50px;
     border-radius: 30px;
@@ -376,42 +321,17 @@ h2 {
     outline: none;
 }
 
-.join_date {
+.join-date {
     margin-top: 20px;
     width: 80%;
 }
 
-.join_date input {
-    width: 100%;
-    height: 50px;
-    border-radius: 30px;
-    margin-top: 10px;
-    padding: 0px 20px;
-    border: 1px solid lightgray;
-    outline: none;
-}
-
-.join_phone {
+.join-phone {
     margin-top: 20px;
     width: 80%;
 }
 
-.join_phone input {
-    width: 100%;
-    height: 50px;
-    border-radius: 30px;
-    margin-top: 10px;
-    padding: 0px 20px;
-    border: 1px solid lightgray;
-    outline: none;
-}
-
-.join_email {
-    margin-top: 20px;
-    width: 80%;
-}
-
-.join_email input {
+.join-phone input {
     width: 100%;
     height: 50px;
     border-radius: 30px;
@@ -425,19 +345,13 @@ h2 {
 
 .box {
     display: inline-block;
-    /* Display boxes inline */
     border: 2px solid black;
     padding: 10px;
     border-radius: 10%;
-    /* Make the box circular */
     margin-right: 100px;
     margin-left: 55px;
-    /* Add some space between boxes */
     box-shadow: 3px 3px 5px rgba(0, 0, 0, 0.4);
-    /* Add box shadow */
 }
-
-
 
 .form {
     text-align: center;
@@ -453,8 +367,6 @@ h2 {
     height: 50px;
     border-radius: 10px;
     border: 1px solid gainsboro;
-
-
 }
 
 .header h1 {
@@ -523,9 +435,7 @@ h2 {
 
 .job-posting.images a img {
     width: 200px;
-    /* 원하는 이미지 너비로 설정 */
     height: auto;
-    /* 높이 자동 조정 */
 }
 
 .job-button {
@@ -538,21 +448,15 @@ h2 {
 }
 
 
-/* =============================개인고객 회원정보보기============================= */
+/* 개인고객 회원정보보기 */
 
-
-.frame {
-    margin-top: 50px;
-    margin-inline: 200px;
-}
-
-.user_image_box {
+.user-image-box {
     height: 100px;
     width: 100px;
     border-radius: 50px;
 }
 
-.user_image {
+.user-image {
     margin: 20px;
     text-align: center;
 }
@@ -574,70 +478,43 @@ h2 {
     flex: 0;
 }
 
-.small_title {
-    font-size: 25px;
-    font-weight: 500px;
-}
-
-.apply_button {
-    justify-self: center;
-    height: 30px;
+.pic-update-button {
     width: 100px;
 }
 
-.pic_update_button {
-    width: 100px;
-}
-
-.recommand_recruit {
+.recommand-recruit {
     height: 300px;
     width: 300px;
 }
 
-.recruit_image_box {
+.recruit-image-box {
     width: 275px;
     height: 180px;
 }
 
-.custom_checkbox {
+.custom-checkbox {
     height: 20px;
     width: 20px;
 }
 
-.custom_form_checkbox {
+.custom-form-checkbox {
     margin: 20px;
     justify-content: center;
 }
 
-.add_btn {
+.add-btn {
     width: 116px;
     height: 40px;
 }
 
-.apply_button {
+.apply-button {
     justify-self: center;
     height: 30px;
     width: 100px;
-    background-color: rgb(142, 213, 226);
-}
-
-.pic_update_button {
-    width: 100px;
+    background-color: var(--apply)
 }
 
 /* 이력서 작성 */
-
-.resume_profil_image {
-    width: auto;
-    /* 너비 강제 조절 */
-    height: auto;
-    /* 높이 자동 조절 */
-    margin-top: 20px;
-    /* 위쪽 간격 */
-    margin-right: 20px;
-    /* 오른쪽 간격 */
-
-}
 
 .info {
     flex: 1;
@@ -653,7 +530,6 @@ h2 {
 }
 
 /*login*/
-
 
 .wrap2 {
     width: 100%;
@@ -677,12 +553,12 @@ h2 {
 
 }
 
-.login_id {
+.login-id {
     margin-top: 20px;
     width: 80%;
 }
 
-.login_id input {
+.login-id input {
     width: 100%;
     height: 50px;
     border-radius: 30px;
@@ -692,12 +568,12 @@ h2 {
     outline: none;
 }
 
-.login_pw {
+.login-pw {
     margin-top: 20px;
     width: 80%;
 }
 
-.login_pw input {
+.login-pw input {
     width: 100%;
     height: 50px;
     border-radius: 30px;
@@ -707,7 +583,7 @@ h2 {
     outline: none;
 }
 
-.login_etc {
+.login-etc {
     padding: 10px;
     width: 80%;
     font-size: 14px;
@@ -718,7 +594,6 @@ h2 {
 }
 
 /*join*/
-
 
 .wrap {
     width: 100%;
@@ -731,11 +606,9 @@ h2 {
 
 .login {
     width: 30%;
-
     height: 95vh;
     box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.5);
     background: rgba(101, 108, 114, 0.1);
-
     border-radius: 20px;
     display: flex;
     justify-content: center;
@@ -744,43 +617,9 @@ h2 {
     padding: 20px;
 }
 
-.login_id {
-    margin-top: 20px;
-    width: 80%;
-}
 
-.login_id input {
-    width: 100%;
-    height: 50px;
-    border-radius: 30px;
-    margin-top: 10px;
-    padding: 0px 20px;
-    border: 1px solid lightgray;
-    outline: none;
-}
 
-.login_pw {
-    margin-top: 20px;
-    width: 80%;
-}
-
-.login_pw input {
-    width: 100%;
-    height: 50px;
-    border-radius: 30px;
-    margin-top: 10px;
-    padding: 0px 20px;
-    border: 1px solid lightgray;
-    outline: none;
-}
-
-.submit {
-    margin-top: 20px;
-    width: 80%;
-
-}
-
-.submit input {
+.join_and .submit input {
     width: 100%;
     height: 50px;
     border: 0;
@@ -792,12 +631,7 @@ h2 {
     letter-spacing: 2px;
 }
 
-.join_name {
-    margin-top: 20px;
-    width: 80%;
-}
-
-.join_name input {
+.join-date input {
     width: 100%;
     height: 50px;
     border-radius: 30px;
@@ -807,12 +641,12 @@ h2 {
     outline: none;
 }
 
-.join_date {
+.join-email {
     margin-top: 20px;
     width: 80%;
 }
 
-.join_date input {
+.join-email input {
     width: 100%;
     height: 50px;
     border-radius: 30px;
@@ -822,25 +656,13 @@ h2 {
     outline: none;
 }
 
-
-
-.join_email {
-    margin-top: 20px;
-    width: 80%;
-}
-
-.join_email input {
-    width: 100%;
-    height: 50px;
-    border-radius: 30px;
-    margin-top: 10px;
-    padding: 0px 20px;
-    border: 1px solid lightgray;
-    outline: none;
+.check-button {
+    width: 90px;
+    height: 30px;
+    margin-left: 10px;
 }
 
 /*loginUpdate*/
-
 
 .wrap3 {
     width: 100%;
@@ -848,10 +670,10 @@ h2 {
     display: flex;
     align-items: center;
     justify-content: center;
-    background: white;
 }
 
-/*여기*/
+/**/
+
 .login3 {
     width: 30%;
     height: 800px;
@@ -865,17 +687,10 @@ h2 {
     padding: 20px;
 }
 
-h2 {
-    color: black;
-    font-size: 2em;
-    margin-top: 0px;
-}
+/*noticeDetail*/
 
-/*recruitDetail*/
 .recruit-main {
-
     margin-inline: 400px;
-
 }
 
 .card {
@@ -928,7 +743,6 @@ h2 {
     background-color: rgb(213, 235, 243);
 }
 
-
 /*recruitWrite*/
 
 .addResume {
@@ -964,7 +778,6 @@ h2 {
 }
 
 /*resumeWrite*/
-
 
 .profile-image2 {
     width: auto;
