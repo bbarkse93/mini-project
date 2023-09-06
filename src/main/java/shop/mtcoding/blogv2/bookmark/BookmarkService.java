@@ -3,7 +3,7 @@ package shop.mtcoding.blogv2.bookmark;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import shop.mtcoding.blogv2.bookmark.BookmarkRequest.BookmarkSaveDTO;
+
 import shop.mtcoding.blogv2.notice.Notice;
 import shop.mtcoding.blogv2.notice.NoticeRepository;
 import shop.mtcoding.blogv2.resume.Resume;

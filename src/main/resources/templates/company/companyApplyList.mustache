@@ -22,9 +22,6 @@
                         </div>
                     </div>
                 </div>
-              
-
-                    <hr/>
                 <div class="col-md-9">
                     <div class="d-flex justify-content-between pe-3 my-3">
                         <div class="smallTitle">지원서 관리</div>
@@ -62,43 +59,34 @@
         </div>
     </div>
   <script>
-const heartImg1 = document.querySelector('#heartImg1');
-const heartImg2 = document.querySelector('#heartImg2');
-const heartImg3 = document.querySelector('#heartImg3');
-const listGroup = document.querySelector('.list-group');
-let isFavorite1 = false;
-let isFavorite2 = false;
-let isFavorite3 = false;
-
-heartImg1.addEventListener('click', () => {
-    isFavorite1 = !isFavorite1;
-    heartImg1.src = isFavorite1 ? '../images/노란별.png' : '../images/빈별.png';
-    
-    // 추가: 관심 지원서 칸으로 이동
-    if (isFavorite1) {
-        listGroup.prepend(heartImg1.closest('.list-group-item'));
-    }
-});
-
-heartImg2.addEventListener('click', () => {
-    isFavorite2 = !isFavorite2;
-    heartImg2.src = isFavorite2 ? '../images/노란별.png' : '../images/빈별.png';
-    
-    // 추가: 관심 지원서 칸으로 이동
-    if (isFavorite2) {
-        listGroup.prepend(heartImg2.closest('.list-group-item'));
-    }
-});
-
-heartImg3.addEventListener('click', () => {
-    isFavorite3 = !isFavorite3;
-    heartImg3.src = isFavorite3 ? '../images/노란별.png' : '../images/빈별.png';
-    
-    // 추가: 관심 지원서 칸으로 이동
-    if (isFavorite3) {
-        listGroup.prepend(heartImg3.closest('.list-group-item'));
-    }
-});
+    const heartImg1 = document.querySelector('#heartImg1');
+    const heartImg2 = document.querySelector('#heartImg2');
+    const heartImg3 = document.querySelector('#heartImg3');
+    const listGroup = document.querySelector('.list-group');
+    let isFavorite1 = false;
+    let isFavorite2 = false;
+    let isFavorite3 = false;
+    heartImg1.addEventListener('click', () => {
+        isFavorite1 = !isFavorite1;
+        heartImg1.src = isFavorite1 ? '../images/노란별.png' : '../images/빈별.png';
+        if (isFavorite1) {
+            listGroup.prepend(heartImg1.closest('.list-group-item'));
+        }
+    });
+    heartImg2.addEventListener('click', () => {
+        isFavorite2 = !isFavorite2;
+        heartImg2.src = isFavorite2 ? '../images/노란별.png' : '../images/빈별.png';
+        if (isFavorite2) {
+            listGroup.prepend(heartImg2.closest('.list-group-item'));
+        }
+    });
+    heartImg3.addEventListener('click', () => {
+        isFavorite3 = !isFavorite3;
+        heartImg3.src = isFavorite3 ? '../images/노란별.png' : '../images/빈별.png';
+        if (isFavorite3) {
+            listGroup.prepend(heartImg3.closest('.list-group-item'));
+        }
+    });
 </script>
 
 {{> layout/footer}}
