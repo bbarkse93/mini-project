@@ -82,7 +82,6 @@
         let response = await fetch(`/api/check?username=${username}`);
         let responseBody = await response.json();
 
-
         if (responseBody.sucuess) {
             alert(responseBody.data)
             usernameSameCheck = true;
@@ -96,4 +95,7 @@
         }
     }
 </script>
+
 {{> layout/footer}}
+
+
