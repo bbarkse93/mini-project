@@ -1,0 +1,195 @@
+{{> layout/header}}
+<style>
+  .profile-img {
+    width: 250px;
+    height: 275px;
+    border-radius: 10px;
+  }
+</style>
+
+<div class="frame">
+  <h1>이력서 수정페이지</h1>
+  <form action="/resume/{{resume.id}}/update" method="POST" enctype="application/x-www-form-urlencoded">
+
+    <h4 class="my-3">이력서 제목</h4>
+    <input type="text" class="form-control input" id="resumeTitle" placeholder="Title" name="title"
+      value="{{resume.title}}" required>
+
+    <div class="container-fluid d-flex">
+      <div class="profile-image" style="margin-top: 20px; margin-right: 20px">
+        <img id="preview" class="profile-img"" src=" /images/{{resume.personalPicUrl}}">
+      </div>
+      <div class="recruit-info">
+        <h4 class="my-3">이름</h4>
+        <input type="text" class="form-control input" id="coName" name="personalName" value="{{resume.personalName}}"
+          disabled />
+        <h4 class="my-3">이메일</h4>
+        <input type="text" class="form-control input" id="coEmail" name="personalEmail" value="{{resume.personalEmail}}"
+          disabled />
+        <h4 class="my-3">전화번호</h4>
+        <input type="text" class="form-control input" id="coCallNumber" name="phoneNumber"
+          value="{{resume.phoneNumber}}" disabled />
+      </div>
+    </div>
+
+    <br>
+    <hr />
+    <h4 class="my-4">희망직무</h4>
+    <p class="mt-4">수정전 :
+      {{#resume.wishDutys}}
+      {{duty.dutyName}},
+      {{/resume.wishDutys}}
+    </p>
+    <p class="my-4">수정후</p>
+    <span id="selectedDevOptions"></span>
+    <div class="dropdown">
+      <button class="btn btn-primary dropdown-toggle" type="button" id="devDropdownButton" data-bs-toggle="dropdown"
+        aria-haspopup="true" aria-expanded="false">
+        직무를 골라주세요
+      </button>
+      <ul class="dropdown-menu" aria-labelledby="devDropdownButton">
+        {{#dutys}}
+        <li>
+          <label><input type="checkbox" class="dropdown-checkbox" value="{{dutyName}}" name="wishDutys" />
+            {{dutyName}}</label>
+        </li>
+        {{/dutys}}
+      </ul>
+    </div>
+    <h4 class="my-4">기술 스택</h4>
+    <p class="my-4">수정전 :
+      {{#resume.wishSkills}}
+      {{skill.skillName}},
+      {{/resume.wishSkills}}
+    </p>
+    <p class="my-4">수정후</p>
+    <span id="selectedTechOptions"></span>
+    <div class="dropdown">
+      <button class="btn btn-primary dropdown-toggle" type="button" id="techDropdownButton" data-bs-toggle="dropdown"
+        aria-haspopup="true" aria-expanded="false">
+        기술스택을 선택하세요
+      </button>
+      <ul class="dropdown-menu" aria-labelledby="techDropdownButton">
+        {{#skills}}
+        <li>
+          <label><input type="checkbox" class="dropdown-checkbox" value="{{skillName}}" name="wishSkills" />
+            {{skillName}}</label>
+        </li>
+        {{/skills}}
+      </ul>
+    </div>
+    <br>
+    <hr />
+
+    <hr />
+    <h4 class="my-4">자기소개서</h4>
+    <input type="text" class="form-control input" placeholder="내용을 입력해주세요" name="coverLetter"
+      value="{{resume.coverLetter}}">
+
+    <h4 class="my-4">학력</h4>
+    <div class="d-flex justify-content-between">
+      {{#edus}}
+      <div class="form-check">
+        <label class="form-check-label" for="radio{{id}}">{{grade}}</label>
+        <input type="radio" class="form-check-input" id="radio{{id}}" name="edu" value="{{grade}}">
+      </div>
+      {{/edus}}
+    </div>
+
+    <div class="d-flex justify-content-center mt-5">
+      <button type="submit" class="btn btn-primary" style="width: 50%" id="saveButton">
+        글 수정 완료
+      </button>
+    </div>
+  </form>
+</div>
+
+<script>
+  // 체크박스 변경 시 선택한 옵션 업데이트
+  function updateSelectedOptions(checkboxList, outputId) {
+    var selectedOptions = Array.from(checkboxList)
+      .filter(function (checkbox) {
+        return checkbox.checked;
+      })
+      .map(function (checkbox) {
+        return checkbox.value;
+      });
+
+    var output = document.getElementById(outputId);
+    if (selectedOptions.length > 0) {
+      output.textContent = selectedOptions.join(", ");
+    } else {
+      output.textContent = "None";
+    }
+  }
+
+  // Setup Dropdowns
+  function setupDropdown(dropdownId, outputId) {
+    var dropdown = document.querySelector(`#${dropdownId}`);
+    var dropdownItems =
+      dropdown.nextElementSibling.querySelectorAll(".dropdown-checkbox");
+
+    dropdown.addEventListener("click", function () {
+      dropdownItems.forEach(function (item) {
+        item.addEventListener("change", function () {
+          updateSelectedOptions(outputId, dropdownItems);
+        });
+      });
+    });
+  }
+
+  // 채용직무 체크박스 처리
+  var dutyCheckboxes = document.querySelectorAll('input[name="wishDutys"]');
+  var dutyOutput = document.getElementById("selectedDevOptions");
+
+  dutyCheckboxes.forEach(function (checkbox) {
+    checkbox.addEventListener("change", function () {
+      updateSelectedOptions(dutyCheckboxes, "selectedDevOptions");
+    });
+  });
+
+  // 기술 스택 체크박스 처리
+  var skillCheckboxes = document.querySelectorAll('input[name="wishSkills"]');
+  var skillOutput = document.getElementById("selectedTechOptions");
+
+  skillCheckboxes.forEach(function (checkbox) {
+    checkbox.addEventListener("change", function () {
+      updateSelectedOptions(skillCheckboxes, "selectedTechOptions");
+    });
+  });
+
+  Mustache.registerHelper('isDutyChecked', function (list, item, options) {
+    if (list.indexOf(item) !== -1) {
+      return options.fn(this);
+    } else {
+      return options.inverse(this);
+    }
+  });
+
+  Mustache.registerHelper('isSkillChecked', function (list, item, options) {
+    if (list.indexOf(item) !== -1) {
+      return options.fn(this);
+    } else {
+      return options.inverse(this);
+    }
+  });
+  // 드롭다운이 변경될 때 호출되는 함수
+  function dropdownChanged() {
+    // 드롭다운에서 선택한 값을 가져옴
+    var selectedValue = document.getElementById("yourDropdownId").value;
+
+    // 로컬 스토리지에 선택한 값을 저장
+    localStorage.setItem("selectedValue", selectedValue);
+  }
+
+  // 페이지 로드 시, 저장된 값을 드롭다운에 설정
+  window.onload = function () {
+    var savedValue = localStorage.getItem("selectedValue");
+    if (savedValue) {
+      document.getElementById("yourDropdownId").value = savedValue;
+    }
+  };
+
+</script>
+
+{{> layout/footer}}

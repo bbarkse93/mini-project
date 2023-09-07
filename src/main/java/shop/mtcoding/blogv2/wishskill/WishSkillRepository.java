@@ -13,4 +13,6 @@ public interface WishSkillRepository extends JpaRepository<WishSkill, Integer> {
     void deleteByNoticeId(Integer id);
 
     WishSkill findByNoticeAndSkill(Notice notice, Skill skill);
+
+    List<WishSkill> findByResumeId(Integer id);
 }
