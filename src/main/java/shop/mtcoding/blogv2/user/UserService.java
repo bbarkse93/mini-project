@@ -11,6 +11,8 @@ import org.springframework.transaction.annotation.Transactional;
 import shop.mtcoding.blogv2._core.error.ex.MyApiException;
 import shop.mtcoding.blogv2._core.error.ex.MyException;
 import shop.mtcoding.blogv2._core.util.ApiUtil;
+import shop.mtcoding.blogv2.resume.Resume;
+import shop.mtcoding.blogv2.resume.ResumeRequest.ResumeDTO;
 import shop.mtcoding.blogv2.user.UserRequest.LoginDTO;
 import shop.mtcoding.blogv2.user.UserRequest.UpdateDTO;
 
@@ -89,4 +91,5 @@ public class UserService {
         }
     }
 
+ 
 }
