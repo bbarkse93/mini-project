@@ -18,10 +18,7 @@ public class ResumeRequest {
   @Setter
   public static class UpdateDTO {
     private String title;
-    private String personalEmail;
-    private String phoneNumber;
     private String coverLetter;
-    private String personalPicUrl;
     private Timestamp createdAt;
     private String[] wishSkills; // 문자열 배열로 변경
     private String[] wishDutys; // 문자열 배열로 변경
@@ -40,7 +37,7 @@ public class ResumeRequest {
     private List<String> wishSkills;
     private List<String> wishDutys;
   }
-   
+
   @Getter
   @Setter
   public static class ResumeDTO {
@@ -50,6 +47,6 @@ public class ResumeRequest {
     private String phoneNumber;
     private String coverLetter;
 
-}
+  }
 
 }

@@ -33,27 +33,28 @@
                 </div>
                 <hr />
                 <div class="list-group">
-                 {{#resumeList}} <!-- 이력서 목록 반복문 시작 -->
-<div class="mb-3">
-    <div class="list-group-item list-group-item-action">
-        <div class="d-flex justify-content-between">
-        
-            <h4 class="mb-2">
-                {{title}} <!-- 이력서 제목 표시 -->
-            </h4>
-            <div>
-                <div class="mb-1">
-                    <a class="btn btn-warning me-1" href="/resume/{{id}}/updateForm" target="_blank">수정</a>
+                    {{#resumeList}} <!-- 이력서 목록 반복문 시작 -->
+                    <div class="mb-3">
+                        <div class="list-group-item list-group-item-action">
+                            <div class="d-flex justify-content-between">
+                                <a href="/resume/{{id}}/Detail" target="_blank"
+                                    class="list-group-item list-group-item-action">
+                                    <h4 class="mb-2">
+                                        {{title}} <!-- 이력서 제목 표시 -->
+                                    </h4>
+                                    <div>
+                                        <div class="mb-1">
+                                            <a class="btn btn-warning me-1" href="/resume/{{id}}/updateForm">수정</a>
+                                        </div>
+                                        <form action="/resume/{{id}}/delete" method="post">
+                                            <button type="submit" class="btn btn-danger">삭제</button>
+                                        </form>
+                                    </div>
+                            </div>
+                        </div>
+                    </div>
+                    {{/resumeList}} <!-- 이력서 목록 반복문 종료 -->
                 </div>
-                <form action="/resume/{{id}}/delete" method="post">
-                    <button type="submit" class="btn btn-danger">삭제</button>
-                </form>
-            </div>
-        </div>
-    </div>
-</div>
-{{/resumeList}} <!-- 이력서 목록 반복문 종료 -->
-</div>
             </div>
             <div class="small-title mt-3">추천 공고</div>
             <hr />
