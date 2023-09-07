@@ -479,12 +479,11 @@ h4 {
     justify-content: center;
     align-items: center;
     margin-top: -10px;
-    margin-right: 720px;
+    flex-direction: column;
 }
 
 .event-image {
     margin-top: 20px;
-    margin-left: 857px;
 }
 
 /* =============================jobPosting============================= */
@@ -496,7 +495,7 @@ h4 {
     justify-content: center;
     align-items: center;
     margin-top: 10px;
-    margin-right: 800px;
+
 }
 
 .job-posting.images {
@@ -504,7 +503,6 @@ h4 {
     justify-content: center;
     align-items: center;
     margin-top: 3px;
-    margin-left: 740px;
 }
 
 .job-posting.images a {

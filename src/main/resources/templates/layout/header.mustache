@@ -155,11 +155,12 @@
                     <li class="nav-item">
                         검색
                     </li>
-                    <li class="nav-item">
-                        이력서 등록
-                    </li>
+
 
                     {{^sessionUser}}
+                    <li class="nav-item">
+                        <a href="/loginForm">이력서 등록</a>
+                    </li>
                     <li class="nav-item">
                         <button type="button" data-bs-toggle="modal" data-bs-target="#myModal">
                             회원가입
@@ -177,11 +178,17 @@
                     <li class="nav-item">
                         <a href="/userInformation">나의 정보</a>
                     </li>
+                    <li class="nav-item">
+                        <a href="/resumeWrite">등록</a>
+                    </li>
                     {{/sessionUser.distinguish}}
 
                     {{^sessionUser.distinguish}} <!-- sessionUser 객체의 distinguish 속성을 확인하여 기업회원 여부를 판단 -->
                     <li class="nav-item">
                         <a href="/companyNoticeList">나의 정보</a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="/noticeWrite">채용공고 등록</a>
                     </li>
                     {{/sessionUser.distinguish}}
                     <li class="nav-item">

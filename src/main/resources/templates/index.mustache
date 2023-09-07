@@ -1,10 +1,18 @@
 {{> layout/header}}
+<style>
+  .mySlides {
+    display: none;
+    opacity: 0;
+    transition: opacity 3s ease-in-out;
+  }
+
+  .mySlides.active {
+    display: block;
+    opacity: 1;
+  }
+</style>
 
 <div class="frame">
-
-  <!--구분선-->
-  <hr style="border-color: #000000; margin: 0;">
-  <!--구분선-->
 
   <!--슬라이드-->
   <div class="slideshow-container" style="margin-top: 33px;">
@@ -25,10 +33,10 @@
   </div>
   <br>
 
-  <div style="text-align:center; margin-top: -40px;">
-    <span class="choice-dot"></span>
-    <span class="choice-dot"></span>
-    <span class="choice-dot"></span>
+  <div style="text-align:center; margin-top: 10px;">
+    <span class="choice-dot index-dot index-active"></span>
+    <span class="choice-dot index-dot index-active"></span>
+    <span class="choice-dot index-dot index-active"></span>
   </div>
   <!--슬라이드-->
 
@@ -127,15 +135,11 @@
     var slides = document.getElementsByClassName("mySlides");
     var dots = document.getElementsByClassName("choice-dot");
     for (i = 0; i < slides.length; i++) {
-      slides[i].style.display = "none";
+      slides[i].classList.remove("active"); // 모든 슬라이드의 active 클래스 제거
     }
     slideIndex++;
     if (slideIndex > slides.length) { slideIndex = 1 }
-    for (i = 0; i < dots.length; i++) {
-      dots[i].className = dots[i].className.replace("index-active", "");
-    }
-    slides[slideIndex - 1].style.display = "block";
-    dots[slideIndex - 1].className += "index-active";
+    slides[slideIndex - 1].classList.add("active"); // 현재 슬라이드에 active 클래스 추가
     setTimeout(showSlides, 3000); // n초마다 바뀜
   }
 </script>
