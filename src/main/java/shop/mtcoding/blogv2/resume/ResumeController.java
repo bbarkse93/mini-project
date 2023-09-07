@@ -114,17 +114,7 @@ public class ResumeController {
     }
 
     
-    @PostMapping("/submitApproval")
-    public String submitApproval(ResumeRequest.ResumeDTO resumeDTO) {
-
-        System.out.println("이게되나?"); 
-    
-        // 이력서 정보 업데이트 서비스 호출
-        resumeService.updateUserApplyStatus(resumeDTO);
-    
-        return "redirect:/userApplyStatus"; // 이동할 URL 지정
-    }
-
+   
 
 
 }
