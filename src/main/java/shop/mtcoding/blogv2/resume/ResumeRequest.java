@@ -33,5 +33,16 @@ public class ResumeRequest {
     private String coverLetter;
     private Timestamp createdAt;
   }
+   
+  @Getter
+  @Setter
+  public static class ResumeDTO {
+    private String title;
+    private String personalName;
+    private String personalEmail;
+    private String phoneNumber;
+    private String coverLetter;
+
+}
 
 }

@@ -15,4 +15,8 @@ public class ApplyService {
     public List<Apply> getAppliesByStatus(boolean status) {
         return applyRepository.findByStatus(status);
     }
+
+    public List<Apply> 지원현황조회(Integer userId){
+        return applyRepository.findByUserId(1);
+    }
 }

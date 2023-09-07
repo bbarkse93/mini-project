@@ -6,11 +6,11 @@
     --indigo: #6610f2;
     --purple: #6f42c1;
     --pink: #d63384;
-    --red: #dc3545;
+    --fail: #dc3545;
     --orange: #fd7e14;
     --yellow: #ffc107;
     --green: #198754;
-    --teal: #20c997;
+    --pass: #20c997;
     --cyan: #0dcaf0;
 }
 
@@ -862,4 +862,23 @@ h4 {
 
 .cs-click {
     border-style: double;
+}
+/*==========지원 현황==========*/
+
+.pass{
+    background-color: var(--pass);
+    border: solid 1px #fff;
+    box-shadow: 3px 3px 3px rgba(0, 0, 0, 0.4);
+    border-radius: 15px;
+    text-align: center;
+    width: 75px;
+}
+
+.fail{
+    background-color: var(--fail);
+    border: solid 1px #fff;
+    box-shadow: 3px 3px 3px rgba(0, 0, 0, 0.4);
+    border-radius: 15px;
+    text-align: center;
+    width: 75px;
 }

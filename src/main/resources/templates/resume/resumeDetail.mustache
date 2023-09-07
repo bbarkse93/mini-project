@@ -102,11 +102,24 @@
       <label class="form-check-label">대학원졸업</label>
     </div>
 
-    <div class="d-flex justify-content-center mt-5">
-      <button type="submit" class="btn btn-primary" style="width: 50%" id="saveButton">
-        글 수정 완료
-      </button>
-    </div>
+    <br>
+    <br>
+    <br>
+
+
+   <div class="d-flex justify-content-center">
+ <form action="/submitApproval" method="post">
+  <!-- 이력서 정보 입력 필드 등 -->
+  <button type="submit" class="btn btn-primary" style="width: 30%" id="approveButton">
+    합격
+  </button>
+</form>
+  <!-- 간격을 주기 위해 아래의 div 요소를 사용합니다. -->
+  <div style="width: 10px;"></div>
+  <button type="submit" class="btn btn-danger" style="width: 30%" id="saveButton">
+    불합격
+  </button>
+</div>
   </form>
 </div>
 
@@ -153,6 +166,13 @@
     });
   });
 
+
+
+ 
 </script>
+
+  
+
+
 
 {{> layout/footer}}

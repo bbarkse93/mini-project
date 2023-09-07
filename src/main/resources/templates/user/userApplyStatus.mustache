@@ -15,7 +15,7 @@
                     <hr />
                     <div>
                         <a class="nav-link link" href="/myResumeList">이력서 관리</a>
-                        <a class="nav-link link" href="/userApplyStatus">지원현황</a>
+                        <a class="nav-link link" href="/userApplyStatus/{userId}">지원현황</a>
                         <a class="nav-link link" href="/userScrapCompany">관심기업</a>
 
                         <hr />
@@ -31,28 +31,34 @@
                 <hr />
                 <div class="list-group">
 
-                    <div class="mb-3">
-                        {{#individual}}
-                        <div class="mb-3">
-                            <a href="#" class="list-group-item list-group-item-action">
-                                <div class="d-flex justify-content-between">
-                                    <div>
-                                        <h4 class="mb-2">{{notice.title}}</h4>
-                                        <h6 class="mb-2">{{notice.companyName}}</h6>
-                                    </div>
-                                    <div>
-                                        <div class="mb-1">
-                                            <button type="button" class="btn btn-primary">합격</button>
-                                        </div>
-                                        <div>
-                                            <button type="button" class="btn btn-danger btn">취소</button>
-                                        </div>
-                                    </div>
-                                </div>
-                            </a>
-                        </div>
-                        {{/individual}}
+   
+<div class="mb-3">
+    {{#individual}}
+    <div class="mb-3">
+        <a href="#" class="list-group-item list-group-item-action">
+            <div class="d-flex justify-content-between">
+                <div>
+                    <h4 class="mb-2">{{notice.title}}</h4>
+                    <h6 class="mb-2">{{notice.companyName}}</h6>
+                </div>
+                <div>
+                    {{#status}}
+                    <div class="mb-1">
+                        <div class="pass">합격</div>
                     </div>
+                    {{/status}}
+                    {{^status}}
+                    <div class="mb-1">
+                        <div class="fail">불합격</div>
+                    </div>
+                    {{/status}}
+                </div>
+            </div>
+        </a> 
+    </div>
+    {{/individual}}
+</div>
+
                     <div class="small-title mt-3">추천 공고</div>
                     <hr />
                     <div class="d-flex justify-content-around">
@@ -68,5 +74,11 @@
                     </div>
 
                 </div>
+                <script>
+
+
+   
+</script>
+  
 
                 {{> layout/footer}}

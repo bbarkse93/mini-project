@@ -7,11 +7,14 @@ import javax.servlet.http.HttpServletRequest;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 
 import shop.mtcoding.blogv2.notice.Notice;
 import shop.mtcoding.blogv2.notice.NoticeService;
+import shop.mtcoding.blogv2.resume.ResumeRequest.ResumeDTO;
+import shop.mtcoding.blogv2.user.UserService;
 
 @Controller
 public class ResumeController {
@@ -20,6 +23,9 @@ public class ResumeController {
    private ResumeService resumeService;
     @Autowired
     private NoticeService noticeService;
+
+    @Autowired
+    private UserService userService;
 
     @PostMapping("/resume/{id}/delete")
     public String delete(@PathVariable Integer id) {
@@ -81,5 +87,19 @@ public class ResumeController {
         request.setAttribute("resumeList", resumeList);
         return "resume/resumeDetail";
     }
+
+    
+    @PostMapping("/submitApproval")
+    public String submitApproval(ResumeRequest.ResumeDTO resumeDTO) {
+
+        System.out.println("이게되나?"); 
+    
+        // 이력서 정보 업데이트 서비스 호출
+        resumeService.updateUserApplyStatus(resumeDTO);
+    
+        return "redirect:/userApplyStatus"; // 이동할 URL 지정
+    }
+
+
 
 }
