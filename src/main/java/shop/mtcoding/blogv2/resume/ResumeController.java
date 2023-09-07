@@ -11,18 +11,36 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 
+import shop.mtcoding.blogv2.duty.Duty;
+import shop.mtcoding.blogv2.duty.DutyService;
+import shop.mtcoding.blogv2.edu.Edu;
+import shop.mtcoding.blogv2.edu.EduService;
+import shop.mtcoding.blogv2.location.Location;
 import shop.mtcoding.blogv2.notice.Notice;
 import shop.mtcoding.blogv2.notice.NoticeService;
+import shop.mtcoding.blogv2.skill.Skill;
+import shop.mtcoding.blogv2.skill.SkillService;
 import shop.mtcoding.blogv2.resume.ResumeRequest.ResumeDTO;
 import shop.mtcoding.blogv2.user.UserService;
+
 
 @Controller
 public class ResumeController {
 
     @Autowired
-   private ResumeService resumeService;
+    private ResumeService resumeService;
+
     @Autowired
     private NoticeService noticeService;
+
+    @Autowired
+    private SkillService skillService;
+
+    @Autowired
+    private DutyService dutyService;
+
+    @Autowired
+    private EduService eduService;
 
     @Autowired
     private UserService userService;
@@ -58,8 +76,8 @@ public class ResumeController {
 
     @GetMapping("/myResumeList")
     public String 나의이력서관리(HttpServletRequest request) {
-         List<Notice> notices = noticeService.getAllNotices();
-         
+        List<Notice> notices = noticeService.getAllNotices();
+
         request.setAttribute("notices", notices);
         List<Resume> resumeList = resumeService.findAll();
         request.setAttribute("resumeList", resumeList);
@@ -68,7 +86,14 @@ public class ResumeController {
 
     // 이력서 등록 view
     @GetMapping("/resumeWrite")
-    public String resumeWrite() {
+    public String resumeWrite(HttpServletRequest request) {
+        List<Skill> skills = skillService.findAll();
+        List<Duty> dutys = dutyService.findAll();
+        List<Edu> edus = eduService.findAll();
+
+        request.setAttribute("skills", skills);
+        request.setAttribute("dutys", dutys);
+        request.setAttribute("edus", edus);
         return "/resume/resumeWrite";
     }
 

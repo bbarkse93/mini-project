@@ -118,5 +118,4 @@ public class Notice {
         this.edu = edu;
         this.createdAt = createdAt;
     }
-
 }
