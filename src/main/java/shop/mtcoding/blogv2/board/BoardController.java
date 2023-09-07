@@ -21,7 +21,6 @@ public class BoardController {
     public String customerService(HttpServletRequest request) {
         List<Board> boards = boardService.문의조회();
         request.setAttribute("boards", boards);
-        System.out.println("Test" + boards.get(0).getContent());
         return "/board/csForm";
     }
 

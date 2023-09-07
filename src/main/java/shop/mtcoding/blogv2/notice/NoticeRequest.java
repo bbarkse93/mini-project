@@ -5,8 +5,6 @@ import java.util.List;
 
 import lombok.Getter;
 import lombok.Setter;
-import shop.mtcoding.blogv2.wishduty.WishDuty;
-import shop.mtcoding.blogv2.wishskill.WishSkill;
 
 public class NoticeRequest {
 

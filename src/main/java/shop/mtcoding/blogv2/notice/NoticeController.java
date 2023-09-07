@@ -1,6 +1,5 @@
 package shop.mtcoding.blogv2.notice;
 
-import java.util.Arrays;
 import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
@@ -8,7 +7,6 @@ import javax.servlet.http.HttpServletRequest;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 
@@ -56,7 +54,7 @@ public class NoticeController {
         List<Skill> skills = skillService.findAll();
         List<Duty> dutys = dutyService.findAll();
         List<Location> locations = locationService.findAll();
-        System.out.println("test" + locations.size());
+
         request.setAttribute("skills", skills);
         request.setAttribute("dutys", dutys);
         request.setAttribute("locations", locations);
@@ -66,10 +64,8 @@ public class NoticeController {
     // 채용등록하기
     @PostMapping("/noticeSave")
     public String noticeSave(NoticeRequest.SaveDTO saveDTO) {
-        System.out.println("테스트 : " + saveDTO.getWishSkills());
 
         noticeService.채용등록(saveDTO);
-        System.out.println("테스트 : " + saveDTO.getWishSkills());
 
         return "redirect:/companyNoticeList";
     }

@@ -27,7 +27,6 @@ public class BoardService {
                 .user(User.builder().id(sessionUserId).build())
                 .build();
         boardRepository.save(board);
-        System.out.println("test" + board);
 
     }
 

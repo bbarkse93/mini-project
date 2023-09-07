@@ -11,7 +11,6 @@ import org.springframework.transaction.annotation.Transactional;
 import shop.mtcoding.blogv2._core.error.ex.MyException;
 import shop.mtcoding.blogv2.duty.Duty;
 import shop.mtcoding.blogv2.duty.DutyRepository;
-import shop.mtcoding.blogv2.notice.NoticeRequest.UpdateDTO;
 import shop.mtcoding.blogv2.skill.Skill;
 import shop.mtcoding.blogv2.skill.SkillRepository;
 import shop.mtcoding.blogv2.wishduty.WishDuty;
