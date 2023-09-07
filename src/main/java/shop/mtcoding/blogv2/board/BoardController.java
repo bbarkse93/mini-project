@@ -35,9 +35,9 @@ public class BoardController {
         return "redirect:/csForm";
     }
 
-    @GetMapping("/board/csUpdateForm")
-    public String csUpdateForm(HttpServletRequest request) {
-        Optional<Board> board = boardService.수정화면(1);
+    @GetMapping("/board/csUpdateForm/{id}")
+    public String csUpdateForm(@PathVariable Integer id, HttpServletRequest request) {
+        Optional<Board> board = boardService.수정화면(id);
         request.setAttribute("board", board);
         return "board/csUpdateForm";
     }
