@@ -47,8 +47,8 @@
     <div class="d-flex justify-content-between">
       {{#locations}}
       <div class="form-check">
-        <label class="form-check-label" for="radio{{id}}" required>{{locationName}}</label>
-        <input type="radio" class="form-check-input" id="radio{{id}}" name="location" value="{{locationName}}" checked>
+        <label class="form-check-label" for="radio{{id}}">{{locationName}}</label>
+        <input type="radio" class="form-check-input" id="radio{{id}}" name="location" value="{{locationName}}">
       </div>
       {{/locations}}
     </div>
@@ -169,7 +169,7 @@
       alert("기술 스택을 선택해주세요.");
       event.preventDefault(); // 폼 제출을 막음
     } else if (imageInput.files.length === 0) {
-      alert("이미지 파일을 선택하지 않았습니다.");
+      alert("이미지 파일을 선택해주세요.");
       event.preventDefault(); // 폼 제출을 막음
     }
   }
