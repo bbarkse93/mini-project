@@ -1,34 +1,54 @@
 {{> layout/header}}
+<style>
+  .company_img {
+    width: 250px;
+    height: 180px;
+    border-radius: 10px;
+  }
+</style>
 
 <div class="frame">
   <h1>채용공고 등록</h1>
-  <form action="/noticeSave" method="POST" enctype="application/x-www-form-urlencoded">
+  <form action="/noticeSave" method="POST" enctype="multipart/form-data">
+
     <h4 class="mt-4">공고 제목</h4>
-    <input type="text" class="form-control input" id="recruitTitle" placeholder="Title" name="title" />
+    <input type="text" class="form-control input" id="recruitTitle" placeholder="Title" name="title" required />
 
     <div class=".container-fluid d-flex">
-      <div class="profile-image" style="margin-top: 20px; margin-right: 20px">
-        <img class="image2" src="/images/너굴맨.jpg" name="companyPicUrl" />
-      </div>
+      <input type="file" id="imageInput" style="display: none;" accept="image/*" name="companyPic"
+        onchange="changePic(event)" />
+      <label for="imageInput">
+        <div class="profile-image" style="margin-top: 20px; margin-right: 20px">
+          <img id="preview" class="company_img" src="/images/company.jpg">
+          <!-- 이미지 업로드 버튼 -->
+          <button type="button" class="btn btn-warning" style="margin-top: 20px; width: auto;"
+            onclick="document.getElementById('imageInput').click();">
+            이미지 업로드
+          </button>
+        </div>
+      </label>
       <div class="recruit-info">
         <h4 class="mt-3">회사명</h4>
-        <input type="text" class="form-control input" id="coName" placeholder="회사명을 입력하세요" name="companyName" />
+        <input type="text" class="form-control input" id="coName" placeholder="회사명을 입력하세요" name="companyName"
+          required />
         <h4 class="mt-3">이메일</h4>
-        <input type="text" class="form-control input" id="coEmail" placeholder="이메일을 입력하세요" name="companyEmail" />
+        <input type="text" class="form-control input" id="coEmail" placeholder="이메일을 입력하세요" name="companyEmail"
+          required />
         <h4 class="mt-3">전화번호</h4>
-        <input type="text" class="form-control input" id="coCallNumber" placeholder="전화번호를 입력하세요" name="phoneNumber" />
+        <input type="text" class="form-control input" id="coCallNumber" placeholder="전화번호를 입력하세요" name="phoneNumber"
+          required />
       </div>
     </div>
 
 
     <h4 class="mt-4">기업정보</h4>
-    <input type="text" class="form-control input" id="coInfo" placeholder="정보를 입력하세요" name="companyInfo" />
+    <input type="text" class="form-control input" id="coInfo" placeholder="정보를 입력하세요" name="companyInfo" required />
     <h4 class="mt-4">지역</h4>
     <div class="d-flex justify-content-between">
       {{#locations}}
       <div class="form-check">
         <label class="form-check-label" for="radio{{id}}">{{locationName}}</label>
-        <input type="radio" class="form-check-input" id="radio{{id}}" name="location" value="{{locationName}}" checked>
+        <input type="radio" class="form-check-input" id="radio{{id}}" name="location" value="{{locationName}}">
       </div>
       {{/locations}}
     </div>
@@ -74,15 +94,16 @@
       <div class="row">
         <div class="col-lg-6 mt-4">
           <h4>모집인원</h4>
-          <input type="text" class="form-control input" placeholder="모집 인원을 기입해주세요" name="intake" />
+          <input type="text" class="form-control input" placeholder="모집 인원을 기입해주세요" name="intake" required />
           <h4 class="mt-4">급여</h4>
-          <input type="text" class="form-control input" placeholder="연봉,급여를 등록해주세요" name="pay" />
+          <input type="text" class="form-control input" placeholder="연봉,급여를 등록해주세요" name="pay" required />
         </div>
         <div class="col-lg-6 mt-4">
           <h4>기간</h4>
-          <input type="text" class="form-control input" placeholder="모집 기간을 등록해주세요" name="period" />
+          <input type="text" class="form-control input" placeholder="모집 기간을 등록해주세요" name="period" required />
           <h4 class="mt-4">자격요건</h4>
-          <input type="text" class="form-control input" id="place" placeholder="사지멀쩡한 자" name="qualification" />
+          <input type="text" class="form-control input" id="place" placeholder="사지멀쩡한 자" name="qualification"
+            required />
         </div>
       </div>
     </div>
@@ -95,6 +116,69 @@
 </div>
 
 <script>
+  // 이미지변경
+  function changePic(event) {
+    var fileInput = event.target;
+    var previewImage = document.getElementById("preview");
+
+    if (fileInput.files && fileInput.files[0]) {
+      var reader = new FileReader();
+      reader.onload = function (e) {
+        previewImage.src = e.target.result;
+      };
+      reader.readAsDataURL(fileInput.files[0]);
+    }
+  }
+
+  // 이미지 파일 업로드 및 미리보기 기능 설정
+  function setupImageUpload() {
+    var inputFile = document.getElementById("imageInput"); // 파일 업로드 input 요소
+    var previewImage = document.getElementById("preview"); // 이미지 미리보기 요소
+
+    // 파일 업로드 input 요소에 변화가 생기면 호출되는 이벤트 핸들러
+    inputFile.addEventListener("change", function (event) {
+      var file = event.target.files[0]; // 선택된 파일 가져오기
+
+      if (file) {
+        // FileReader 객체를 사용하여 이미지 미리보기 설정
+        var reader = new FileReader();
+        reader.onload = function (e) {
+          previewImage.src = e.target.result; // 이미지 미리보기 업데이트
+        };
+        reader.readAsDataURL(file); // 파일을 데이터 URL로 변환하여 미리보기에 할당
+      }
+    });
+  }
+
+  // 초기화 함수 호출
+  setupImageUpload();
+
+  // 이미지, 직무, 기술 선택해라고 나옴
+  function checkFormSubmission(event) {
+    var devOptions = document.querySelectorAll('[name="wishDutys"]:checked');
+    var techOptions = document.querySelectorAll('[name="wishSkills"]:checked');
+    var imageInput = document.getElementById("imageInput");
+
+    if (devOptions.length === 0 && techOptions.length === 0) {
+      alert("채용직무와 기술스택을 선택해주세요.");
+      event.preventDefault(); // 폼 제출을 막음
+    } else if (devOptions.length === 0) {
+      alert("채용직무를 선택해주세요.");
+      event.preventDefault(); // 폼 제출을 막음
+    } else if (techOptions.length === 0) {
+      alert("기술 스택을 선택해주세요.");
+      event.preventDefault(); // 폼 제출을 막음
+    } else if (imageInput.files.length === 0) {
+      alert("이미지 파일을 선택해주세요.");
+      event.preventDefault(); // 폼 제출을 막음
+    }
+  }
+
+  // 폼 제출 이벤트에 함수 연결
+  var form = document.querySelector("form");
+  form.addEventListener("submit", checkFormSubmission);
+
+  // 드롭다운
   function setupDropdown(dropdownId, outputId) {
     var dropdown = document.querySelector(`#${dropdownId}`);
     var dropdownItems =

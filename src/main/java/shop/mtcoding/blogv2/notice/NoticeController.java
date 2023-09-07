@@ -1,5 +1,7 @@
 package shop.mtcoding.blogv2.notice;
 
+import java.util.Collections;
+import java.util.Comparator;
 import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
@@ -38,6 +40,7 @@ public class NoticeController {
     @GetMapping("/companyNoticeList")
     public String companyNoticeList(HttpServletRequest request) {
         List<Notice> noticeList = noticeService.findAll();
+        Collections.sort(noticeList, Comparator.comparing(Notice::getId).reversed());
         request.setAttribute("noticeList", noticeList);
         return "/company/companyNoticeList";
     }

@@ -3,6 +3,8 @@ package shop.mtcoding.blogv2.notice;
 import java.sql.Timestamp;
 import java.util.List;
 
+import org.springframework.web.multipart.MultipartFile;
+
 import lombok.Getter;
 import lombok.Setter;
 
@@ -16,7 +18,7 @@ public class NoticeRequest {
         private String companyEmail;
         private String phoneNumber;
         private String companyInfo;
-        private String companyPicUrl;
+        private MultipartFile companyPic;
         private String location;
         private String intake;
         private String pay;
@@ -33,7 +35,6 @@ public class NoticeRequest {
     public static class UpdateDTO {
         private String title;
         private String companyInfo;
-        private String companyPicUrl;
         private String location;
         private String intake;
         private String pay;
