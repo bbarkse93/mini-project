@@ -13,6 +13,80 @@
     <script src="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote.min.js"></script>
     <link rel="stylesheet" href="/css/style.css">
 
+
+    <style>
+        /* 햄버거 버튼 스타일링 */
+        .hamburger-menu {
+            display: flex;
+            flex-direction: column;
+            cursor: pointer;
+            display: none;
+            cursor: pointer;
+            position: relative;
+        }
+
+        #mini-pop {
+            display: none;
+            position: absolute;
+            width: 120px;
+            background: #00000094;
+            color: #fff;
+            border-radius: 10px;
+            padding: 10px;
+            top: 30px;
+            z-index: 10;
+        }
+
+        #mini-pop .nav-item {
+            margin-bottom: 5px;
+        }
+
+        #mini-pop .nav-item button,
+        #mini-pop .nav-item a {
+            color: #fff;
+            background-color: #fff0;
+            border: none;
+        }
+
+        #close_btn {
+            font-size: 35px;
+            height: 25px;
+            justify-content: end;
+            cursor: pointer;
+        }
+
+        .bar {
+            width: 30px;
+            height: 3px;
+            background-color: #333;
+            margin: 3px 0;
+            transition: 0.4s;
+        }
+
+        /* 햄버거 버튼 애니메이션 */
+        .hamburger-menu.active .bar:nth-child(1) {
+            transform: rotate(-45deg) translate(-5px, 6px);
+        }
+
+        .hamburger-menu.active .bar:nth-child(2) {
+            opacity: 0;
+        }
+
+        .hamburger-menu.active .bar:nth-child(3) {
+            transform: rotate(45deg) translate(-5px, -6px);
+        }
+
+        /* 모바일 스타일 (768px 미만) */
+        @media (max-width: 1208px) {
+            .hamburger-menu {
+                display: block;
+            }
+
+            .d-flex.justify-content-around {
+                display: none !important;
+            }
+        }
+    </style>
 </head>
 
 
@@ -54,20 +128,67 @@
                         로그인
                     </a>
                     {{/sessionUser}}
-                    
+
                     {{#sessionUser}}
                     {{#sessionUser.distinguish}} <!-- sessionUser 객체의 distinguish 속성을 확인하여 개인회원 여부를 판단 -->
                     <a href="/userInformation" class="btn btn-secondary">나의 정보</a>
                     {{/sessionUser.distinguish}}
-                    
+
                     {{^sessionUser.distinguish}} <!-- sessionUser 객체의 distinguish 속성을 확인하여 기업회원 여부를 판단 -->
                     <a href="/companyNoticeList" class="btn btn-secondary">나의 정보</a>
                     {{/sessionUser.distinguish}}
-                    
+
                     <a href="/logout" class="btn btn-secondary">로그아웃</a>
                     {{/sessionUser}}
                 </div>
 
+            </div>
+            <div class="hamburger-menu">
+                <div class="bar"></div>
+                <div class="bar"></div>
+                <div class="bar"></div>
+
+                <div id="mini-pop">
+                    <li class="nav-item" id="close_btn">
+                        ×
+                    </li>
+                    <li class="nav-item">
+                        검색
+                    </li>
+                    <li class="nav-item">
+                        이력서 등록
+                    </li>
+
+                    {{^sessionUser}}
+                    <li class="nav-item">
+                        <button type="button" data-bs-toggle="modal" data-bs-target="#myModal">
+                            회원가입
+                        </button>
+                    </li>
+                    <li class="nav-item">
+                        <a href="/loginForm">
+                            로그인
+                        </a>
+                    </li>
+                    {{/sessionUser}}
+
+                    {{#sessionUser}}
+                    {{#sessionUser.distinguish}} <!-- sessionUser 객체의 distinguish 속성을 확인하여 개인회원 여부를 판단 -->
+                    <li class="nav-item">
+                        <a href="/userInformation">나의 정보</a>
+                    </li>
+                    {{/sessionUser.distinguish}}
+
+                    {{^sessionUser.distinguish}} <!-- sessionUser 객체의 distinguish 속성을 확인하여 기업회원 여부를 판단 -->
+                    <li class="nav-item">
+                        <a href="/companyNoticeList">나의 정보</a>
+                    </li>
+                    {{/sessionUser.distinguish}}
+                    <li class="nav-item">
+                        <a href="/logout">로그아웃</a>
+                    </li>
+                    {{/sessionUser}}
+                </div>
             </div>
         </div>
     </nav>
@@ -86,13 +207,22 @@
         var mypageBtn = document.getElementById('mypageBtn');
 
         // Check if the user is logged in
-        if (sessionUserLoggedIn) {
-            // Show the mypage button
-            mypageBtn.style.display = 'block';
-        } else {
-            // Hide the mypage button
-            mypageBtn.style.display = 'none';
-        }
+        // if (sessionUserLoggedIn) {
+        //     // Show the mypage button
+        //     mypageBtn.style.display = 'block';
+        // } else {
+        //     // Hide the mypage button
+        //     mypageBtn.style.display = 'none';
+        // }
+
+        $(".hamburger-menu").click(function () {
+            $('#mini-pop').fadeIn(300);
+        });
+
+        $("#close_btn").click(function (e) {
+            e.stopPropagation(); // Stop the click event from propagating to parent elements
+            $('#mini-pop').css('display', 'none');
+        });
 
 
     </script>
