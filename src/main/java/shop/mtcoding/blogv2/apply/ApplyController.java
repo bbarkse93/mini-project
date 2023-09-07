@@ -8,8 +8,8 @@ import javax.servlet.http.HttpSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
-
-import shop.mtcoding.blogv2.notice.NoticeService;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
 
 @Controller
 public class ApplyController {
@@ -20,15 +20,11 @@ public class ApplyController {
     @Autowired
     private HttpSession session;
 
-    @Autowired
-    private NoticeService noticeService;
 
-    // 개인 지원 목록 조회
-    @GetMapping("/individual")
-    public List<Apply> getIndividualApplies() {
-        return applyService.getAppliesByStatus(false);
-    }
-
+   @GetMapping("/individual")
+public List<Apply> getIndividualApplies(@PathVariable Integer userId) {
+    return applyService.getAppliesByStatus(userId);
+}
     // @GetMapping("/userApplyStatus")
     // public String getUserApplyStatus(HttpServletRequest request) {
     // List<Notice> notices = noticeService.getAllNotices();
@@ -39,13 +35,14 @@ public class ApplyController {
     // return "user/userApplyStatus"; // 머스태치 템플릿 파일의 경로
     // }
 
-    @GetMapping("/companyApplyList")
-    public String 기업지원서관리(HttpServletRequest request) {
-        List<Apply> individualApplies = applyService.getAppliesByStatus(false);
+    @GetMapping("/companyApplyList/{userId}")
+    public String companyApplyList(@PathVariable Integer userId, HttpServletRequest request) {
+        List<Apply> individualApplies = applyService.getAppliesByStatus(userId);
         request.setAttribute("individual", individualApplies);
-
-        return "company/companyApplyList"; // 머스태치 템플릿 파일의 경로
+    
+        return "company/companyApplyList";
     }
+
 
     @GetMapping("/userApplyStatus/{userId}")
     public String getApplyStatus(HttpServletRequest request) {
@@ -53,12 +50,24 @@ public class ApplyController {
         Integer userId = (Integer) session.getAttribute("userId");
 
         // userId를 사용하여 로직을 수행
-        List<Apply> individualApplies = applyService.지원현황조회(userId);
+        List<Apply> individualApplies = applyService.지원현황조회(1);
 
         // HttpServletRequest에 데이터 추가
         request.setAttribute("individual", individualApplies);
         return "user/userApplyStatus";
 
+
     }
 
+    
+
+    @PostMapping("/apply/{id}/update")
+    public String update(@PathVariable Integer id, ApplyRequest.UpdateDTO updateDTO) {
+     
+    
+        applyService.기업지원관리(id,updateDTO);
+    
+        return "redirect:/companyApplyList/" +id;
+    }
 }
+
