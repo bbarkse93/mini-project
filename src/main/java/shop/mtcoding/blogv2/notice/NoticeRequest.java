@@ -27,15 +27,13 @@ public class NoticeRequest {
         private Timestamp createdAt;
         private List<String> wishSkills;
         private List<String> wishDutys;
+
     }
 
     @Getter
     @Setter
     public static class UpdateDTO {
         private String title;
-        private String companyName;
-        private String companyEmail;
-        private String phoneNumber;
         private String companyInfo;
         private String companyPicUrl;
         private String location;
@@ -44,7 +42,7 @@ public class NoticeRequest {
         private String period;
         private String qualification;
         private Timestamp createdAt;
-        private List<WishSkill> wishSkills;
-        private List<WishDuty> wishDutys;
+        private String[] wishSkills; // 문자열 배열로 변경
+        private String[] wishDutys; // 문자열 배열로 변경
     }
 }

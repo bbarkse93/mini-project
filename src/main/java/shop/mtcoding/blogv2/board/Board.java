@@ -1,6 +1,6 @@
 package shop.mtcoding.blogv2.board;
 
-import java.sql.Timestamp;
+import java.time.LocalDate;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -8,10 +8,12 @@ import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.Lob;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
 import org.hibernate.annotations.CreationTimestamp;
+import org.springframework.format.annotation.DateTimeFormat;
 
 import lombok.Builder;
 import lombok.Getter;
@@ -38,6 +40,7 @@ public class Board {
     @Column(nullable = true)
     private String phoneNumber;
 
+    @Lob
     @Column(nullable = true)
     private String content;
 
@@ -45,11 +48,12 @@ public class Board {
     private User user;
 
     @CreationTimestamp
-    private Timestamp createdAt;
+    @DateTimeFormat(pattern = "yy-MM-dd HH:mm")
+    private LocalDate createdAt;
 
     @Builder
     public Board(Integer id, String title, String email, String phoneNumber, String content, User user,
-            Timestamp createdAt) {
+            LocalDate createdAt) {
         this.id = id;
         this.title = title;
         this.email = email;
@@ -58,5 +62,4 @@ public class Board {
         this.user = user;
         this.createdAt = createdAt;
     }
-
 }

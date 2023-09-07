@@ -82,7 +82,7 @@ public class Notice {
     private List<Apply> applies = new ArrayList<>();
 
     @OneToMany(mappedBy = "notice", fetch = FetchType.LAZY)
-private List<Bookmark> bookmarks = new ArrayList<>();
+    private List<Bookmark> bookmarks = new ArrayList<>();
 
     @ManyToOne(fetch = FetchType.LAZY)
     private User user;
@@ -93,12 +93,7 @@ private List<Bookmark> bookmarks = new ArrayList<>();
     @CreationTimestamp
     private Timestamp createdAt;
 
-    public NoticeBuilder wishDutys(ArrayList<String> wishDutys2) {
-        return null;
-    }
-
     @Builder
-
     public Notice(Integer id, String title, String companyName, String companyEmail, String phoneNumber,
             String companyInfo, String companyPicUrl, String location, String intake, String pay, String qualification,
             String period, List<WishSkill> wishSkills, List<WishDuty> wishDutys, List<Apply> applies,
@@ -124,5 +119,4 @@ private List<Bookmark> bookmarks = new ArrayList<>();
         this.createdAt = createdAt;
     }
 
-    
 }

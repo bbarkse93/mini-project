@@ -1,6 +1,6 @@
-insert into board_tb(title, email, phone_number, created_at) values('문의 사항','ssar@nate.com','010-1234-5678',NOW());
-insert into board_tb(title, email, phone_number, created_at) values('서비스 문의','cos@nate.com','010-1111-2222',NOW());
-insert into board_tb(title, email, phone_number, created_at) values('서비스 문의','cos@nate.com','010-1111-2222',NOW());
+insert into board_tb(title, email, phone_number, content, created_at) values('문의 사항','ssar@nate.com', '010-1234-5678', '문의합니다', NOW());
+insert into board_tb(title, email, phone_number, content, created_at) values('서비스 문의','cos@nate.com', '010-1111-2222', '문의합니다', NOW());
+insert into board_tb(title, email, phone_number, content, created_at) values('서비스 문의','cos@nate.com', '010-1111-2222', '문의합니다', NOW());
 
 
 insert into user_tb(username, password, name, tel_number, email, regist_number, pic_url, distinguish, created_at) 
@@ -13,8 +13,8 @@ insert into user_tb(username, password, name, tel_number, email, regist_number, 
 values('company2', '1234', '회사z', '010-1234-5678', 'cos@nate.com', '000000000', 'basic.png', false, NOW());
 
 
-insert into resume_tb(title,personal_email,phone_number,cover_letter,personal_pic_url,created_at) values('이력서1','ssar@nate.com','010-1234-5678','자기소개서','basic.png',NOW());
-insert into resume_tb(title,personal_email,phone_number,cover_letter,personal_pic_url,created_at) values('이력서2','cos@nate.com','010-1111-5678','자기소개서','basic.png',NOW());
+insert into resume_tb(title,personal_name,personal_email,phone_number,cover_letter,personal_pic_url,created_at) values('이력서1','쌀','ssar@nate.com','010-1234-5678','자기소개서','basic.png',NOW());
+insert into resume_tb(title,personal_name,personal_email,phone_number,cover_letter,personal_pic_url,created_at) values('이력서2','코스','cos@nate.com','010-1111-5678','자기소개서','basic.png',NOW());
  
 insert into notice_tb(company_email,company_info,company_name,created_at,intake,location,pay,period,phone_number,qualification,title)
 values('naver@nate.com','네이버정보','네이버',NOW(),'2명','서울','5000만원','21일간','010-1234-5678','사지멀쩡한 자','프론트급구');
@@ -25,25 +25,20 @@ values('kakao@nate.com','카카오정보','카카오',NOW(),'1명','부산','600
 insert into notice_tb(company_email,company_info,company_name,created_at,intake,location,pay,period,phone_number,qualification,title)
 values('kakao@nate.com','카카오정보','카카오',NOW(),'1명','제주','8000만원','30일간','010-1111-2222','사내규정','풀스택개발자');
 
-INSERT INTO apply_tb (notice_id, resume_id, status) VALUES  (1, 1, true);
-INSERT INTO apply_tb (notice_id, resume_id, status) VALUES  (1, 1, true);
-INSERT INTO apply_tb (notice_id, resume_id, status) VALUES  (1, 1, true);
-
-INSERT INTO bookmark_tb (notice_id,user_id, resume_id) VALUES (1,1, 1);
-INSERT INTO bookmark_tb (notice_id,user_id, resume_id) VALUES (2,1, 1);
-INSERT INTO bookmark_tb (notice_id,user_id, resume_id) VALUES (3,1, 1);
-
+INSERT INTO apply_tb (notice_id, resume_id, status, user_id) VALUES (1, 1, true, 1); 
+INSERT INTO apply_tb (notice_id, resume_id, status, user_id) VALUES (2, 1, true, 1); 
+INSERT INTO apply_tb (notice_id, resume_id, status, user_id) VALUES (3, 1, true, 1); 
 
 INSERT INTO scrap_tb (notice_id,user_id) VALUES (1,1);
 
-insert into skill_tb(skill_name) values('java');
+insert into skill_tb(skill_name) values('Java');
 insert into skill_tb(skill_name) values('MySQL');
-insert into skill_tb(skill_name) values('javascript');
-insert into skill_tb(skill_name) values('spring');
-insert into skill_tb(skill_name) values('html/css');
-insert into skill_tb(skill_name) values('react');
-insert into skill_tb(skill_name) values('flutter');
-insert into skill_tb(skill_name) values('unity');
+insert into skill_tb(skill_name) values('JavaScript');
+insert into skill_tb(skill_name) values('Spring');
+insert into skill_tb(skill_name) values('HTML/CSS');
+insert into skill_tb(skill_name) values('React');
+insert into skill_tb(skill_name) values('Flutter');
+insert into skill_tb(skill_name) values('Unity');
 
 insert into duty_tb(duty_name) values('서버 개발자');
 insert into duty_tb(duty_name) values('백엔드 개발자');
@@ -64,3 +59,9 @@ insert into edu_tb(grade) values('석사');
 insert into edu_tb(grade) values('박사');
 insert into edu_tb(grade) values('기타');
 
+insert into location_tb(location_name) values('서울');
+insert into location_tb(location_name) values('대전');
+insert into location_tb(location_name) values('대구');
+insert into location_tb(location_name) values('광주');
+insert into location_tb(location_name) values('부산');
+insert into location_tb(location_name) values('제주');
