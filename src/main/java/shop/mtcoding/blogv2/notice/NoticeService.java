@@ -50,24 +50,27 @@ public class NoticeService {
     // return null;
     // }
 
-    // 채용공고등록
     @Transactional
-    public void 채용등록(NoticeRequest.SaveDTO saveDTO) {
-        UUID uuid = UUID.randomUUID(); // 랜덤한 해시값을 만들어줌
+    public Notice 채용등록(NoticeRequest.SaveDTO saveDTO) {
+        // 파일 이름 생성
+        UUID uuid = UUID.randomUUID();
         String fileName = uuid + "_" + saveDTO.getCompanyPic().getOriginalFilename();
         System.out.println("fileName : " + fileName);
 
-        // 프로젝트 실행 파일변경 -> blogv2-1.0.jar
-        // 해당 실행파일 경로에 images 폴더가 필요함
+        // 이미지 파일 저장 경로 설정
         Path filePath = Paths.get(MyPath.IMG_PATH + fileName);
         try {
+            // 이미지 파일 저장
             Files.write(filePath, saveDTO.getCompanyPic().getBytes());
         } catch (Exception e) {
             throw new MyException(e.getMessage());
         }
+
+        // 기존의 리스트를 초기화
         List<WishSkill> wishSkillList = new ArrayList<>();
         List<WishDuty> wishDutyList = new ArrayList<>();
 
+        // Notice 엔터티 생성
         Notice notice = Notice.builder()
                 .title(saveDTO.getTitle())
                 .companyName(saveDTO.getCompanyName())
@@ -82,10 +85,10 @@ public class NoticeService {
                 .qualification(saveDTO.getQualification())
                 .build();
 
-        // Notice 엔터티를 저장합니다.
+        // Notice 엔티티 저장
         noticeRepository.save(notice);
 
-        // 채용공고와 연관된 기술 스택을 가져와서 WishSkill 엔터티를 생성하고 저장합니다.
+        // 기술 스택 관련 정보 처리
         List<String> skillList = saveDTO.getWishSkills();
         for (String skillName : skillList) {
             Skill skill = skillRepository.findBySkillName(skillName);
@@ -94,14 +97,13 @@ public class NoticeService {
                         .notice(notice)
                         .skill(skill)
                         .build();
-                wishSkillList.add(wishSkill); // wishSkill을 리스트에 추가
+                wishSkillList.add(wishSkill);
             }
         }
-
-        // WishSkill 엔터티를 저장합니다.
+        // WishSkill 엔터티 저장
         wishSkillRepository.saveAll(wishSkillList);
 
-        // 채용공고와 연관된 직무를 가져와서 WishDuty 엔터티를 생성하고 저장합니다.
+        // 직무 관련 정보 처리
         List<String> dutyList = saveDTO.getWishDutys();
         for (String dutyName : dutyList) {
             Duty duty = dutyRepository.findByDutyName(dutyName);
@@ -110,12 +112,16 @@ public class NoticeService {
                         .notice(notice)
                         .duty(duty)
                         .build();
-                wishDutyList.add(wishDuty); // wishDuty를 리스트에 추가
+                wishDutyList.add(wishDuty);
             }
         }
-
-        // WishDuty 엔터티를 저장합니다.
+        // WishDuty 엔터티 저장
         wishDutyRepository.saveAll(wishDutyList);
+
+        // 이미지 URL 업데이트
+        notice.setCompanyPicUrl(fileName);
+
+        return notice;
     }
 
     // 채용공고삭제
@@ -124,6 +130,7 @@ public class NoticeService {
         noticeRepository.deleteById(id);
     }
 
+    // 채용공고수정
     @Transactional
     public Notice 수정화면(Integer id) {
         Notice notice = noticeRepository.findById(id)
@@ -142,7 +149,7 @@ public class NoticeService {
         return notice;
     }
 
-    // // 채용공고상세보기
+    // 채용공고상세보기
 
     public List<Notice> getAllNotices() {
         List<Notice> noties = noticeRepository.findAll();

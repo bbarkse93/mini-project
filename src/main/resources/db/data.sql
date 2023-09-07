@@ -16,14 +16,14 @@ values('company2', '1234', '회사z', '010-1234-5678', 'cos@nate.com', '00000000
 insert into resume_tb(title,personal_name,personal_email,phone_number,cover_letter,personal_pic_url,created_at) values('이력서1','쌀','ssar@nate.com','010-1234-5678','자기소개서','basic.png',NOW());
 insert into resume_tb(title,personal_name,personal_email,phone_number,cover_letter,personal_pic_url,created_at) values('이력서2','코스','cos@nate.com','010-1111-5678','자기소개서','basic.png',NOW());
  
-insert into notice_tb(company_email,company_info,company_name,created_at,intake,location,pay,period,phone_number,qualification,title)
-values('naver@nate.com','네이버정보','네이버',NOW(),'2명','서울','5000만원','21일간','010-1234-5678','사지멀쩡한 자','프론트급구');
-insert into notice_tb(company_email,company_info,company_name,created_at,intake,location,pay,period,phone_number,qualification,title)
-values('naver@nate.com','네이버정보','네이버',NOW(),'1명','서울','4500만원','21일간','010-1234-5678','사지멀쩡한 자','백엔드급구');
-insert into notice_tb(company_email,company_info,company_name,created_at,intake,location,pay,period,phone_number,qualification,title)
-values('kakao@nate.com','카카오정보','카카오',NOW(),'1명','부산','6000만원','14일간','010-1111-2222','사내규정','서버개발자구함');
-insert into notice_tb(company_email,company_info,company_name,created_at,intake,location,pay,period,phone_number,qualification,title)
-values('kakao@nate.com','카카오정보','카카오',NOW(),'1명','제주','8000만원','30일간','010-1111-2222','사내규정','풀스택개발자');
+insert into notice_tb(company_email,company_info,company_name,company_pic_url,created_at,intake,location,pay,period,phone_number,qualification,title)
+values('naver@nate.com','네이버정보','네이버','basic.png',NOW(),'2명','서울','5000만원','21일간','010-1234-5678','사지멀쩡한 자','프론트급구');
+insert into notice_tb(company_email,company_info,company_name,company_pic_url,created_at,intake,location,pay,period,phone_number,qualification,title)
+values('naver@nate.com','네이버정보','네이버','basic.png',NOW(),'1명','서울','4500만원','21일간','010-1234-5678','사지멀쩡한 자','백엔드급구');
+insert into notice_tb(company_email,company_info,company_name,company_pic_url,created_at,intake,location,pay,period,phone_number,qualification,title)
+values('kakao@nate.com','카카오정보','카카오','basic.png',NOW(),'1명','부산','6000만원','14일간','010-1111-2222','사내규정','서버개발자구함');
+insert into notice_tb(company_email,company_info,company_name,company_pic_url,created_at,intake,location,pay,period,phone_number,qualification,title)
+values('kakao@nate.com','카카오정보','카카오','basic.png',NOW(),'1명','제주','8000만원','30일간','010-1111-2222','사내규정','풀스택개발자');
 
 INSERT INTO apply_tb (notice_id, resume_id, status, user_id) VALUES (1, 1, true, 1); 
 INSERT INTO apply_tb (notice_id, resume_id, status, user_id) VALUES (2, 1, true, 1); 
