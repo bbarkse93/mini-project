@@ -40,5 +40,16 @@ public class ResumeRequest {
     private List<String> wishSkills;
     private List<String> wishDutys;
   }
+   
+  @Getter
+  @Setter
+  public static class ResumeDTO {
+    private String title;
+    private String personalName;
+    private String personalEmail;
+    private String phoneNumber;
+    private String coverLetter;
+
+}
 
 }

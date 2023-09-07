@@ -23,6 +23,7 @@ import shop.mtcoding.blogv2.wishduty.WishDuty;
 import shop.mtcoding.blogv2.wishduty.WishDutyRepository;
 import shop.mtcoding.blogv2.wishskill.WishSkill;
 import shop.mtcoding.blogv2.wishskill.WishSkillRepository;
+import shop.mtcoding.blogv2.resume.ResumeRequest.ResumeDTO;
 
 @Service
 public class ResumeService {
@@ -145,5 +146,23 @@ public class ResumeService {
     public Resume getResumeById(Integer resumeId) {
         return null;
     }
+
+
+    
+       public void updateUserApplyStatus(ResumeDTO resumeDTO) {
+          {
+        // ResumeDTO를 Resume 엔티티로 변환
+        Resume resume = new Resume();
+        resume.setTitle(resumeDTO.getTitle());
+        resume.setPersonalName(resumeDTO.getPersonalName());
+        resume.setPersonalEmail(resumeDTO.getPersonalEmail());
+        resume.setPhoneNumber(resumeDTO.getPhoneNumber());
+        resume.setCoverLetter(resumeDTO.getCoverLetter());
+
+        // 이력서 정보 업데이트
+        // userApplyStatusRepository를 사용하여 데이터베이스 업데이트
+    }
+    }
+
 
 }
