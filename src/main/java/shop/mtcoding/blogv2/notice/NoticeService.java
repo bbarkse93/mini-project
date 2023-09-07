@@ -215,4 +215,9 @@ public class NoticeService {
         return noties;
     }
 
+    public Notice 공고상세보기(Integer id) {
+        Notice notice = noticeRepository.findById(id).get();
+        return notice;
+    }
+
 }

@@ -8,22 +8,24 @@
             <hr>
             <div class="notice-detail-form">
                 <div>
-                    <h4 class="m-3"><strong>공고제목</strong></h4>
-                    <div class="info-box m-3"></div>
+
                     <div class="detail-comp-name mt-3">
-                        <h4><strong>기업명</strong></h4>
+                        <h4><strong>{{noticeDetail.companyName}}</strong></h4>
+                        <div class="info-box m-3">
+                            <h4 class=""><strong>{{noticeDetail.title}}</strong></h4>
+                        </div>
                     </div>
                     <div class="info-box m-3">
-                        <img src="../images/company.jpg">
+                        <img src="/images/company.jpg">
                     </div>
                 </div>
                 <div class="info-box2 m-3">
                     <h2>모집인원</h2>
-                    <p>0명</p>
+                    <p>{{noticeDetail.intake}}</p>
                     <h2>모집기간</h2>
                     <p>2023/09/01~2023/12/25</p>
                     <h2>연봉</h2>
-                    <p>3500만원</p>
+                    <p>{{noticeDetail.pay}}</p>
                 </div>
             </div>
             <hr>
@@ -31,22 +33,26 @@
                 <div class="m-3">
                     <h4><strong>채용분야</strong></h4>
                     <div class="d-flex flex-wrap m-3">
-                        <div class="p-2 skill">개발 전체</div>
-                        <div class="p-2 skill">소프트웨어 엔지니어</div>
-                        <div class="p-2 skill">웹 개발자</div>
-                        <div class="p-2 skill">서버 개발자</div>
-                        <div class="p-2 skill">자바 개발자</div>
+                        {{#noticeDetail.WishDutys}}
+                        <div class="p-2 skill">{{dutys}}</div>
+                        <div class="p-2 skill">{{dutys}}</div>
+                        <div class="p-2 skill">{{dutys}}</div>
+                        <div class="p-2 skill">{{dutys}}</div>
+                        <div class="p-2 skill">{{dutys}}</div>
+                        {{/noticeDetail.WishDutys}}
                     </div>
                 </div>
                 <hr>
                 <div class="m-3">
                     <h4><strong>기술스택</strong></h4>
                     <div class="d-flex flex-wrap m-3">
-                        <div class="p-2 skill">Java</div>
-                        <div class="p-2 skill">JavaScript</div>
-                        <div class="p-2 skill">node.js</div>
-                        <div class="p-2 skill">Python</div>
-                        <div class="p-2 skill">Spring</div>
+                        {{#noticeDetail.WishSkills}}
+                        <div class="p-2 skill">{{skill}}</div>
+                        <div class="p-2 skill">{{skill}}</div>
+                        <div class="p-2 skill">{{skill}}</div>
+                        <div class="p-2 skill">{{skill}}</div>
+                        <div class="p-2 skill">{{skill}}</div>
+                        {{/noticeDetail.WishSkills}}
                     </div>
                 </div>
             </div>
@@ -54,11 +60,11 @@
             <div class="d-flex justify-content-between">
                 <div class="detail m-3">
                     <h4><strong>기업정보</strong></h4>
-                    <div></div>
+                    <div>{{noticeDetail.CompanyInfo}}</div>
                 </div>
                 <div class="detail m-3">
                     <h4><strong>자격요건</strong></h4>
-                    <div></div>
+                    <div>{{noticeDetail.Qualification}}</div>
                 </div>
             </div>
             <br>

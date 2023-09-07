@@ -30,35 +30,32 @@
                 </div>
                 <hr />
                 <div class="list-group">
-
-   
-<div class="mb-3">
-    {{#individual}}
-    <div class="mb-3">
-        <a href="#" class="list-group-item list-group-item-action">
-            <div class="d-flex justify-content-between">
-                <div>
-                    <h4 class="mb-2">{{notice.title}}</h4>
-                    <h6 class="mb-2">{{notice.companyName}}</h6>
-                </div>
-                <div>
-                    {{#status}}
-                    <div class="mb-1">
-                        <div class="pass">합격</div>
+                    <div class="mb-3">
+                        {{#individual}}
+                        <div class="mb-3">
+                            <a href="#" class="list-group-item list-group-item-action">
+                                <div class="d-flex justify-content-between">
+                                    <div>
+                                        <h4 class="mb-2">{{notice.title}}</h4>
+                                        <h6 class="mb-2">{{notice.companyName}}</h6>
+                                    </div>
+                                    <div>
+                                        {{#status}}
+                                        <div class="mb-1">
+                                            <div class="pass">합격</div>
+                                        </div>
+                                        {{/status}}
+                                        {{^status}}
+                                        <div class="mb-1">
+                                            <div class="fail">불합격</div>
+                                        </div>
+                                        {{/status}}
+                                    </div>
+                                </div>
+                            </a>
+                        </div>
+                        {{/individual}}
                     </div>
-                    {{/status}}
-                    {{^status}}
-                    <div class="mb-1">
-                        <div class="fail">불합격</div>
-                    </div>
-                    {{/status}}
-                </div>
-            </div>
-        </a> 
-    </div>
-    {{/individual}}
-</div>
-
                     <div class="small-title mt-3">추천 공고</div>
                     <hr />
                     <div class="d-flex justify-content-around">
@@ -72,13 +69,9 @@
                         </a>
                         {{/notices}}
                     </div>
-
                 </div>
-                <script>
+            </div>
+        </div>
+    </div>
 
-
-   
-</script>
-  
-
-                {{> layout/footer}}
+    {{> layout/footer}}
