@@ -1,14 +1,19 @@
 package shop.mtcoding.blogv2.notice;
 
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
+import java.util.UUID;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import shop.mtcoding.blogv2._core.error.ex.MyException;
+import shop.mtcoding.blogv2._core.vo.MyPath;
 import shop.mtcoding.blogv2.duty.Duty;
 import shop.mtcoding.blogv2.duty.DutyRepository;
 import shop.mtcoding.blogv2.skill.Skill;
@@ -48,6 +53,18 @@ public class NoticeService {
     // 채용공고등록
     @Transactional
     public void 채용등록(NoticeRequest.SaveDTO saveDTO) {
+        UUID uuid = UUID.randomUUID(); // 랜덤한 해시값을 만들어줌
+        String fileName = uuid + "_" + saveDTO.getCompanyPic().getOriginalFilename();
+        System.out.println("fileName : " + fileName);
+
+        // 프로젝트 실행 파일변경 -> blogv2-1.0.jar
+        // 해당 실행파일 경로에 images 폴더가 필요함
+        Path filePath = Paths.get(MyPath.IMG_PATH + fileName);
+        try {
+            Files.write(filePath, saveDTO.getCompanyPic().getBytes());
+        } catch (Exception e) {
+            throw new MyException(e.getMessage());
+        }
         List<WishSkill> wishSkillList = new ArrayList<>();
         List<WishDuty> wishDutyList = new ArrayList<>();
 
@@ -56,6 +73,7 @@ public class NoticeService {
                 .companyName(saveDTO.getCompanyName())
                 .companyEmail(saveDTO.getCompanyEmail())
                 .phoneNumber(saveDTO.getPhoneNumber())
+                .companyPicUrl(fileName)
                 .companyInfo(saveDTO.getCompanyInfo())
                 .location(saveDTO.getLocation())
                 .intake(saveDTO.getIntake())
@@ -124,56 +142,6 @@ public class NoticeService {
         return notice;
     }
 
-    // @Transactional
-    // public void 채용수정(Integer id, NoticeRequest.UpdateDTO updateDTO) {
-    // // 공고 엔티티를 조회합니다.
-    // Notice notice = noticeRepository.findById(id).orElse(null);
-
-    // if (notice != null) {
-    // // 사용자가 입력한 내용을 사용하여 공고를 업데이트합니다.
-    // notice.setTitle(updateDTO.getTitle());
-    // notice.setCompanyInfo(updateDTO.getCompanyInfo());
-    // // 다른 필드도 업데이트...
-
-    // // 기존의 직무 및 기술 정보를 삭제합니다.
-    // wishDutyRepository.deleteByNoticeId(id);
-    // wishSkillRepository.deleteByNoticeId(id);
-
-    // // 업데이트된 직무 정보를 저장합니다.
-    // List<WishDuty> updatedWishDutys = createOrUpdateWishDutys(notice,
-    // updateDTO.getWishDutys());
-    // wishDutyRepository.saveAll(updatedWishDutys);
-
-    // // 업데이트된 기술 정보를 저장합니다.
-    // List<WishSkill> updatedWishSkills = createOrUpdateWishSkills(notice,
-    // updateDTO.getWishSkills());
-    // wishSkillRepository.saveAll(updatedWishSkills);
-
-    // // 업데이트된 공고를 저장합니다.
-    // noticeRepository.save(notice);
-    // }
-    // }
-
-    // private List<WishSkill> createOrUpdateWishSkills(Notice notice, String[]
-    // strings) {
-    // return null;
-    // }
-
-    // private List<WishDuty> createOrUpdateWishDutys(Notice notice, String[]
-    // strings) {
-    // return null;
-    // }
-
-    // @Transactional
-    // public List<WishDuty> getWishDutys(Integer id) {
-    // return wishDutyRepository.findByNoticeId(id);
-    // }
-
-    // @Transactional
-    // public List<WishSkill> getWishSkills(Integer id) {
-    // return wishSkillRepository.findByNoticeId(id);
-    // }
-
     // // 채용공고상세보기
 
     public List<Notice> getAllNotices() {
@@ -181,9 +149,11 @@ public class NoticeService {
         return noties;
     }
 
+    // 채용수정
     @Transactional
     public void 채용수정(Integer id, NoticeRequest.UpdateDTO updateDTO) {
         Optional<Notice> optionalNotice = noticeRepository.findById(id);
+
         if (optionalNotice.isPresent()) {
             Notice notice = optionalNotice.get();
             notice.setTitle(updateDTO.getTitle());
