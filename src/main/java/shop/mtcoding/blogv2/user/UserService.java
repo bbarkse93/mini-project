@@ -1,7 +1,5 @@
 package shop.mtcoding.blogv2.user;
 
-
-
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -11,8 +9,6 @@ import org.springframework.transaction.annotation.Transactional;
 import shop.mtcoding.blogv2._core.error.ex.MyApiException;
 import shop.mtcoding.blogv2._core.error.ex.MyException;
 import shop.mtcoding.blogv2._core.util.ApiUtil;
-import shop.mtcoding.blogv2.resume.Resume;
-import shop.mtcoding.blogv2.resume.ResumeRequest.ResumeDTO;
 import shop.mtcoding.blogv2.user.UserRequest.LoginDTO;
 import shop.mtcoding.blogv2.user.UserRequest.UpdateDTO;
 
@@ -43,7 +39,7 @@ public class UserService {
 
     public User 로그인(LoginDTO loginDTO) {
         User user = userRepository.findByUsername(loginDTO.getUsername());
-        
+
         if (user == null) {
             throw new MyException("아이디가 틀렸습니다");
         }
@@ -51,7 +47,7 @@ public class UserService {
         if (!user.getPassword().equals(loginDTO.getPassword())) {
             throw new MyException("비밀번호가 틀렸습니다");
         }
-        
+
         return user;
     }
 
@@ -72,13 +68,13 @@ public class UserService {
     }
 
     public ApiUtil<String> checkusername(String username) {
-       User user = userRepository.findByUsername(username);
-      
-       if (user != null) {
-        throw new MyApiException("유저네임을 사용할 수 없습니다");
-        
-       }
-       return new ApiUtil<String>(true, "유저네임을 사용할 수 있습니다");
+        User user = userRepository.findByUsername(username);
+
+        if (user != null) {
+            throw new MyApiException("유저네임을 사용할 수 없습니다");
+
+        }
+        return new ApiUtil<String>(true, "유저네임을 사용할 수 있습니다");
     }
 
     public String 개인정보구분() {
@@ -91,5 +87,4 @@ public class UserService {
         }
     }
 
- 
 }

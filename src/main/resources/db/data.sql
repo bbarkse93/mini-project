@@ -30,6 +30,9 @@ INSERT INTO apply_tb (notice_id, resume_id, status, user_id) VALUES (2, 1, true,
 INSERT INTO apply_tb (notice_id, resume_id, status, user_id) VALUES (3, 1, true, 1); 
 
 INSERT INTO scrap_tb (notice_id,user_id) VALUES (1,1);
+INSERT INTO scrap_tb (notice_id,user_id) VALUES (2,1);
+INSERT INTO scrap_tb (notice_id,user_id) VALUES (3,1);
+
 
 insert into skill_tb(skill_name) values('Java');
 insert into skill_tb(skill_name) values('MySQL');

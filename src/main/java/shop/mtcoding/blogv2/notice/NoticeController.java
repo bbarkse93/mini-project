@@ -46,9 +46,16 @@ public class NoticeController {
     }
 
     // 공고상세보기 view
-    @GetMapping("/noticeDetail")
-    public String detail() {
-        return "/notice/noticeDetail";
+    @GetMapping("/notice/noticeDetail/{id}")
+    public String detail(@PathVariable Integer id, HttpServletRequest request) {
+        Notice noticeDetail = noticeService.공고상세보기(id);
+        List<WishSkill> wishSkills = noticeService.getWishSkills(id);
+        List<WishDuty> wishDutys = noticeService.getWishDutys(id);
+        request.setAttribute("noticeDetail", noticeDetail);
+        request.setAttribute("wishSkills", wishSkills);
+        request.setAttribute("wishDutys", wishDutys);
+        // noticeDetail.get()
+        return "notice/noticeDetail";
     }
 
     // 채용공고등록 view
