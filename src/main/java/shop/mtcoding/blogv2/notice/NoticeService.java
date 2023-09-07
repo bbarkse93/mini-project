@@ -42,7 +42,6 @@ public class NoticeService {
     private WishDutyRepository wishDutyRepository;
 
     public List<Notice> findAll() {
-
         return noticeRepository.findAll();
     }
 

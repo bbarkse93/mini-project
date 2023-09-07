@@ -1,6 +1,6 @@
 {{> layout/header}}
 <style>
-  .company_img {
+  .company-img {
     width: 250px;
     height: 180px;
     border-radius: 10px;
@@ -19,7 +19,7 @@
         onchange="changePic(event)" />
       <label for="imageInput">
         <div class="profile-image" style="margin-top: 20px; margin-right: 20px">
-          <img id="preview" class="company_img" src="/images/company.jpg">
+          <img id="preview" class="company-img" src="/images/company.jpg">
           <!-- 이미지 업로드 버튼 -->
           <button type="button" class="btn btn-warning" style="margin-top: 20px; width: auto;"
             onclick="document.getElementById('imageInput').click();">
@@ -27,6 +27,7 @@
           </button>
         </div>
       </label>
+
       <div class="recruit-info">
         <h4 class="mt-3">회사명</h4>
         <input type="text" class="form-control input" id="coName" placeholder="회사명을 입력하세요" name="companyName"
@@ -71,6 +72,7 @@
         {{/dutys}}
       </ul>
     </div>
+
     <h4 class="mt-4">기술 스택</h4>
     <p>필요한 기술: <span id="selectedTechOptions">None</span></p>
     <div class="dropdown">

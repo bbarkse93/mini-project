@@ -25,6 +25,8 @@ import shop.mtcoding.blogv2.apply.Apply;
 import shop.mtcoding.blogv2.bookmark.Bookmark;
 import shop.mtcoding.blogv2.edu.Edu;
 import shop.mtcoding.blogv2.user.User;
+import shop.mtcoding.blogv2.wishduty.WishDuty;
+import shop.mtcoding.blogv2.wishskill.WishSkill;
 
 @NoArgsConstructor
 @Setter
@@ -61,6 +63,12 @@ public class Resume {
     @ManyToOne(fetch = FetchType.LAZY)
     private Edu edu;
 
+    @OneToMany(mappedBy = "notice", fetch = FetchType.LAZY)
+    private List<WishSkill> wishSkills = new ArrayList<>();
+
+    @OneToMany(mappedBy = "notice", fetch = FetchType.LAZY)
+    private List<WishDuty> wishDutys = new ArrayList<>();
+
     @OneToMany(mappedBy = "resume", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
     private List<Apply> applies = new ArrayList<>();
 
@@ -72,7 +80,8 @@ public class Resume {
 
     @Builder
     public Resume(Integer id, String title, String personalName, String personalEmail, String phoneNumber,
-            String coverLetter, String personalPicUrl, User user, Edu edu, Timestamp createdAt) {
+            String coverLetter, String personalPicUrl, User user, Edu edu, List<WishSkill> wishSkills,
+            List<WishDuty> wishDutys, List<Apply> applies, List<Bookmark> bookmarks, Timestamp createdAt) {
         this.id = id;
         this.title = title;
         this.personalName = personalName;
@@ -82,7 +91,10 @@ public class Resume {
         this.personalPicUrl = personalPicUrl;
         this.user = user;
         this.edu = edu;
+        this.wishSkills = wishSkills;
+        this.wishDutys = wishDutys;
+        this.applies = applies;
+        this.bookmarks = bookmarks;
         this.createdAt = createdAt;
     }
-
 }
