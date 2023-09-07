@@ -292,6 +292,7 @@ h4 {
 }
 
 .submit {
+    justify-self: center;
     margin-top: 50px;
     width: 100%;
 }
@@ -656,6 +657,15 @@ h4 {
     font-weight: bold;
 }
 
+.login-btn {
+    width: 304.47px;
+    height: 50px;
+    border-radius: 25px;
+    border: none;
+    background-color: var(--blue);
+    color: white;
+}
+
 /*==========join==========*/
 
 .wrap {
@@ -744,8 +754,10 @@ h4 {
 
 /*noticeDetail*/
 
-.recruit-main {
-    margin-inline: 400px;
+.notice-detail-form {
+    display: flex;
+    justify-content: space-between;
+
 }
 
 .card {
@@ -766,30 +778,36 @@ h4 {
 
 .info-box {
     border: 1px solid #ccc;
-    padding: 30px;
-    width: 600px;
-    height: 200px;
+    border-radius: 15px;
+    padding: 20px;
+    width: 400px;
     box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.2);
+    text-align: center;
 }
 
 .info-box2 {
+    display: flex;
     border: 1px solid #ccc;
+    border-radius: 15px;
     padding: 30px;
-    width: 600px;
+    width: 400px;
     box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.2);
+    flex-direction: column;
+    flex-wrap: wrap;
+    justify-content: space-evenly;
 }
 
 .detail {
     border: 1px solid #ccc;
     padding: 20px;
-    width: 600px;
-    height: 500px;
+    border-radius: 15px;
+    width: 400px;
+    height: 150px;
     box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.2);
 }
 
-.recruit-detail {
-    margin-inline: 200px;
-    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.2);
+.detail-comp-name {
+    text-align: center;
 }
 
 .skill {
