@@ -69,8 +69,17 @@ public class ResumeController {
     // 이력서등록하기
     @PostMapping("/resumeSave")
     public String resumeSave(ResumeRequest.SaveDTO saveDTO) {
-        resumeService.이력서등록(saveDTO);
+        resumeService.이력서등록(saveDTO); 
         return "redirect:/myResumeList";
+    }
+
+    @GetMapping("/resume/{id}/Detail")
+    public String 이력서상세보기(@PathVariable Integer id,HttpServletRequest request){
+         Resume resume = resumeService.findById(id);
+        request.setAttribute("resume", resume);
+          List<Resume> resumeList = resumeService.findAll();
+        request.setAttribute("resumeList", resumeList);
+        return "resume/resumeDetail";
     }
 
 }
