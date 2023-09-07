@@ -2,7 +2,7 @@
 <style>
   .company-img {
     width: 250px;
-    height: 180px;
+    height: 225px;
     border-radius: 10px;
   }
 </style>
@@ -29,22 +29,22 @@
       </label>
 
       <div class="recruit-info">
-        <h4 class="mt-3">회사명</h4>
+        <h4 class="my-3">회사명</h4>
         <input type="text" class="form-control input" id="coName" placeholder="회사명을 입력하세요" name="companyName"
           required />
-        <h4 class="mt-3">이메일</h4>
+        <h4 class="my-3">이메일</h4>
         <input type="text" class="form-control input" id="coEmail" placeholder="이메일을 입력하세요" name="companyEmail"
           required />
-        <h4 class="mt-3">전화번호</h4>
+        <h4 class="my-3">전화번호</h4>
         <input type="text" class="form-control input" id="coCallNumber" placeholder="전화번호를 입력하세요" name="phoneNumber"
           required />
       </div>
     </div>
 
 
-    <h4 class="mt-4">기업정보</h4>
+    <h4 class="my-4">기업정보</h4>
     <input type="text" class="form-control input" id="coInfo" placeholder="정보를 입력하세요" name="companyInfo" required />
-    <h4 class="mt-4">지역</h4>
+    <h4 class="my-4">지역</h4>
     <div class="d-flex justify-content-between">
       {{#locations}}
       <div class="form-check">
@@ -56,7 +56,7 @@
 
 
     <hr />
-    <h4 class="mt-4">채용직무</h4>
+    <h4 class="my-4">채용직무</h4>
     <p>선택한 직무: <span id="selectedDevOptions">None</span></p>
     <div class="dropdown">
       <button class="btn btn-primary dropdown-toggle" type="button" id="devDropdownButton" data-bs-toggle="dropdown"
@@ -73,7 +73,7 @@
       </ul>
     </div>
 
-    <h4 class="mt-4">기술 스택</h4>
+    <h4 class="my-4">기술 스택</h4>
     <p>필요한 기술: <span id="selectedTechOptions">None</span></p>
     <div class="dropdown">
       <button class="btn btn-primary dropdown-toggle" type="button" id="techDropdownButton" data-bs-toggle="dropdown"

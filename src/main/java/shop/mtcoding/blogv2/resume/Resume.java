@@ -63,10 +63,10 @@ public class Resume {
     @ManyToOne(fetch = FetchType.LAZY)
     private Edu edu;
 
-    @OneToMany(mappedBy = "notice", fetch = FetchType.LAZY)
+    @OneToMany(mappedBy = "resume", fetch = FetchType.LAZY)
     private List<WishSkill> wishSkills = new ArrayList<>();
 
-    @OneToMany(mappedBy = "notice", fetch = FetchType.LAZY)
+    @OneToMany(mappedBy = "resume", fetch = FetchType.LAZY)
     private List<WishDuty> wishDutys = new ArrayList<>();
 
     @OneToMany(mappedBy = "resume", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
