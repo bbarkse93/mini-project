@@ -1,8 +1,8 @@
 {{> layout/header}}
 <style>
   .company_img {
-    width: 200px;
-    height: 200px;
+    width: 250px;
+    height: 180px;
     border-radius: 10px;
   }
 </style>
@@ -21,7 +21,8 @@
         <div class="profile-image" style="margin-top: 20px; margin-right: 20px">
           <img id="preview" class="company_img" src="/images/company.jpg">
           <!-- 이미지 업로드 버튼 -->
-          <button type="button" onclick="document.getElementById('imageInput').click();">
+          <button type="button" class="btn btn-warning" style="margin-top: 20px; width: auto;"
+            onclick="document.getElementById('imageInput').click();">
             이미지 업로드
           </button>
         </div>

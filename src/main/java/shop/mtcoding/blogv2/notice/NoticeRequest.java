@@ -35,7 +35,6 @@ public class NoticeRequest {
     public static class UpdateDTO {
         private String title;
         private String companyInfo;
-        private String companyPicUrl;
         private String location;
         private String intake;
         private String pay;

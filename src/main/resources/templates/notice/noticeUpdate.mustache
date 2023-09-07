@@ -1,4 +1,11 @@
 {{> layout/header}}
+<style>
+    .company_img {
+        width: 250px;
+        height: 230px;
+        border-radius: 10px;
+    }
+</style>
 
 <div class="frame">
     <h1>채용공고 수정</h1>
@@ -9,8 +16,7 @@
 
         <div class="container-fluid d-flex">
             <div class="profile-image" style="margin-top: 20px; margin-right: 20px">
-                <!--<img class="image2" src="/images/너굴맨.jpg" name="companyPicUrl" />-->
-                <img id="preview" class="circle_avatar"" src=" /images/{{notice.companyPicUrl}}">
+                <img id="preview" class="company_img"" src=" /images/{{notice.companyPicUrl}}">
             </div>
             <div class="recruit-info">
                 <h4 class="mt-3">회사명</h4>

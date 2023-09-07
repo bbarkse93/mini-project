@@ -807,12 +807,11 @@ h4 {
 }
 
 .profile-image {
+    display: flex;
     width: auto;
-    /* 너비 강제 조절 */
     height: auto;
-    /* 높이 자동 조절 */
     margin-right: 20px;
-    /* 오른쪽 간격 */
+    flex-direction: column;
 }
 
 .recruit-info {
