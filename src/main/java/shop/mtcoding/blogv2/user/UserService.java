@@ -9,6 +9,8 @@ import org.springframework.transaction.annotation.Transactional;
 import shop.mtcoding.blogv2._core.error.ex.MyApiException;
 import shop.mtcoding.blogv2._core.error.ex.MyException;
 import shop.mtcoding.blogv2._core.util.ApiUtil;
+import shop.mtcoding.blogv2.resume.Resume;
+import shop.mtcoding.blogv2.resume.ResumeRequest.ResumeDTO;
 import shop.mtcoding.blogv2.user.UserRequest.LoginDTO;
 import shop.mtcoding.blogv2.user.UserRequest.UpdateDTO;
 
@@ -88,18 +90,18 @@ public class UserService {
     }
 
     public void updateUserApplyStatus(ResumeDTO resumeDTO) {
-          {
-        // ResumeDTO를 Resume 엔티티로 변환
-        Resume resume = new Resume();
-        resume.setTitle(resumeDTO.getTitle());
-        resume.setPersonalName(resumeDTO.getPersonalName());
-        resume.setPersonalEmail(resumeDTO.getPersonalEmail());
-        resume.setPhoneNumber(resumeDTO.getPhoneNumber());
-        resume.setCoverLetter(resumeDTO.getCoverLetter());
+        {
+            // ResumeDTO를 Resume 엔티티로 변환
+            Resume resume = new Resume();
+            resume.setTitle(resumeDTO.getTitle());
+            resume.setPersonalName(resumeDTO.getPersonalName());
+            resume.setPersonalEmail(resumeDTO.getPersonalEmail());
+            resume.setPhoneNumber(resumeDTO.getPhoneNumber());
+            resume.setCoverLetter(resumeDTO.getCoverLetter());
 
-        // 이력서 정보 업데이트
-        // userApplyStatusRepository를 사용하여 데이터베이스 업데이트
-    }
+            // 이력서 정보 업데이트
+            // userApplyStatusRepository를 사용하여 데이터베이스 업데이트
+        }
     }
 
 }
