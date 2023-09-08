@@ -27,11 +27,12 @@ public class ResumeRequest {
   @Getter
   @Setter
   public static class SaveDTO {
+    private Integer id;
     private String title;
     private String personalName;
     private String personalEmail;
-    private MultipartFile personalPic;
     private String phoneNumber;
+    private MultipartFile personalPic;
     private String coverLetter;
     private Timestamp createdAt;
     private List<String> wishSkills;
