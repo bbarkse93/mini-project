@@ -8,6 +8,8 @@ import java.util.List;
 import java.util.Optional;
 import java.util.UUID;
 
+import javax.servlet.http.HttpSession;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -19,6 +21,7 @@ import shop.mtcoding.blogv2.duty.DutyRepository;
 import shop.mtcoding.blogv2.resume.ResumeRequest.UpdateDTO;
 import shop.mtcoding.blogv2.skill.Skill;
 import shop.mtcoding.blogv2.skill.SkillRepository;
+import shop.mtcoding.blogv2.user.User;
 import shop.mtcoding.blogv2.wishduty.WishDuty;
 import shop.mtcoding.blogv2.wishduty.WishDutyRepository;
 import shop.mtcoding.blogv2.wishskill.WishSkill;
@@ -42,6 +45,9 @@ public class ResumeService {
     @Autowired
     private WishDutyRepository wishDutyRepository;
 
+    @Autowired
+    private HttpSession session;
+
     public Resume findById(Integer id) {
         return resumeRepository.findById(id).get();
     }
@@ -58,7 +64,8 @@ public class ResumeService {
 
     // 이력서등록
     @Transactional
-    public Resume 이력서등록(ResumeRequest.SaveDTO saveDTO) {
+    public Resume 이력서등록(ResumeRequest.SaveDTO saveDTO, Integer sessionUserId) {
+        User sessionUser = (User) session.getAttribute("sessionUserId");
         // 파일 이름 생성
         UUID uuid = UUID.randomUUID();
         String fileName = uuid + "_" + saveDTO.getPersonalPic().getOriginalFilename();
@@ -84,6 +91,8 @@ public class ResumeService {
                 .personalPicUrl(fileName)
                 .coverLetter(saveDTO.getCoverLetter())
                 .createdAt(saveDTO.getCreatedAt())
+                .edu(saveDTO.getEdu())
+                .user(User.builder().id(sessionUserId).build())
                 .build();
         resumeRepository.save(resume);
 

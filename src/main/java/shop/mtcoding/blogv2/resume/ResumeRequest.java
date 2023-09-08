@@ -37,6 +37,7 @@ public class ResumeRequest {
     private Timestamp createdAt;
     private List<String> wishSkills;
     private List<String> wishDutys;
+    private String edu;
   }
 
   @Getter

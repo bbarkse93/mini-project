@@ -8,6 +8,8 @@ import java.util.List;
 import java.util.Optional;
 import java.util.UUID;
 
+import javax.servlet.http.HttpSession;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -18,6 +20,7 @@ import shop.mtcoding.blogv2.duty.Duty;
 import shop.mtcoding.blogv2.duty.DutyRepository;
 import shop.mtcoding.blogv2.skill.Skill;
 import shop.mtcoding.blogv2.skill.SkillRepository;
+import shop.mtcoding.blogv2.user.User;
 import shop.mtcoding.blogv2.wishduty.WishDuty;
 import shop.mtcoding.blogv2.wishduty.WishDutyRepository;
 import shop.mtcoding.blogv2.wishskill.WishSkill;
@@ -41,17 +44,20 @@ public class NoticeService {
     @Autowired
     private WishDutyRepository wishDutyRepository;
 
+    @Autowired
+    private HttpSession session;
+
     public List<Notice> findAll() {
         return noticeRepository.findAll();
     }
 
     // 채용공고등록
     @Transactional
-    public Notice 채용등록(NoticeRequest.SaveDTO saveDTO) {
+    public Notice 채용등록(NoticeRequest.SaveDTO saveDTO, Integer sessionUserId) {
+        User sessionUser = (User) session.getAttribute("sessionUserId");
         // 파일 이름 생성
         UUID uuid = UUID.randomUUID();
         String fileName = uuid + "_" + saveDTO.getCompanyPic().getOriginalFilename();
-        System.out.println("fileName : " + fileName);
 
         // 이미지 파일 저장 경로 설정
         Path filePath = Paths.get(MyPath.IMG_PATH + fileName);
@@ -79,6 +85,7 @@ public class NoticeService {
                 .period(saveDTO.getPeriod())
                 .pay(saveDTO.getPay())
                 .qualification(saveDTO.getQualification())
+                .user(User.builder().id(sessionUserId).build())
                 .build();
 
         // Notice 엔티티 저장
@@ -123,7 +130,11 @@ public class NoticeService {
     // 채용공고삭제
     @Transactional
     public void 채용삭제(Integer id) {
+        // try {
         noticeRepository.deleteById(id);
+        // } catch (Exception e) {
+        // throw new MyException(id + "를 찾을 수 없어요");
+        // }
     }
 
     // 채용공고수정 view
