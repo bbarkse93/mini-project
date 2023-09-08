@@ -15,8 +15,10 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import shop.mtcoding.blogv2._core.util.ApiUtil;
+import shop.mtcoding.blogv2.apply.ApplyService;
 import shop.mtcoding.blogv2.notice.Notice;
 import shop.mtcoding.blogv2.notice.NoticeService;
+import shop.mtcoding.blogv2.resume.ResumeService;
 
 @Controller
 public class UserController {
@@ -30,6 +32,11 @@ public class UserController {
     @Autowired
     HttpSession session;
 
+    @Autowired
+    private ApplyService applyService;
+
+     @Autowired
+    private ResumeService resumeService;
     @GetMapping("/")
     public String index() {
         return "/index";
@@ -84,8 +91,13 @@ public class UserController {
     @GetMapping("/userInformation")
     private String 회원정보보기(HttpServletRequest request) {
         List<Notice> notices = noticeService.getAllNotices();
+        Long apply = applyService.지원개수();
+        Long resume = resumeService.총이력서();
         request.setAttribute("notices", notices);
+        request.setAttribute("apply", apply);
+        request.setAttribute("resume", resume);
 
+        
         return "user/userinformation";
     }
 

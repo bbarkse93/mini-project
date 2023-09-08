@@ -3,7 +3,6 @@ package shop.mtcoding.blogv2.resume;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
-import java.sql.Timestamp;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
@@ -17,7 +16,6 @@ import shop.mtcoding.blogv2._core.error.ex.MyException;
 import shop.mtcoding.blogv2._core.vo.MyPath;
 import shop.mtcoding.blogv2.duty.Duty;
 import shop.mtcoding.blogv2.duty.DutyRepository;
-import shop.mtcoding.blogv2.resume.ResumeRequest.ResumeDTO;
 import shop.mtcoding.blogv2.resume.ResumeRequest.UpdateDTO;
 import shop.mtcoding.blogv2.skill.Skill;
 import shop.mtcoding.blogv2.skill.SkillRepository;
@@ -202,6 +200,10 @@ public class ResumeService {
             }
             resumeRepository.save(resume);
         }
+    }
+
+    public Long 총이력서() {
+        return resumeRepository.findTotalCount();
     }
 }
 

@@ -19,4 +19,10 @@ public class ApplyService {
     public List<Apply> 지원현황조회(Integer userId){
         return applyRepository.findByUserId(1);
     }
+
+    public Long 지원개수() {
+        return applyRepository.findAllCoutnt();
+    }
+
+
 }

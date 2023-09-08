@@ -23,11 +23,25 @@
                         <a class="nav-link link" href="#">로그아웃</a>
                     </div>
                 </div>
+                <div class="small-title mt-3">추천 공고</div>
+                <hr />
+                <div class="d-flex justify-content-around">
+                    {{#notices}}
+                    <a class="card recommand-recruit" href="/noticeDetail">
+                        <div class="card-body home d-flex justify-content-center">
+                            <img class="recruit-image-box" src="../images/company.jpg" alt="공고 사진">
+                        </div>
+                        <h4 class="text-center">{{title}}</h4>
+                        <div class="text-center">{{companyName}}</div>
+                    </a>
+                    {{/notices}}
+                </div>
             </div>
             <div class="col-md-9">
                 <div class="d-flex justify-content-between pe-3 my-3">
                     <div class="small-title">지원 현황</div>
                 </div>
+                
                 <hr />
                 <div class="list-group">
 
@@ -59,19 +73,7 @@
     {{/individual}}
 </div>
 
-                    <div class="small-title mt-3">추천 공고</div>
-                    <hr />
-                    <div class="d-flex justify-content-around">
-                        {{#notices}}
-                        <a class="card recommand-recruit" href="/noticeDetail">
-                            <div class="card-body home d-flex justify-content-center">
-                                <img class="recruit-image-box" src="../images/company.jpg" alt="공고 사진">
-                            </div>
-                            <h4 class="text-center">{{title}}</h4>
-                            <div class="text-center">{{companyName}}</div>
-                        </a>
-                        {{/notices}}
-                    </div>
+         
 
                 </div>
                 <script>
