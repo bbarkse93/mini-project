@@ -17,6 +17,15 @@ public class ApplyRequest {
          private Resume resume;
 
     }
+    @Getter
+    @Setter
+    public static class applyDTO {
+        private Boolean status;
+         private Notice notice;
+         private  User user;
+         private Resume resume;
+
+    }
 
 
 

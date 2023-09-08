@@ -58,5 +58,5 @@ public class ApplyController {
     public String apply() {
         applyService.지원하기();
         return "redirect:/userApplyStatus/1";
-    }
+}
 }

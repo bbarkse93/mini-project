@@ -20,7 +20,7 @@
   <!-- 이미지 파일 삽입, 이미지 파일과 이름, 이메일, 전화번호 나란히 정렬 -->
   <div class="container-fluid d-flex">
     <div class="profile-image" style="margin-top: 20px; margin-right: 20px">
-      <img id="preview" class="profile-img"" src=" /images/{{resume.personalPicUrl}}">
+      <img id="preview" class="profile-img" src=" /images/{{resume.personalPicUrl}}">
     </div>
     <div class="info2">
       <h4 class="mt-3">이름</h4>
@@ -70,13 +70,13 @@
 
   <!-- 이력서 정보 입력 필드 등 -->
   <form action="/apply/{{id}}/update" method="POST" enctype="application/x-www-form-urlencoded">
-    <button type="submit" class="btn btn-primary" style="width: 30%" id="approveButton" name="status" value="합격">
+    <button type="submit" class="btn btn-primary" style="width: 30%" id="approveButton" name="status" value="true">
       합격
     </button>
   </form>
   <!-- 간격을 주기 위해 아래의 div 요소를 사용합니다. -->
   <div style="width: 10px;"></div>
-  <button type="submit" class="btn btn-danger" style="width: 30%" id="saveButton" name="status" value="불합격">
+  <button type="submit" class="btn btn-danger" style="width: 30%" id="saveButton" name="status" value="false">
     불합격
   </button>
 </div>
