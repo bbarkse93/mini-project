@@ -4,36 +4,28 @@ import java.util.List;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.crossstore.ChangeSetPersister.NotFoundException;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import shop.mtcoding.blogv2.apply.ApplyRequest.applyDTO;
 import shop.mtcoding.blogv2.notice.Notice;
-import shop.mtcoding.blogv2.notice.NoticeRepository;
 import shop.mtcoding.blogv2.resume.Resume;
-import shop.mtcoding.blogv2.resume.ResumeRepository;
 import shop.mtcoding.blogv2.user.User;
-import shop.mtcoding.blogv2.user.UserRepository;
 
 @Service
 public class ApplyService {
 
     @Autowired
-
-    private  ApplyRepository applyRepository;
-    private  NoticeRepository noticeRepository;
-    private  UserRepository userRepository;
-    private  ResumeRepository resumeRepository;
+    private ApplyRepository applyRepository;
 
     public List<Apply> getAppliesByStatus(Integer userId) {
         // Assuming you have a method in your repository to fetch applies by user ID
+
         return applyRepository.findByUserId(userId);
     }
 
     public List<Apply> 지원현황조회(Integer userId) {
         // Assuming you have a method in your repository to fetch applies by user ID
-        return applyRepository.findByUserId(1);
+        return applyRepository.findByUserId(userId);
     }
 
     public Long 지원개수() {
@@ -55,15 +47,12 @@ public class ApplyService {
         }
     }
 
-
-
-  
     @Transactional
-    public void 지원하기() {
+    public void 지원하기(ApplyRequest.ApplyDTO applyDTO) {
         Apply apply = Apply.builder()
-                .notice(Notice.builder().id(1).build())
-                .resume(Resume.builder().id(1).build())
-                .user(User.builder().id(1).build())
+                .notice(Notice.builder().id(applyDTO.getNoticeId()).build())
+                .resume(Resume.builder().id(applyDTO.getResumeId()).build())
+                .user(User.builder().id(applyDTO.getUserId()).build())
                 .status(true)
                 .build();
         applyRepository.save(apply);

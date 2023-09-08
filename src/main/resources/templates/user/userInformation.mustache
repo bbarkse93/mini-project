@@ -15,7 +15,7 @@
                     <hr />
                     <div>
                         <a class="nav-link link" href="/myResumeList">이력서 관리</a>
-                        <a class="nav-link link" href="/userApplyStatus/1">지원현황</a>
+                        <a class="nav-link link" href="/userApplyStatus/{{user.id}}">지원현황</a>
                         <a class="nav-link link" href="/userScrapCompany">관심기업</a>
                         <hr />
                         <a class="nav-link link" href="/userUpdate">개인정보 수정</a>
@@ -28,13 +28,13 @@
                     <div class="small-title">지원 현황</div>
                 </div>
                 <hr />
-                <div class="card apply-card">
+                <div class="apply-card">
                     <div class="row text-center">
                         <div class="col-md-4">
                             <h5>총지원</h5>
                             <div>{{apply}}개</div>
                         </div>
-                        <div class="col-md-4">
+                        <div class="col-md-4 loading">
                             <h5>대기중</h5>
                             <div>0개</div>
                         </div>

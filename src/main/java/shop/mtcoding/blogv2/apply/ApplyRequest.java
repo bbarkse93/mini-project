@@ -12,24 +12,20 @@ public class ApplyRequest {
     @Setter
     public static class UpdateDTO {
         private Boolean status;
-         private Notice notice;
-         private  User user;
-         private Resume resume;
+        private Notice notice;
+        private User user;
+        private Resume resume;
 
     }
+
     @Getter
     @Setter
-    public static class applyDTO {
+    public static class ApplyDTO {
         private Boolean status;
-         private Notice notice;
-         private  User user;
-         private Resume resume;
+        private Integer noticeId;
+        private Integer userId;
+        private Integer resumeId;
 
     }
 
-
-
-
-    
-    
 }

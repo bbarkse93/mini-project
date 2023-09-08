@@ -920,8 +920,20 @@ h4 {
     width: 50%;
 }
 
+
 .apply-card {
     width: 100%;
+    margin: 10px 0;
+    border: 1px solid var(--borderLine);
+    padding: 10px;
+    border-radius: 10px;
+    box-shadow: 1px 1px 2px var(--bs-body-color);
+}
+
+.loading {
+    border-left: 1px solid #000;
+    border-right: 1px solid #000;
+
 }
 
 .recommand-notice {
