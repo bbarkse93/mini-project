@@ -56,9 +56,9 @@
         </div>
         <div class="small-title mt-3">추천 공고</div>
         <hr />
-        <div class="d-flex justify-content-around">
+        <div class="recommand-notice">
             {{#notices}}
-            <a class="card recommand-recruit" href="/noticeDetail">
+            <a class="card recommand-recruit" href="/noticeDetail/{{id}}">
                 <div class="card-body home d-flex justify-content-center">
                     <img class="recruit-image-box" src="../images/company.jpg" alt="공고 사진">
                 </div>
@@ -67,5 +67,6 @@
             </a>
             {{/notices}}
         </div>
-
-        {{> layout/footer}}
+    </div>
+</div>
+{{> layout/footer}}
