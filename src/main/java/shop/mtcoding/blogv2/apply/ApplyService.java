@@ -24,6 +24,9 @@ public class ApplyService {
         return applyRepository.findByUserId(1);
     }
 
+    public Long 지원개수() {
+        return applyRepository.findAllCoutnt();
+    }
 
     @Transactional
     public void 기업지원관리(Integer id, ApplyRequest.UpdateDTO updateDTO) {
