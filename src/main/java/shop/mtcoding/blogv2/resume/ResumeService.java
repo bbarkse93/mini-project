@@ -17,9 +17,7 @@ import shop.mtcoding.blogv2._core.error.ex.MyException;
 import shop.mtcoding.blogv2._core.vo.MyPath;
 import shop.mtcoding.blogv2.duty.Duty;
 import shop.mtcoding.blogv2.duty.DutyRepository;
-import shop.mtcoding.blogv2.resume.ResumeRequest.UpdateDTO;
 import shop.mtcoding.blogv2.resume.ResumeRequest.ResumeDTO;
-
 import shop.mtcoding.blogv2.skill.Skill;
 import shop.mtcoding.blogv2.skill.SkillRepository;
 import shop.mtcoding.blogv2.user.User;

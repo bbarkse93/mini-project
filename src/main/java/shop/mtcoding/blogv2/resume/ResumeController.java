@@ -21,9 +21,6 @@ import shop.mtcoding.blogv2.notice.NoticeService;
 import shop.mtcoding.blogv2.skill.Skill;
 import shop.mtcoding.blogv2.skill.SkillService;
 import shop.mtcoding.blogv2.user.User;
-import shop.mtcoding.blogv2.user.UserService;
-import shop.mtcoding.blogv2.wishduty.WishDuty;
-import shop.mtcoding.blogv2.wishskill.WishSkill;
 
 @Controller
 public class ResumeController {
@@ -42,9 +39,6 @@ public class ResumeController {
 
     @Autowired
     private EduService eduService;
-
-    @Autowired
-    private UserService userService;
 
     @Autowired
     private HttpSession session;
@@ -80,16 +74,6 @@ public class ResumeController {
         request.setAttribute("resume", resume);
 
         return "resume/resumeUpdateForm";
-    }
-
-    @GetMapping("/myResumeList")
-    public String 나의이력서관리(HttpServletRequest request) {
-        List<Notice> notices = noticeService.getAllNotices();
-
-        request.setAttribute("notices", notices);
-        List<Resume> resumeList = resumeService.findAll();
-        request.setAttribute("resumeList", resumeList);
-        return "resume/myResumeList";
     }
 
     // 이력서 등록 view
