@@ -12,6 +12,7 @@
     --green: #198754;
     --pass: #20c997;
     --cyan: #0dcaf0;
+    --borderLine: #A9A9A9;
 }
 
 body {
@@ -897,4 +898,17 @@ h4 {
     border-radius: 15px;
     text-align: center;
     width: 75px;
+}
+
+/*resumeDetail*/
+
+.card2 {
+    border: 1px solid var(--borderLine);
+    padding: 10px;
+    border-radius: 5px;
+
+    background-color: #fff;
+
+
+
 }
