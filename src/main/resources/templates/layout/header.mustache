@@ -81,7 +81,7 @@
                 display: block;
             }
 
-            .d-flex.justify-content-around {
+            .header-link {
                 display: none !important;
             }
         }
@@ -111,7 +111,7 @@
                     </li>
                 </ul>
             </div>
-            <div class="d-flex justify-content-around">
+            <div class="d-flex justify-content-around header-link">
                 <ul class="navbar-nav nav-item2">
                     <li class="nav-item">
                         <img src="/images/search.png" alt="">
@@ -194,6 +194,37 @@
                         <a href="/logout">로그아웃</a>
                     </li>
                     {{/sessionUser}}
+                </div>
+            </div>
+        </div>
+
+        <div class="modal" id="myModal">
+            <div class="modal-dialog">
+                <div class="modal-content">
+
+                    <!-- Modal Header -->
+                    <div class="modal-header">
+                        <h4 class="modal-title">선택해주세요</h4>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+                    </div>
+
+                    <!-- Modal body -->
+                    <div class="image-container text-center">
+
+                        <a href="http://localhost:8080/userJoinForm">
+                            <img src="/images/개인회원.png" alt="개인회원 이미지">
+                        </a>
+                        <a href="http://localhost:8080/compJoinForm">
+                            <img src="/images/기업회원.png" alt="기업회원 이미지">
+                        </a>
+
+                    </div>
+
+                    <!-- Modal footer -->
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Close</button>
+                    </div>
+
                 </div>
             </div>
         </div>

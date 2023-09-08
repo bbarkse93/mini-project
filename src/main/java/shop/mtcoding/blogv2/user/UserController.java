@@ -27,13 +27,14 @@ public class UserController {
     private NoticeService noticeService;
 
     @Autowired
-    HttpSession session;
+    private HttpSession session;
 
     @Autowired
     private ApplyService applyService;
 
-     @Autowired
+    @Autowired
     private ResumeService resumeService;
+
     @GetMapping("/")
     public String index() {
         return "/index";
@@ -86,15 +87,19 @@ public class UserController {
     }
 
     @GetMapping("/userInformation")
-    private String 회원정보보기(HttpServletRequest request) {
+    private String 회원정보보기(Integer id, HttpServletRequest request) {
+        User sessionUser = (User) session.getAttribute("sessionUser");
+
         List<Notice> notices = noticeService.getAllNotices();
         Long apply = applyService.지원개수();
         Long resume = resumeService.총이력서();
+        User user = userService.회원정보보기(sessionUser.getId());
         request.setAttribute("notices", notices);
         request.setAttribute("apply", apply);
         request.setAttribute("resume", resume);
+        request.setAttribute("user", user);
+        System.out.println("test3: " + user.getId());
 
-        
         return "user/userinformation";
     }
 
@@ -104,18 +109,18 @@ public class UserController {
 
         User user = userService.회원정보보기(sessionUser.getId());
 
-        session.setAttribute("user", user);
+        request.setAttribute("user", user);
 
         return "user/userUpdate";
     }
 
     @PostMapping("/userupdate1")
-    public String 개인정보수정(UserRequest.UpdateDTO updateDTO) {
+    public String 개인정보수정(HttpServletRequest request, UserRequest.UpdateDTO updateDTO) {
         User sessionUser = (User) session.getAttribute("sessionUser");
 
         User user = userService.회원수정(updateDTO, sessionUser.getId());
 
-        session.setAttribute("sessionUser", user);
+        request.setAttribute("sessionUser", user);
 
         return "redirect:/";
     }

@@ -9,16 +9,26 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 
+import shop.mtcoding.blogv2.notice.Notice;
+import shop.mtcoding.blogv2.notice.NoticeService;
+import shop.mtcoding.blogv2.user.User;
+import shop.mtcoding.blogv2.user.UserService;
+
 @Controller
 public class ApplyController {
     @Autowired
     private ApplyService applyService;
     @Autowired
     private HttpSession session;
+    @Autowired
+    private NoticeService noticeService;
+    @Autowired
+    private UserService userService;
 
     @GetMapping("/individual")
     public List<Apply> getIndividualApplies(@PathVariable Integer userId) {
-        return applyService.getAppliesByStatus(userId);
+        User sessionUser = (User) session.getAttribute("sessionUser");
+        return applyService.getAppliesByStatus(sessionUser.getId());
     }
 
     // @GetMapping("/userApplyStatus")
@@ -32,19 +42,27 @@ public class ApplyController {
     // }
     @GetMapping("/companyApplyList/{userId}")
     public String companyApplyList(@PathVariable Integer userId, HttpServletRequest request) {
-        List<Apply> individualApplies = applyService.getAppliesByStatus(userId);
+        User sessionUser = (User) session.getAttribute("sessionUser");
+        List<Apply> individualApplies = applyService.getAppliesByStatus(sessionUser.getId());
         request.setAttribute("individual", individualApplies);
         return "company/companyApplyList";
     }
 
-    @GetMapping("/userApplyStatus/{userId}")
-    public String getApplyStatus(HttpServletRequest request) {
+    @GetMapping("/userApplyStatus/{id}")
+    public String getApplyStatus(@PathVariable Integer id, HttpServletRequest request) {
         // 세션에서 userId를 가져옵니다.
-        Integer userId = (Integer) session.getAttribute("userId");
+        User sessionUser = (User) session.getAttribute("sessionUser");
         // userId를 사용하여 로직을 수행
-        List<Apply> individualApplies = applyService.지원현황조회(1);
+        List<Apply> individualApplies = applyService.지원현황조회(sessionUser.getId());
+        List<Notice> notices = noticeService.getAllNotices();
+        User user = userService.회원정보보기(sessionUser.getId());
+        System.out.println("test1: " + user.getId());
+        request.setAttribute("user", user);
+        System.out.println("test2: " + user.getId());
+        request.setAttribute("notices", notices);
         // HttpServletRequest에 데이터 추가
         request.setAttribute("individual", individualApplies);
+
         return "user/userApplyStatus";
     }
 
@@ -55,8 +73,8 @@ public class ApplyController {
     }
 
     @GetMapping("/apply")
-    public String apply() {
-        applyService.지원하기();
-        return "redirect:/userApplyStatus/1";
-}
+    public String apply(ApplyRequest.ApplyDTO applyDTO) {
+        applyService.지원하기(applyDTO);
+        return "redirect:/userApplyStatus";
+    }
 }

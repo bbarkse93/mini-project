@@ -15,7 +15,7 @@
                     <hr />
                     <div>
                         <a class="nav-link link" href="/myResumeList">이력서 관리</a>
-                        <a class="nav-link link" href="/userApplyStatus/1">지원현황</a>
+                        <a class="nav-link link" href="/userApplyStatus/{{user.id}}">지원현황</a>
                         <a class="nav-link link" href="/userScrapCompany">관심기업</a>
 
                         <hr />
@@ -56,9 +56,9 @@
         </div>
         <div class="small-title mt-3">추천 공고</div>
         <hr />
-        <div class="d-flex justify-content-around">
+        <div class="recommand-notice">
             {{#notices}}
-            <a class="card recommand-recruit" href="/noticeDetail">
+            <a class="card recommand-recruit" href="/noticeDetail/{{id}}">
                 <div class="card-body home d-flex justify-content-center">
                     <img class="recruit-image-box" src="../images/company.jpg" alt="공고 사진">
                 </div>
@@ -67,5 +67,6 @@
             </a>
             {{/notices}}
         </div>
-
-        {{> layout/footer}}
+    </div>
+</div>
+{{> layout/footer}}

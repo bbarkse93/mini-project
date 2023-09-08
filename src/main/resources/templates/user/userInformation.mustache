@@ -15,7 +15,7 @@
                     <hr />
                     <div>
                         <a class="nav-link link" href="/myResumeList">이력서 관리</a>
-                        <a class="nav-link link" href="/userApplyStatus/1">지원현황</a>
+                        <a class="nav-link link" href="/userApplyStatus/{{user.id}}">지원현황</a>
                         <a class="nav-link link" href="/userScrapCompany">관심기업</a>
                         <hr />
                         <a class="nav-link link" href="/userUpdate">개인정보 수정</a>
@@ -28,13 +28,13 @@
                     <div class="small-title">지원 현황</div>
                 </div>
                 <hr />
-                <div class="card">
+                <div class="apply-card">
                     <div class="row text-center">
                         <div class="col-md-4">
                             <h5>총지원</h5>
                             <div>{{apply}}개</div>
                         </div>
-                        <div class="col-md-4">
+                        <div class="col-md-4 loading">
                             <h5>대기중</h5>
                             <div>0개</div>
                         </div>
@@ -48,12 +48,12 @@
                 <div class="d-flex pe-3 my-3">
                     <div class="small-title">나의 이력서</div>
                 </div>
-                <div class="d-flex text-center">
-                    <div class="card col-lg-6 ">
+                <div class="d-flex text-center info-card">
+                    <div class="card">
                         <h5>대표이력서</h5>
                         <div>열정적인 웹 개발자</div>
                     </div>
-                    <div class="card col-lg-6">
+                    <div class="card">
                         <h5>총 이력서</h5>
                         <div>{{resume}}개</div>
                     </div>
@@ -62,7 +62,7 @@
                 <div class="d-flex pe-3 my-3">
                     <div class="small-title">관심 카테고리</div>
                 </div>
-                <div class="interest_category d-flex justify-content-around">
+                <div class="interest_category">
                     <div>
                         <div class="form-check custom-form-checkbox">
                             <input class="form-check-input custom-checkbox" type="checkbox" id="check1" name="option1"
@@ -119,9 +119,9 @@
         </div>
         <div class="small-title mt-3">추천 공고</div>
         <hr />
-        <div class="d-flex justify-content-around">
+        <div class="recommand-notice">
             {{#notices}}
-            <a class="card recommand-recruit" href="/noticeDetail">
+            <a class="card recommand-recruit" href="/noticeDetail/{{id}}">
                 <div class="card-body home d-flex justify-content-center">
                     <img class="recruit-image-box" src="../images/company.jpg" alt="공고 사진">
                 </div>

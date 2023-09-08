@@ -23,6 +23,7 @@ import shop.mtcoding.blogv2.notice.NoticeService;
 import shop.mtcoding.blogv2.skill.Skill;
 import shop.mtcoding.blogv2.skill.SkillService;
 import shop.mtcoding.blogv2.user.User;
+import shop.mtcoding.blogv2.user.UserService;
 
 @Controller
 public class ResumeController {
@@ -31,7 +32,7 @@ public class ResumeController {
     private ResumeService resumeService;
 
     @Autowired
-    private NoticeService noticeService;
+    private UserService userService;
 
     @Autowired
     private SkillService skillService;
@@ -50,9 +51,12 @@ public class ResumeController {
     public String 나의이력서관리(HttpServletRequest request) {
         // List<Notice> notices = noticeService.getAllNotices();
         // request.setAttribute("notices", notices);
+        User sessionUser = (User) session.getAttribute("sessionUser");
+        User user = userService.회원정보보기(sessionUser.getId());
         List<Resume> resumeList = resumeService.findAll();
         Collections.sort(resumeList, Comparator.comparing(Resume::getId).reversed());
         request.setAttribute("resumeList", resumeList);
+        request.setAttribute("user", user);
         return "resume/myResumeList";
     }
 
@@ -73,7 +77,14 @@ public class ResumeController {
 
         // 3. 핵심 로직
         Resume resume = resumeService.findById(id);
+        List<Skill> skills = skillService.findAll();
+        List<Duty> dutys = dutyService.findAll();
+        List<Edu> edus = eduService.findAll();
+
         request.setAttribute("resume", resume);
+        request.setAttribute("skills", skills);
+        request.setAttribute("dutys", dutys);
+        request.setAttribute("edus", edus);
 
         return "resume/resumeUpdateForm";
     }
