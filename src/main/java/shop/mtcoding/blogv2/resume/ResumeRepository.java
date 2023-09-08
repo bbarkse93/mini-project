@@ -7,4 +7,6 @@ public interface ResumeRepository extends JpaRepository<Resume, Integer> {
 
     @Query("SELECT COUNT(a) FROM Resume a")
     Long findTotalCount();
+
+    Resume findById(Resume resume);
 }
