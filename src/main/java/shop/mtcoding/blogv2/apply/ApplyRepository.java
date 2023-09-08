@@ -7,10 +7,13 @@ import org.springframework.data.jpa.repository.Query;
 
 public interface ApplyRepository extends JpaRepository<Apply ,Integer>{
 
-    List<Apply> findByStatus(boolean status);
+    List<Apply> findByUserId(Integer userId);
 
     
-    List<Apply> findByUserId(Integer userId);
+
+
+
+
     
     @Query("SELECT COUNT(a) FROM Apply a")
     Long findAllCoutnt();

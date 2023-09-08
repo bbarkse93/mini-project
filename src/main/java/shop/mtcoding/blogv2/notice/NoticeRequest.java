@@ -13,6 +13,7 @@ public class NoticeRequest {
     @Getter
     @Setter
     public static class SaveDTO {
+        private Integer id;
         private String title;
         private String companyName;
         private String companyEmail;

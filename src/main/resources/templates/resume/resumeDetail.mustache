@@ -2,7 +2,7 @@
 
 <div class="addResume">
   <h1>이력서 상세보기</h1>
-  <form action="//resume/{{resume.id}}/Detail" method="POST" enctype="application/x-www-form-urlencoded">
+  <form action="/apply/{{id}}/update" method="POST" enctype="application/x-www-form-urlencoded">
 
     <h4 class="mt-4">이력서 제목</h4>
     <input type="text" class="form-control input" id="resumeTitle" placeholder="Title" name="title" value="{{resume.title}}" >
@@ -108,15 +108,16 @@
 
 
    <div class="d-flex justify-content-center">
- <form action="/submitApproval" method="post">
+
   <!-- 이력서 정보 입력 필드 등 -->
-  <button type="submit" class="btn btn-primary" style="width: 30%" id="approveButton">
-    합격
-  </button>
-</form>
+ <form action="/apply/{{id}}/update" method="POST" enctype="application/x-www-form-urlencoded">
+      <button type="submit" class="btn btn-primary" style="width: 30%" id="approveButton" name="status" value="true">
+        합격
+      </button>
+    </form>
   <!-- 간격을 주기 위해 아래의 div 요소를 사용합니다. -->
   <div style="width: 10px;"></div>
-  <button type="submit" class="btn btn-danger" style="width: 30%" id="saveButton">
+  <button type="submit" class="btn btn-danger" style="width: 30%" id="saveButton" name="status" value="false">
     불합격
   </button>
 </div>
