@@ -69,35 +69,27 @@ public class ResumeController {
         return "redirect:/myResumeList"; // userResumeList 페이지로 리디렉션
     }
 
-    // 이력서수정하기 view
     @GetMapping("/resume/{id}/updateForm")
     public String updateForm(@PathVariable Integer id, HttpServletRequest request) {
-        // 수정할 공고 정보 및 관련된 직무 및 기술 정보를 불러와서 모델에 추가합니다.
-        Resume resume = resumeService.이력서수정화면(id);
-        List<Skill> skills = skillService.findAll();
-        List<Duty> dutys = dutyService.findAll();
-        List<Edu> edus = eduService.findAll();
-        request.setAttribute("skills", skills);
-        request.setAttribute("dutys", dutys);
-        request.setAttribute("edus", edus);
+        // 1. 인증 검사
 
-        List<WishDuty> wishDutys = resumeService.getWishDutys(id); // 직무 정보 가져오기
-        List<WishSkill> wishSkills = resumeService.getWishSkills(id); // 기술 정보 가져오기
-        request.setAttribute("wishDutys", wishDutys);
-        request.setAttribute("wishSkills", wishSkills);
+        // 2. 권한 체크
+
+        // 3. 핵심 로직
+        Resume resume = resumeService.findById(id);
         request.setAttribute("resume", resume);
+
         return "resume/resumeUpdateForm";
     }
 
-    // 이력서수정하기
-    @PostMapping("/resume/{id}/update")
-    public String update(@PathVariable Integer id, ResumeRequest.UpdateDTO updateDTO, HttpServletRequest request) {
-        Resume resume = resumeService.이력서수정화면(id);
-        request.setAttribute("resume", resume);
-        // 사용자가 입력한 내용을 사용하여 공고를 업데이트합니다.
+    @GetMapping("/myResumeList")
+    public String 나의이력서관리(HttpServletRequest request) {
+        List<Notice> notices = noticeService.getAllNotices();
 
-        resumeService.이력서수정(id, updateDTO);
-        return "redirect:/myResumeList";
+        request.setAttribute("notices", notices);
+        List<Resume> resumeList = resumeService.findAll();
+        request.setAttribute("resumeList", resumeList);
+        return "resume/myResumeList";
     }
 
     // 이력서 등록 view
@@ -124,7 +116,6 @@ public class ResumeController {
         return "redirect:/myResumeList";
     }
 
-    // 이력서상세보기
     @GetMapping("/resume/{id}/Detail")
     public String 이력서상세보기(@PathVariable Integer id, HttpServletRequest request) {
         Resume resume = resumeService.findById(id);
@@ -134,15 +125,15 @@ public class ResumeController {
         return "resume/resumeDetail";
     }
 
-    // @PostMapping("/submitApproval")
-    // public String submitApproval(ResumeRequest.ResumeDTO resumeDTO) {
+    @PostMapping("/submitApproval")
+    public String submitApproval(ResumeRequest.ResumeDTO resumeDTO) {
 
-    // System.out.println("이게되나?");
+        System.out.println("이게되나?");
 
-    // // 이력서 정보 업데이트 서비스 호출
-    // resumeService.updateUserApplyStatus(resumeDTO);
+        // 이력서 정보 업데이트 서비스 호출
+        resumeService.updateUserApplyStatus(resumeDTO);
 
-    // return "redirect:/userApplyStatus"; // 이동할 URL 지정
-    // }
+        return "redirect:/userApplyStatus"; // 이동할 URL 지정
+    }
 
 }
