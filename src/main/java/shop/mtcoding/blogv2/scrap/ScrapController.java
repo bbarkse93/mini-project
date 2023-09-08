@@ -7,6 +7,7 @@ import javax.servlet.http.HttpServletRequest;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 
 import shop.mtcoding.blogv2.notice.Notice;
 import shop.mtcoding.blogv2.notice.NoticeService;
@@ -32,4 +33,9 @@ public class ScrapController {
         return "user/userScrapCompany"; // 뷰 이름 반환
     }
 
+   @GetMapping("/notice/{id}/noticScrap")
+    public String 유저관심기업(@PathVariable Integer id, ScrapRequest.UserScrapDTO userScrapDTO) {
+        scrapService.관심기업(id,userScrapDTO);
+        return "redirect:/userScrapCompany";
+    }
 }

@@ -69,8 +69,11 @@
             </div>
             <br>
             <div class="d-flex justify-content-center">
+                
                 <button type="button" class="btn btn-primary btn-xl m-2">지원하기</button>
-                <button type="button" class="btn btn-primary btn-xl m-2">북마크</button>
+                <form action="/notice/{{id}}/noticScrap"  enctype="application/x-www-form-urlencoded">
+                <button type="submit" class="btn btn-primary btn-xl m-2">북마크</button>
+            </form>
             </div>
             <hr>
         </div>
