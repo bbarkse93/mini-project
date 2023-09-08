@@ -1,5 +1,7 @@
 package shop.mtcoding.blogv2.resume;
 
+import java.util.Collections;
+import java.util.Comparator;
 import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
@@ -46,10 +48,10 @@ public class ResumeController {
     // 일반회원정보(디폴트화면)
     @GetMapping("/myResumeList")
     public String 나의이력서관리(HttpServletRequest request) {
-        List<Notice> notices = noticeService.getAllNotices();
-
-        request.setAttribute("notices", notices);
+        // List<Notice> notices = noticeService.getAllNotices();
+        // request.setAttribute("notices", notices);
         List<Resume> resumeList = resumeService.findAll();
+        Collections.sort(resumeList, Comparator.comparing(Resume::getId).reversed());
         request.setAttribute("resumeList", resumeList);
         return "resume/myResumeList";
     }
