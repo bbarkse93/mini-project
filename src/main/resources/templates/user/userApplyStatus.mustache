@@ -41,7 +41,7 @@
                 <div class="d-flex justify-content-between pe-3 my-3">
                     <div class="small-title">지원 현황</div>
                 </div>
-                
+
                 <hr />
                 <div class="list-group">
                     <div class="mb-3">
@@ -53,17 +53,9 @@
                                         <h4 class="mb-2">{{notice.title}}</h4>
                                         <h6 class="mb-2">{{notice.companyName}}</h6>
                                     </div>
-                                    <div>
-                                        {{#status}}
-                                        <div class="mb-1">
-                                            <div class="pass">합격</div>
-                                        </div>
-                                        {{/status}}
-                                        {{^status}}
-                                        <div class="mb-1">
-                                            <div class="fail">불합격</div>
-                                        </div>
-                                        {{/status}}
+
+                                    <div class="mb-1">
+                                        <div class="pass">{{status}}</div>
                                     </div>
                                 </div>
                             </a>
