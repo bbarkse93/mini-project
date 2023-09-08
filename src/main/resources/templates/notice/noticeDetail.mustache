@@ -43,9 +43,11 @@
                 <div class="m-3">
                     <h4><strong>기술스택</strong></h4>
                     <div class="d-flex flex-wrap m-3">
+
                         {{#wishSkills}}
                         <div class="p-2 skill">{{skill.skillName}}</div>
                         {{/wishSkills}}
+
                     </div>
                 </div>
             </div>
@@ -62,7 +64,10 @@
             </div>
             <br>
             <div class="d-flex justify-content-center">
-                <button type="button" class="btn btn-primary btn-xl m-2">지원하기</button>
+
+                <form action="/apply" enctype="application/x-www-form-urlencoded">
+                    <button type="submit" class="btn btn-primary btn-xl m-2">지원하기</button>
+                </form>
 
                 <form action="/notice/{{id}}/noticScrap" enctype="application/x-www-form-urlencoded">
                     <button type="submit" class="btn btn-primary btn-xl m-2">북마크</button>

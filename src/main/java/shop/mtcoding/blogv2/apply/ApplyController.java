@@ -51,6 +51,12 @@ public class ApplyController {
     @PostMapping("/apply/{id}/update")
     public String update(@PathVariable Integer id, ApplyRequest.UpdateDTO updateDTO) {
         applyService.기업지원관리(id, updateDTO);
-        return "redirect:/companyApplyList/" + id;
+        return "redirect:/companyApplyList";
+    }
+
+    @GetMapping("/apply")
+    public String apply() {
+        applyService.지원하기();
+        return "redirect:/userApplyStatus/1";
     }
 }

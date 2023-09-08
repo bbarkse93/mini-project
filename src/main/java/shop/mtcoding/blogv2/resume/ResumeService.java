@@ -17,7 +17,9 @@ import shop.mtcoding.blogv2._core.error.ex.MyException;
 import shop.mtcoding.blogv2._core.vo.MyPath;
 import shop.mtcoding.blogv2.duty.Duty;
 import shop.mtcoding.blogv2.duty.DutyRepository;
+import shop.mtcoding.blogv2.resume.ResumeRequest.UpdateDTO;
 import shop.mtcoding.blogv2.resume.ResumeRequest.ResumeDTO;
+
 import shop.mtcoding.blogv2.skill.Skill;
 import shop.mtcoding.blogv2.skill.SkillRepository;
 import shop.mtcoding.blogv2.user.User;
@@ -138,7 +140,7 @@ public class ResumeService {
     }
 
     public void updateUserApplyStatus(ResumeDTO resumeDTO) {
-        {
+        
             // ResumeDTO를 Resume 엔티티로 변환
             Resume resume = new Resume();
             resume.setTitle(resumeDTO.getTitle());
@@ -149,7 +151,11 @@ public class ResumeService {
 
             // 이력서 정보 업데이트
             // userApplyStatusRepository를 사용하여 데이터베이스 업데이트
-        }
+        
+    }
+
+    public Long 총이력서() {
+        return resumeRepository.findTotalCount();
     }
 
 }
