@@ -48,10 +48,7 @@
                     <div class="d-flex flex-wrap m-3">
                         {{#noticeDetail.WishSkills}}
                         <div class="p-2 skill">{{skill}}</div>
-                        <div class="p-2 skill">{{skill}}</div>
-                        <div class="p-2 skill">{{skill}}</div>
-                        <div class="p-2 skill">{{skill}}</div>
-                        <div class="p-2 skill">{{skill}}</div>
+
                         {{/noticeDetail.WishSkills}}
                     </div>
                 </div>
@@ -69,11 +66,13 @@
             </div>
             <br>
             <div class="d-flex justify-content-center">
-                <button type="button" class="btn btn-primary btn-xl m-2">지원하기</button>
-                
-<form action="/notice/{{id}}/noticScrap"  enctype="application/x-www-form-urlencoded">
-    <button type="submit" class="btn btn-primary btn-xl m-2">북마크</button>
-</form>
+                <form action="/apply" enctype="application/x-www-form-urlencoded">
+                    <button type="submit" class="btn btn-primary btn-xl m-2">지원하기</button>
+                </form>
+
+                <form action="/notice/{{id}}/noticScrap" enctype="application/x-www-form-urlencoded">
+                    <button type="submit" class="btn btn-primary btn-xl m-2">북마크</button>
+                </form>
             </div>
             <hr>
         </div>
