@@ -42,18 +42,15 @@
 
   <!--파워 링크 이미지-->
   <div class="image-container">
-    <a href="http://www.naver.com" class="rounded-image">
-      <img src="/images/파워링크사진.png" />
-    </a>
-    <a href="http://www.naver.com" class="rounded-image">
-      <img src="/images/파워링크사진.png" />
-    </a>
-    <a href="http://www.naver.com" class="rounded-image">
-      <img src="/images/파워링크사진.png" />
-    </a>
-    <a href="http://www.naver.com" class="rounded-image">
-      <img src="/images/파워링크사진.png" />
-    </a>
+    {{#noticeList}}
+    <div class="notice-image">
+      <a href="/notice/noticeDetail/{{id}}" class="rounded-image">
+        <div class="index-notice-title">{{title}}</div>
+        <img src="/images/{{companyPicUrl}}" />
+        <div>{{companyName}}</div>
+      </a>
+    </div>
+    {{/noticeList}}
   </div>
   <!--파워 링크 이미지-->
 
