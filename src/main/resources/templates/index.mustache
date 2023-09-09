@@ -3,7 +3,7 @@
   .mySlides {
     display: none;
     opacity: 0;
-    transition: opacity 3s ease-in-out;
+    transition: opacity 0s ease-in-out;
   }
 
   .mySlides.active {
@@ -14,29 +14,22 @@
 
 <div class="frame">
 
-  <!--슬라이드-->
+  <!-- 슬라이드 -->
   <div class="slideshow-container" style="margin-top: 33px;">
-
+    <!-- 이벤트 목록을 Mustache 반복문을 사용하여 출력합니다. -->
+    {{#events}}
     <div class="mySlides fade">
-
-      <img src="/images/advertisement.png" style="width:100%">
+      <a href="http://{{eventAddress}}" target="_blank">
+        <!-- 이벤트 이미지를 출력합니다. -->
+        <img src="/images/{{eventPicUrl}}" style="width:100%">
+      </a>
     </div>
-
-    <div class="mySlides fade">
-      <img src="https://img.khan.co.kr/news/2020/10/19/l_2020101901001866800154571.webp" style="width:100%">
-    </div>
-
-    <div class="mySlides fade">
-      <img src="https://www.newsnjob.com/news/photo/202307/mn_22551_20230711094628_1.jpg" style="width:100%">
-    </div>
-
+    {{/events}}
   </div>
-  <br>
-
-  <div style="text-align:center; margin-top: 10px;">
-    <span class="choice-dot index-dot index-active"></span>
-    <span class="choice-dot index-dot index-active"></span>
-    <span class="choice-dot index-dot index-active"></span>
+  <div class="dots">
+    {{#events}}
+    <span class="choice-dot index-dot"></span>
+    {{/events}}
   </div>
   <!--슬라이드-->
 
@@ -89,29 +82,52 @@
 
 
 
-  <!--구분선-->
   <hr>
-  <!--구분선-->
-
-  <!-- The Modal -->
 
 </div>
 
 <script>
   var slideIndex = 0;
   showSlides();
-
   function showSlides() {
     var i;
     var slides = document.getElementsByClassName("mySlides");
     var dots = document.getElementsByClassName("choice-dot");
     for (i = 0; i < slides.length; i++) {
-      slides[i].classList.remove("active"); // 모든 슬라이드의 active 클래스 제거
+      slides[i].classList.remove("active");
+      dots[i].classList.remove("active-dot"); // 모든 슬라이드의 active 클래스 제거
     }
     slideIndex++;
-    if (slideIndex > slides.length) { slideIndex = 1 }
-    slides[slideIndex - 1].classList.add("active"); // 현재 슬라이드에 active 클래스 추가
+    if (slideIndex > slides.length) {
+      slideIndex = 1
+    }
+    slides[slideIndex - 1].classList.add("active");
+    dots[slideIndex - 1].classList.add("active-dot"); // 현재 슬라이드에 active 클래스 추가
     setTimeout(showSlides, 3000); // n초마다 바뀜
   }
+
+  // 각 닷에 클릭 이벤트 추가
+  var dots = document.getElementsByClassName("choice-dot");
+  for (var i = 0; i < dots.length; i++) {
+    dots[i].addEventListener("click", function () {
+      // 클릭한 닷의 인덱스를 가져옴
+      var dotIndex = Array.prototype.indexOf.call(dots, this);
+
+      // 클릭한 닷의 인덱스를 현재 슬라이드 인덱스로 설정
+      slideIndex = dotIndex;
+
+      // 모든 슬라이드와 닷의 클래스를 초기화
+      var slides = document.getElementsByClassName("mySlides");
+      for (var j = 0; j < slides.length; j++) {
+        slides[j].classList.remove("active");
+        dots[j].classList.remove("active-dot");
+      }
+
+      // 클릭한 닷과 해당하는 슬라이드를 활성화
+      slides[dotIndex].classList.add("active");
+      dots[dotIndex].classList.add("active-dot");
+    });
+  }
 </script>
+
 {{> layout/footer}}

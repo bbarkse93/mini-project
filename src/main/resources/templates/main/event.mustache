@@ -1,26 +1,24 @@
 {{> layout/header}}
+<style>
+    .event-img {
+        width: 900px;
+        height: 135px;
+        border-radius: 10px;
+        cursor: pointer;
+        /* 마우스 커서를 포인터로 변경하여 클릭 가능한 것처럼 보이게 합니다. */
+    }
+</style>
 
 <div class="frame">
     <h1><strong>이벤트</strong></h1>
     <div class="event">
-        <!--이벤트 이미지-->
-        <div class="event-image">
-            <a href="http://www.naver.com">
-                <img src="/images/이미지.png" style="width: auto;">
-            </a>
-        </div>
-
-        <div class="event-image">
-            <a href="http://www.naver.com">
-                <img src="/images/이미지.png">
-            </a>
-        </div>
-
-        <div class="event-image">
-            <a href="http://www.naver.com">
-                <img src="/images/이미지.png">
-            </a>
-        </div>
+        {{#events}}
+        <a href="http://{{eventAddress}}" target="_blank"> <!-- "http://"를 추가하여 주소를 완전한 URL로 만듭니다. -->
+            <div class="event-image" style="margin-top: 20px; margin-right: 20px">
+                <img class="company-img event-img" src="/images/{{eventPicUrl}}">
+            </div>
+        </a>
+        {{/events}}
     </div>
 </div>
 <!--이벤트 이미지-->
