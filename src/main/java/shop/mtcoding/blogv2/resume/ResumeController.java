@@ -120,13 +120,14 @@ public class ResumeController {
         return "redirect:/myResumeList";
     }
 
-    @GetMapping("/resume/{id}/Detail")
-    public String 이력서상세보기(@PathVariable Integer id, HttpServletRequest request) {
+    // 이력서 상세보기 합격,불합격 있는 거
+    @GetMapping("/resume/{id}/CompDetail")
+    public String 기업이력서상세보기(@PathVariable Integer id, HttpServletRequest request) {
         Resume resume = resumeService.findById(id);
         request.setAttribute("resume", resume);
         List<Resume> resumeList = resumeService.findAll();
         request.setAttribute("resumeList", resumeList);
-        return "resume/userResumeDetail";
+        return "resume/ResumeDetail";
     }
 
 }
