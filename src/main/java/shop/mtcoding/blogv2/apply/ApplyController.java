@@ -47,12 +47,7 @@ public class ApplyController {
     // }
     @GetMapping("/companyApplyList/{userId}")
     public String companyApplyList(@PathVariable Integer userId, HttpServletRequest request) {
-
-        User sessionUser = (User) session.getAttribute("sessionUser");
-        if (sessionUser == null) {
-            throw new MyException("인증되지 않은 유저입니다.");
-        }
-        List<Apply> individualApplies = applyService.getAppliesByStatus(sessionUser.getId());
+        List<Apply> individualApplies = applyService.getAppliesByStatus(userId);
         request.setAttribute("individual", individualApplies);
 
         return "company/companyApplyList";
