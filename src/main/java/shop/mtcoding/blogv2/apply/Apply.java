@@ -1,7 +1,10 @@
 package shop.mtcoding.blogv2.apply;
 
+import java.util.Optional;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -30,13 +33,13 @@ public class Apply {
     @Column
     private Boolean status;
 
-    @ManyToOne
+    @ManyToOne(fetch = FetchType.LAZY)
     private Notice notice;
 
-    @ManyToOne
+    @ManyToOne(fetch = FetchType.LAZY)
     private User user;
 
-    @ManyToOne // 여기에 Resume 관련 필드 추가
+    @ManyToOne(fetch = FetchType.LAZY)
     private Resume resume;
 
     @Builder
@@ -47,4 +50,5 @@ public class Apply {
         this.user = user;
         this.resume = resume; // 수정된 부분
     }
+
 }

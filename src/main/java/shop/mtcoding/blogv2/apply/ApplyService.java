@@ -6,16 +6,26 @@ import java.util.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+import org.springframework.web.bind.annotation.PathVariable;
 
 import shop.mtcoding.blogv2.notice.Notice;
+import shop.mtcoding.blogv2.notice.NoticeRepository;
 import shop.mtcoding.blogv2.resume.Resume;
+import shop.mtcoding.blogv2.resume.ResumeRepository;
 import shop.mtcoding.blogv2.user.User;
+import shop.mtcoding.blogv2.user.UserRepository;
 
 @Service
 public class ApplyService {
 
     @Autowired
     private ApplyRepository applyRepository;
+    @Autowired
+    private NoticeRepository noticeRepository;
+    @Autowired
+    private ResumeRepository resumeRepository;
+    @Autowired
+    private UserRepository userRepository;
 
     public List<Apply> getAppliesByStatus(Integer userId) {
         // Assuming you have a method in your repository to fetch applies by user ID
@@ -48,14 +58,13 @@ public class ApplyService {
     }
 
     @Transactional
-    public void 지원하기(ApplyRequest.ApplyDTO applyDTO) {
+    public void 지원하기() {
         Apply apply = Apply.builder()
-                .notice(Notice.builder().id(applyDTO.getNoticeId()).build())
-                .resume(Resume.builder().id(applyDTO.getResumeId()).build())
-                .user(User.builder().id(applyDTO.getUserId()).build())
-                .status(true)
+                .notice(Notice.builder().id(1).build())
+                .resume(Resume.builder().id(1).build())
+                .status(null)
+                .user(User.builder().id(1).build())
                 .build();
         applyRepository.save(apply);
     }
-
 }

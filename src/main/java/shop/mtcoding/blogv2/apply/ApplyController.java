@@ -84,8 +84,8 @@ public class ApplyController {
     }
 
     @GetMapping("/apply")
-    public String apply(ApplyRequest.ApplyDTO applyDTO) {
-        applyService.지원하기(applyDTO);
-        return "redirect:/userApplyStatus";
+    public String apply() {
+        applyService.지원하기();
+        return "redirect:/userApplyStatus/1";
     }
 }
