@@ -16,7 +16,6 @@ public class MyExceptionHandler {
         return Script.back(e.getMessage());
     }
 
-
     @ExceptionHandler(MyApiException.class)
     public ApiUtil<String> error(MyApiException e) {
         return new ApiUtil<>(false, e.getMessage());

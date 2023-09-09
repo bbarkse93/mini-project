@@ -42,6 +42,9 @@ public class ResumeController {
     private EduService eduService;
 
     @Autowired
+    private NoticeService noticeService;
+
+    @Autowired
     private HttpSession session;
 
     // 일반회원정보(디폴트화면)
@@ -50,9 +53,14 @@ public class ResumeController {
         // List<Notice> notices = noticeService.getAllNotices();
         // request.setAttribute("notices", notices);
         User sessionUser = (User) session.getAttribute("sessionUser");
+        if (sessionUser == null) {
+            throw new MyException("인증되지 않은 유저입니다.");
+        }
         User user = userService.회원정보보기(sessionUser.getId());
         List<Resume> resumeList = resumeService.findAll();
+        List<Notice> notices = noticeService.getAllNotices();
         Collections.sort(resumeList, Comparator.comparing(Resume::getId).reversed());
+        request.setAttribute("notices", notices);
         request.setAttribute("resumeList", resumeList);
         request.setAttribute("user", user);
         return "resume/myResumeList";
