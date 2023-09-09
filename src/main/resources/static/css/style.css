@@ -941,5 +941,12 @@ h4 {
 }
 
 .recommand-notice a {
-  flex: 20%;
+    flex: 20%;
 }
+
+.resume-card{
+    border: 1px solid var(--borderLine);
+    border-radius: 15px;
+    padding: 10px;
+}
+

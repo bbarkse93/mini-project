@@ -10,6 +10,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 
+import shop.mtcoding.blogv2._core.error.ex.MyException;
 import shop.mtcoding.blogv2.notice.Notice;
 import shop.mtcoding.blogv2.notice.NoticeService;
 import shop.mtcoding.blogv2.user.User;
@@ -31,6 +32,9 @@ public class ScrapController {
     @GetMapping("/userScrapCompany")
     public String userScrapCompany(Integer userId, HttpServletRequest request) {
         User sessionUser = (User) session.getAttribute("sessionUser");
+        if (sessionUser == null) {
+            throw new MyException("인증되지 않은 유저입니다.");
+        }
         List<Scrap> scraps = scrapService.getScrapsByUserId(sessionUser.getId());
         List<Notice> notices = noticeService.getAllNotices();
         User user = userService.회원정보보기(sessionUser.getId());
