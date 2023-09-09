@@ -17,7 +17,6 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import shop.mtcoding.blogv2._core.error.ex.MyException;
-import shop.mtcoding.blogv2._core.util.ApiUtil;
 import shop.mtcoding.blogv2.duty.Duty;
 import shop.mtcoding.blogv2.duty.DutyService;
 import shop.mtcoding.blogv2.event.Event;
@@ -111,7 +110,7 @@ public class NoticeController {
             throw new MyException("인증되지 않았습니다");
         }
 
-        noticeService.채용등록(saveDTO, sessionUser.getId());
+        noticeService.채용등록(saveDTO);
 
         return "redirect:/companyNoticeList";
     }
@@ -181,4 +180,5 @@ public class NoticeController {
         model.addAttribute("nextPage", noticePage.getNumber() + 1);
         return "/main/jobPosting";
     }
+
 }

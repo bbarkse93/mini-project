@@ -126,7 +126,7 @@ public class ResumeController {
         if (sessionUser == null) {
             throw new MyException("인증되지 않았습니다");
         }
-        resumeService.이력서등록(saveDTO, sessionUser.getId());
+        resumeService.이력서등록(saveDTO);
         return "redirect:/myResumeList";
     }
 

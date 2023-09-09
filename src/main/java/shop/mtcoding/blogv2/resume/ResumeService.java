@@ -59,8 +59,8 @@ public class ResumeService {
 
     // 이력서등록
     @Transactional
-    public Resume 이력서등록(ResumeRequest.SaveDTO saveDTO, Integer sessionUserId) {
-        User sessionUser = (User) session.getAttribute("sessionUserId");
+    public Resume 이력서등록(ResumeRequest.SaveDTO saveDTO) {
+        User sessionUser = (User) session.getAttribute("sessionUser");
         // 파일 이름 생성
         UUID uuid = UUID.randomUUID();
         String fileName = uuid + "_" + saveDTO.getPersonalPic().getOriginalFilename();
@@ -84,7 +84,7 @@ public class ResumeService {
                 .coverLetter(saveDTO.getCoverLetter())
                 .createdAt(saveDTO.getCreatedAt())
                 .edu(saveDTO.getEdu())
-                .user(User.builder().id(sessionUserId).build())
+                .user(User.builder().id(sessionUser.getId()).build())
                 .build();
         resumeRepository.save(resume);
 

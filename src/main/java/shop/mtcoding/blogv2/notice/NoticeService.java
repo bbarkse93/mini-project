@@ -57,8 +57,8 @@ public class NoticeService {
 
     // 채용공고등록
     @Transactional
-    public Notice 채용등록(NoticeRequest.SaveDTO saveDTO, Integer sessionUserId) {
-        User sessionUser = (User) session.getAttribute("sessionUserId");
+    public Notice 채용등록(NoticeRequest.SaveDTO saveDTO) {
+        User sessionUser = (User) session.getAttribute("sessionUser");
         // 파일 이름 생성
         UUID uuid = UUID.randomUUID();
         String fileName = uuid + "_" + saveDTO.getCompanyPic().getOriginalFilename();
@@ -89,7 +89,7 @@ public class NoticeService {
                 .period(saveDTO.getPeriod())
                 .pay(saveDTO.getPay())
                 .qualification(saveDTO.getQualification())
-                .user(User.builder().id(sessionUserId).build())
+                .user(User.builder().id(sessionUser.getId()).build())
                 .build();
 
         // Notice 엔티티 저장
