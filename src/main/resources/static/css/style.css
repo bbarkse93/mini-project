@@ -977,3 +977,8 @@ h4 {
   border-radius: 15px;
   padding: 10px;
 }
+
+.fix {
+  height: 700px;
+  position: relative;
+}

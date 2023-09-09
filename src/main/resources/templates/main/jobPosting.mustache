@@ -1,21 +1,22 @@
 {{> layout/header}}
-
 <div class="frame" id="jobPostingContainer">
-    <h1><strong>채용공고</strong></h1>
-    <div class="image-container">
-        {{#noticePage.content}}
-        <div class="notice-image">
-            <a href="/notice/noticeDetail/{{id}}" class="rounded-image">
-                <div class="index-notice-title">{{title}}</div>
-                <img src="/images/{{companyPicUrl}}" />
-                <div>{{companyName}}</div>
-            </a>
+    <div class="fix">
+        <h1><strong>채용공고</strong></h1>
+        <div class="image-container">
+            {{#noticePage.content}}
+            <div class="notice-image">
+                <a href="/notice/noticeDetail/{{id}}" class="rounded-image">
+                    <div class="index-notice-title">{{title}}</div>
+                    <img src="/images/{{companyPicUrl}}" />
+                    <div>{{companyName}}</div>
+                </a>
+            </div>
+            {{/noticePage.content}}
         </div>
-        {{/noticePage.content}}
     </div>
     <ul class="pagination d-flex justify-content-center" id="pagination">
         <li class="page-item {{#noticePage.first}}disabled{{/noticePage.first}}">
-            <a class="page-link" onclick="paging('{{prevPage}}')">Previous</a>
+            <a class="page-link" onclick="paging('{{prevPage}}')">Prev</a>
         </li>
         <li class="page-item {{#noticePage.last}}disabled{{/noticePage.last}}">
             <a class="page-link" onclick="paging('{{nextPage}}')">Next</a>
