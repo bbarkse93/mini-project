@@ -14,13 +14,6 @@ public class EventContorller {
     @Autowired
     private EventService eventService;
 
-    @GetMapping("/")
-    public String index(HttpServletRequest request) {
-        List<Event> events = eventService.findAll();
-        request.setAttribute("events", events);
-        return "index";
-    }
-
     @GetMapping("/event")
     public String event(HttpServletRequest request) {
         List<Event> events = eventService.findAll();

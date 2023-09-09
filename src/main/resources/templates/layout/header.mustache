@@ -76,7 +76,7 @@
         }
 
         /* 모바일 스타일 (768px 미만) */
-        @media (max-width: 1281px) {
+        @media (min-width: 300px) {
             .hamburger-menu {
                 display: block;
             }
@@ -90,150 +90,150 @@
 
 
 <body>
-    <!-- Navigation Bar -->
-    <nav class="navbar navbar-expand-sm">
-        <div class="container-fluid d-flex justify-content-between">
-            <div>
-                <ul class="navbar-nav text-center">
-                    <li class="nav-item">
-                        <a class="nav-link active" href="/">
-                            <img src="/images/logo.png" style="max-width: 100px;">
-                        </a>
-                    </li>
-                    <li class="nav-item2">
-                        <a class="nav-link" href="/jobPosting">채용공고</a>
-                    </li>
-                    <li class="nav-item2">
-                        <a class="nav-link" href="/event">이벤트</a>
-                    </li>
-                    <li class="nav-item2">
-                        <a class="nav-link" href="/csForm">고객센터</a>
-                    </li>
-                </ul>
-            </div>
-            <div class="d-flex justify-content-around header-link">
-                <ul class="navbar-nav nav-item2">
-                    <li class="nav-item">
-                        <img src="/images/search.png" alt="">
-                        <img src="/images/resume.png" alt="">
-                    </li>
-                </ul>
-                <div class="join_and_login">
-                    {{^sessionUser}}
-                    <button type="button" class="btn btn-secondary" data-bs-toggle="modal" data-bs-target="#myModal">
-                        회원가입
-                    </button>
-                    <a href="/loginForm" class="btn btn-secondary">
-                        로그인
-                    </a>
-                    {{/sessionUser}}
-
-                    {{#sessionUser}}
-                    {{#sessionUser.distinguish}} <!-- sessionUser 객체의 distinguish 속성을 확인하여 개인회원 여부를 판단 -->
-                    <a href="/userInformation" class="btn btn-secondary">나의 정보</a>
-                    {{/sessionUser.distinguish}}
-
-                    {{^sessionUser.distinguish}} <!-- sessionUser 객체의 distinguish 속성을 확인하여 기업회원 여부를 판단 -->
-                    <a href="/companyNoticeList" class="btn btn-secondary">나의 정보</a>
-                    {{/sessionUser.distinguish}}
-
-                    <a href="/logout" class="btn btn-secondary">로그아웃</a>
-                    {{/sessionUser}}
+    <div class="header-class">
+        <!-- Navigation Bar -->
+        <nav class="navbar navbar-expand-sm">
+            <div class="container-fluid d-flex justify-content-between">
+                <div>
+                    <ul class="navbar-nav text-center">
+                        <li class="nav-item">
+                            <a class="nav-link active" href="/">
+                                <img src="/images/logo.png" style="max-width: 100px;">
+                            </a>
+                        </li>
+                        <li class="nav-item2">
+                            <a class="nav-link" href="/jobPosting">채용공고</a>
+                        </li>
+                        <li class="nav-item2">
+                            <a class="nav-link" href="/event">이벤트</a>
+                        </li>
+                        <li class="nav-item2">
+                            <a class="nav-link" href="/csForm">고객센터</a>
+                        </li>
+                    </ul>
                 </div>
-
-            </div>
-            <div class="hamburger-menu">
-                <div class="bar"></div>
-                <div class="bar"></div>
-                <div class="bar"></div>
-
-                <div id="mini-pop">
-                    <li class="nav-item" id="close_btn">
-                        ×
-                    </li>
-                    <li class="nav-item">
-                        검색
-                    </li>
-
-
-                    {{^sessionUser}}
-                    <li class="nav-item">
-                        <a href="/loginForm">이력서 등록</a>
-                    </li>
-                    <li class="nav-item">
-                        <button type="button" data-bs-toggle="modal" data-bs-target="#myModal">
+                <div class="d-flex justify-content-around header-link">
+                    <ul class="navbar-nav nav-item2">
+                        <li class="nav-item">
+                            <img src="/images/search.png" alt="">
+                            <img src="/images/resume.png" alt="">
+                        </li>
+                    </ul>
+                    <div class="join_and_login">
+                        {{^sessionUser}}
+                        <button type="button" class="btn btn-secondary" data-bs-toggle="modal"
+                            data-bs-target="#myModal">
                             회원가입
                         </button>
-                    </li>
-                    <li class="nav-item">
-                        <a href="/loginForm">
+                        <a href="/loginForm" class="btn btn-secondary">
                             로그인
                         </a>
-                    </li>
-                    {{/sessionUser}}
+                        {{/sessionUser}}
 
-                    {{#sessionUser}}
-                    {{#sessionUser.distinguish}} <!-- sessionUser 객체의 distinguish 속성을 확인하여 개인회원 여부를 판단 -->
-                    <li class="nav-item">
-                        <a href="/userInformation">나의 정보</a>
-                    </li>
-                    <li class="nav-item">
-                        <a href="/resumeWrite">등록</a>
-                    </li>
-                    {{/sessionUser.distinguish}}
+                        {{#sessionUser}}
+                        {{#sessionUser.distinguish}} <!-- sessionUser 객체의 distinguish 속성을 확인하여 개인회원 여부를 판단 -->
+                        <a href="/userInformation" class="btn btn-secondary">나의 정보</a>
+                        {{/sessionUser.distinguish}}
 
-                    {{^sessionUser.distinguish}} <!-- sessionUser 객체의 distinguish 속성을 확인하여 기업회원 여부를 판단 -->
-                    <li class="nav-item">
-                        <a href="/companyNoticeList">나의 정보</a>
-                    </li>
-                    <li class="nav-item">
-                        <a href="/noticeWrite">채용공고 등록</a>
-                    </li>
-                    {{/sessionUser.distinguish}}
-                    <li class="nav-item">
-                        <a href="/logout">로그아웃</a>
-                    </li>
-                    {{/sessionUser}}
-                </div>
-            </div>
-        </div>
+                        {{^sessionUser.distinguish}} <!-- sessionUser 객체의 distinguish 속성을 확인하여 기업회원 여부를 판단 -->
+                        <a href="/companyNoticeList" class="btn btn-secondary">나의 정보</a>
+                        {{/sessionUser.distinguish}}
 
-        <div class="modal" id="myModal">
-            <div class="modal-dialog">
-                <div class="modal-content">
-
-                    <!-- Modal Header -->
-                    <div class="modal-header">
-                        <h4 class="modal-title">선택해주세요</h4>
-                        <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
-                    </div>
-
-                    <!-- Modal body -->
-                    <div class="image-container text-center">
-
-                        <a href="http://localhost:8080/userJoinForm">
-                            <img src="/images/개인회원.png" alt="개인회원 이미지">
-                        </a>
-                        <a href="http://localhost:8080/compJoinForm">
-                            <img src="/images/기업회원.png" alt="기업회원 이미지">
-                        </a>
-
-                    </div>
-
-                    <!-- Modal footer -->
-                    <div class="modal-footer">
-                        <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Close</button>
+                        <a href="/logout" class="btn btn-secondary">로그아웃</a>
+                        {{/sessionUser}}
                     </div>
 
                 </div>
-            </div>
-        </div>
-    </nav>
+                <div class="hamburger-menu">
+                    <div class="bar"></div>
+                    <div class="bar"></div>
+                    <div class="bar"></div>
 
-    <hr>
+                    <div id="mini-pop">
+                        <li class="nav-item" id="close_btn">
+                            ×
+                        </li>
+                        <li class="nav-item">
+                            검색
+                        </li>
+
+
+                        {{^sessionUser}}
+                        <li class="nav-item">
+                            <a href="/loginForm">이력서 등록</a>
+                        </li>
+                        <li class="nav-item">
+                            <button type="button" data-bs-toggle="modal" data-bs-target="#myModal">
+                                회원가입
+                            </button>
+                        </li>
+                        <li class="nav-item">
+                            <a href="/loginForm">
+                                로그인
+                            </a>
+                        </li>
+                        {{/sessionUser}}
+
+                        {{#sessionUser}}
+                        {{#sessionUser.distinguish}} <!-- sessionUser 객체의 distinguish 속성을 확인하여 개인회원 여부를 판단 -->
+                        <li class="nav-item">
+                            <a href="/userInformation">나의 정보</a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="/resumeWrite">등록</a>
+                        </li>
+                        {{/sessionUser.distinguish}}
+
+                        {{^sessionUser.distinguish}} <!-- sessionUser 객체의 distinguish 속성을 확인하여 기업회원 여부를 판단 -->
+                        <li class="nav-item">
+                            <a href="/companyNoticeList">나의 정보</a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="/noticeWrite">채용공고 등록</a>
+                        </li>
+                        {{/sessionUser.distinguish}}
+                        <li class="nav-item">
+                            <a href="/logout">로그아웃</a>
+                        </li>
+                        {{/sessionUser}}
+                    </div>
+                </div>
+            </div>
+
+            <div class="modal" id="myModal">
+                <div class="modal-dialog">
+                    <div class="modal-content">
+
+                        <!-- Modal Header -->
+                        <div class="modal-header">
+                            <h4 class="modal-title">선택해주세요</h4>
+                            <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+                        </div>
+
+                        <!-- Modal body -->
+                        <div class="image-container text-center">
+
+                            <a href="http://localhost:8080/userJoinForm">
+                                <img src="/images/개인회원.png" alt="개인회원 이미지">
+                            </a>
+                            <a href="http://localhost:8080/compJoinForm">
+                                <img src="/images/기업회원.png" alt="기업회원 이미지">
+                            </a>
+
+                        </div>
+
+                        <!-- Modal footer -->
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Close</button>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+        </nav>
+        <hr>
+    </div>
     <!--여기까지 헤더-->
-
-
 
 
     <script>
@@ -263,7 +263,3 @@
 
 
     </script>
-</body>
-
-
-</html>

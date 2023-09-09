@@ -1,45 +1,53 @@
 {{> layout/header}}
 
-
-<div class="frame">
-
+<div class="frame" id="jobPostingContainer">
     <h1><strong>채용공고</strong></h1>
-
-    <div class="job-posting images">
-        <a href="http://www.naver.com" class="rounded_image">
-            <img src="/images/파워링크사진.png" />
-        </a>
-        <a href="http://www.naver.com" class="rounded-image">
-            <img src="/images/파워링크사진.png" />
-        </a>
-        <a href="http://www.naver.com" class="rounded-image">
-            <img src="/images/파워링크사진.png" />
-        </a>
-        <a href="http://www.naver.com" class="rounded-image">
-            <img src="/images/파워링크사진.png" />
-        </a>
+    <div class="image-container">
+        {{#noticePage.content}}
+        <div class="notice-image">
+            <a href="/notice/noticeDetail/{{id}}" class="rounded-image">
+                <div class="index-notice-title">{{title}}</div>
+                <img src="/images/{{companyPicUrl}}" />
+                <div>{{companyName}}</div>
+            </a>
+        </div>
+        {{/noticePage.content}}
     </div>
-
-    <div class="job-posting images" style="margin-top: 30px;">
-        <a href="http://www.naver.com" class="rounded_image">
-            <img src="/images/파워링크사진.png" />
-        </a>
-        <a href="http://www.naver.com" class="rounded-image">
-            <img src="/images/파워링크사진.png" />
-        </a>
-        <a href="http://www.naver.com" class="rounded-image">
-            <img src="/images/파워링크사진.png" />
-        </a>
-        <a href="http://www.naver.com" class="rounded-image">
-            <img src="/images/파워링크사진.png" />
-        </a>
-    </div>
-
-    <div class="job-button">
-        <button type="button" class="btn btn-secondary Prev">Prev</button>
-        <button type="button" class="btn btn-secondary Next">Next</button>
-    </div>
-
+    <ul class="pagination d-flex justify-content-center" id="pagination">
+        <li class="page-item {{#noticePage.first}}disabled{{/noticePage.first}}">
+            <a class="page-link" onclick="paging('{{prevPage}}')">Previous</a>
+        </li>
+        <li class="page-item {{#noticePage.last}}disabled{{/noticePage.last}}">
+            <a class="page-link" onclick="paging('{{nextPage}}')">Next</a>
+        </li>
+    </ul>
 </div>
+
+<script>
+    function paging(pageNum) {
+
+        var pageSize = 12;
+        var totalPages = 0;
+        var curPage = pageNum;
+        $("input[name='currentPage']").val(curPage); // 페이지 바꿔주기
+
+        $.ajax({
+            url: "/jobPosting",
+            type: "GET",
+            data: {
+                page: curPage,
+            },
+            dataType: "html",
+            success: function (data) {
+                $("#jobPostingContainer").html(data);
+                $("#jobPostingContainer").find(".header-class").remove();
+                $("#jobPostingContainer").find(".footer-class").remove();
+            },
+            error: function (xhr, status, error) {
+                alert(errorTitle, "주소 에러발생", btnText);
+            }
+        });
+    }
+</script>
 
 {{> layout/footer}}

@@ -78,7 +78,7 @@ public class UserController {
 
         session.setAttribute("sessionUser", sessionUser);
 
-        return "/index";
+        return "redirect:/";
     }
 
     @GetMapping("/logout")
@@ -154,12 +154,6 @@ public class UserController {
         session.setAttribute("sessionUser", user);
 
         return "redirect:/";
-    }
-
-    @GetMapping("/jobPosting")
-    public String jobPosting() {
-
-        return "main/jobPosting";
     }
 
     @GetMapping("/api/check")

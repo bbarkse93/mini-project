@@ -8,14 +8,19 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import shop.mtcoding.blogv2._core.error.ex.MyException;
 import shop.mtcoding.blogv2.duty.Duty;
 import shop.mtcoding.blogv2.duty.DutyService;
+import shop.mtcoding.blogv2.event.Event;
+import shop.mtcoding.blogv2.event.EventService;
 import shop.mtcoding.blogv2.location.Location;
 import shop.mtcoding.blogv2.location.LocationService;
 import shop.mtcoding.blogv2.skill.Skill;
@@ -40,7 +45,20 @@ public class NoticeController {
     private LocationService locationService;
 
     @Autowired
+    private EventService eventService;
+
+    @Autowired
     private HttpSession session;
+
+    // 메인페이지
+    @GetMapping("/")
+    public String index(HttpServletRequest request) {
+        List<Event> events = eventService.findAll();
+        List<Notice> noticeList = noticeService.findAll();
+        request.setAttribute("events", events);
+        request.setAttribute("noticeList", noticeList);
+        return "index";
+    }
 
     // 기업회원정보(디폴트화면)
     @GetMapping("/companyNoticeList")
@@ -92,7 +110,7 @@ public class NoticeController {
             throw new MyException("인증되지 않았습니다");
         }
 
-        noticeService.채용등록(saveDTO, sessionUser.getId());
+        noticeService.채용등록(saveDTO);
 
         return "redirect:/companyNoticeList";
     }
@@ -136,4 +154,31 @@ public class NoticeController {
         request.setAttribute("notices", notices);
         return "notices"; // 머스태치 템플릿 파일의 경로
     }
+
+    // // 채용공고 페이지 빈 껍데기를 준다
+    // @GetMapping("/jobPosting")
+    // public String jobPosting() {
+    // return "main/jobPosting";
+    // }
+
+    // // 채용공고 페이지
+    // @GetMapping("/api/jobPosting")
+    // public ApiUtil<String> jobPosting(@RequestParam(defaultValue = "0") Integer
+    // page, HttpServletRequest request) {
+    // Page<Notice> noticePage = noticeService.공고목록보기(page);
+    // request.setAttribute("noticePage", noticePage);
+    // request.setAttribute("prevPage", noticePage.getNumber() - 1);
+    // request.setAttribute("nextPage", noticePage.getNumber() + 1);
+    // return new ApiUtil<String>(true, "성공");
+    // }
+
+    @GetMapping("/jobPosting")
+    public String jobPosting(@RequestParam(defaultValue = "0") Integer page, Model model) {
+        Page<Notice> noticePage = noticeService.공고목록보기(page);
+        model.addAttribute("noticePage", noticePage);
+        model.addAttribute("prevPage", noticePage.getNumber() - 1);
+        model.addAttribute("nextPage", noticePage.getNumber() + 1);
+        return "/main/jobPosting";
+    }
+
 }

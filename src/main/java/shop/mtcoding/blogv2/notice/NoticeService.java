@@ -11,6 +11,10 @@ import java.util.UUID;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
+import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -53,8 +57,8 @@ public class NoticeService {
 
     // 채용공고등록
     @Transactional
-    public Notice 채용등록(NoticeRequest.SaveDTO saveDTO, Integer sessionUserId) {
-        User sessionUser = (User) session.getAttribute("sessionUserId");
+    public Notice 채용등록(NoticeRequest.SaveDTO saveDTO) {
+        User sessionUser = (User) session.getAttribute("sessionUser");
         // 파일 이름 생성
         UUID uuid = UUID.randomUUID();
         String fileName = uuid + "_" + saveDTO.getCompanyPic().getOriginalFilename();
@@ -85,7 +89,7 @@ public class NoticeService {
                 .period(saveDTO.getPeriod())
                 .pay(saveDTO.getPay())
                 .qualification(saveDTO.getQualification())
-                .user(User.builder().id(sessionUserId).build())
+                .user(User.builder().id(sessionUser.getId()).build())
                 .build();
 
         // Notice 엔티티 저장
@@ -229,6 +233,11 @@ public class NoticeService {
     public Notice 공고상세보기(Integer id) {
         Notice notice = noticeRepository.findById(id).get();
         return notice;
+    }
+
+    public Page<Notice> 공고목록보기(Integer page) {
+        Pageable pageable = PageRequest.of(page, 12, Sort.Direction.DESC, "id");
+        return noticeRepository.findAll(pageable);
     }
 
 }
