@@ -18,6 +18,8 @@ import shop.mtcoding.blogv2.duty.Duty;
 import shop.mtcoding.blogv2.duty.DutyService;
 import shop.mtcoding.blogv2.edu.Edu;
 import shop.mtcoding.blogv2.edu.EduService;
+import shop.mtcoding.blogv2.notice.Notice;
+import shop.mtcoding.blogv2.notice.NoticeService;
 import shop.mtcoding.blogv2.skill.Skill;
 import shop.mtcoding.blogv2.skill.SkillService;
 import shop.mtcoding.blogv2.user.User;
