@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import shop.mtcoding.blogv2._core.error.ex.MyException;
 import shop.mtcoding.blogv2._core.util.ApiUtil;
 import shop.mtcoding.blogv2.apply.ApplyService;
 import shop.mtcoding.blogv2.notice.Notice;
@@ -106,7 +107,9 @@ public class UserController {
     @GetMapping("/userUpdate")
     public String updateForm(HttpServletRequest request) {
         User sessionUser = (User) session.getAttribute("sessionUser");
-
+        if (sessionUser == null) {
+            throw new MyException("인증되지 않은 유저입니다.");
+        }
         User user = userService.회원정보보기(sessionUser.getId());
 
         request.setAttribute("user", user);
@@ -117,7 +120,9 @@ public class UserController {
     @PostMapping("/userupdate1")
     public String 개인정보수정(HttpServletRequest request, UserRequest.UpdateDTO updateDTO) {
         User sessionUser = (User) session.getAttribute("sessionUser");
-
+        if (sessionUser == null) {
+            throw new MyException("인증되지 않은 유저입니다.");
+        }
         User user = userService.회원수정(updateDTO, sessionUser.getId());
 
         request.setAttribute("sessionUser", user);
@@ -128,7 +133,9 @@ public class UserController {
     @GetMapping("/companyUpdate")
     public String companyUpdate() {
         User sessionUser = (User) session.getAttribute("sessionUser");
-
+        if (sessionUser == null) {
+            throw new MyException("인증되지 않은 유저입니다.");
+        }
         User user = userService.회원정보보기(sessionUser.getId());
 
         session.setAttribute("user", user);
@@ -139,7 +146,9 @@ public class UserController {
     @PostMapping("/companyUpdate1")
     public String 기업정보수정(UserRequest.UpdateDTO updateDTO) {
         User sessionUser = (User) session.getAttribute("sessionUser");
-
+        if (sessionUser == null) {
+            throw new MyException("인증되지 않은 유저입니다.");
+        }
         User user = userService.회원수정(updateDTO, sessionUser.getId());
 
         session.setAttribute("sessionUser", user);

@@ -18,6 +18,8 @@ import shop.mtcoding.blogv2.duty.Duty;
 import shop.mtcoding.blogv2.duty.DutyService;
 import shop.mtcoding.blogv2.edu.Edu;
 import shop.mtcoding.blogv2.edu.EduService;
+import shop.mtcoding.blogv2.notice.Notice;
+import shop.mtcoding.blogv2.notice.NoticeService;
 import shop.mtcoding.blogv2.skill.Skill;
 import shop.mtcoding.blogv2.skill.SkillService;
 import shop.mtcoding.blogv2.user.User;
@@ -42,6 +44,9 @@ public class ResumeController {
     private EduService eduService;
 
     @Autowired
+    private NoticeService noticeService;
+
+    @Autowired
     private HttpSession session;
 
     // 일반회원정보(디폴트화면)
@@ -50,9 +55,14 @@ public class ResumeController {
         // List<Notice> notices = noticeService.getAllNotices();
         // request.setAttribute("notices", notices);
         User sessionUser = (User) session.getAttribute("sessionUser");
+        if (sessionUser == null) {
+            throw new MyException("인증되지 않은 유저입니다.");
+        }
         User user = userService.회원정보보기(sessionUser.getId());
         List<Resume> resumeList = resumeService.findAll();
+        List<Notice> notices = noticeService.getAllNotices();
         Collections.sort(resumeList, Comparator.comparing(Resume::getId).reversed());
+        request.setAttribute("notices", notices);
         request.setAttribute("resumeList", resumeList);
         request.setAttribute("user", user);
         return "resume/myResumeList";
@@ -87,6 +97,15 @@ public class ResumeController {
         return "resume/resumeUpdateForm";
     }
 
+    // // 이력서 수정하기
+    @PostMapping("/resume/{id}/update")
+    public String update(@PathVariable Integer id, ResumeRequest.UpdateDTO updateDTO) {
+
+        resumeService.update(id, updateDTO);
+
+        return "redirect:/myResumeList";
+    }
+
     // 이력서 등록 view
     @GetMapping("/resumeWrite")
     public String resumeWrite(HttpServletRequest request) {
@@ -117,7 +136,17 @@ public class ResumeController {
         request.setAttribute("resume", resume);
         List<Resume> resumeList = resumeService.findAll();
         request.setAttribute("resumeList", resumeList);
-        return "resume/resumeDetail";
+        return "resume/userResumeDetail";
+    }
+
+    // 이력서 상세보기 합격,불합격 있는 거
+    @GetMapping("/resume/{id}/CompDetail")
+    public String 기업이력서상세보기(@PathVariable Integer id, HttpServletRequest request) {
+        Resume resume = resumeService.findById(id);
+        request.setAttribute("resume", resume);
+        List<Resume> resumeList = resumeService.findAll();
+        request.setAttribute("resumeList", resumeList);
+        return "resume/ResumeDetail";
     }
 
 }

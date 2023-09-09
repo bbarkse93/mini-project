@@ -146,6 +146,7 @@ h4 {
 .index-dot {
   height: 10px;
   width: 10px;
+
   margin: 0 2px;
   background-color: #bbb;
   border-radius: 50%;
@@ -154,7 +155,7 @@ h4 {
 }
 
 .index-active {
-  background-color: #a9a9a9;
+  background-color: var(--borderLine);
 }
 .dots {
   text-align: center;
@@ -908,8 +909,14 @@ h4 {
   border: 1px solid var(--borderLine);
   padding: 10px;
   border-radius: 5px;
-
   background-color: #fff;
+}
+
+.btn-primary {
+  width: 200px;
+}
+.btn-danger {
+  width: 200px;
 }
 
 /* userinformation.mustache */
@@ -944,4 +951,10 @@ h4 {
 
 .recommand-notice a {
   flex: 20%;
+}
+
+.resume-card {
+  border: 1px solid var(--borderLine);
+  border-radius: 15px;
+  padding: 10px;
 }
