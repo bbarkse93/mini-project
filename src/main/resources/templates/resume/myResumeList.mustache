@@ -31,14 +31,13 @@
                     </a>
                     <div class="small-title">이력서 관리</div>
                 </div>
-                <hr />
                 <div class="list-group">
                     {{#resumeList}} <!-- 이력서 목록 반복문 시작 -->
                     <div class="mb-3">
-                        <div class="list-group-item list-group-item-action">
-                            <div class="d-flex justify-content-between">
+                        
+                            <div class="d-flex justify-content-between resume-card">
                                 <a href="/resume/{{id}}/Detail" target="_blank"
-                                    class="list-group-item list-group-item-action">
+                                    class="">
                                     <h4 class="mb-2">
                                         {{title}} <!-- 이력서 제목 표시 -->
                                     </h4>
@@ -51,29 +50,24 @@
                                         </form>
                                     </div>
                             </div>
-                        </div>
+                        
                     </div>
                     {{/resumeList}} <!-- 이력서 목록 반복문 종료 -->
                 </div>
             </div>
             <div class="small-title mt-3">추천 공고</div>
-            <hr />
-            <div class="d-flex justify-content-around">
-                {{#notices}}
-                <a class="card recommand-recruit" href="/noticeDetail">
-                    <div class="card-body home d-flex justify-content-center">
-                        <img class="recruit-image-box" src="../images/company.jpg" alt="공고 사진">
-                    </div>
-                    <h4 class="text-center">{{title}}</h4>
-                    <div class="text-center">{{companyName}}</div>
-                </a>
-                {{/notices}}
-            </div>
-
-
-
-
-
+        <hr />
+        <div class="recommand-notice">
+            {{#notices}}
+            <a class="card recommand-recruit" href="/noticeDetail">
+                <div class="card-body home d-flex justify-content-center">
+                    <img class="recruit-image-box" src="../images/company.jpg" alt="공고 사진">
+                </div>
+                <h4 class="text-center">{{title}}</h4>
+                <div class="text-center">{{companyName}}</div>
+            </a>
+            {{/notices}}
         </div>
-
-        {{> layout/footer}}
+    </div>
+</div>
+{{> layout/footer}}
