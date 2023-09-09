@@ -47,12 +47,14 @@ public class ApplyController {
     // }
     @GetMapping("/companyApplyList/{userId}")
     public String companyApplyList(@PathVariable Integer userId, HttpServletRequest request) {
+
         User sessionUser = (User) session.getAttribute("sessionUser");
         if (sessionUser == null) {
             throw new MyException("인증되지 않은 유저입니다.");
         }
         List<Apply> individualApplies = applyService.getAppliesByStatus(sessionUser.getId());
         request.setAttribute("individual", individualApplies);
+
         return "company/companyApplyList";
     }
 
@@ -78,7 +80,7 @@ public class ApplyController {
     @PostMapping("/apply/{id}/update")
     public String update(@PathVariable Integer id, ApplyRequest.UpdateDTO updateDTO) {
         applyService.기업지원관리(id, updateDTO);
-        return "redirect:/companyApplyList";
+        return "redirect:/companyApplyList/" + id;
     }
 
     @GetMapping("/apply")

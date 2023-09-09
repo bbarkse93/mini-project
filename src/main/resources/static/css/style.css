@@ -1,946 +1,943 @@
 /*공통*/
 :root,
-[data-bs-theme=light] {
-    --blue: #0d6efd;
-    --apply: #8ED5E2;
-    --indigo: #6610f2;
-    --purple: #6f42c1;
-    --pink: #d63384;
-    --fail: #dc3545;
-    --orange: #fd7e14;
-    --yellow: #ffc107;
-    --green: #198754;
-    --pass: #20c997;
-    --cyan: #0dcaf0;
-    --borderLine: #A9A9A9;
+[data-bs-theme="light"] {
+  --blue: #0d6efd;
+  --apply: #8ed5e2;
+  --indigo: #6610f2;
+  --purple: #6f42c1;
+  --pink: #d63384;
+  --fail: #dc3545;
+  --orange: #fd7e14;
+  --yellow: #ffc107;
+  --green: #198754;
+  --pass: #20c997;
+  --cyan: #0dcaf0;
+  --borderLine: #a9a9a9;
 }
 
 body {
-    margin: 0;
-    padding: 0;
+  margin: 0;
+  padding: 0;
 }
 
 @font-face {
-    font-family: 'Busan';
-    font-style: normal;
-    font-weight: 400;
-    src: url('//cdn.jsdelivr.net/korean-webfonts/1/orgs/govs/busan/Busan/Busan.woff2') format('woff2'),
-        url('//cdn.jsdelivr.net/korean-webfonts/1/orgs/govs/busan/Busan/Busan.woff') format('woff');
+  font-family: "Busan";
+  font-style: normal;
+  font-weight: 400;
+  src: url("//cdn.jsdelivr.net/korean-webfonts/1/orgs/govs/busan/Busan/Busan.woff2")
+      format("woff2"),
+    url("//cdn.jsdelivr.net/korean-webfonts/1/orgs/govs/busan/Busan/Busan.woff")
+      format("woff");
 }
 
 * {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-    font-family: 'Busan';
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: "Busan";
 }
 
 a {
-    text-decoration: none;
-    color: black;
+  text-decoration: none;
+  color: black;
 }
 
 li {
-    list-style: none;
+  list-style: none;
 }
 
 hr {
-    border-color: #000000;
-    margin: 0;
+  border-color: #000000;
+  margin: 0;
 }
 
 img {
-    vertical-align: middle;
+  vertical-align: middle;
 }
 
 h2 {
-    color: black;
-    font-size: 2em;
-    margin-top: 0px;
+  color: black;
+  font-size: 2em;
+  margin-top: 0px;
 }
 
 h4 {
-    color: black;
-    margin-bottom: 0;
+  color: black;
+  margin-bottom: 0;
 }
 
 /* header */
 
 .navbar-nav {
-    display: flex;
-    justify-content: center;
-    align-items: center;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
 .nav-item2 {
-    margin-right: 20px;
-    /* Adjust the spacing as needed */
+  margin-right: 20px;
+  /* Adjust the spacing as needed */
 }
 
 .nav-item {
-    display: flex;
-    align-items: center;
-    gap: 10px;
+  display: flex;
+  align-items: center;
+  gap: 10px;
 }
 
 /* Join and Login Button Styles */
 
 .navbar {
-    margin-inline: 20%;
+  margin-inline: 20%;
 }
 
 .frame {
-    margin-top: 50px;
-    margin-inline: 200px;
+  margin-top: 50px;
+  margin-inline: 200px;
 }
 
 /* =================정보네비게이션바================= */
 .default {
-    height: 100px;
-    width: 200px;
-
+  height: 100px;
+  width: 200px;
 }
 
 .company-image {
-    margin: 20px;
-    text-align: center;
+  margin: 20px;
+  text-align: center;
 }
 
 .nav-link {
-    font-size: 100px;
-    font-weight: bold;
-    text-align: center;
-    margin-bottom: 10px;
+  font-size: 100px;
+  font-weight: bold;
+  text-align: center;
+  margin-bottom: 10px;
 }
 
 .home {
-    flex: 0;
+  flex: 0;
 }
 
 .small-title {
-    font-size: 25px;
-    font-weight: 500px;
+  font-size: 25px;
+  font-weight: 500px;
 }
-
 
 /* =============================index============================= */
 .mySlides {
-    display: none;
+  display: none;
 }
-
 
 /* Slideshow container */
 .slideshow-container {
-    max-width: 777px;
-    position: relative;
-    margin: auto;
-    margin-bottom: 20px;
-    /* 아래쪽 여백 추가 */
-
+  max-width: 777px;
+  position: relative;
+  margin: auto;
+  margin-bottom: 20px;
+  /* 아래쪽 여백 추가 */
 }
 
 .mySlides img {
-    width: 777px;
-    height: 146px;
+  width: 777px;
+  height: 146px;
 }
 
 /* The dots/bullets/indicators */
 .index-dot {
-    height: 15px;
-    width: 15px;
-    margin: 0 2px;
-    background-color: #bbb;
-    border-radius: 50%;
-    display: inline-block;
-    transition: background-color 0.6s ease;
+  height: 15px;
+  width: 15px;
+  margin: 0 2px;
+  background-color: #bbb;
+  border-radius: 50%;
+  display: inline-block;
+  transition: background-color 0.6s ease;
 }
 
 .index-active {
-    background-color: #717171;
+  background-color: #717171;
 }
 
 /* Fading animation */
 .fade {
-    -webkit-animation-name: fade;
-    -webkit-animation-duration: 1.5s;
-    animation-name: fade;
-    animation-duration: 1.5s;
+  -webkit-animation-name: fade;
+  -webkit-animation-duration: 1.5s;
+  animation-name: fade;
+  animation-duration: 1.5s;
 }
 
 @-webkit-keyframes fade {
-    from {
-        opacity: .4
-    }
+  from {
+    opacity: 0.4;
+  }
 
-    to {
-        opacity: 1
-    }
+  to {
+    opacity: 1;
+  }
 }
 
 @keyframes fade {
-    from {
-        opacity: .4
-    }
+  from {
+    opacity: 0.4;
+  }
 
-    to {
-        opacity: 1
-    }
+  to {
+    opacity: 1;
+  }
 }
 
 /* On smaller screens, decrease text size */
 @media only screen and (max-width: 300px) {
-    .text {
-        font-size: 11px
-    }
+  .text {
+    font-size: 11px;
+  }
 }
 
 /*파워링크, 채용공고이미지 */
 .image-container {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    margin-top: 35px;
-    margin-left: 10px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-top: 35px;
+  margin-left: 10px;
 }
 
 .rounded-image {
-    margin: 10px;
-    display: inline-block;
+  margin: 10px;
+  display: inline-block;
 }
 
 .image-container a img {
-    width: 245px;
-    height: auto;
+  width: 245px;
+  height: auto;
 }
 
 .image-container img {
-    max-width: 100%;
-    height: auto;
+  max-width: 100%;
+  height: auto;
 }
-
 
 /*파워링크 글자*/
 .파워링크 {
-    font-weight: bold;
-    font-size: 20px;
+  font-weight: bold;
+  font-size: 20px;
 }
 
 /*파워링크 글자*/
 .채용공고 {
-    font-weight: bold;
-    font-size: 20px;
+  font-weight: bold;
+  font-size: 20px;
 }
 
 /*=============================companyApplyList=============================*/
 .companyApplyList-default {
-    height: 100px;
-    width: 200px;
-
+  height: 100px;
+  width: 200px;
 }
 
 .companyApplyList-image {
-    margin: 20px;
-    text-align: center;
+  margin: 20px;
+  text-align: center;
 }
 
 .nav-link {
-    font-size: 15px;
-    font-weight: bold;
-    text-align: center;
-    margin-bottom: 10px;
+  font-size: 15px;
+  font-weight: bold;
+  text-align: center;
+  margin-bottom: 10px;
 }
 
 .small-title {
-    font-size: 25px;
-    font-weight: 500px;
+  font-size: 25px;
+  font-weight: 500px;
 }
 
 /*=============================companyNoticeList=============================*/
 .notice-title {
-    font-size: 25px;
+  font-size: 25px;
 }
 
 /*=============================companyUpdate=============================*/
 .card {
-    max-width: 400px;
-    /* 변경된 최대 너비 설정 */
-    margin: auto;
-    padding: 10px;
-    /* 변경된 패딩 설정 */
+  max-width: 400px;
+  /* 변경된 최대 너비 설정 */
+  margin: auto;
+  padding: 10px;
+  /* 변경된 패딩 설정 */
 }
 
 .wrap {
-    width: 100%;
-    height: 100vh;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    background: rgba(0, 0, 0, 0.1);
-    margin-top: 20px;
+  width: 100%;
+  height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: rgba(0, 0, 0, 0.1);
+  margin-top: 20px;
 }
 
 /*여기*/
 .login {
-    width: 30%;
-    height: 98vh;
-    background: white;
-    border-radius: 20px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    flex-direction: column;
-    padding: 20px;
+  width: 30%;
+  height: 98vh;
+  background: white;
+  border-radius: 20px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  padding: 20px;
 }
 
 .submit {
-    justify-self: center;
-    margin-top: 50px;
-    width: 100%;
+  justify-self: center;
+  margin-top: 50px;
+  width: 100%;
 }
 
 .submit input {
-    width: 100%;
-    height: 50px;
-    border: 0;
-    outline: none;
-    border-radius: 40px;
-    background-color: #3c7bf0;
-    color: white;
-    font-size: 1.2em;
-    letter-spacing: 2px;
+  width: 100%;
+  height: 50px;
+  border: 0;
+  outline: none;
+  border-radius: 40px;
+  background-color: #3c7bf0;
+  color: white;
+  font-size: 1.2em;
+  letter-spacing: 2px;
 }
 
 .join-username {
-    margin-top: 20px;
-    width: 100%;
+  margin-top: 20px;
+  width: 100%;
 }
 
 .join-username input {
-    width: 100%;
-    height: 50px;
-    border-radius: 30px;
-    margin-top: 10px;
-    padding: 0px 20px;
-    border: 1px solid lightgray;
-    outline: none;
+  width: 100%;
+  height: 50px;
+  border-radius: 30px;
+  margin-top: 10px;
+  padding: 0px 20px;
+  border: 1px solid lightgray;
+  outline: none;
 }
 
 .join-username-text {
-    margin-left: 20px;
+  margin-left: 20px;
 }
 
 .join-pw {
-    margin-top: 20px;
-    width: 100%;
+  margin-top: 20px;
+  width: 100%;
 }
 
 .join-pw input {
-    width: 100%;
-    height: 50px;
-    border-radius: 30px;
-    margin-top: 10px;
-    padding: 0px 20px;
-    border: 1px solid lightgray;
-    outline: none;
+  width: 100%;
+  height: 50px;
+  border-radius: 30px;
+  margin-top: 10px;
+  padding: 0px 20px;
+  border: 1px solid lightgray;
+  outline: none;
 }
 
 .join-pw-text {
-    margin-left: 20px;
+  margin-left: 20px;
 }
 
 .join-name {
-    margin-top: 20px;
-    width: 100%;
+  margin-top: 20px;
+  width: 100%;
 }
 
 .join-name input {
-    width: 100%;
-    height: 50px;
-    border-radius: 30px;
-    margin-top: 10px;
-    padding: 0px 20px;
-    border: 1px solid lightgray;
-    outline: none;
+  width: 100%;
+  height: 50px;
+  border-radius: 30px;
+  margin-top: 10px;
+  padding: 0px 20px;
+  border: 1px solid lightgray;
+  outline: none;
 }
 
 .join-name-text {
-    margin-left: 20px;
+  margin-left: 20px;
 }
 
 .join-date {
-    margin-top: 20px;
-    width: 100%;
+  margin-top: 20px;
+  width: 100%;
 }
 
 .join-date input {
-    width: 100%;
-    height: 50px;
-    border-radius: 30px;
-    margin-top: 10px;
-    padding: 0px 20px;
-    border: 1px solid lightgray;
-    outline: none;
+  width: 100%;
+  height: 50px;
+  border-radius: 30px;
+  margin-top: 10px;
+  padding: 0px 20px;
+  border: 1px solid lightgray;
+  outline: none;
 }
 
 .join-date-text {
-    margin-left: 20px;
+  margin-left: 20px;
 }
 
 .join-phone {
-    margin-top: 20px;
-    width: 100%;
+  margin-top: 20px;
+  width: 100%;
 }
 
 .join-phone input {
-    width: 100%;
-    height: 50px;
-    border-radius: 30px;
-    margin-top: 10px;
-    padding: 0px 20px;
-    border: 1px solid lightgray;
-    outline: none;
+  width: 100%;
+  height: 50px;
+  border-radius: 30px;
+  margin-top: 10px;
+  padding: 0px 20px;
+  border: 1px solid lightgray;
+  outline: none;
 }
 
 .join-phone-text {
-    margin-left: 20px;
+  margin-left: 20px;
 }
 
 .join-email {
-    margin-top: 20px;
-    width: 100%;
+  margin-top: 20px;
+  width: 100%;
 }
 
 .join-email input {
-    width: 100%;
-    height: 50px;
-    border-radius: 30px;
-    margin-top: 10px;
-    padding: 0px 20px;
-    border: 1px solid lightgray;
-    outline: none;
+  width: 100%;
+  height: 50px;
+  border-radius: 30px;
+  margin-top: 10px;
+  padding: 0px 20px;
+  border: 1px solid lightgray;
+  outline: none;
 }
 
 .join-email-text {
-    margin-left: 20px;
+  margin-left: 20px;
 }
 
 /*=============================customerService=============================*/
 
 .box {
-    display: inline-block;
+  display: inline-block;
 
-    padding: 10px;
-    border-radius: 25px;
-    box-shadow: 3px 3px 5px rgba(0, 0, 0, 0.4);
+  padding: 10px;
+  border-radius: 25px;
+  box-shadow: 3px 3px 5px rgba(0, 0, 0, 0.4);
 }
 
 .form {
-    text-align: center;
-    height: 50px;
-    background-color: gainsboro;
-    border-radius: 10px;
-    border: 3px solid gainsboro;
-    font-weight: bold;
+  text-align: center;
+  height: 50px;
+  background-color: gainsboro;
+  border-radius: 10px;
+  border: 3px solid gainsboro;
+  font-weight: bold;
 }
 
 .form1 {
-    padding-inline: 20px;
-    height: 50px;
-    border-radius: 10px;
-    border: 1px solid gainsboro;
+  padding-inline: 20px;
+  height: 50px;
+  border-radius: 10px;
+  border: 1px solid gainsboro;
 }
 
 .header h1 {
-    display: inline-block;
-    vertical-align: middle;
+  display: inline-block;
+  vertical-align: middle;
 }
 
 .header .contact-button {
-    float: right;
-    background-color: rgb(86, 121, 219);
-    color: white;
-    font-size: 19px;
-    margin-top: 5px;
-    padding: 10px 20px;
-    width: 120px;
-    height: 40px;
-    line-height: 10px;
+  float: right;
+  background-color: rgb(86, 121, 219);
+  color: white;
+  font-size: 19px;
+  margin-top: 5px;
+  padding: 10px 20px;
+  width: 120px;
+  height: 40px;
+  line-height: 10px;
 }
 
 /* =============================customerServiceWrite============================= */
 .form-label {
-    font-weight: bold;
+  font-weight: bold;
 }
 
 /* =============================event============================= */
 .event {
-    color: black;
-    font-weight: bold;
-    font-size: 25px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    margin-top: -10px;
-    flex-direction: column;
+  color: black;
+  font-weight: bold;
+  font-size: 25px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-top: -10px;
+  flex-direction: column;
 }
 
 .event-image {
-    margin-top: 20px;
+  margin-top: 20px;
 }
 
 /* =============================jobPosting============================= */
 .job-posting {
-    color: black;
-    font-weight: bold;
-    font-size: 25px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    margin-top: 10px;
-
+  color: black;
+  font-weight: bold;
+  font-size: 25px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-top: 10px;
 }
 
 .job-posting.images {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    margin-top: 3px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-top: 3px;
 }
 
 .job-posting.images a {
-    display: inline-block;
-    margin: 10px;
+  display: inline-block;
+  margin: 10px;
 }
 
 .job-posting.images a img {
-    width: 200px;
-    height: auto;
+  width: 200px;
+  height: auto;
 }
 
 .job-button {
-    width: 100;
-    height: 100;
-    font-size: 16;
-    text-align: center;
-    margin-top: 120px;
-    margin-top: 120px;
+  width: 100;
+  height: 100;
+  font-size: 16;
+  text-align: center;
+  margin-top: 120px;
+  margin-top: 120px;
 }
-
 
 /* 개인고객 회원정보보기 */
 
 .user-image-box {
-    height: 100px;
-    width: 100px;
-    border-radius: 50px;
+  height: 100px;
+  width: 100px;
+  border-radius: 50px;
 }
 
 .user-image {
-    margin: 20px;
-    text-align: center;
+  margin: 20px;
+  text-align: center;
 }
 
 .btn {
-    line-height: 1;
-    width: 100px;
-    height: 30px;
+  line-height: 1;
+  width: 100px;
+  height: 30px;
 }
 
 .link {
-    font-size: 15px;
-    font-weight: bold;
-    text-align: center;
-    margin-bottom: 10px;
+  font-size: 15px;
+  font-weight: bold;
+  text-align: center;
+  margin-bottom: 10px;
 }
 
 .home {
-    flex: 0;
+  flex: 0;
 }
 
 .pic-update-button {
-    width: 100px;
+  width: 100px;
 }
 
 .recommand-recruit {
-    height: 300px;
-    width: 300px;
+  height: 300px;
+  width: 300px;
 }
 
 .recruit-image-box {
-    width: 275px;
-    height: 180px;
+  width: 275px;
+  height: 180px;
 }
 
 .custom-checkbox {
-    height: 20px;
-    width: 20px;
+  height: 20px;
+  width: 20px;
 }
 
 .custom-form-checkbox {
-    margin: 20px;
-    justify-content: center;
+  margin: 20px;
+  justify-content: center;
 }
 
 .add-btn {
-    width: 116px;
-    height: 40px;
+  width: 116px;
+  height: 40px;
 }
 
 .apply-button {
-    justify-self: center;
-    height: 30px;
-    width: 100px;
-    background-color: var(--apply)
+  justify-self: center;
+  height: 30px;
+  width: 100px;
+  background-color: var(--apply);
 }
 
 /* 이력서 작성 */
 
 .info {
-    flex: 1;
+  flex: 1;
 }
 
 .spacing {
-    height: 20px;
+  height: 20px;
 }
 
 .image {
-    height: 230px;
-    width: 230px;
+  height: 230px;
+  width: 230px;
 }
 
 /*login*/
 
 .login-username {
-    margin-top: 20px;
-    width: 100%;
+  margin-top: 20px;
+  width: 100%;
 }
 
 .login-username input {
-    width: 100%;
-    height: 50px;
-    border-radius: 30px;
-    margin-top: 10px;
-    padding: 0px 20px;
-    border: 1px solid lightgray;
-    outline: none;
+  width: 100%;
+  height: 50px;
+  border-radius: 30px;
+  margin-top: 10px;
+  padding: 0px 20px;
+  border: 1px solid lightgray;
+  outline: none;
 }
 
 .login-username-text {
-    margin-left: 20px;
+  margin-left: 20px;
 }
 
 .login-pw {
-    margin-top: 20px;
-    width: 100%;
+  margin-top: 20px;
+  width: 100%;
 }
 
 .login-pw input {
-    width: 100%;
-    height: 50px;
-    border-radius: 30px;
-    margin-top: 10px;
-    padding: 0px 20px;
-    border: 1px solid lightgray;
-    outline: none;
+  width: 100%;
+  height: 50px;
+  border-radius: 30px;
+  margin-top: 10px;
+  padding: 0px 20px;
+  border: 1px solid lightgray;
+  outline: none;
 }
 
 .login-pw-text {
-    margin-left: 20px;
+  margin-left: 20px;
 }
 
 .login-etc {
-    padding: 10px;
-    width: 80%;
-    font-size: 14px;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    font-weight: bold;
+  padding: 10px;
+  width: 80%;
+  font-size: 14px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-weight: bold;
 }
 
 .login-btn {
-    width: 304.47px;
-    height: 50px;
-    border-radius: 25px;
-    border: none;
-    background-color: var(--blue);
-    color: white;
+  width: 304.47px;
+  height: 50px;
+  border-radius: 25px;
+  border: none;
+  background-color: var(--blue);
+  color: white;
 }
 
 /*==========join==========*/
 
 .wrap {
-    width: 100%;
-    height: 100%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    background: white;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: white;
 }
 
 .join {
-    width: 50%;
-    height: 95%;
-    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.5);
-    background: rgba(101, 108, 114, 0.1);
-    border-radius: 20px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    flex-direction: column;
-    padding: 20px;
+  width: 50%;
+  height: 95%;
+  box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.5);
+  background: rgba(101, 108, 114, 0.1);
+  border-radius: 20px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  padding: 20px;
 }
 
 .join-date input {
-    width: 100%;
-    height: 50px;
-    border-radius: 30px;
-    margin-top: 10px;
-    padding: 0px 20px;
-    border: 1px solid lightgray;
-    outline: none;
+  width: 100%;
+  height: 50px;
+  border-radius: 30px;
+  margin-top: 10px;
+  padding: 0px 20px;
+  border: 1px solid lightgray;
+  outline: none;
 }
 
 .join-email {
-    margin-top: 20px;
-    width: 100%;
+  margin-top: 20px;
+  width: 100%;
 }
 
 .join-email input {
-    width: 100%;
-    height: 50px;
-    border-radius: 30px;
-    margin-top: 10px;
-    padding: 0px 20px;
-    border: 1px solid lightgray;
-    outline: none;
+  width: 100%;
+  height: 50px;
+  border-radius: 30px;
+  margin-top: 10px;
+  padding: 0px 20px;
+  border: 1px solid lightgray;
+  outline: none;
 }
 
 .join-email-text {
-    margin-left: 20px;
+  margin-left: 20px;
 }
 
 .check-button {
-    width: 90px;
-    height: 30px;
-    margin: 10px;
-    display: flex;
-    justify-content: end;
+  width: 90px;
+  height: 30px;
+  margin: 10px;
+  display: flex;
+  justify-content: end;
 }
 
 /*loginUpdate*/
 
 .wrap3 {
-    width: 100%;
-    height: 100vh;
-    display: flex;
-    align-items: center;
-    justify-content: center;
+  width: 100%;
+  height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
 /**/
 
 .login3 {
-    width: 30%;
-    height: 800px;
-    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.5);
-    background: rgba(0, 0, 0, 0.1);
-    border-radius: 20px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    flex-direction: column;
-    padding: 20px;
+  width: 30%;
+  height: 800px;
+  box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.5);
+  background: rgba(0, 0, 0, 0.1);
+  border-radius: 20px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  padding: 20px;
 }
 
 /*noticeDetail*/
 
 .notice-detail-form {
-    display: flex;
-    justify-content: space-between;
-
+  display: flex;
+  justify-content: space-between;
 }
 
 .card {
-    border: 1px solid #ccc;
-    padding: 10px;
-    margin: 10px;
-    display: flex;
-    align-items: center;
-    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.2);
+  border: 1px solid #ccc;
+  padding: 10px;
+  margin: 10px;
+  display: flex;
+  align-items: center;
+  box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.2);
 }
 
 .card img {
-    max-width: 100px;
-    max-height: 100px;
+  max-width: 100px;
+  max-height: 100px;
 
-    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.2);
+  box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.2);
 }
 
 .info-box {
-    border: 1px solid #ccc;
-    border-radius: 15px;
-    padding: 20px;
-    width: 400px;
-    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.2);
-    text-align: center;
+  border: 1px solid #ccc;
+  border-radius: 15px;
+  padding: 20px;
+  width: 400px;
+  box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.2);
+  text-align: center;
 }
 
 .info-box2 {
-    display: flex;
-    border: 1px solid #ccc;
-    border-radius: 15px;
-    padding: 30px;
-    width: 400px;
-    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.2);
-    flex-direction: column;
-    flex-wrap: wrap;
-    justify-content: space-evenly;
+  display: flex;
+  border: 1px solid #ccc;
+  border-radius: 15px;
+  padding: 30px;
+  width: 400px;
+  box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.2);
+  flex-direction: column;
+  flex-wrap: wrap;
+  justify-content: space-evenly;
 }
 
 .detail {
-    border: 1px solid #ccc;
-    padding: 20px;
-    border-radius: 15px;
-    width: 400px;
-    height: 150px;
-    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.2);
+  border: 1px solid #ccc;
+  padding: 20px;
+  border-radius: 15px;
+  width: 400px;
+  height: 150px;
+  box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.2);
 }
 
 .detail-comp-name {
-    text-align: center;
+  text-align: center;
 }
 
 .skill {
-    margin: 3px;
-    border-radius: 25px;
-    background-color: rgb(213, 235, 243);
+  margin: 3px;
+  border-radius: 25px;
+  background-color: rgb(213, 235, 243);
 }
 
 /*recruitWrite*/
 
 .addResume {
-    margin-inline: 200px;
+  margin-inline: 200px;
 }
 
 .profile-image {
-    display: flex;
-    width: auto;
-    height: auto;
-    margin-right: 20px;
-    flex-direction: column;
+  display: flex;
+  width: auto;
+  height: auto;
+  margin-right: 20px;
+  flex-direction: column;
 }
 
 .recruit-info {
-    flex: 1;
+  flex: 1;
 }
 
 .image2 {
-    height: 250px;
-    width: 250px;
+  height: 250px;
+  width: 250px;
 }
 
 .input {
-    border: 1px solid rgb(167, 167, 167);
+  border: 1px solid rgb(167, 167, 167);
 }
 
 .btn-primary {
-    width: 300px;
-    height: 30px;
+  width: 300px;
+  height: 30px;
 }
 
 /*resumeWrite*/
 
 .profile-image2 {
-    width: auto;
-    /* 너비 강제 조절 */
-    height: auto;
-    /* 높이 자동 조절 */
-    margin-right: 20px;
-    /* 오른쪽 간격 */
+  width: auto;
+  /* 너비 강제 조절 */
+  height: auto;
+  /* 높이 자동 조절 */
+  margin-right: 20px;
+  /* 오른쪽 간격 */
 }
 
 .info2 {
-    flex: 1;
+  flex: 1;
 }
 
 .image3 {
-    height: 250px;
-    width: 250px;
+  height: 250px;
+  width: 250px;
 }
 
 /*csForm*/
 .card-boxes {
-    display: flex;
-    justify-content: center;
-    gap: 250px;
+  display: flex;
+  justify-content: center;
+  gap: 250px;
 }
 
 .cs-click {
-    border-style: double;
+  border-style: double;
 }
 
 /*==========지원 현황==========*/
 
 .pass {
-    background-color: var(--pass);
-    border: solid 1px #fff;
-    box-shadow: 3px 3px 3px rgba(0, 0, 0, 0.4);
-    border-radius: 15px;
-    text-align: center;
-    width: 75px;
+  background-color: var(--pass);
+  border: solid 1px #fff;
+  box-shadow: 3px 3px 3px rgba(0, 0, 0, 0.4);
+  border-radius: 15px;
+  text-align: center;
+  width: 75px;
 }
 
 .fail {
-    background-color: var(--fail);
-    border: solid 1px #fff;
-    box-shadow: 3px 3px 3px rgba(0, 0, 0, 0.4);
-    border-radius: 15px;
-    text-align: center;
-    width: 75px;
+  background-color: var(--fail);
+  border: solid 1px #fff;
+  box-shadow: 3px 3px 3px rgba(0, 0, 0, 0.4);
+  border-radius: 15px;
+  text-align: center;
+  width: 75px;
 }
 
 /*resumeDetail*/
 
 .card2 {
-    border: 1px solid var(--borderLine);
-    padding: 10px;
-    border-radius: 5px;
+  border: 1px solid var(--borderLine);
+  padding: 10px;
+  border-radius: 5px;
 
-    background-color: #fff;
+  background-color: #fff;
+}
+
+.btn-primary {
+  width: 200px;
+}
+.btn-danger {
+  width: 200px;
 }
 
 /* userinformation.mustache */
 
 .interest_category {
-    display: flex;
+  display: flex;
 }
 
-.info-card>.card {
-    width: 50%;
+.info-card > .card {
+  width: 50%;
 }
-
 
 .apply-card {
-    width: 100%;
-    margin: 10px 0;
-    border: 1px solid var(--borderLine);
-    padding: 10px;
-    border-radius: 10px;
-    box-shadow: 1px 1px 2px var(--bs-body-color);
+  width: 100%;
+  margin: 10px 0;
+  border: 1px solid var(--borderLine);
+  padding: 10px;
+  border-radius: 10px;
+  box-shadow: 1px 1px 2px var(--bs-body-color);
 }
 
 .loading {
-    border-left: 1px solid #000;
-    border-right: 1px solid #000;
-
+  border-left: 1px solid #000;
+  border-right: 1px solid #000;
 }
 
 .recommand-notice {
-    display: flex;
-    justify-content: space-around;
-    flex-wrap: wrap;
-
+  display: flex;
+  justify-content: space-around;
+  flex-wrap: wrap;
 }
 
 .recommand-notice a {
@@ -952,3 +949,4 @@ h4 {
     border-radius: 15px;
     padding: 10px;
 }
+
