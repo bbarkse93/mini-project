@@ -146,7 +146,7 @@ public class ResumeService {
 
     // 이력서수정
     @Transactional
-    public void 이력서수정(Integer id, UpdateDTO updateDTO) {
+    public void update(Integer id, UpdateDTO updateDTO) {
         Optional<Resume> optionalResume = resumeRepository.findById(id);
         if (optionalResume.isPresent()) {
             Resume resume = optionalResume.get();
