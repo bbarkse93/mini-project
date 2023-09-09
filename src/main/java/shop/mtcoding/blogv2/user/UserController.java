@@ -36,10 +36,10 @@ public class UserController {
     @Autowired
     private ResumeService resumeService;
 
-    @GetMapping("/")
-    public String index() {
-        return "/index";
-    }
+    // @GetMapping("/")
+    // public String index() {
+    // return "/index";
+    // }
 
     @GetMapping("/userJoinForm")
     public String joinForm() {
@@ -160,11 +160,6 @@ public class UserController {
     public String jobPosting() {
 
         return "main/jobPosting";
-    }
-
-    @GetMapping("/event")
-    public String Event() {
-        return "main/event";
     }
 
     @GetMapping("/api/check")

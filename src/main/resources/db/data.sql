@@ -44,6 +44,11 @@ INSERT INTO scrap_tb (notice_id,user_id) VALUES (1,1);
 INSERT INTO scrap_tb (notice_id,user_id) VALUES (2,1);
 INSERT INTO scrap_tb (notice_id,user_id) VALUES (3,1);
 
+INSERT INTO event_tb (event_pic_url, event_address) VALUES ('eventimage.png','www.naver.com');
+INSERT INTO event_tb (event_pic_url, event_address) VALUES ('youth.png','apply.jobaba.net/bsns/bsnsDetailView.do?bsnsSeq=2260');
+INSERT INTO event_tb (event_pic_url, event_address) VALUES ('idea.png','www.newjobidea.com');
+INSERT INTO event_tb (event_pic_url, event_address) VALUES ('boostcamp.png','apply.connect.or.kr/connect/applyDetail?annoId=20009497');
+
 
 insert into skill_tb(skill_name) values('Java');
 insert into skill_tb(skill_name) values('MySQL');
