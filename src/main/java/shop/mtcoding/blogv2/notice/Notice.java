@@ -23,7 +23,6 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 import shop.mtcoding.blogv2.apply.Apply;
 import shop.mtcoding.blogv2.bookmark.Bookmark;
-import shop.mtcoding.blogv2.edu.Edu;
 import shop.mtcoding.blogv2.user.User;
 import shop.mtcoding.blogv2.wishduty.WishDuty;
 import shop.mtcoding.blogv2.wishskill.WishSkill;
@@ -87,9 +86,6 @@ public class Notice {
     @ManyToOne(fetch = FetchType.LAZY)
     private User user;
 
-    @ManyToOne(fetch = FetchType.LAZY)
-    private Edu edu;
-
     @CreationTimestamp
     private Timestamp createdAt;
 
@@ -97,7 +93,7 @@ public class Notice {
     public Notice(Integer id, String title, String companyName, String companyEmail, String phoneNumber,
             String companyInfo, String companyPicUrl, String location, String intake, String pay, String qualification,
             String period, List<WishSkill> wishSkills, List<WishDuty> wishDutys, List<Apply> applies,
-            List<Bookmark> bookmarks, User user, Edu edu, Timestamp createdAt) {
+            List<Bookmark> bookmarks, User user, Timestamp createdAt) {
         this.id = id;
         this.title = title;
         this.companyName = companyName;
@@ -115,7 +111,6 @@ public class Notice {
         this.applies = applies;
         this.bookmarks = bookmarks;
         this.user = user;
-        this.edu = edu;
         this.createdAt = createdAt;
     }
 }

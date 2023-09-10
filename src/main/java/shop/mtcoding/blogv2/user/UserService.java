@@ -2,12 +2,12 @@ package shop.mtcoding.blogv2.user;
 
 import javax.servlet.http.HttpSession;
 
+import org.mindrot.jbcrypt.BCrypt;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import shop.mtcoding.blogv2._core.error.ex.MyApiException;
-import shop.mtcoding.blogv2._core.error.ex.MyException;
 import shop.mtcoding.blogv2._core.util.ApiUtil;
 import shop.mtcoding.blogv2.resume.Resume;
 import shop.mtcoding.blogv2.resume.ResumeRequest.ResumeDTO;
@@ -25,9 +25,11 @@ public class UserService {
 
     @Transactional
     public void 회원가입(UserRequest.JoinDTO joinDTO) {
+        String password = BCrypt.hashpw(joinDTO.getPassword(), BCrypt.gensalt());
+
         User user = User.builder()
                 .username(joinDTO.getUsername())
-                .password(joinDTO.getPassword())
+                .password(password)
                 .name(joinDTO.getName())
                 .telNumber(joinDTO.getTelNumber())
                 .registNumber(joinDTO.getRegistNumber())
@@ -41,17 +43,14 @@ public class UserService {
 
     public User 로그인(LoginDTO loginDTO) {
         User user = userRepository.findByUsername(loginDTO.getUsername());
-
-        if (user == null) {
-            throw new MyException("아이디가 틀렸습니다");
+        if (user != null) {
+            BCrypt.checkpw(loginDTO.getPassword(), user.getPassword());
+            return user;
         }
-
-        if (!user.getPassword().equals(loginDTO.getPassword())) {
-            throw new MyException("비밀번호가 틀렸습니다");
+        return null;
+        
         }
-
-        return user;
-    }
+        
 
     @Transactional
     public User 회원수정(UpdateDTO updateDTO, Integer id) {
