@@ -37,7 +37,7 @@ public class BoardService {
 
     @Transactional
     public Optional<Board> 문의수정(UpdateDTO updateDTO, Integer id) {
-        Optional<Board> boardOP = boardRepository.findById(1);
+        Optional<Board> boardOP = boardRepository.findById(id);
         if (boardOP.isPresent()) {
             Board board = boardOP.get();
             board.setTitle(updateDTO.getTitle());
