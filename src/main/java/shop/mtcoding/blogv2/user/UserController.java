@@ -5,6 +5,7 @@ import java.util.List;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
+import org.mindrot.jbcrypt.BCrypt;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -14,6 +15,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 import shop.mtcoding.blogv2._core.error.ex.MyException;
 import shop.mtcoding.blogv2._core.util.ApiUtil;
+import shop.mtcoding.blogv2._core.util.Script;
 import shop.mtcoding.blogv2.apply.ApplyService;
 import shop.mtcoding.blogv2.notice.Notice;
 import shop.mtcoding.blogv2.notice.NoticeService;
@@ -73,13 +75,35 @@ public class UserController {
         return "/main/loginForm";
     }
 
+    // @PostMapping("/login")
+    // public @ResponseBody String 로그인(UserRequest.LoginDTO loginDTO) {
+    // User user = userService.로그인(loginDTO);
+
+    // System.out.println("test1: " + loginDTO.getPassword());
+    // System.out.println("test2: " + user.getPassword());
+    // boolean isvalid = BCrypt.checkpw(loginDTO.getPassword(), user.getPassword());
+
+    // if(isvalid){
+    // session.setAttribute("sessionUser", user);
+    // return Script.href("/", "로그인 성공");
+    // }else{
+    // return Script.href("/loginForm", "로그인 실패");
+    // }
+
+    // }
+
     @PostMapping("/login")
-    public String 로그인(UserRequest.LoginDTO loginDTO) {
-        User sessionUser = userService.로그인(loginDTO);
-
-        session.setAttribute("sessionUser", sessionUser);
-
-        return "redirect:/";
+    public @ResponseBody String 로그인(UserRequest.LoginDTO loginDTO) {
+        User user = userService.로그인(loginDTO);
+        boolean isvalid = BCrypt.checkpw(loginDTO.getPassword(), user.getPassword());
+        if (user == null) {
+            return Script.href("/loginForm", "아이디가 틀렸습니다");
+        }
+        if (!isvalid) {
+            return Script.href("/loginForm", "비밀번호가 틀렸습니다");
+        }
+        session.setAttribute("sessionUser", user);
+        return Script.href("/", "로그인 성공");
     }
 
     @GetMapping("/logout")
