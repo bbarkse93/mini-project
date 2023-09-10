@@ -44,8 +44,8 @@
                     </div>
                     <div class="d-flex justify-content-end mb-3">
                         <a class="btn btn-warning me-1" href="/board/csUpdateForm/{{id}}">수정</a>
-                        <form action="/board/{{id}}/delete"  method="post">
-                            <button type="submit" class="btn btn-danger">삭제</button>
+                        <form action="/api/board/{{id}}/delete" method="POST">
+                            <button type="submit" class="btn btn-danger" onclick="deleteBoard('{{id}}')">삭제</button>
                         </form>
                     </div>
                 </div>
@@ -61,5 +61,19 @@
             $(this).siblings(".cs-detail").toggle();
         });
     });
+
+    function deleteBoard(id) {
+        $.ajax({
+            type: "POST",
+            url: `/api/board/${id}/delete`,
+            success: function (response) {
+                if (response.success) {
+                    location.reload();
+                } else {
+                    alert(response.data);
+                }
+            },
+        });
+    }
 </script>
 {{> layout/footer}}
