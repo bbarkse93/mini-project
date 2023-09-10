@@ -55,4 +55,9 @@ public class BoardService {
 
     }
 
+    @Transactional
+    public void deleteById(Integer id) {
+        boardRepository.deleteById(id);
+    }
+
 }
