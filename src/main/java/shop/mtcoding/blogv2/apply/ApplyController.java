@@ -1,5 +1,7 @@
 package shop.mtcoding.blogv2.apply;
 
+import java.util.Collections;
+import java.util.Comparator;
 import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
@@ -14,6 +16,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import shop.mtcoding.blogv2._core.error.ex.MyException;
 import shop.mtcoding.blogv2.notice.Notice;
 import shop.mtcoding.blogv2.notice.NoticeService;
+import shop.mtcoding.blogv2.resume.Resume;
 import shop.mtcoding.blogv2.user.User;
 import shop.mtcoding.blogv2.user.UserService;
 
@@ -46,12 +49,12 @@ public class ApplyController {
     // 데이터 추가
     // return "user/userApplyStatus"; // 머스태치 템플릿 파일의 경로
     // }
-    @GetMapping("/companyApplyList/{userId}")
-    public String companyApplyList(@PathVariable Integer userId, HttpServletRequest request) {
-
-        List<Apply> individualApplies = applyService.getAppliesByStatus(userId);
+    @GetMapping("/companyApplyList/{id}")
+    public String companyApplyList(@PathVariable Integer id, HttpServletRequest request) {
+        User sessionUser = (User) session.getAttribute("sessionUser");
+        List<Apply> individualApplies = applyService.getAppliesByStatus(sessionUser.getId());
         request.setAttribute("individual", individualApplies);
-      
+        Collections.sort(individualApplies, Comparator.comparing(Apply::getId).reversed());
 
         return "company/companyApplyList";
     }
@@ -78,14 +81,13 @@ public class ApplyController {
     @PostMapping("/apply/{id}/update")
     public String update(@PathVariable Integer id, ApplyRequest.UpdateDTO updateDTO) {
         applyService.기업지원관리(id, updateDTO);
-        return "redirect:/companyApplyList"+id;
+        return "redirect:/companyApplyList/1";
     }
 
-
     @GetMapping("/apply/{id}")
-    public String 지원하기(@PathVariable Integer id,ApplyRequest.ApplyDTO applyDTO) {
+    public String 지원하기(@PathVariable Integer id, ApplyRequest.ApplyDTO applyDTO) {
         applyService.지원하기(id);
-      return "redirect:/userApplyStatus/"+id;
+        return "redirect:/userApplyStatus/" + id;
     }
 
 }

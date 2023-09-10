@@ -3,6 +3,8 @@ package shop.mtcoding.blogv2.apply;
 import java.util.List;
 import java.util.Optional;
 
+import javax.servlet.http.HttpSession;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -17,15 +19,18 @@ public class ApplyService {
     @Autowired
     private ApplyRepository applyRepository;
 
-    public List<Apply> getAppliesByStatus(Integer userId) {
+    @Autowired
+    private HttpSession session;
+
+    public List<Apply> getAppliesByStatus(Integer resumeId) {
         // Assuming you have a method in your repository to fetch applies by user ID
 
-        return applyRepository.findByUserId(userId);
+        return applyRepository.findByResumeId(resumeId);
     }
 
-    public List<Apply> 지원현황조회(Integer userId) {
+    public List<Apply> 지원현황조회(Integer resumeId) {
         // Assuming you have a method in your repository to fetch applies by user ID
-        return applyRepository.findByUserId(userId);
+        return applyRepository.findByResumeId(resumeId);
     }
 
     public Long 지원개수() {
@@ -47,20 +52,17 @@ public class ApplyService {
         }
     }
 
-    
     @Transactional
     public void 지원하기(Integer id) {
-      
+        User sessionUser = (User) session.getAttribute("sessionUser");
         Apply apply = Apply.builder()
                 .notice(Notice.builder().id(id).build())
                 .resume(Resume.builder().id(id).build())
-                
-                .user(User.builder().id(id).build())
+
+                .user(User.builder().id(sessionUser.getId()).build())
                 .status(true)
                 .build();
         applyRepository.save(apply);
     }
 
-
-  
 }

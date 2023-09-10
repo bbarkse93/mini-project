@@ -177,7 +177,7 @@
                         {{#sessionUser}}
                         {{#sessionUser.distinguish}} <!-- sessionUser 객체의 distinguish 속성을 확인하여 개인회원 여부를 판단 -->
                         <li class="nav-item">
-                            <a href="/userInformation">나의 정보</a>
+                            <a href="/userInformation/{{sessionUser.id}}">나의 정보</a>
                         </li>
                         <li class="nav-item">
                             <a href="/resumeWrite">등록</a>
@@ -186,7 +186,7 @@
 
                         {{^sessionUser.distinguish}} <!-- sessionUser 객체의 distinguish 속성을 확인하여 기업회원 여부를 판단 -->
                         <li class="nav-item">
-                            <a href="/companyNoticeList">나의 정보</a>
+                            <a href="/companyNoticeList/{{sessionUser.id}}">나의 정보</a>
                         </li>
                         <li class="nav-item">
                             <a href="/noticeWrite">채용공고 등록</a>

@@ -56,7 +56,7 @@
     {{/resume.wishSkills}}
   </div>
 
- 
+
   <h4 class="mt-4">자기소개서</h4>
   <div class="card2">
     {{resume.coverLetter}}
@@ -71,20 +71,22 @@
   <br>
   <br>
   <br>
- 
- <div class="text-center">
-  <form action="/apply/{{id}}/update" method="POST" enctype="application/x-www-form-urlencoded" style="display: inline-block;">
-    <button type="submit" class="btn btn-primary"  id="approveButton" name="status" value="true">
-      합격
-    </button>
-  </form>
-  
-  <form action="/apply/{{id}}/update" method="POST" enctype="application/x-www-form-urlencoded" style="display: inline-block;">
-    <button type="submit" class="btn btn-danger"  id="saveButton" name="status" value="false">
-      불합격
-    </button>
-  </form>
-</div>
+
+  <div class="text-center">
+    <form action="/apply/{{id}}/update" method="POST" enctype="application/x-www-form-urlencoded"
+      style="display: inline-block;">
+      <button type="submit" class="btn btn-primary" style="width: 50%;" id="approveButton" name="status" value="true">
+        합격
+      </button>
+    </form>
+
+    <form action="/apply/{{id}}/update" method="POST" enctype="application/x-www-form-urlencoded"
+      style="display: inline-block;">
+      <button type="submit" class="btn btn-danger2" style="width: 50%;" id="saveButton" name="status" value="false">
+        불합격
+      </button>
+    </form>
+  </div>
 
 </div>
 

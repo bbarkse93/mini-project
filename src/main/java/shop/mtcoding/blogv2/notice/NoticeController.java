@@ -15,8 +15,10 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import shop.mtcoding.blogv2._core.error.ex.MyException;
+import shop.mtcoding.blogv2._core.util.ApiUtil;
 import shop.mtcoding.blogv2.duty.Duty;
 import shop.mtcoding.blogv2.duty.DutyService;
 import shop.mtcoding.blogv2.event.Event;
@@ -26,6 +28,7 @@ import shop.mtcoding.blogv2.location.LocationService;
 import shop.mtcoding.blogv2.skill.Skill;
 import shop.mtcoding.blogv2.skill.SkillService;
 import shop.mtcoding.blogv2.user.User;
+import shop.mtcoding.blogv2.user.UserService;
 import shop.mtcoding.blogv2.wishduty.WishDuty;
 import shop.mtcoding.blogv2.wishskill.WishSkill;
 
@@ -45,6 +48,9 @@ public class NoticeController {
     private LocationService locationService;
 
     @Autowired
+    private UserService userService;
+
+    @Autowired
     private EventService eventService;
 
     @Autowired
@@ -61,12 +67,15 @@ public class NoticeController {
     }
 
     // 기업회원정보(디폴트화면)
-    @GetMapping("/companyNoticeList")
-    public String companyNoticeList(HttpServletRequest request) {
-        List<Notice> noticeList = noticeService.findAll();
+    @GetMapping("/companyNoticeList/{id}")
+    public String companyNoticeList(@PathVariable Integer id, HttpServletRequest request) {
+        User sessionUser = (User) session.getAttribute("sessionUser");
+        List<Notice> noticeList = noticeService.findByUserId(sessionUser.getId());
+        User user = userService.회원정보보기(sessionUser.getId());
         Collections.sort(noticeList, Comparator.comparing(Notice::getId).reversed());
         request.setAttribute("noticeList", noticeList);
-        return "/company/companyNoticeList";
+        request.setAttribute("user", user);
+        return "company/companyNoticeList";
     }
 
     // 채용삭제하기
@@ -156,9 +165,10 @@ public class NoticeController {
     }
 
     // // 채용공고 페이지 빈 껍데기를 준다
-    // @GetMapping("/jobPosting")
-    // public String jobPosting() {
-    // return "main/jobPosting";
+    // @GetMapping("/api/jobPosting")
+    // public @ResponseBody List<Notice> jobPosting() {
+    // List<Notice> notices = noticeService.findAll();
+    // return notices;
     // }
 
     // // 채용공고 페이지

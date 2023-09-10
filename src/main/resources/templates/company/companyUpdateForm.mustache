@@ -1,0 +1,41 @@
+{{> layout/header}}
+
+<div class="wrap">
+  <div class="join">
+    <h2>기업회원 정보 수정</h2>
+    <form action="/companyUpdate/{{user.id}}" method="post" enctype="application/x-www-form-urlencoded">
+      <div class="login-pw">
+        <h4>아이디</h4>
+        <input type="text" name="username" id="username" value="{{user.username}}" disabled>
+      </div>
+      <div class="login-pw">
+        <h4>비밀번호</h4>
+        <input type="password" name="password" id="password" placeholder="비밀번호를 입력하세요">
+      </div>
+
+
+
+      <div class="join-name">
+        <h4>회사명</h4>
+        <input type="text" name="name" id="name" placeholder="회사명을 입력하세요">
+      </div>
+
+      <div class="join-phone">
+        <h4>전화번호</h4>
+        <input type="tel" name="telNumber" id="phone" placeholder="전화번호를 입력하세요">
+      </div>
+      <div class="join-email">
+        <h4>Email</h4>
+        <input type="email" name="email" id="email" value="{{user.email}}" disabled>
+      </div>
+
+
+      <div class="submit ">
+        <input type="submit" value="수정하기">
+      </div>
+    </form>
+
+  </div>
+</div>
+
+{{> layout/footer}}

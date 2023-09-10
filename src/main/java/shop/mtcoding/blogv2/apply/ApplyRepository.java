@@ -8,8 +8,8 @@ import org.springframework.data.repository.query.Param;
 
 public interface ApplyRepository extends JpaRepository<Apply, Integer> {
 
-    @Query("SELECT a FROM Apply a WHERE a.user.id = :userId")
-    List<Apply> findByUserId(@Param("userId") Integer userId);
+    @Query("SELECT a FROM Apply a WHERE a.resume.id = :resumeId")
+    List<Apply> findByResumeId(@Param("resumeId") Integer resumeId);
 
     @Query("SELECT COUNT(a) FROM Apply a")
     Long findAllCoutnt();

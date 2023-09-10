@@ -8,6 +8,7 @@ import javax.servlet.http.HttpSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
@@ -105,7 +106,7 @@ public class UserController {
     }
 
     @GetMapping("/userUpdate")
-    public String updateForm(HttpServletRequest request) {
+    public String updateForm(@PathVariable Integer id, HttpServletRequest request) {
         User sessionUser = (User) session.getAttribute("sessionUser");
         if (sessionUser == null) {
             throw new MyException("인증되지 않은 유저입니다.");
@@ -114,7 +115,7 @@ public class UserController {
 
         request.setAttribute("user", user);
 
-        return "user/userUpdate";
+        return "user/userUpdate/" + id;
     }
 
     @PostMapping("/userupdate1")
@@ -130,20 +131,20 @@ public class UserController {
         return "redirect:/";
     }
 
-    @GetMapping("/companyUpdate")
-    public String companyUpdate() {
+    @GetMapping("/companyUpdateForm/{id}")
+    public String companyUpdate(@PathVariable Integer id, HttpServletRequest request) {
         User sessionUser = (User) session.getAttribute("sessionUser");
         if (sessionUser == null) {
             throw new MyException("인증되지 않은 유저입니다.");
         }
         User user = userService.회원정보보기(sessionUser.getId());
 
-        session.setAttribute("user", user);
+        request.setAttribute("user", user);
 
-        return "company/companyUpdate";
+        return "company/companyUpdateForm";
     }
 
-    @PostMapping("/companyUpdate1")
+    @PostMapping("/companyUpdate/{id}")
     public String 기업정보수정(UserRequest.UpdateDTO updateDTO) {
         User sessionUser = (User) session.getAttribute("sessionUser");
         if (sessionUser == null) {

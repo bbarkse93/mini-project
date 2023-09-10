@@ -18,38 +18,36 @@ insert into resume_tb(title,personal_name,personal_email,phone_number,cover_lett
 insert into resume_tb(title,personal_name,personal_email,phone_number,cover_letter,personal_pic_url,created_at,edu) values('이력서3','코스','cos@nate.com','010-1111-5678','자기소개서','basic.jpg',NOW(),'대졸');
 insert into resume_tb(title,personal_name,personal_email,phone_number,cover_letter,personal_pic_url,created_at,edu) values('이력서4','코스','cos@nate.com','010-1111-5678','자기소개서','basic.jpg',NOW(),'대졸');
  
-insert into notice_tb(company_email,company_info,company_name,company_pic_url,created_at,intake,location,pay,period,phone_number,qualification,title)
-values('naver@nate.com','네이버정보','네이버','company.jpg',NOW(),'2명','서울','5000만원','21일간','010-1234-5678','사지멀쩡한 자','프론트급구');
-insert into notice_tb(company_email,company_info,company_name,company_pic_url,created_at,intake,location,pay,period,phone_number,qualification,title)
-values('naver@nate.com','네이버정보','네이버','company.jpg',NOW(),'2명','서울','5000만원','21일간','010-1234-5678','사지멀쩡한 자','프론트급구');
-insert into notice_tb(company_email,company_info,company_name,company_pic_url,created_at,intake,location,pay,period,phone_number,qualification,title)
-values('naver@nate.com','네이버정보','네이버','company.jpg',NOW(),'2명','서울','5000만원','21일간','010-1234-5678','사지멀쩡한 자','프론트급구');
-insert into notice_tb(company_email,company_info,company_name,company_pic_url,created_at,intake,location,pay,period,phone_number,qualification,title)
-values('naver@nate.com','네이버정보','네이버','company.jpg',NOW(),'2명','서울','5000만원','21일간','010-1234-5678','사지멀쩡한 자','프론트급구');
-insert into notice_tb(company_email,company_info,company_name,company_pic_url,created_at,intake,location,pay,period,phone_number,qualification,title)
-values('naver@nate.com','네이버정보','네이버','company.jpg',NOW(),'2명','서울','5000만원','21일간','010-1234-5678','사지멀쩡한 자','프론트급구');
-insert into notice_tb(company_email,company_info,company_name,company_pic_url,created_at,intake,location,pay,period,phone_number,qualification,title)
-values('naver@nate.com','네이버정보','네이버','company.jpg',NOW(),'2명','서울','5000만원','21일간','010-1234-5678','사지멀쩡한 자','프론트급구');
-insert into notice_tb(company_email,company_info,company_name,company_pic_url,created_at,intake,location,pay,period,phone_number,qualification,title)
-values('naver@nate.com','네이버정보','네이버','company.jpg',NOW(),'2명','서울','5000만원','21일간','010-1234-5678','사지멀쩡한 자','프론트급구');
-insert into notice_tb(company_email,company_info,company_name,company_pic_url,created_at,intake,location,pay,period,phone_number,qualification,title)
-values('naver@nate.com','네이버정보','네이버','company.jpg',NOW(),'2명','서울','5000만원','21일간','010-1234-5678','사지멀쩡한 자','프론트급구');
-insert into notice_tb(company_email,company_info,company_name,company_pic_url,created_at,intake,location,pay,period,phone_number,qualification,title)
-values('naver@nate.com','네이버정보','네이버','company.jpg',NOW(),'2명','서울','5000만원','21일간','010-1234-5678','사지멀쩡한 자','프론트급구');
-insert into notice_tb(company_email,company_info,company_name,company_pic_url,created_at,intake,location,pay,period,phone_number,qualification,title)
-values('naver@nate.com','네이버정보','네이버','company.jpg',NOW(),'1명','서울','4500만원','21일간','010-1234-5678','사지멀쩡한 자','백엔드급구');
-insert into notice_tb(company_email,company_info,company_name,company_pic_url,created_at,intake,location,pay,period,phone_number,qualification,title)
-values('kakao@nate.com','카카오정보','카카오','company.jpg',NOW(),'1명','부산','6000만원','14일간','010-1111-2222','사내규정','서버개발자구함');
-insert into notice_tb(company_email,company_info,company_name,company_pic_url,created_at,intake,location,pay,period,phone_number,qualification,title)
-values('kakao@nate.com','카카오정보','카카오','company.jpg',NOW(),'1명','제주','8000만원','30일간','010-1111-2222','사내규정','풀스택개발자');
-insert into notice_tb(company_email,company_info,company_name,company_pic_url,created_at,intake,location,pay,period,phone_number,qualification,title)
-values('Lomin@naver.com','로민정보','Lomin','company.jpg',NOW(),'33명','서울','3373만원','2023.10.31까지','010-1234-5678','개발 경력을 보유하신 분','웹 프론트엔드 개발자');
-insert into notice_tb(company_email,company_info,company_name,company_pic_url,created_at,intake,location,pay,period,phone_number,qualification,title)
-values('newsjelly@naver.com','뉴스젤리정보','newsjelly','뉴스젤리.png',NOW(),'33명','서울','3373만원','2023.09.22까지','010-1234-1313','데이터 시각화 관련 웹 프로젝트의 프론트엔드 개발','웹 newsjelly 개발자');
-insert into notice_tb(company_email,company_info,company_name,company_pic_url,created_at,intake,location,pay,period,phone_number,qualification,title)
-values('highdev@naver.com','하이데브정보','highdev','highdev.png',NOW(),'1명','부산','업계연봉최고대우','상시','010-1234-1514','VAN 서버 관리','DBA/DB 개발자');
-insert into notice_tb(company_email,company_info,company_name,company_pic_url,created_at,intake,location,pay,period,phone_number,qualification,title)
-values('tnh@naver.com','티엔에이치정보','tnh','tnh.png',NOW(),'2명','부산','8000만원','상시','010-1234-1511',' React를 이용하여 당사 프런트 서비스 및 솔루션 개발','React 개발자');
+insert into notice_tb(user_id, company_email, company_info, company_name, company_pic_url, created_at, intake, location, pay, period, phone_number, qualification, title)
+values(3,'Lomin@naver.com','로민정보','Lomin','company.jpg',NOW(),'33명','서울','3373만원','2023.10.31까지','010-1234-5678','개발 경력을 보유하신 분','웹 프론트엔드 개발자');
+insert into notice_tb(user_id, company_email, company_info, company_name, company_pic_url, created_at, intake, location, pay, period, phone_number, qualification, title)
+values(3,'newsjelly@naver.com','뉴스젤리정보','newsjelly','뉴스젤리.png',NOW(),'33명','서울','3373만원','2023.09.22까지','010-1234-1313','데이터 시각화 관련 웹 프로젝트의 프론트엔드 개발','웹 newsjelly 개발자');
+insert into notice_tb(user_id, company_email,company_info,company_name,company_pic_url,created_at,intake,location,pay,period,phone_number,qualification,title)
+values(3,'highdev@naver.com','하이데브정보','highdev','highdev.png',NOW(),'1명','부산','업계연봉최고대우','상시','010-1234-1514','VAN 서버 관리','DBA/DB 개발자');
+insert into notice_tb(user_id, company_email, company_info, company_name, company_pic_url, created_at, intake, location, pay, period, phone_number, qualification, title)
+values(3,'tnh@naver.com','티엔에이치정보','tnh','tnh.png',NOW(),'2명','부산','8000만원','상시','010-1234-1511',' React를 이용하여 당사 프런트 서비스 및 솔루션 개발','React 개발자');
+insert into notice_tb(user_id, company_email, company_info, company_name, company_pic_url, created_at, intake, location, pay, period, phone_number, qualification, title)
+values(3,'naver@nate.com','네이버정보','네이버','company.jpg',NOW(),'2명','서울','5000만원','21일간','010-1234-5678','사지멀쩡한 자','프론트급구company2');
+insert into notice_tb(user_id, company_email, company_info, company_name, company_pic_url, created_at, intake, location, pay, period, phone_number, qualification, title)
+values(3, 'naver@nate.com','네이버정보','네이버','company.jpg',NOW(),'2명','서울','5000만원','21일간','010-1234-5678','사지멀쩡한 자','프론트급구company2');
+insert into notice_tb(user_id, company_email, company_info, company_name, company_pic_url, created_at, intake, location, pay, period, phone_number, qualification, title)
+values(3, 'naver@nate.com','네이버정보','네이버','company.jpg',NOW(),'2명','서울','5000만원','21일간','010-1234-5678','사지멀쩡한 자','프론트급구company2');
+insert into notice_tb(user_id, company_email, company_info, company_name, company_pic_url, created_at, intake, location, pay, period, phone_number, qualification, title)
+values(4, 'naver@nate.com','네이버정보','네이버','company.jpg',NOW(),'2명','서울','5000만원','21일간','010-1234-5678','사지멀쩡한 자','프론트급구company2');
+insert into notice_tb(user_id, company_email, company_info, company_name, company_pic_url, created_at, intake, location, pay, period, phone_number, qualification, title)
+values(4, 'naver@nate.com','네이버정보','네이버','company.jpg',NOW(),'2명','서울','5000만원','21일간','010-1234-5678','사지멀쩡한 자','프론트급구company2');
+insert into notice_tb(user_id, company_email, company_info, company_name, company_pic_url, created_at, intake, location, pay, period, phone_number, qualification, title)
+values(4, 'naver@nate.com','네이버정보','네이버','company.jpg',NOW(),'2명','서울','5000만원','21일간','010-1234-5678','사지멀쩡한 자','프론트급구');
+insert into notice_tb(user_id, company_email, company_info, company_name, company_pic_url, created_at, intake, location, pay, period, phone_number, qualification, title)
+values(4, 'naver@nate.com','네이버정보','네이버','company.jpg',NOW(),'2명','서울','5000만원','21일간','010-1234-5678','사지멀쩡한 자','프론트급구');
+insert into notice_tb(user_id, company_email, company_info, company_name, company_pic_url, created_at, intake, location, pay, period, phone_number, qualification, title)
+values(4, 'naver@nate.com','네이버정보','네이버','company.jpg',NOW(),'2명','서울','5000만원','21일간','010-1234-5678','사지멀쩡한 자','프론트급구');
+insert into notice_tb(user_id, company_email, company_info, company_name, company_pic_url, created_at, intake, location, pay, period, phone_number, qualification, title)
+values(4, 'naver@nate.com','네이버정보','네이버','company.jpg',NOW(),'2명','서울','5000만원','21일간','010-1234-5678','사지멀쩡한 자','프론트급구');
+insert into notice_tb(user_id, company_email, company_info, company_name, company_pic_url, created_at, intake, location, pay, period, phone_number, qualification, title)
+values(4, 'naver@nate.com','네이버정보','네이버','company.jpg',NOW(),'2명','서울','5000만원','21일간','010-1234-5678','사지멀쩡한 자','프론트급구');
+insert into notice_tb(user_id, company_email, company_info, company_name, company_pic_url, created_at, intake, location, pay, period, phone_number, qualification, title)
+values(4, 'naver@nate.com','네이버정보','네이버','company.jpg',NOW(),'2명','서울','5000만원','21일간','010-1234-5678','사지멀쩡한 자','프론트급구');
 
 
 INSERT INTO apply_tb (notice_id, resume_id, status, user_id) VALUES (1, 1, false, 1); 

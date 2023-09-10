@@ -240,4 +240,10 @@ public class NoticeService {
         return noticeRepository.findAll(pageable);
     }
 
+    public List<Notice> findByUserId(Integer userId) {
+
+        List<Notice> notices = noticeRepository.findByUserId(userId);
+        return notices;
+    }
+
 }
