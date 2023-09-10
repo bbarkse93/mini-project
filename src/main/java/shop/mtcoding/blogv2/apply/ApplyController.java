@@ -81,9 +81,11 @@ public class ApplyController {
         return "redirect:/companyApplyList"+id;
     }
 
-    @GetMapping("/apply")
-    public String apply(ApplyRequest.ApplyDTO applyDTO) {
-        applyService.지원하기(applyDTO);
-        return "redirect:/companyApplyList";
+
+    @GetMapping("/apply/{id}")
+    public String 지원하기(@PathVariable Integer id,ApplyRequest.ApplyDTO applyDTO) {
+        applyService.지원하기(id);
+      return "redirect:/userApplyStatus/"+id;
     }
+
 }
