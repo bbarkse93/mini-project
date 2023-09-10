@@ -1,12 +1,12 @@
 -- 유저 더미
 insert into user_tb(username, password, name, tel_number, email, regist_number, pic_url, distinguish, created_at) 
-values('ssar', '1234', '쌀', '010-1234-5678','ssar@nate.com', '1995-01-01', 'basic.jpg', true, NOW());
+values('ssar', '$2a$10$00uiUIAb.JpCPGeltpBhHupRj0gkm7/k3ojUyHV/BqRBI.tPfHWzS', '쌀', '010-1234-5678','ssar@nate.com', '1995-01-01', 'basic.jpg', true, NOW());
 insert into user_tb(username, password, name, tel_number, email, regist_number, pic_url, distinguish, created_at) 
-values('cos', '1234', '코스', '010-1234-5678', 'cos@nate.com', '1995-01-01', 'basic.jpg', true, NOW());
+values('cos', '$2a$10$00uiUIAb.JpCPGeltpBhHupRj0gkm7/k3ojUyHV/BqRBI.tPfHWzS', '코스', '010-1234-5678', 'cos@nate.com', '1995-01-01', 'basic.jpg', true, NOW());
 insert into user_tb(username, password, name, tel_number, email, regist_number, pic_url, distinguish, created_at) 
-values('company1', '1234', '회사1', '010-1234-5678', 'cos@nate.com', '000000000', 'basic.jpg', false, NOW());
+values('company1', '$2a$10$00uiUIAb.JpCPGeltpBhHupRj0gkm7/k3ojUyHV/BqRBI.tPfHWzS', '회사1', '010-1234-5678', 'cos@nate.com', '000000000', 'basic.jpg', false, NOW());
 insert into user_tb(username, password, name, tel_number, email, regist_number, pic_url, distinguish, created_at) 
-values('company2', '1234', '회사z', '010-1234-5678', 'cos@nate.com', '000000000', 'basic.jpg', false, NOW());
+values('company2', '$2a$10$00uiUIAb.JpCPGeltpBhHupRj0gkm7/k3ojUyHV/BqRBI.tPfHWzS', '회사z', '010-1234-5678', 'cos@nate.com', '000000000', 'basic.jpg', false, NOW());
 
 -- 이력서
 insert into resume_tb(user_id, title,personal_name, personal_email, phone_number, cover_letter, personal_pic_url, created_at, edu) 

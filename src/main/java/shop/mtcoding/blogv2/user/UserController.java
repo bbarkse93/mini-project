@@ -95,13 +95,17 @@ public class UserController {
     @PostMapping("/login")
     public @ResponseBody String 로그인(UserRequest.LoginDTO loginDTO) {
         User user = userService.로그인(loginDTO);
-        boolean isvalid = BCrypt.checkpw(loginDTO.getPassword(), user.getPassword());
+
         if (user == null) {
             return Script.href("/loginForm", "아이디가 틀렸습니다");
         }
+
+        boolean isvalid = BCrypt.checkpw(loginDTO.getPassword(), user.getPassword());
+        
         if (!isvalid) {
             return Script.href("/loginForm", "비밀번호가 틀렸습니다");
         }
+        
         session.setAttribute("sessionUser", user);
         return Script.href("/", "로그인 성공");
     }
