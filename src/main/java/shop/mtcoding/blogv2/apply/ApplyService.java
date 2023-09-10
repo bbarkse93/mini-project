@@ -33,8 +33,8 @@ public class ApplyService {
         return applyRepository.findByResumeId(resumeId);
     }
 
-    public Long 지원개수() {
-        return applyRepository.findAllCoutnt();
+    public Long 지원개수(Integer userId) {
+        return applyRepository.findByUserIdCount(userId);
     }
 
     @Transactional

@@ -88,24 +88,25 @@ public class UserController {
         return "redirect:/";
     }
 
-    @GetMapping("/userInformation")
-    private String 회원정보보기(Integer id, HttpServletRequest request) {
+    @GetMapping("/userInformation/{id}")
+    private String 회원정보보기(@PathVariable Integer id, HttpServletRequest request) {
         User sessionUser = (User) session.getAttribute("sessionUser");
-
+        if (sessionUser == null) {
+            throw new MyException("인증되지 않은 유저입니다.");
+        }
         List<Notice> notices = noticeService.getAllNotices();
-        Long apply = applyService.지원개수();
-        Long resume = resumeService.총이력서();
+        Long apply = applyService.지원개수(sessionUser.getId());
+        Long resume = resumeService.총이력서(sessionUser.getId());
         User user = userService.회원정보보기(sessionUser.getId());
         request.setAttribute("notices", notices);
         request.setAttribute("apply", apply);
         request.setAttribute("resume", resume);
         request.setAttribute("user", user);
-        System.out.println("test3: " + user.getId());
 
         return "user/userinformation";
     }
 
-    @GetMapping("/userUpdate")
+    @GetMapping("/userUpdateForm/{id}")
     public String updateForm(@PathVariable Integer id, HttpServletRequest request) {
         User sessionUser = (User) session.getAttribute("sessionUser");
         if (sessionUser == null) {
@@ -115,7 +116,7 @@ public class UserController {
 
         request.setAttribute("user", user);
 
-        return "user/userUpdate/" + id;
+        return "user/userUpdateForm";
     }
 
     @PostMapping("/userupdate1")

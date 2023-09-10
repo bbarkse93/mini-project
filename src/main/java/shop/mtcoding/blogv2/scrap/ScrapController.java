@@ -29,8 +29,8 @@ public class ScrapController {
     @Autowired
     private HttpSession session;
 
-    @GetMapping("/userScrapCompany")
-    public String userScrapCompany(Integer userId, HttpServletRequest request) {
+    @GetMapping("/userScrapCompany/{id}")
+    public String userScrapCompany(@PathVariable Integer id, HttpServletRequest request) {
         User sessionUser = (User) session.getAttribute("sessionUser");
         if (sessionUser == null) {
             throw new MyException("인증되지 않은 유저입니다.");

@@ -1,7 +1,5 @@
 package shop.mtcoding.blogv2.resume;
 
-import java.util.Collections;
-import java.util.Comparator;
 import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
@@ -50,8 +48,8 @@ public class ResumeController {
     private HttpSession session;
 
     // 일반회원정보(디폴트화면)
-    @GetMapping("/myResumeList")
-    public String 나의이력서관리(HttpServletRequest request) {
+    @GetMapping("/myResumeList/{id}")
+    public String 나의이력서관리(@PathVariable Integer id, HttpServletRequest request) {
         // List<Notice> notices = noticeService.getAllNotices();
         // request.setAttribute("notices", notices);
         User sessionUser = (User) session.getAttribute("sessionUser");
@@ -59,9 +57,8 @@ public class ResumeController {
             throw new MyException("인증되지 않은 유저입니다.");
         }
         User user = userService.회원정보보기(sessionUser.getId());
-        List<Resume> resumeList = resumeService.findAll();
+        List<Resume> resumeList = resumeService.이력서조회(sessionUser.getId());
         List<Notice> notices = noticeService.getAllNotices();
-        Collections.sort(resumeList, Comparator.comparing(Resume::getId).reversed());
         request.setAttribute("notices", notices);
         request.setAttribute("resumeList", resumeList);
         request.setAttribute("user", user);
@@ -77,6 +74,7 @@ public class ResumeController {
         return "redirect:/myResumeList"; // userResumeList 페이지로 리디렉션
     }
 
+    // 이력서 수정 Form
     @GetMapping("/resume/{id}/updateForm")
     public String updateForm(@PathVariable Integer id, HttpServletRequest request) {
         // 1. 인증 검사
@@ -106,7 +104,7 @@ public class ResumeController {
         return "redirect:/myResumeList";
     }
 
-    // 이력서 등록 view
+    // 이력서 등록 Form
     @GetMapping("/resumeWrite")
     public String resumeWrite(HttpServletRequest request) {
         List<Skill> skills = skillService.findAll();
@@ -139,7 +137,7 @@ public class ResumeController {
         return "resume/userResumeDetail";
     }
 
-    // 이력서 상세보기 합격,불합격 있는 거
+    // 이력서 상세보기 합격, 불합격 있는 거
     @GetMapping("/resume/{id}/CompDetail")
     public String 기업이력서상세보기(@PathVariable Integer id, HttpServletRequest request) {
         Resume resume = resumeService.findById(id);

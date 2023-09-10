@@ -44,7 +44,8 @@ public class ResumeService {
     private HttpSession session;
 
     public Resume findById(Integer id) {
-        return resumeRepository.findById(id).get();
+        Resume resume = resumeRepository.findById(id).get();
+         return resume;
     }
 
     public List<Resume> findAll() {
@@ -191,8 +192,12 @@ public class ResumeService {
         }
     }
 
-    public Long 총이력서() {
-        return resumeRepository.findTotalCount();
+    public Long 총이력서(Integer userId) {
+        return resumeRepository.findByUserIdCount(userId);
+    }
+
+    public List<Resume> 이력서조회(Integer userId) {
+        return resumeRepository.findByUserId(userId);
     }
 }
 

@@ -15,10 +15,8 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.ResponseBody;
 
 import shop.mtcoding.blogv2._core.error.ex.MyException;
-import shop.mtcoding.blogv2._core.util.ApiUtil;
 import shop.mtcoding.blogv2.duty.Duty;
 import shop.mtcoding.blogv2.duty.DutyService;
 import shop.mtcoding.blogv2.event.Event;
