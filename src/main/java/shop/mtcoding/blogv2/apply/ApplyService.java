@@ -47,15 +47,20 @@ public class ApplyService {
         }
     }
 
+    
     @Transactional
-    public void 지원하기(ApplyRequest.ApplyDTO applyDTO) {
+    public void 지원하기(Integer id) {
+      
         Apply apply = Apply.builder()
-                .notice(Notice.builder().id(applyDTO.getNoticeId()).build())
-                .resume(Resume.builder().id(applyDTO.getResumeId()).build())
-                .user(User.builder().id(applyDTO.getUserId()).build())
+                .notice(Notice.builder().id(id).build())
+                .resume(Resume.builder().id(id).build())
+                
+                .user(User.builder().id(id).build())
                 .status(true)
                 .build();
         applyRepository.save(apply);
     }
 
+
+  
 }
