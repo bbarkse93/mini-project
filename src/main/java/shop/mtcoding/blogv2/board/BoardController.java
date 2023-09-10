@@ -47,4 +47,13 @@ public class BoardController {
         boardService.문의수정(updateDTO, id);
         return "redirect:/csForm";
     }
+
+    //  고객센터 글 삭제하기
+    @PostMapping("/board/{id}/delete")
+    public String delete(@PathVariable Integer id, HttpServletRequest request) {
+
+        boardService.deleteById(id); 
+
+        return "redirect:/csForm"; 
+    }
 }
