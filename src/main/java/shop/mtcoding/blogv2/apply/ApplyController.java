@@ -16,7 +16,6 @@ import org.springframework.web.bind.annotation.PostMapping;
 import shop.mtcoding.blogv2._core.error.ex.MyException;
 import shop.mtcoding.blogv2.notice.Notice;
 import shop.mtcoding.blogv2.notice.NoticeService;
-import shop.mtcoding.blogv2.resume.Resume;
 import shop.mtcoding.blogv2.user.User;
 import shop.mtcoding.blogv2.user.UserService;
 
