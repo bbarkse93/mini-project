@@ -45,12 +45,20 @@ public class ScrapController {
 
         return "user/userScrapCompany"; // 뷰 이름 반환
     }
-
-    // 유저 관심기업
     @GetMapping("/notice/{id}/noticScrap")
     public String 유저관심기업(@PathVariable Integer id, ScrapRequest.UserScrapDTO userScrapDTO) {
+        // 세션에서 사용자 정보 가져오기
+        User sessionUser = (User) session.getAttribute("sessionUser");
+        
+        // 세션에 사용자 정보가 없다면 예외 처리
+        if (sessionUser == null) {
+            throw new MyException("인증되지 않은 유저입니다.");
+        }
+        
+        // 스크랩 서비스를 호출하여 관심 기업을 추가
         scrapService.관심기업(id, userScrapDTO);
-        return "redirect:/userScrapCompany";
+    
+        // 리다이렉트할 URL로 변경 (예시로 "/userScrapCompany"를 사용)
+        return "redirect:/userScrapCompany/"+sessionUser.getId();
     }
-
 }

@@ -6,14 +6,12 @@ import shop.mtcoding.blogv2.notice.Notice;
 import shop.mtcoding.blogv2.user.User;
 
 public class ScrapRequest {
-
-     @Getter
+    @Getter
     @Setter
     public static class UserScrapDTO {
         private User user;
-        private Notice notice; 
-      
-    
-}  
-    
+        private Notice notice;
+
+    }
+
 }

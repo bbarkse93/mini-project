@@ -5,7 +5,6 @@ import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Optional;
 import java.util.UUID;
 
 import javax.servlet.http.HttpSession;
@@ -153,17 +152,13 @@ public class NoticeService {
     public Notice 수정화면(Integer id) {
         Notice notice = noticeRepository.findById(id)
                 .orElseThrow(() -> new MyException(id + "는 찾을 수 없습니다"));
-
         // Notice와 연관된 직무 정보를 가져옵니다.
         List<WishDuty> wishDutys = wishDutyRepository.findByNoticeId(id);
-
         // Notice와 연관된 기술 정보를 가져옵니다.
         List<WishSkill> wishSkills = wishSkillRepository.findByNoticeId(id);
-
         // 가져온 직무와 기술 정보를 Notice에 설정합니다.
         notice.setWishDutys(wishDutys);
         notice.setWishSkills(wishSkills);
-
         return notice;
     }
 
@@ -173,7 +168,7 @@ public class NoticeService {
         Notice notice = noticeRepository.findById(id)
                 .orElseThrow(() -> new MyException("해당 채용 정보를 찾을 수 없습니다."));
 
-        // 업데이트할 필드 설정
+        // 공고문 내용 업데이트
         notice.setTitle(updateDTO.getTitle());
         notice.setCompanyInfo(updateDTO.getCompanyInfo());
         notice.setLocation(updateDTO.getLocation());
@@ -229,6 +224,7 @@ public class NoticeService {
         List<Notice> noties = noticeRepository.findAll();
         return noties;
     }
+
 
      public Notice 공고상세보기(Integer id) {
      Notice notice = noticeRepository.findById(id).get();

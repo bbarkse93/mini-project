@@ -37,7 +37,7 @@
 
 
   <!--파워 링크 글자-->
-  <div class="파워링크 mt-2">파워 링크</div>
+  <div class="파워링크 mt-2">채용공고</div>
   <!--파워 링크 글자-->
 
   <!--파워 링크 이미지-->
@@ -45,37 +45,23 @@
     {{#noticeList}}
     <div class="notice-image">
       <a href="/notice/noticeDetail/{{id}}" class="rounded-image">
-        <div class="index-notice-title">{{title}}</div>
+        <div class="index-notice-title mb-2">{{title}}</div>
         <img src="/images/{{companyPicUrl}}" />
-        <div>{{companyName}}</div>
+        <div class="my-1">{{companyName}}</div>
+
+        <div class="d-flex flex-wrap">
+          {{#wishDutys}}
+          <div class="p-1 skill">{{duty.dutyName}}</div>
+          {{/wishDutys}}
+        </div>
       </a>
     </div>
     {{/noticeList}}
   </div>
   <!--파워 링크 이미지-->
-
+  <br>
   <hr>
 
-  <!--채용공고글자-->
-  <div class="채용공고 mt-2">채용 공고</div>
-  <!--채용공고글자-->
-
-  <!--채용 공고 이미지-->
-  <div class="image-container">
-    <a href="http://www.naver.com" class="rounded-image">
-      <img src="/images/파워링크사진.png" />
-    </a>
-    <a href="http://www.naver.com" class="rounded-image">
-      <img src="/images/파워링크사진.png" />
-    </a>
-    <a href="http://www.naver.com" class="rounded-image">
-      <img src="/images/파워링크사진.png" />
-    </a>
-    <a href="http://www.naver.com" class="rounded-image">
-      <img src="/images/파워링크사진.png" />
-    </a>
-  </div>
-  <!--채용 공고 이미지-->
 
 
 
