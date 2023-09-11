@@ -5,10 +5,15 @@
         <div class="image-container">
             {{#noticePage.content}}
             <div class="notice-image">
-                <a href="/notice/noticeDetail/{{id}}" class="rounded-image">
+                <a href="/notice/noticeDetail/{{id}}" class="rounded-image text-center"> <!-- text-center 추가 -->
                     <div class="index-notice-title">{{title}}</div>
-                    <img src="/images/{{companyPicUrl}}" />
+                    <img src="/images/{{companyPicUrl}}" class="mx-auto" /> <!-- mx-auto 추가 -->
                     <div>{{companyName}}</div>
+                    <div class="d-flex flex-wrap">
+                        {{#wishDutys}}
+                        <div class="p-1 skill">{{duty.dutyName}}</div>
+                        {{/wishDutys}}
+                    </div>
                 </a>
             </div>
             {{/noticePage.content}}
