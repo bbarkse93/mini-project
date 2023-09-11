@@ -23,6 +23,7 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 import shop.mtcoding.blogv2.apply.Apply;
 import shop.mtcoding.blogv2.bookmark.Bookmark;
+import shop.mtcoding.blogv2.scrap.Scrap;
 import shop.mtcoding.blogv2.user.User;
 import shop.mtcoding.blogv2.wishduty.WishDuty;
 import shop.mtcoding.blogv2.wishskill.WishSkill;
@@ -71,10 +72,10 @@ public class Notice {
     @Column
     private String period;
 
-    @OneToMany(mappedBy = "notice", fetch = FetchType.LAZY)
+    @OneToMany(mappedBy = "notice", fetch = FetchType.LAZY, cascade = CascadeType.ALL   )
     private List<WishSkill> wishSkills = new ArrayList<>();
 
-    @OneToMany(mappedBy = "notice", fetch = FetchType.LAZY)
+    @OneToMany(mappedBy = "notice", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
     private List<WishDuty> wishDutys = new ArrayList<>();
 
     @OneToMany(mappedBy = "notice", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
@@ -83,17 +84,20 @@ public class Notice {
     @OneToMany(mappedBy = "notice", fetch = FetchType.LAZY)
     private List<Bookmark> bookmarks = new ArrayList<>();
 
+    @OneToMany(mappedBy = "notice", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+    private List<Scrap> scraps = new ArrayList<>();
+
     @ManyToOne(fetch = FetchType.LAZY)
     private User user;
 
     @CreationTimestamp
     private Timestamp createdAt;
-
+    
     @Builder
     public Notice(Integer id, String title, String companyName, String companyEmail, String phoneNumber,
             String companyInfo, String companyPicUrl, String location, String intake, String pay, String qualification,
             String period, List<WishSkill> wishSkills, List<WishDuty> wishDutys, List<Apply> applies,
-            List<Bookmark> bookmarks, User user, Timestamp createdAt) {
+            List<Bookmark> bookmarks, List<Scrap> scraps, User user, Timestamp createdAt) {
         this.id = id;
         this.title = title;
         this.companyName = companyName;
@@ -110,7 +114,10 @@ public class Notice {
         this.wishDutys = wishDutys;
         this.applies = applies;
         this.bookmarks = bookmarks;
+        this.scraps = scraps;
         this.user = user;
         this.createdAt = createdAt;
     }
+
+   
 }
