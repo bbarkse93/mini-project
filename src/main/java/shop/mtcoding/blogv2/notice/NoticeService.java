@@ -51,8 +51,19 @@ public class NoticeService {
     @Autowired
     private HttpSession session;
 
+    public Notice findById(Integer id) {
+        Notice notice = noticeRepository.findById(id).get();
+        return notice;
+    }
+
     public List<Notice> findAll() {
         return noticeRepository.findAll();
+    }
+
+    public List<Notice> findByUserId(Integer userId) {
+
+        List<Notice> notices = noticeRepository.findByUserId(userId);
+        return notices;
     }
 
     // 채용공고등록
@@ -134,11 +145,7 @@ public class NoticeService {
     // 채용공고삭제
     @Transactional
     public void 채용삭제(Integer id) {
-        // try {
         noticeRepository.deleteById(id);
-        // } catch (Exception e) {
-        // throw new MyException(id + "를 찾을 수 없어요");
-        // }
     }
 
     // 채용공고수정 view
@@ -163,57 +170,50 @@ public class NoticeService {
     // 채용공고수정
     @Transactional
     public void 채용수정(Integer id, NoticeRequest.UpdateDTO updateDTO) {
-        Optional<Notice> optionalNotice = noticeRepository.findById(id);
+        Notice notice = noticeRepository.findById(id)
+                .orElseThrow(() -> new MyException("해당 채용 정보를 찾을 수 없습니다."));
 
-        if (optionalNotice.isPresent()) {
-            Notice notice = optionalNotice.get();
-            notice.setTitle(updateDTO.getTitle());
-            notice.setCompanyInfo(updateDTO.getCompanyInfo());
-            notice.setLocation(updateDTO.getLocation());
-            notice.setIntake(updateDTO.getIntake());
-            notice.setPay(updateDTO.getPay());
-            notice.setPeriod(updateDTO.getPeriod());
-            notice.setQualification(updateDTO.getQualification());
+        // 업데이트할 필드 설정
+        notice.setTitle(updateDTO.getTitle());
+        notice.setCompanyInfo(updateDTO.getCompanyInfo());
+        notice.setLocation(updateDTO.getLocation());
+        notice.setIntake(updateDTO.getIntake());
+        notice.setPay(updateDTO.getPay());
+        notice.setPeriod(updateDTO.getPeriod());
+        notice.setQualification(updateDTO.getQualification());
 
-            // 기존 위시스킬 데이터 삭제
-            for (WishSkill existingSkill : notice.getWishSkills()) {
-                existingSkill.setNotice(null);
-            }
-            notice.getWishSkills().clear();
+        // 기존의 위시 스킬 및 위시 듀티 정보 삭제
+        wishSkillRepository.deleteAllByNotice(notice);
+        wishDutyRepository.deleteAllByNotice(notice);
 
-            // 새로운 위시스킬 데이터 추가
-            if (updateDTO.getWishSkills() != null) {
-                for (String skillName : updateDTO.getWishSkills()) {
-                    Skill skill = skillRepository.findBySkillName(skillName);
-                    if (skill != null) {
-                        WishSkill wishSkill = new WishSkill();
-                        wishSkill.setSkill(skill);
-                        wishSkill.setNotice(notice);
-                        wishSkillRepository.save(wishSkill);
-                    }
+        // 새로운 위시 스킬 정보 추가
+        if (updateDTO.getWishSkills() != null) {
+            for (String skillName : updateDTO.getWishSkills()) {
+                Skill skill = skillRepository.findBySkillName(skillName);
+                if (skill != null) {
+                    WishSkill wishSkill = new WishSkill();
+                    wishSkill.setSkill(skill);
+                    wishSkill.setNotice(notice);
+                    wishSkillRepository.save(wishSkill);
                 }
             }
-
-            // 기존 위시듀티 데이터 삭제
-            for (WishDuty existingDuty : notice.getWishDutys()) {
-                existingDuty.setNotice(null);
-            }
-            notice.getWishDutys().clear();
-
-            // 새로운 위시 듀티 데이터 추가
-            if (updateDTO.getWishDutys() != null) {
-                for (String dutyName : updateDTO.getWishDutys()) {
-                    Duty duty = dutyRepository.findByDutyName(dutyName);
-                    if (duty != null) {
-                        WishDuty wishDuty = new WishDuty();
-                        wishDuty.setDuty(duty);
-                        wishDuty.setNotice(notice);
-                        wishDutyRepository.save(wishDuty);
-                    }
-                }
-            }
-            noticeRepository.save(notice);
         }
+
+        // 새로운 위시 듀티 정보 추가
+        if (updateDTO.getWishDutys() != null) {
+            for (String dutyName : updateDTO.getWishDutys()) {
+                Duty duty = dutyRepository.findByDutyName(dutyName);
+                if (duty != null) {
+                    WishDuty wishDuty = new WishDuty();
+                    wishDuty.setDuty(duty);
+                    wishDuty.setNotice(notice);
+                    wishDutyRepository.save(wishDuty);
+                }
+            }
+        }
+
+        // 수정된 채용 정보 저장
+        noticeRepository.save(notice);
     }
 
     public List<WishDuty> getWishDutys(Integer id) {
@@ -230,20 +230,14 @@ public class NoticeService {
         return noties;
     }
 
-    public Notice 공고상세보기(Integer id) {
-        Notice notice = noticeRepository.findById(id).get();
-        return notice;
-    }
+    // public Notice 공고상세보기(Integer id) {
+    // Notice notice = noticeRepository.findById(id).get();
+    // return notice;
+    // }
 
     public Page<Notice> 공고목록보기(Integer page) {
         Pageable pageable = PageRequest.of(page, 12, Sort.Direction.DESC, "id");
         return noticeRepository.findAll(pageable);
-    }
-
-    public List<Notice> findByUserId(Integer userId) {
-
-        List<Notice> notices = noticeRepository.findByUserId(userId);
-        return notices;
     }
 
 }

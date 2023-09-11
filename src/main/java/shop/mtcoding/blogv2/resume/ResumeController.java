@@ -1,5 +1,7 @@
 package shop.mtcoding.blogv2.resume;
 
+import java.util.Collections;
+import java.util.Comparator;
 import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
@@ -58,6 +60,7 @@ public class ResumeController {
         }
         User user = userService.회원정보보기(sessionUser.getId());
         List<Resume> resumeList = resumeService.이력서조회(sessionUser.getId());
+        Collections.sort(resumeList, Comparator.comparing(Resume::getId).reversed());
         List<Notice> notices = noticeService.getAllNotices();
         request.setAttribute("notices", notices);
         request.setAttribute("resumeList", resumeList);
@@ -95,13 +98,13 @@ public class ResumeController {
         return "resume/resumeUpdateForm";
     }
 
-    // // 이력서 수정하기
+    // 이력서 수정하기
     @PostMapping("/resume/{id}/update")
     public String update(@PathVariable Integer id, ResumeRequest.UpdateDTO updateDTO) {
 
         resumeService.update(id, updateDTO);
 
-        return "redirect:/myResumeList";
+        return "redirect:/myResumeList/" + id;
     }
 
     // 이력서 등록 Form
@@ -125,7 +128,7 @@ public class ResumeController {
             throw new MyException("인증되지 않았습니다");
         }
         resumeService.이력서등록(saveDTO);
-        return "redirect:/myResumeList";
+        return "redirect:/myResumeList/" + sessionUser.getId();
     }
 
     @GetMapping("/resume/{id}/Detail")

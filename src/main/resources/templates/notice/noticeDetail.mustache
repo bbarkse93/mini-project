@@ -10,9 +10,9 @@
                 <div>
 
                     <div class="detail-comp-name mt-3">
-                        <h4><strong>{{noticeDetail.companyName}}</strong></h4>
+                        <h4><strong>{{notice.companyName}}</strong></h4>
                         <div class="info-box m-3">
-                            <h4 class=""><strong>{{noticeDetail.title}}</strong></h4>
+                            <h4 class=""><strong>{{notice.title}}</strong></h4>
                         </div>
                     </div>
                     <div class="info-box m-3">
@@ -21,11 +21,11 @@
                 </div>
                 <div class="info-box2 m-3">
                     <h2>모집인원</h2>
-                    <p>{{noticeDetail.intake}}</p>
+                    <p>{{notice.intake}}</p>
                     <h2>모집기간</h2>
-                    <p>2023/09/01~2023/12/25</p>
+                    <p>{{notice.period}}</p>
                     <h2>연봉</h2>
-                    <p>{{noticeDetail.pay}}</p>
+                    <p>{{notice.pay}}</p>
                 </div>
             </div>
             <hr>
@@ -33,21 +33,18 @@
                 <div class="m-3">
                     <h4><strong>채용분야</strong></h4>
                     <div class="d-flex flex-wrap m-3">
-                        {{#wishDutys}}
+                        {{#notice.wishDutys}}
                         <div class="p-2 skill">{{duty.dutyName}}</div>
-                        {{/wishDutys}}
-
+                        {{/notice.wishDutys}}
                     </div>
                 </div>
                 <hr>
                 <div class="m-3">
                     <h4><strong>기술스택</strong></h4>
                     <div class="d-flex flex-wrap m-3">
-
-                        {{#wishSkills}}
+                        {{#notice.wishSkills}}
                         <div class="p-2 skill">{{skill.skillName}}</div>
-                        {{/wishSkills}}
-
+                        {{/notice.wishSkills}}
                     </div>
                 </div>
             </div>
@@ -55,11 +52,11 @@
             <div class="d-flex justify-content-between">
                 <div class="detail m-3">
                     <h4><strong>기업정보</strong></h4>
-                    <div>{{noticeDetail.CompanyInfo}}</div>
+                    <div>{{notice.CompanyInfo}}</div>
                 </div>
                 <div class="detail m-3">
                     <h4><strong>자격요건</strong></h4>
-                    <div>{{noticeDetail.Qualification}}</div>
+                    <div>{{notice.Qualification}}</div>
                 </div>
             </div>
             <br>

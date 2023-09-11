@@ -5,7 +5,6 @@ import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Optional;
 import java.util.UUID;
 
 import javax.servlet.http.HttpSession;
@@ -45,7 +44,7 @@ public class ResumeService {
 
     public Resume findById(Integer id) {
         Resume resume = resumeRepository.findById(id).get();
-         return resume;
+        return resume;
     }
 
     public List<Resume> findAll() {
@@ -58,7 +57,6 @@ public class ResumeService {
         resumeRepository.deleteById(id);
     }
 
-    // 이력서등록
     @Transactional
     public Resume 이력서등록(ResumeRequest.SaveDTO saveDTO) {
         User sessionUser = (User) session.getAttribute("sessionUser");
@@ -73,61 +71,70 @@ public class ResumeService {
         } catch (Exception e) {
             throw new MyException(e.getMessage());
         }
-        // 기존의 리스트를 초기화
-        List<WishSkill> wishSkillList = new ArrayList<>();
-        List<WishDuty> wishDutyList = new ArrayList<>();
-        Resume resume = Resume.builder()
-                .title(saveDTO.getTitle())
-                .personalName(saveDTO.getPersonalName())
-                .personalEmail(saveDTO.getPersonalEmail())
-                .phoneNumber(saveDTO.getPhoneNumber())
-                .personalPicUrl(fileName)
-                .coverLetter(saveDTO.getCoverLetter())
-                .createdAt(saveDTO.getCreatedAt())
-                .edu(saveDTO.getEdu())
-                .user(User.builder().id(sessionUser.getId()).build())
-                .build();
+
+        Resume resume;
+        if (saveDTO.getId() != null) {
+            // 이미 등록된 이력서 업데이트
+            resume = resumeRepository.findById(saveDTO.getId()).orElse(null);
+            if (resume == null) {
+                // 해당 ID에 해당하는 이력서가 없으면 예외 처리 또는 오류 처리를 수행할 수 있습니다.
+                throw new MyException("해당 이력서를 찾을 수 없습니다.");
+            }
+        } else {
+            // 새로운 이력서 생성
+            resume = new Resume();
+        }
+
+        resume.setTitle(saveDTO.getTitle());
+        resume.setPersonalName(saveDTO.getPersonalName());
+        resume.setPersonalEmail(saveDTO.getPersonalEmail());
+        resume.setPhoneNumber(saveDTO.getPhoneNumber());
+        resume.setPersonalPicUrl(fileName);
+        resume.setCoverLetter(saveDTO.getCoverLetter());
+        resume.setCreatedAt(saveDTO.getCreatedAt());
+        resume.setEdu(saveDTO.getEdu());
+        resume.setUser(User.builder().id(sessionUser.getId()).build());
+
+        // 이력서를 저장 (새로 생성한 경우 또는 업데이트한 경우 모두 저장)
         resumeRepository.save(resume);
 
-        // 기술 스택 관련 정보 처리
+        // 기존의 리스트를 초기화하지 않고, 해당 이력서의 WishSkill 및 WishDuty를 업데이트
         List<String> skillList = saveDTO.getWishSkills();
+        List<String> dutyList = saveDTO.getWishDutys();
+
+        // 새로운 정보 추가
+        List<WishSkill> newWishSkills = new ArrayList<>();
+        List<WishDuty> newWishDutys = new ArrayList<>();
+
         for (String skillName : skillList) {
             Skill skill = skillRepository.findBySkillName(skillName);
             if (skill != null) {
                 WishSkill wishSkill = WishSkill.builder()
-                        .resume(resume)
+                        .resume(resume) // 이 부분이 누락되지 않도록 확인
                         .skill(skill)
                         .build();
-                wishSkillList.add(wishSkill);
+                newWishSkills.add(wishSkill);
             }
         }
-        // WishSkill 엔터티 저장
-        wishSkillRepository.saveAll(wishSkillList);
-        // 직무 관련 정보 처리
-        List<String> dutyList = saveDTO.getWishDutys();
+
         for (String dutyName : dutyList) {
             Duty duty = dutyRepository.findByDutyName(dutyName);
             if (duty != null) {
                 WishDuty wishDuty = WishDuty.builder()
-                        .resume(resume)
+                        .resume(resume) // 이 부분이 누락되지 않도록 확인
                         .duty(duty)
                         .build();
-                wishDutyList.add(wishDuty);
+                newWishDutys.add(wishDuty);
             }
         }
-        // WishDuty 엔터티 저장
-        wishDutyRepository.saveAll(wishDutyList);
+
+        // 새로운 정보 저장
+        wishSkillRepository.saveAll(newWishSkills);
+        wishDutyRepository.saveAll(newWishDutys);
+
         // 이미지 URL 업데이트
         resume.setPersonalPicUrl(fileName);
         return resume;
-    }
-
-    public List<WishDuty> getWishDutys(Integer id) {
-        return wishDutyRepository.findByResumeId(id);
-    }
-
-    public List<WishSkill> getWishSkills(Integer id) {
-        return wishSkillRepository.findByResumeId(id);
     }
 
     // 이력서수정 view
@@ -147,49 +154,66 @@ public class ResumeService {
 
     // 이력서수정
     @Transactional
-    public void update(Integer id, UpdateDTO updateDTO) {
-        Optional<Resume> optionalResume = resumeRepository.findById(id);
-        if (optionalResume.isPresent()) {
-            Resume resume = optionalResume.get();
-            resume.setTitle(updateDTO.getTitle());
-            resume.setCoverLetter(updateDTO.getCoverLetter());
-            resume.setCreatedAt(updateDTO.getCreatedAt());
-            // 기존 위시스킬 데이터 삭제
-            for (WishSkill existingSkill : resume.getWishSkills()) {
-                existingSkill.setResume(null);
-            }
-            resume.getWishSkills().clear();
-            // 새로운 위시스킬 데이터 추가
-            if (updateDTO.getWishSkills() != null) {
-                for (String skillName : updateDTO.getWishSkills()) {
-                    Skill skill = skillRepository.findBySkillName(skillName);
-                    if (skill != null) {
-                        WishSkill wishSkill = new WishSkill();
-                        wishSkill.setSkill(skill);
-                        wishSkill.setResume(resume);
-                        wishSkillRepository.save(wishSkill);
-                    }
-                }
-            }
-            // 기존 위시듀티 데이터 삭제
-            for (WishDuty existingDuty : resume.getWishDutys()) {
-                existingDuty.setResume(null);
-            }
-            resume.getWishDutys().clear();
-            // 새로운 위시 듀티 데이터 추가
-            if (updateDTO.getWishDutys() != null) {
-                for (String dutyName : updateDTO.getWishDutys()) {
-                    Duty duty = dutyRepository.findByDutyName(dutyName);
-                    if (duty != null) {
-                        WishDuty wishDuty = new WishDuty();
-                        wishDuty.setDuty(duty);
-                        wishDuty.setResume(resume);
-                        wishDutyRepository.save(wishDuty);
-                    }
-                }
-            }
-            resumeRepository.save(resume);
+    public Resume update(Integer resumeId, ResumeRequest.UpdateDTO updateDTO) {
+        // 기존 이력서 조회
+        Resume resume = resumeRepository.findById(resumeId).orElse(null);
+
+        if (resume == null) {
+            // 해당 ID에 해당하는 이력서가 없으면 예외 처리 또는 오류 처리를 수행할 수 있습니다.
+            throw new MyException("해당 이력서를 찾을 수 없습니다.");
         }
+
+        // 이력서 내용 업데이트
+        resume.setTitle(updateDTO.getTitle());
+        resume.setCoverLetter(updateDTO.getCoverLetter());
+        resume.setCreatedAt(updateDTO.getCreatedAt());
+
+        // 기존의 정보를 모두 삭제하고 새로운 정보로 대체
+        wishSkillRepository.deleteAllByResume(resume);
+        wishDutyRepository.deleteAllByResume(resume);
+
+        List<WishSkill> newWishSkills = new ArrayList<>();
+        List<WishDuty> newWishDutys = new ArrayList<>();
+
+        String[] skillList = updateDTO.getWishSkills();
+        String[] dutyList = updateDTO.getWishDutys();
+
+        for (String skillName : skillList) {
+            Skill skill = skillRepository.findBySkillName(skillName);
+            if (skill != null) {
+                WishSkill wishSkill = WishSkill.builder()
+                        .resume(resume)
+                        .skill(skill)
+                        .build();
+                newWishSkills.add(wishSkill);
+            }
+        }
+
+        for (String dutyName : dutyList) {
+            Duty duty = dutyRepository.findByDutyName(dutyName);
+            if (duty != null) {
+                WishDuty wishDuty = WishDuty.builder()
+                        .resume(resume)
+                        .duty(duty)
+                        .build();
+                newWishDutys.add(wishDuty);
+            }
+        }
+
+        // 새로운 정보 저장
+        wishSkillRepository.saveAll(newWishSkills);
+        wishDutyRepository.saveAll(newWishDutys);
+
+        // 수정된 이력서 저장
+        return resumeRepository.save(resume);
+    }
+
+    public List<WishDuty> getWishDutys(Integer id) {
+        return wishDutyRepository.findByResumeId(id);
+    }
+
+    public List<WishSkill> getWishSkills(Integer id) {
+        return wishSkillRepository.findByResumeId(id);
     }
 
     public Long 총이력서(Integer userId) {
@@ -199,6 +223,7 @@ public class ResumeService {
     public List<Resume> 이력서조회(Integer userId) {
         return resumeRepository.findByUserId(userId);
     }
+
 }
 
 //
