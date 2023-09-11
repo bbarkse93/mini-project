@@ -39,7 +39,7 @@ public class ApplyService {
 
     @Transactional
     public void 기업지원관리(Integer id, ApplyRequest.UpdateDTO updateDTO) {
-
+        
         Optional<Apply> optionalApply = applyRepository.findById(id);
 
         if (optionalApply.isPresent()) {
@@ -54,12 +54,12 @@ public class ApplyService {
 
     @Transactional
     public void 지원하기(Integer id) {
-        User sessionUser = (User) session.getAttribute("sessionUser");
+      
         Apply apply = Apply.builder()
                 .notice(Notice.builder().id(id).build())
                 .resume(Resume.builder().id(id).build())
-
-                .user(User.builder().id(sessionUser.getId()).build())
+                
+                .user(User.builder().id(id).build())
                 .status(true)
                 .build();
         applyRepository.save(apply);
