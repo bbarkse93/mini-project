@@ -146,6 +146,7 @@
     var devOptions = document.querySelectorAll('[name="wishDutys"]:checked');
     var techOptions = document.querySelectorAll('[name="wishSkills"]:checked');
     var imageInput = document.getElementById("imageInput");
+    var eduOptions = document.querySelectorAll('[name="edu"]:checked');
 
     if (devOptions.length === 0 && techOptions.length === 0) {
       alert("희망직무와 기술스택을 선택해주세요.");
@@ -158,6 +159,9 @@
       event.preventDefault(); // 폼 제출을 막음
     } else if (!imageInput.files[0]) {
       alert("이미지를 업로드해주세요.");
+      event.preventDefault(); // 폼 제출을 막음
+    } else if (eduOptions.length === 0) {
+      alert("학력을 선택해주세요.");
       event.preventDefault(); // 폼 제출을 막음
     }
   }
