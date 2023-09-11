@@ -17,7 +17,6 @@ import shop.mtcoding.blogv2._core.error.ex.MyException;
 import shop.mtcoding.blogv2._core.vo.MyPath;
 import shop.mtcoding.blogv2.duty.Duty;
 import shop.mtcoding.blogv2.duty.DutyRepository;
-import shop.mtcoding.blogv2.resume.ResumeRequest.UpdateDTO;
 import shop.mtcoding.blogv2.skill.Skill;
 import shop.mtcoding.blogv2.skill.SkillRepository;
 import shop.mtcoding.blogv2.user.User;
@@ -154,14 +153,10 @@ public class ResumeService {
 
     // 이력서수정
     @Transactional
-    public Resume update(Integer resumeId, ResumeRequest.UpdateDTO updateDTO) {
+    public void update(Integer id, ResumeRequest.UpdateDTO updateDTO) {
         // 기존 이력서 조회
-        Resume resume = resumeRepository.findById(resumeId).orElse(null);
-
-        if (resume == null) {
-            // 해당 ID에 해당하는 이력서가 없으면 예외 처리 또는 오류 처리를 수행할 수 있습니다.
-            throw new MyException("해당 이력서를 찾을 수 없습니다.");
-        }
+        Resume resume = resumeRepository.findById(id)
+                .orElseThrow(() -> new MyException("해당 이력서 정보를 찾을 수 없습니다."));
 
         // 이력서 내용 업데이트
         resume.setTitle(updateDTO.getTitle());
@@ -172,40 +167,34 @@ public class ResumeService {
         wishSkillRepository.deleteAllByResume(resume);
         wishDutyRepository.deleteAllByResume(resume);
 
-        List<WishSkill> newWishSkills = new ArrayList<>();
-        List<WishDuty> newWishDutys = new ArrayList<>();
-
-        String[] skillList = updateDTO.getWishSkills();
-        String[] dutyList = updateDTO.getWishDutys();
-
-        for (String skillName : skillList) {
-            Skill skill = skillRepository.findBySkillName(skillName);
-            if (skill != null) {
-                WishSkill wishSkill = WishSkill.builder()
-                        .resume(resume)
-                        .skill(skill)
-                        .build();
-                newWishSkills.add(wishSkill);
+        // 새로운 위시 스킬 정보 추가
+        if (updateDTO.getWishSkills() != null) {
+            for (String skillName : updateDTO.getWishSkills()) {
+                Skill skill = skillRepository.findBySkillName(skillName);
+                if (skill != null) {
+                    WishSkill wishSkill = new WishSkill();
+                    wishSkill.setSkill(skill);
+                    wishSkill.setResume(resume);
+                    wishSkillRepository.save(wishSkill);
+                }
             }
         }
 
-        for (String dutyName : dutyList) {
-            Duty duty = dutyRepository.findByDutyName(dutyName);
-            if (duty != null) {
-                WishDuty wishDuty = WishDuty.builder()
-                        .resume(resume)
-                        .duty(duty)
-                        .build();
-                newWishDutys.add(wishDuty);
+        // 새로운 위시 듀티 정보 추가
+        if (updateDTO.getWishDutys() != null) {
+            for (String dutyName : updateDTO.getWishDutys()) {
+                Duty duty = dutyRepository.findByDutyName(dutyName);
+                if (duty != null) {
+                    WishDuty wishDuty = new WishDuty();
+                    wishDuty.setDuty(duty);
+                    wishDuty.setResume(resume);
+                    wishDutyRepository.save(wishDuty);
+                }
             }
         }
 
-        // 새로운 정보 저장
-        wishSkillRepository.saveAll(newWishSkills);
-        wishDutyRepository.saveAll(newWishDutys);
-
-        // 수정된 이력서 저장
-        return resumeRepository.save(resume);
+        // 수정된 채용 정보 저장
+        resumeRepository.save(resume);
     }
 
     public List<WishDuty> getWishDutys(Integer id) {
