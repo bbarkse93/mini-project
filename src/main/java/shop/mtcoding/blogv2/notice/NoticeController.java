@@ -80,16 +80,19 @@ public class NoticeController {
     @PostMapping("/companyNoticeList/{id}/delete")
     public String delete(@PathVariable Integer id) {
         noticeService.채용삭제(id);
-        return "redirect:/companyNoticeList";
+        return "redirect:/companyNoticeList/"+id;
     }
 
     // 공고상세보기 view
     @GetMapping("/notice/noticeDetail/{id}")
     public String detail(@PathVariable Integer id, HttpServletRequest request) {
-        Notice notice = noticeService.findById(id);
-        request.setAttribute("notice", notice);
-        List<Notice> noticeList = noticeService.findAll();
-        request.setAttribute("noticeList", noticeList);
+        Notice noticeDetail = noticeService.공고상세보기(id);
+        List<WishSkill> wishSkills = noticeService.getWishSkills(id);
+        List<WishDuty> wishDutys = noticeService.getWishDutys(id);
+        request.setAttribute("noticeDetail", noticeDetail);
+        request.setAttribute("wishSkills", wishSkills);
+        request.setAttribute("wishDutys", wishDutys);
+        // noticeDetail.get()
         return "notice/noticeDetail";
     }
 
@@ -116,7 +119,7 @@ public class NoticeController {
 
         noticeService.채용등록(saveDTO);
 
-        return "redirect:/companyNoticeList/" + sessionUser.getId();
+        return "redirect:/companyNoticeList";
     }
 
     // 채용수정하기 view
@@ -148,7 +151,7 @@ public class NoticeController {
         // 사용자가 입력한 내용을 사용하여 공고를 업데이트합니다.
 
         noticeService.채용수정(id, updateDTO);
-        return "redirect:/companyNoticeList/" + id;
+        return "redirect:/companyNoticeList";
     }
 
     // 추천공고

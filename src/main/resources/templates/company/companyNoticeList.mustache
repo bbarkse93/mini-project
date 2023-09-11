@@ -24,7 +24,7 @@
                 <div class="d-flex flex-row-reverse justify-content-between pe-3 my-3">
                     <a href="/noticeWrite">
                         <!-- 수정 페이지로 이동하는 폼을 제출 -->
-                        <button type="button" class="btn btn-primary" style="width: 116px; height: 40px;">등록</button>
+                        <button type="button" class="btn btn-primary" style="width: 116px; height: 40px; margin-right: -13px;">등록</button>
                     </a>
                     <div class="small-title">채용공고 관리</div>
                 </div>
@@ -51,15 +51,16 @@
                                 </a>
                             </form>
 
-                            <div>
-                                <a class="btn btn-warning me-1" href="/noticeUpdate/{{id}}">수정</a>
+                            <div style="display: flex; flex-direction: column; align-items: center;">
+                                <div style="margin-bottom: 10px;">
+                                    <a class="btn btn-warning me-1" href="/noticeUpdate/{{id}}">수정</a>
+                                </div>
+                                <div>
+                                    <form action="/companyNoticeList/{{id}}/delete" method="post">
+                                        <button type="submit" class="btn btn-danger" style="height: 30px;">삭제</button>
+                                    </form>
+                                </div>
                             </div>
-                            <div>
-                                <form action="/companyNoticeList/{{id}}/delete" method="post">
-                                    <button type="submit" class="btn btn-danger" style="height: 30px;">삭제</button>
-                                </form>
-                            </div>
-                        </div>
                     </div>
                     {{/noticeList}}
                 </div>
