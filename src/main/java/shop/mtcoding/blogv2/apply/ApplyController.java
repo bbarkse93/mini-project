@@ -52,6 +52,8 @@ public class ApplyController {
     public String companyApplyList(@PathVariable Integer id, HttpServletRequest request) {
         User sessionUser = (User) session.getAttribute("sessionUser");
         List<Apply> individualApplies = applyService.getAppliesByStatus(sessionUser.getId());
+         User user = userService.회원정보보기(sessionUser.getId());
+        request.setAttribute("user", user);
         request.setAttribute("individual", individualApplies);
         Collections.sort(individualApplies, Comparator.comparing(Apply::getId).reversed());
 
