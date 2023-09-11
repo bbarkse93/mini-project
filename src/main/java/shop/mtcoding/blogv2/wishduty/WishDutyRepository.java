@@ -10,8 +10,6 @@ import shop.mtcoding.blogv2.resume.Resume;
 public interface WishDutyRepository extends JpaRepository<WishDuty, Integer> {
     List<WishDuty> findByNoticeId(Integer noticeId);
 
-    void deleteByNoticeId(Integer id);
-
     List<WishDuty> findByResumeId(Integer id);
 
     void deleteAllByResume(Resume resume);
