@@ -39,3 +39,4 @@ spring:
 logging:
   level:
     "[org.hibernate.type]": TRACE
+    "[shop.mtcoding.blogv2]": DEBUG

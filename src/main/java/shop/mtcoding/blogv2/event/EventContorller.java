@@ -18,7 +18,7 @@ public class EventContorller {
     public String event(HttpServletRequest request) {
         List<Event> events = eventService.findAll();
         request.setAttribute("events", events);
-        return "/main/event";
+        return "main/event";
     }
 
 }
