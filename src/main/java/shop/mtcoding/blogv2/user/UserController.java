@@ -72,7 +72,7 @@ public class UserController {
     @GetMapping("/loginForm")
     public String loginForm(UserRequest.LoginDTO loginDTO) {
 
-        return "/main/loginForm";
+        return "main/loginForm";
     }
 
     // @PostMapping("/login")
@@ -131,7 +131,7 @@ public class UserController {
         request.setAttribute("resume", resume);
         request.setAttribute("user", user);
 
-        return "user/userinformation";
+        return "user/userinformation/" + id;
     }
 
     @GetMapping("/userUpdateForm/{id}")

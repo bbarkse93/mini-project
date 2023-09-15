@@ -104,7 +104,7 @@ public class NoticeController {
         request.setAttribute("skills", skills);
         request.setAttribute("dutys", dutys);
         request.setAttribute("locations", locations);
-        return "/notice/noticeWrite";
+        return "notice/noticeWrite";
     }
 
     // 채용등록하기
@@ -137,7 +137,7 @@ public class NoticeController {
         request.setAttribute("wishDutys", wishDutys);
         request.setAttribute("wishSkills", wishSkills);
         request.setAttribute("notice", notice);
-        return "/notice/noticeUpdate";
+        return "notice/noticeUpdate";
     }
 
     // 채용수정하기
@@ -184,7 +184,7 @@ public class NoticeController {
         model.addAttribute("noticePage", noticePage);
         model.addAttribute("prevPage", noticePage.getNumber() - 1);
         model.addAttribute("nextPage", noticePage.getNumber() + 1);
-        return "/main/jobPosting";
+        return "main/jobPosting";
     }
 
 }

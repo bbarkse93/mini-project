@@ -21,12 +21,12 @@ public class BoardController {
     public String customerService(HttpServletRequest request) {
         List<Board> boards = boardService.문의조회();
         request.setAttribute("boards", boards);
-        return "/board/csForm";
+        return "board/csForm";
     }
 
     @GetMapping("/csSaveForm")
     public String customerServiceWrite() {
-        return "/board/csSaveForm";
+        return "board/csSaveForm";
     }
 
     @PostMapping("/board/save")
@@ -48,12 +48,12 @@ public class BoardController {
         return "redirect:/csForm";
     }
 
-    //  고객센터 글 삭제하기
+    // 고객센터 글 삭제하기
     @PostMapping("/board/{id}/delete")
     public String delete(@PathVariable Integer id, HttpServletRequest request) {
 
-        boardService.deleteById(id); 
+        boardService.deleteById(id);
 
-        return "redirect:/csForm"; 
+        return "redirect:/csForm";
     }
 }

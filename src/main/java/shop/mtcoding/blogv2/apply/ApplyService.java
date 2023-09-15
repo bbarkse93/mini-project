@@ -9,6 +9,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import lombok.extern.slf4j.Slf4j;
+import shop.mtcoding.blogv2._core.error.MyExceptionHandler;
+import shop.mtcoding.blogv2._core.error.ex.MyException;
 import shop.mtcoding.blogv2.notice.Notice;
 import shop.mtcoding.blogv2.resume.Resume;
 import shop.mtcoding.blogv2.user.User;
@@ -45,8 +48,11 @@ public class ApplyService {
         if (optionalApply.isPresent()) {
             Apply apply = optionalApply.get();
             apply.setStatus(updateDTO.getStatus());
-
-            applyRepository.save(apply);
+            try {
+                applyRepository.save(apply);
+            } catch (Exception e) {
+                throw new MyException("지원서를 찾을 수 없어요");
+            }
         } else {
 
         }
@@ -62,7 +68,11 @@ public class ApplyService {
                 .user(User.builder().id(id).build())
                 .status(true)
                 .build();
-        applyRepository.save(apply);
+        try {
+            applyRepository.save(apply);
+        } catch (Exception e) {
+            throw new MyException(id + "를 찾을 수 없어요");
+        }
     }
 
 }
