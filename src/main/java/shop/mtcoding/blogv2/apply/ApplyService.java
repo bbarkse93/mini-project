@@ -22,15 +22,15 @@ public class ApplyService {
     @Autowired
     private HttpSession session;
 
-    public List<Apply> getAppliesByStatus(Integer resumeId) {
+    public List<Apply> getAppliesByStatus(Integer userId) {
         // Assuming you have a method in your repository to fetch applies by user ID
 
-        return applyRepository.findByResumeId(resumeId);
+        return applyRepository.findByUserId(userId);
     }
 
-    public List<Apply> 지원현황조회(Integer resumeId) {
+    public List<Apply> 지원현황조회(Integer userId) {
         // Assuming you have a method in your repository to fetch applies by user ID
-        return applyRepository.findByResumeId(resumeId);
+        return applyRepository.findByUserId(userId);
     }
 
     public Long 지원개수(Integer userId) {
@@ -39,7 +39,7 @@ public class ApplyService {
 
     @Transactional
     public void 기업지원관리(Integer id, ApplyRequest.UpdateDTO updateDTO) {
-        
+
         Optional<Apply> optionalApply = applyRepository.findById(id);
 
         if (optionalApply.isPresent()) {
@@ -54,11 +54,11 @@ public class ApplyService {
 
     @Transactional
     public void 지원하기(Integer id) {
-      
+
         Apply apply = Apply.builder()
                 .notice(Notice.builder().id(id).build())
                 .resume(Resume.builder().id(id).build())
-                
+
                 .user(User.builder().id(id).build())
                 .status(true)
                 .build();

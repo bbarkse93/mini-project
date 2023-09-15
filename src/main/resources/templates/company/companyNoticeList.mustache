@@ -24,7 +24,8 @@
                 <div class="d-flex flex-row-reverse justify-content-between pe-3 my-3">
                     <a href="/noticeWrite">
                         <!-- 수정 페이지로 이동하는 폼을 제출 -->
-                        <button type="button" class="btn btn-primary" style="width: 116px; height: 40px; margin-right: -13px;">등록</button>
+                        <button type="button" class="btn btn-primary"
+                            style="width: 116px; height: 40px; margin-right: -13px;">등록</button>
                     </a>
                     <div class="small-title">채용공고 관리</div>
                 </div>
@@ -34,8 +35,7 @@
                     <div class="mb-3">
                         <div class="d-flex justify-content-between">
                             <form action="링크 주소" method="get" class="form-control">
-                                <a href="/notice/noticeDetail/{{id}}" target="_blank"
-                                    class="list-group-item list-group-item-action">
+                                <a href="/notice/noticeDetail/{{id}}" class="list-group-item list-group-item-action">
                                     <div class="d-flex justify-content-between">
                                         <div>
                                             <div class="mb-2 notice-title">
@@ -61,11 +61,11 @@
                                     </form>
                                 </div>
                             </div>
+                        </div>
+                        {{/noticeList}}
                     </div>
-                    {{/noticeList}}
                 </div>
             </div>
         </div>
     </div>
-</div>
-{{> layout/footer}}
+    {{> layout/footer}}

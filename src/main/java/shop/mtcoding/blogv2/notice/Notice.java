@@ -11,11 +11,14 @@ import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 import org.hibernate.annotations.CreationTimestamp;
+
+import com.fasterxml.jackson.annotation.JsonIgnore;
 
 import lombok.Builder;
 import lombok.Getter;
@@ -71,19 +74,19 @@ public class Notice {
 
     @Column
     private String period;
-
-    @OneToMany(mappedBy = "notice", fetch = FetchType.LAZY, cascade = CascadeType.ALL   )
+    @JsonIgnore
+    @OneToMany(mappedBy = "notice", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
     private List<WishSkill> wishSkills = new ArrayList<>();
-
+    @JsonIgnore
     @OneToMany(mappedBy = "notice", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
     private List<WishDuty> wishDutys = new ArrayList<>();
-
+    @JsonIgnore
     @OneToMany(mappedBy = "notice", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
     private List<Apply> applies = new ArrayList<>();
-
+    @JsonIgnore
     @OneToMany(mappedBy = "notice", fetch = FetchType.LAZY)
     private List<Bookmark> bookmarks = new ArrayList<>();
-
+    @JsonIgnore
     @OneToMany(mappedBy = "notice", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
     private List<Scrap> scraps = new ArrayList<>();
 
@@ -92,7 +95,7 @@ public class Notice {
 
     @CreationTimestamp
     private Timestamp createdAt;
-    
+
     @Builder
     public Notice(Integer id, String title, String companyName, String companyEmail, String phoneNumber,
             String companyInfo, String companyPicUrl, String location, String intake, String pay, String qualification,
@@ -119,5 +122,4 @@ public class Notice {
         this.createdAt = createdAt;
     }
 
-   
 }

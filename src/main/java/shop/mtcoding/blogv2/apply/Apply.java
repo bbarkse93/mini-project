@@ -2,6 +2,7 @@ package shop.mtcoding.blogv2.apply;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -30,13 +31,13 @@ public class Apply {
     @Column
     private Boolean status;
 
-    @ManyToOne
+    @ManyToOne(fetch = FetchType.LAZY)
     private Notice notice;
 
-    @ManyToOne
+    @ManyToOne(fetch = FetchType.LAZY)
     private User user;
 
-    @ManyToOne // 여기에 Resume 관련 필드 추가
+    @ManyToOne(fetch = FetchType.LAZY) // 여기에 Resume 관련 필드 추가
     private Resume resume;
 
     @Builder

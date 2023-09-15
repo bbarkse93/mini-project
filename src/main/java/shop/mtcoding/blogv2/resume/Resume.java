@@ -17,6 +17,8 @@ import javax.persistence.Table;
 
 import org.hibernate.annotations.CreationTimestamp;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -59,18 +61,19 @@ public class Resume {
     @Column
     private String edu;
 
+    @JsonIgnore
     @ManyToOne(fetch = FetchType.LAZY)
     private User user;
-
+    @JsonIgnore
     @OneToMany(mappedBy = "resume", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
     private List<WishSkill> wishSkills = new ArrayList<>();
-
+    @JsonIgnore
     @OneToMany(mappedBy = "resume", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
     private List<WishDuty> wishDutys = new ArrayList<>();
-
+    @JsonIgnore
     @OneToMany(mappedBy = "resume", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
     private List<Apply> applies = new ArrayList<>();
-
+    @JsonIgnore
     @OneToMany(mappedBy = "resume", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
     private List<Bookmark> bookmarks = new ArrayList<>();
 

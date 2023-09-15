@@ -12,6 +12,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import shop.mtcoding.blogv2._core.error.ex.MyException;
 import shop.mtcoding.blogv2.notice.Notice;
@@ -51,8 +52,9 @@ public class ApplyController {
     @GetMapping("/companyApplyList/{id}")
     public String companyApplyList(@PathVariable Integer id, HttpServletRequest request) {
         User sessionUser = (User) session.getAttribute("sessionUser");
+
         List<Apply> individualApplies = applyService.getAppliesByStatus(sessionUser.getId());
-         User user = userService.회원정보보기(sessionUser.getId());
+        User user = userService.회원정보보기(sessionUser.getId());
         request.setAttribute("user", user);
         request.setAttribute("individual", individualApplies);
         Collections.sort(individualApplies, Comparator.comparing(Apply::getId).reversed());
@@ -68,25 +70,27 @@ public class ApplyController {
             throw new MyException("인증되지 않은 유저입니다.");
         }
         // userId를 사용하여 로직을 수행
-        List<Apply> individualApplies = applyService.지원현황조회(sessionUser.getId());
+        List<Apply> individual = applyService.지원현황조회(sessionUser.getId());
         List<Notice> notices = noticeService.getAllNotices();
         User user = userService.회원정보보기(sessionUser.getId());
         request.setAttribute("user", user);
         request.setAttribute("notices", notices);
         // HttpServletRequest에 데이터 추가
-        request.setAttribute("individual", individualApplies);
+        request.setAttribute("individual", individual);
 
         return "user/userApplyStatus";
     }
 
     @PostMapping("/apply/{id}/update")
     public String update(@PathVariable Integer id, ApplyRequest.UpdateDTO updateDTO) {
+
         applyService.기업지원관리(id, updateDTO);
-        return "redirect:/companyApplyList/1";
+        return "redirect:/companyApplyList";
     }
 
     @GetMapping("/apply/{id}")
     public String 지원하기(@PathVariable Integer id, ApplyRequest.ApplyDTO applyDTO) {
+
         applyService.지원하기(id);
         return "redirect:/userApplyStatus/" + id;
     }

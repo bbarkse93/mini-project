@@ -52,8 +52,8 @@ values(4, 'naver@nate.com','네이버정보','네이버','company.jpg',NOW(),'2�
 
 -- 지원하기 테이블 
 INSERT INTO apply_tb (notice_id, resume_id, status, user_id) VALUES (1, 1, false, 1); 
-INSERT INTO apply_tb (notice_id, resume_id, status, user_id) VALUES (2, 1, true, 1); 
-INSERT INTO apply_tb (notice_id, resume_id, status, user_id) VALUES (3, 1, true, 1); 
+INSERT INTO apply_tb (notice_id, resume_id, status, user_id) VALUES (2, 1, false, 1); 
+INSERT INTO apply_tb (notice_id, resume_id, status, user_id) VALUES (3, 1, false, 1); 
 
 -- 공고 스크랩
 INSERT INTO scrap_tb (notice_id,user_id) VALUES (1,1);

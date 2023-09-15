@@ -15,6 +15,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import shop.mtcoding.blogv2._core.error.ex.MyException;
 import shop.mtcoding.blogv2.duty.Duty;
@@ -159,12 +160,12 @@ public class NoticeController {
         return "notices"; // 머스태치 템플릿 파일의 경로
     }
 
-    // // 채용공고 페이지 빈 껍데기를 준다
-    // @GetMapping("/api/jobPosting")
-    // public @ResponseBody List<Notice> jobPosting() {
-    // List<Notice> notices = noticeService.findAll();
-    // return notices;
-    // }
+    // 채용공고 페이지 빈 껍데기를 준다
+    @GetMapping("/api/jobPosting")
+    public @ResponseBody List<Notice> jobPosting() {
+        List<Notice> notices = noticeService.findAll();
+        return notices;
+    }
 
     // // 채용공고 페이지
     // @GetMapping("/api/jobPosting")

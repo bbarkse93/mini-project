@@ -101,11 +101,11 @@ public class UserController {
         }
 
         boolean isvalid = BCrypt.checkpw(loginDTO.getPassword(), user.getPassword());
-        
+
         if (!isvalid) {
             return Script.href("/loginForm", "비밀번호가 틀렸습니다");
         }
-        
+
         session.setAttribute("sessionUser", user);
         return Script.href("/", "로그인 성공");
     }
@@ -147,7 +147,7 @@ public class UserController {
         return "user/userUpdateForm";
     }
 
-    @PostMapping("/userupdate1")
+    @PostMapping("/userupdate/{id}")
     public String 개인정보수정(HttpServletRequest request, UserRequest.UpdateDTO updateDTO) {
         User sessionUser = (User) session.getAttribute("sessionUser");
         if (sessionUser == null) {
