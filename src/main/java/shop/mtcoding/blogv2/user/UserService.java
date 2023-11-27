@@ -2,12 +2,14 @@ package shop.mtcoding.blogv2.user;
 
 import javax.servlet.http.HttpSession;
 
+import lombok.RequiredArgsConstructor;
 import org.mindrot.jbcrypt.BCrypt;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import shop.mtcoding.blogv2._core.error.ex.MyApiException;
+import shop.mtcoding.blogv2._core.error.ex.MyException;
 import shop.mtcoding.blogv2._core.util.ApiUtil;
 import shop.mtcoding.blogv2.resume.Resume;
 import shop.mtcoding.blogv2.resume.ResumeRequest.ResumeDTO;
@@ -15,13 +17,12 @@ import shop.mtcoding.blogv2.user.UserRequest.LoginDTO;
 import shop.mtcoding.blogv2.user.UserRequest.UpdateDTO;
 
 @Service
+@RequiredArgsConstructor
 public class UserService {
 
-    @Autowired
-    private UserRepository userRepository;
 
-    @Autowired
-    HttpSession session;
+    private final UserRepository userRepository;
+    private final HttpSession session;
 
     @Transactional
     public void 회원가입(UserRequest.JoinDTO joinDTO) {
@@ -37,20 +38,20 @@ public class UserService {
                 .picUrl(joinDTO.getPicUrl())
                 .distinguish(joinDTO.isDistinguish())
                 .build();
+
         userRepository.save(user);
 
     }
 
     public User 로그인(LoginDTO loginDTO) {
         User user = userRepository.findByUsername(loginDTO.getUsername());
-        if (user != null) {
-            BCrypt.checkpw(loginDTO.getPassword(), user.getPassword());
-            return user;
+        if (user == null) {
+            throw new MyException("user정보가 일치하지 않습니다.");
         }
-        return null;
-        
-        }
-        
+        BCrypt.checkpw(loginDTO.getPassword(), user.getPassword());
+        return user;
+    }
+
 
     @Transactional
     public User 회원수정(UpdateDTO updateDTO, Integer id) {

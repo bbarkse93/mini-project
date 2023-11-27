@@ -5,6 +5,7 @@ import java.util.List;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
+import lombok.RequiredArgsConstructor;
 import org.mindrot.jbcrypt.BCrypt;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -22,33 +23,22 @@ import shop.mtcoding.blogv2.notice.NoticeService;
 import shop.mtcoding.blogv2.resume.ResumeService;
 
 @Controller
+@RequiredArgsConstructor
 public class UserController {
 
-    @Autowired
-    private UserService userService;
+    private final UserService userService;
+    private final NoticeService noticeService;
+    private final ApplyService applyService;
+    private final ResumeService resumeService;
+    private final HttpSession session;
 
-    @Autowired
-    private NoticeService noticeService;
-
-    @Autowired
-    private HttpSession session;
-
-    @Autowired
-    private ApplyService applyService;
-
-    @Autowired
-    private ResumeService resumeService;
-
-    // @GetMapping("/")
-    // public String index() {
-    // return "/index";
-    // }
-
+    // 개인유저 회원가입 페이지
     @GetMapping("/userJoinForm")
     public String joinForm() {
         return "main/userJoinForm";
     }
 
+    // 개인유저 회원가입 기능
     @PostMapping("/userJoin")
     public String 개인회원가입(UserRequest.JoinDTO joinDTO) {
         userService.회원가입(joinDTO);
@@ -56,12 +46,14 @@ public class UserController {
         return "redirect:/loginForm";
     }
 
+    // 기업유저 회원가입 페이지
     @GetMapping("/compJoinForm")
     public String companyjoinForm() {
 
         return "main/compJoinForm";
     }
 
+    // 기업유저 회원가입 기능
     @PostMapping("/compJoin")
     public String 기업회원가입(UserRequest.JoinDTO joinDTO) {
         userService.회원가입(joinDTO);
@@ -69,55 +61,48 @@ public class UserController {
         return "redirect:/loginForm";
     }
 
+    // 로그인 페이지
     @GetMapping("/loginForm")
     public String loginForm(UserRequest.LoginDTO loginDTO) {
 
         return "main/loginForm";
     }
 
-    // @PostMapping("/login")
-    // public @ResponseBody String 로그인(UserRequest.LoginDTO loginDTO) {
-    // User user = userService.로그인(loginDTO);
-
-    // System.out.println("test1: " + loginDTO.getPassword());
-    // System.out.println("test2: " + user.getPassword());
-    // boolean isvalid = BCrypt.checkpw(loginDTO.getPassword(), user.getPassword());
-
-    // if(isvalid){
-    // session.setAttribute("sessionUser", user);
-    // return Script.href("/", "로그인 성공");
-    // }else{
-    // return Script.href("/loginForm", "로그인 실패");
-    // }
-
-    // }
-
+    // 로그인 기능
     @PostMapping("/login")
     public @ResponseBody String 로그인(UserRequest.LoginDTO loginDTO) {
-        User user = userService.로그인(loginDTO);
+        User sessionUser = userService.로그인(loginDTO);
 
-        if (user == null) {
-            return Script.href("/loginForm", "아이디가 틀렸습니다");
+        // 유효성 검사
+        if (loginDTO.getUsername() == null || loginDTO.getUsername().isEmpty()){
+            throw new MyException("username을 입력하세요");
         }
-
-        boolean isvalid = BCrypt.checkpw(loginDTO.getPassword(), user.getPassword());
-
+        if (loginDTO.getPassword() == null || loginDTO.getPassword().isEmpty()){
+            throw new MyException("password를 입력하세요");
+        }
+        if (sessionUser == null) {
+            return Script.href("/loginForm", "username이 틀렸습니다");
+        }
+        boolean isvalid = BCrypt.checkpw(loginDTO.getPassword(), sessionUser.getPassword());
         if (!isvalid) {
-            return Script.href("/loginForm", "비밀번호가 틀렸습니다");
+            return Script.href("/loginForm", "password가 틀렸습니다");
         }
 
-        session.setAttribute("sessionUser", user);
+        session.setAttribute("sessionUser", sessionUser);
+
         return Script.href("/", "로그인 성공");
     }
 
+    // 로그아웃 기능
     @GetMapping("/logout")
     public String logout() {
         session.invalidate();
         return "redirect:/";
     }
 
-    @GetMapping("/userInformation/{id}")
+    @GetMapping("information/{id}")
     private String 회원정보보기(@PathVariable Integer id, HttpServletRequest request) {
+        System.out.println("나 여깄어!");
         User sessionUser = (User) session.getAttribute("sessionUser");
         if (sessionUser == null) {
             throw new MyException("인증되지 않은 유저입니다.");
@@ -131,7 +116,7 @@ public class UserController {
         request.setAttribute("resume", resume);
         request.setAttribute("user", user);
 
-        return "user/userinformation/" + id;
+        return "information/" + id;
     }
 
     @GetMapping("/userUpdateForm/{id}")

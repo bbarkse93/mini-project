@@ -26,8 +26,8 @@ import lombok.Setter;
 import shop.mtcoding.blogv2.apply.Apply;
 import shop.mtcoding.blogv2.bookmark.Bookmark;
 import shop.mtcoding.blogv2.user.User;
-import shop.mtcoding.blogv2.wishduty.WishDuty;
-import shop.mtcoding.blogv2.wishskill.WishSkill;
+import shop.mtcoding.blogv2.duty.wishduty.WishDuty;
+import shop.mtcoding.blogv2.skill.wishskill.WishSkill;
 
 @NoArgsConstructor
 @Setter

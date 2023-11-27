@@ -1,4 +1,4 @@
-package shop.mtcoding.blogv2.wishskill;
+package shop.mtcoding.blogv2.skill.wishskill;
 
 import javax.persistence.Entity;
 import javax.persistence.FetchType;

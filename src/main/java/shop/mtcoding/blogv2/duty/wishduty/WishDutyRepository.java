@@ -1,4 +1,4 @@
-package shop.mtcoding.blogv2.wishduty;
+package shop.mtcoding.blogv2.duty.wishduty;
 
 import java.util.List;
 

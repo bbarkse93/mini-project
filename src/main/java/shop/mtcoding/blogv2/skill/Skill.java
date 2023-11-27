@@ -19,7 +19,7 @@ import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
-import shop.mtcoding.blogv2.wishskill.WishSkill;
+import shop.mtcoding.blogv2.skill.wishskill.WishSkill;
 
 @NoArgsConstructor
 @Setter

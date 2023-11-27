@@ -20,10 +20,10 @@ import shop.mtcoding.blogv2.duty.DutyRepository;
 import shop.mtcoding.blogv2.skill.Skill;
 import shop.mtcoding.blogv2.skill.SkillRepository;
 import shop.mtcoding.blogv2.user.User;
-import shop.mtcoding.blogv2.wishduty.WishDuty;
-import shop.mtcoding.blogv2.wishduty.WishDutyRepository;
-import shop.mtcoding.blogv2.wishskill.WishSkill;
-import shop.mtcoding.blogv2.wishskill.WishSkillRepository;
+import shop.mtcoding.blogv2.duty.wishduty.WishDuty;
+import shop.mtcoding.blogv2.duty.wishduty.WishDutyRepository;
+import shop.mtcoding.blogv2.skill.wishskill.WishSkill;
+import shop.mtcoding.blogv2.skill.wishskill.WishSkillRepository;
 
 @Service
 public class ResumeService {
