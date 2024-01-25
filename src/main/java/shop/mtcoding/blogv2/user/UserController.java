@@ -100,7 +100,7 @@ public class UserController {
         return "redirect:/";
     }
 
-    @GetMapping("information/{id}")
+    @GetMapping("userInformation/{id}")
     private String 회원정보보기(@PathVariable Integer id, HttpServletRequest request) {
         System.out.println("나 여깄어!");
         User sessionUser = (User) session.getAttribute("sessionUser");
@@ -116,7 +116,7 @@ public class UserController {
         request.setAttribute("resume", resume);
         request.setAttribute("user", user);
 
-        return "information/" + id;
+        return "user/userInformation";
     }
 
     @GetMapping("/userUpdateForm/{id}")
